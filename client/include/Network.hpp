@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 19 21:11:43 2017 Nathan Scutari
-// Last update Tue Jun 20 18:51:12 2017 Nathan Scutari
+// Last update Wed Jun 21 17:17:23 2017 Nathan Scutari
 //
 
 #ifndef __NETWORK_HPP__
@@ -14,6 +14,8 @@
 #include <string>
 #include "CommandBuffer.hpp"
 #include "World.h"
+
+#define BUFFER_LENGTH 4096
 
 namespace	zappy
 {
@@ -36,9 +38,9 @@ namespace	zappy
 					const std::string &port,
 					const std::string &team);
     bool		isReadable() const;
-    void		readMsg() const;
+    void		readMsg();
     bool		isCmdReady() const;
-    std::string		getNextCmd() const;
+    std::string		getNextCmd();
     void		sendMsg(std::string &msg) const;
     void		disconnect();
   };

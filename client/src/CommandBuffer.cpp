@@ -5,10 +5,11 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 18:14:03 2017 Nathan Scutari
-// Last update Wed Jun 21 00:10:32 2017 Nathan Scutari
+// Last update Wed Jun 21 18:34:41 2017 Nathan Scutari
 //
 
 #include "CommandBuffer.hpp"
+#include "Exception.hpp"
 
 zappy::CommandBuffer::CommandBuffer()
 {
@@ -26,7 +27,8 @@ std::string	zappy::CommandBuffer::getAndRemoveCmd()
   size_t	pos;
 
   if ((pos = buffer.find("\n")) == std::string::npos)
-    throw std::exception();
+    throw client_exception("Unexpected buffer data (use Network::isCmdReady ?)",
+			   __LINE__, __FILE__);
   cmd = buffer.substr(0, pos + 1);
   buffer.erase(0, pos + 1);
   return (cmd);
