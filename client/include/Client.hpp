@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 19 22:50:21 2017 Nathan Scutari
-// Last update Mon Jun 19 23:01:55 2017 Nathan Scutari
+// Last update Tue Jun 20 16:36:58 2017 vigner_g
 //
 
 #ifndef __CLIENT_HPP__
@@ -36,4 +36,4 @@ namespace zappy
   };
 }
 
-s#endif // !__CLIENT_HPP__
+#endif // !__CLIENT_HPP__
