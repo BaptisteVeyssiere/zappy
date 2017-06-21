@@ -1,11 +1,11 @@
 /*
 ** all_structs.h for Project-Master in /home/nathalie/rendu/network/PSU_2016_zappy/include
-** 
+**
 ** Made by Nathalie CAI
 ** Login   <abel@epitech.eu>
-** 
+**
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Wed Jun 21 16:49:45 2017 Nathalie CAI
+** Last update Wed Jun 21 17:10:22 2017 Baptiste Veyssiere
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -21,49 +21,53 @@ enum	dir
 
 typedef struct		s_team
 {
-  char	*name;
-  int	free_slots;
+  char			*name;
+  int			free_slots;
+  unsigned int		highest_level;
 }			t_team;
 
 typedef struct		s_position
 {
-  unsigned int	x;
-  unsigned int	y;
+  unsigned int		x;
+  unsigned int		y;
 }			t_position;
 
 typedef struct		s_action
 {
-  char		*action;
-  unsigned int	start;
-  unsigned int	interval;
+  char			*action;
+  unsigned int		start;
+  unsigned int		interval;
+  struct s_action	*next;
 }			t_action;
 
 typedef struct		s_waiting_queue
 {
-  char		*team;
-  int		fd;
+  char			*team;
+  int			fd;
   struct s_waiting_queue *next;
 }			t_waiting_queue;
 
 
 typedef struct		s_egg
 {
-  int		fd;
-  unsigned int	time;
-  char		*team;
-  t_position	*pos;
-  struct s_egg	*next;
+  int			fd;
+  unsigned int		time;
+  char			*team;
+  t_position		*pos;
+  struct s_egg		*next;
 }			t_egg;
 
 typedef struct		s_items
 {
-  unsigned int	food;
-  unsigned int	linemate;
-  unsigned int	deraumere;
-  unsigned int	sibur;
-  unsigned int	mendiane;
-  unsigned int	phiras;
-  unsigned int	thystame;
+  unsigned int		food;
+  unsigned int		linemate;
+  unsigned int		deraumere;
+  unsigned int		sibur;
+  unsigned int		mendiane;
+  unsigned int		phiras;
+  unsigned int		thystame;
+  unsigned int		players;
+  unsigned int		eggs;
 }			t_items;
 
 typedef struct		s_player
@@ -80,17 +84,26 @@ typedef struct		s_player
   struct s_player	*next;
 }			t_player;
 
+typedef struct		s_network
+{
+  int			socket_fd[2];
+  int			*fd_tab;
+  int			graphic_fd;
+}			t_network;
+
 typedef struct		s_data
 {
   t_player		*players_root;
+  t_network		*network;
   unsigned int		freq;
   unsigned int		width;
   unsigned int		height;
   t_items		**map;
   unsigned int		nbr_teams;
-  t_team		*team_list;
+  t_team		**team_list;
   t_egg			*eggs;
   unsigned int		player_limit;
+  unsigned int		seed;
 }			t_data;
 
 #endif /* !ALL_STRUCTS_H_ */
