@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Wed Jun 21 17:10:22 2017 Baptiste Veyssiere
+** Last update Wed Jun 21 17:26:21 2017 Baptiste Veyssiere
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -35,8 +35,7 @@ typedef struct		s_position
 typedef struct		s_action
 {
   char			*action;
-  unsigned int		start;
-  unsigned int		interval;
+  int			timer;
   struct s_action	*next;
 }			t_action;
 
@@ -51,7 +50,7 @@ typedef struct		s_waiting_queue
 typedef struct		s_egg
 {
   int			fd;
-  unsigned int		time;
+  int			timer;
   char			*team;
   t_position		*pos;
   struct s_egg		*next;
