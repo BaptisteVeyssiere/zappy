@@ -16,7 +16,8 @@ CC	= gcc
 MKDIR	= mkdir -p
 
 SRC	= src/write_error.c \
-	src/init_server.c
+	src/init_server.c \
+	src/main_loop.c
 
 SRCDIR	= src
 

@@ -5,11 +5,13 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Wed Jun 21 01:05:03 2017 Baptiste Veyssiere
+** Last update Wed Jun 21 15:38:14 2017 Baptiste Veyssiere
 */
 
 #ifndef __SERVER_H__
 # define __SERVER_H__
+
+# include "all_structs.h"
 
 # define MSG_LEN 512
 # define QUEUE_SIZE 42
