@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 15:33:39 2017 Baptiste Veyssiere
-** Last update Wed Jun 21 15:38:47 2017 Baptiste Veyssiere
+** Last update Wed Jun 21 16:45:10 2017 Nathalie CAI
 */
 
 #include <unistd.h>
@@ -13,6 +13,7 @@
 
 int	main_loop(t_data *data)
 {
+  data = data;
   while (1)
     {
       // Execution des actions des joueurs (boucle)

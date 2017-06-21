@@ -11,13 +11,17 @@ SERVER	= zappy_server
 
 RM	= rm -rf
 
-CC	= gcc
+CC	= gcc -g
 
 MKDIR	= mkdir -p
 
 SRC	= src/write_error.c \
 	src/init_server.c \
-	src/main_loop.c
+	src/main_loop.c \
+	src/init_data.c \
+	src/main.c \
+	src/prints.c \
+	src/get_args.c
 
 SRCDIR	= src
 

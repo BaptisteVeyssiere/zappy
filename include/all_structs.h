@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 ** 
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Wed Jun 21 12:09:35 2017 Nathalie CAI
+** Last update Wed Jun 21 16:49:45 2017 Nathalie CAI
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -22,7 +22,7 @@ enum	dir
 typedef struct		s_team
 {
   char	*name;
-  int	free_slot;
+  int	free_slots;
 }			t_team;
 
 typedef struct		s_position
@@ -87,7 +87,8 @@ typedef struct		s_data
   unsigned int		width;
   unsigned int		height;
   t_items		**map;
-  t_team		**team_list;
+  unsigned int		nbr_teams;
+  t_team		*team_list;
   t_egg			*eggs;
   unsigned int		player_limit;
 }			t_data;
