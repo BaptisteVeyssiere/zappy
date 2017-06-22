@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Wed Jun 21 19:12:29 2017 vigner_g
+// Last update Wed Jun 21 20:48:29 2017 vigner_g
 //
 
 #ifndef __PLAYER_HPP__
@@ -44,7 +44,7 @@ namespace	zappy
     void	TurnLeft();
     void	TurnRight();
     void	GoForward();
-    void	PickupItem();
+    void	PickupItem(std::string item);
     void	SetItem();
     void	Fork();
     void	Eject();

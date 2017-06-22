@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 19 21:52:15 2017 Nathan Scutari
-// Last update Mon Jun 19 23:01:35 2017 Nathan Scutari
+// Last update Wed Jun 21 16:54:33 2017 Nathan Scutari
 //
 
 #ifndef __COMMANDBUFFER_HPP__
@@ -28,9 +28,9 @@ namespace zappy
     CommandBuffer();
     ~CommandBuffer();
 
-    bool	isCmdInBuff();
+    bool	isCmdInBuff() const;
     std::string	getAndRemoveCmd();
-    void	addInBuff(std::string msg);
+    void	addInBuff(const std::string &msg);
   };
 }
 

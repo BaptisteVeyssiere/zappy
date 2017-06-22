@@ -5,11 +5,13 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Mon Jun 19 22:57:24 2017 Nathan Scutari
-** Last update Wed Jun 21 19:54:36 2017 vigner_g
+** Last update Wed Jun 21 20:53:06 2017 vigner_g
 */
 
 #ifndef __WORLD_H__
 # define __WORLD_H__
+
+#include <map>
 
 namespace	zappy
 {

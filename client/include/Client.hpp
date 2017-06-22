@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 19 22:50:21 2017 Nathan Scutari
-// Last update Tue Jun 20 16:36:58 2017 vigner_g
+// Last update Wed Jun 21 20:08:19 2017 vigner_g
 //
 
 #ifndef __CLIENT_HPP__
@@ -26,13 +26,14 @@ namespace zappy
   private:
     Client();
     Client(Client &other);
-    Client	&opeartor(Client &other);
+    Client	&operator=(Client &other);
 
   public:
     Client(int port, char *team, std::string machine = "localhost");
     ~Client();
 
     void	launch();
+    static void	usage();
   };
 }
 
