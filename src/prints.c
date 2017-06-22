@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 ** 
 ** Started on  Wed Jun 21 15:44:39 2017 Nathalie CAI
-** Last update Wed Jun 21 16:49:38 2017 Nathalie CAI
+** Last update Wed Jun 21 18:33:55 2017 Nathalie CAI
 */
 
 #include "server.h"
@@ -27,4 +27,5 @@ void	print_data(t_data *data)
       i++;
     }
   printf("player_limit = %d\n", data->player_limit);
+  printf("seed = %d\n", data->seed);
 }

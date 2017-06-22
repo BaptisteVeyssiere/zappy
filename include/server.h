@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Wed Jun 21 16:43:56 2017 Nathalie CAI
+** Last update Thu Jun 22 10:32:29 2017 Nathalie CAI
 */
 
 #ifndef __SERVER_H__
@@ -33,11 +33,7 @@ int	bind_port(const int port);
 ** get_args.c                                                                                                        
 */
 
-unsigned int    get_port(int, char **);
-unsigned int    get_width(int, char **);
-unsigned int    get_height(int, char **);
-unsigned int    get_freq(int, char **);
-unsigned int    get_client_max(int, char **);
+unsigned int    get_uint(int, char **, char *);
 
 /*
 ** init_data.c

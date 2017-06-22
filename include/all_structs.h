@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Wed Jun 21 17:26:21 2017 Baptiste Veyssiere
+** Last update Wed Jun 21 18:20:45 2017 Nathalie CAI
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -99,7 +99,8 @@ typedef struct		s_data
   unsigned int		height;
   t_items		**map;
   unsigned int		nbr_teams;
-  t_team		**team_list;
+  t_team		*team_list;
+  //t_team		**team_list; <-- correct variable to use, change init_data.c and prints.c
   t_egg			*eggs;
   unsigned int		player_limit;
   unsigned int		seed;
