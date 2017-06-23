@@ -5,11 +5,13 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Fri Jun 23 17:21:39 2017 Baptiste Veyssiere
+** Last update Fri Jun 23 17:58:25 2017 Baptiste Veyssiere
 */
 
 #ifndef ALL_STRUCTS_H_
 # define ALL_STRUCTS_H_
+
+# include <sys/select.h>
 
 enum	dir
   {
@@ -86,7 +88,7 @@ typedef struct		s_player
 typedef struct		s_network
 {
   int			socket_fd[2];
-  int			*fd_tab;
+  fd_set		*set;
   int			graphic_fd;
   int			signal_fd;
 }			t_network;
@@ -104,6 +106,7 @@ typedef struct		s_data
   t_egg			*eggs;
   unsigned int		player_limit;
   unsigned int		seed;
+  int			port;
 }			t_data;
 
 #endif /* !ALL_STRUCTS_H_ */

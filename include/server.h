@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Fri Jun 23 17:19:48 2017 Baptiste Veyssiere
+** Last update Fri Jun 23 17:56:47 2017 Baptiste Veyssiere
 */
 
 #ifndef __SERVER_H__
@@ -15,6 +15,7 @@
 
 # define MSG_LEN 512
 # define QUEUE_SIZE 42
+# define GRAPHIC_PORT 50000
 # define SIGNAL_CAUGHT "Signal caught, closing session...\n"
 
 /*
@@ -64,5 +65,11 @@ int	create_signal_fd(void);
 */
 
 int	main_loop(t_data *data);
+
+/*
+** check_sockets.c
+*/
+
+int	check_sockets(t_data *data);
 
 #endif /* !__SERVER_H__ */
