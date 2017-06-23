@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Wed Jun 21 17:26:21 2017 Baptiste Veyssiere
+** Last update Fri Jun 23 17:02:36 2017 Nathalie CAI
 */
 
 #ifndef ALL_STRUCTS_H_
