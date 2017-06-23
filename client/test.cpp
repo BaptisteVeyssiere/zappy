@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 18:05:47 2017 Nathan Scutari
-// Last update Fri Jun 23 18:03:23 2017 Nathan Scutari
+// Last update Fri Jun 23 18:23:40 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
   std::cout << comm->getArg(1) << std::endl;
   std::cout << comm->getArg(2) << std::endl;
   std::cout << comm->getArg(3) << std::endl;
-  std::cout << comm->getArg(4) << std::endl;
+  std::cout << comm->getArg(4) << std::endl; // exception
   /*  try
     {
       net.connectToServer("localhost", av[1], "TeamJPP");

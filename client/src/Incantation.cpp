@@ -5,41 +5,41 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 18:10:48 2017 Nathan Scutari
-// Last update Fri Jun 23 18:20:25 2017 Nathan Scutari
+// Last update Fri Jun 23 18:46:05 2017 Nathan Scutari
 //
 
 #include "Incantation.hpp"
 #include "Exception.hpp"
 
 zappy::Incantation::Incantation()
-  :ICommand(), command("Incantation")
+  :ICommand(), waiting(0), command("Incantation")
 {
 
 }
 
-zappy::Broadcast::~Broadcast()
+zappy::Incantation::~Incantation()
 {
 
 }
 
-std::string	&zappy::Broadcast::getStr()
+std::string	&zappy::Incantation::getStr()
 {
   return (command);
 }
 
-void		zappy::Broadcast::addArg(std::string arg)
+void		zappy::Incantation::addArg(std::string arg)
 {
   throw client_exception("Incantation does not take any argument",
 			 __LINE__, __FILE__);
 }
 
-void		zappy::Broadcast::getArg(int nbr)
+std::string	zappy::Incantation::getArg(int nbr)
 {
-  throw client_exception("Incantaion does not have any arg",
+  throw client_exception("Incantation does not have any arg",
 			 __LINE__, __FILE__);
 }
 
-bool		zappy::Broadcast::getResponse(Player &player, std::string &response)
+bool		zappy::Incantation::getResponse(Player &player, std::string &response)
 {
   if (waiting == 0)
     {

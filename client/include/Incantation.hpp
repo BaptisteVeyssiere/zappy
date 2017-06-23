@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 18:07:33 2017 Nathan Scutari
-// Last update Fri Jun 23 18:20:44 2017 Nathan Scutari
+// Last update Fri Jun 23 18:45:58 2017 Nathan Scutari
 //
 
 #ifndef __INCANTATION_HPP__
@@ -20,6 +20,7 @@ namespace zappy
   class Incantation : public ICommand
   {
   private:
+    int		waiting;
     std::string	command;
 
   private:
