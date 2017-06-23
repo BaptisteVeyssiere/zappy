@@ -5,11 +5,13 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Fri Jun 23 14:19:02 2017 Baptiste Veyssiere
-** Last update Fri Jun 23 14:28:49 2017 Baptiste Veyssiere
+** Last update Fri Jun 23 17:18:24 2017 Baptiste Veyssiere
 */
 
 #include <signal.h>
+#include <sys/signalfd.h>
 #include <string.h>
+#include <unistd.h>
 #include "server.h"
 
 int				check_signal(int fd)
