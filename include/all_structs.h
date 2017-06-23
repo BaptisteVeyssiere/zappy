@@ -1,11 +1,11 @@
 /*
 ** all_structs.h for Project-Master in /home/nathalie/rendu/network/PSU_2016_zappy/include
-** 
+**
 ** Made by Nathalie CAI
 ** Login   <abel@epitech.eu>
-** 
+**
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Wed Jun 21 12:22:50 2017 Mathis Guilbon
+** Last update Wed Jun 21 18:08:25 2017 chalie_a
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -22,8 +22,8 @@ enum	dir
 typedef struct		s_team
 {
   char			*name;
-  int			free_slot;
-  unsigned int		higher_lvl;// evite de parser players et team, pour savoir qui gagne
+  int			free_slots;
+  unsigned int		highest_level;
 }			t_team;
 
 typedef struct		s_position
@@ -35,8 +35,8 @@ typedef struct		s_position
 typedef struct		s_action
 {
   char			*action;
-  unsigned int		start;
-  unsigned int		interval;
+  int			timer;
+  struct s_action	*next;
 }			t_action;
 
 typedef struct		s_waiting_queue
@@ -49,7 +49,7 @@ typedef struct		s_waiting_queue
 typedef struct		s_egg
 {
   int			fd;
-  unsigned int		time;
+  int			timer;
   char			*team;
   t_position		*pos;
   struct s_egg		*next;
@@ -64,6 +64,8 @@ typedef struct		s_items
   unsigned int		mendiane;
   unsigned int		phiras;
   unsigned int		thystame;
+  unsigned int		players;
+  unsigned int		eggs;
 }			t_items;
 
 typedef struct		s_player
@@ -79,29 +81,27 @@ typedef struct		s_player
   t_action		*action;
   struct s_player	*next;
 }			t_player;
-/*
-**	contient tableau de t_player et t_egg
-*/
-typedef struct		s_case
+
+typedef struct		s_network
 {
-  t_player		**player;
-  t_egg			**egg;
-  t_item		*item;
-}			t_case;
+  int			socket_fd[2];
+  int			*fd_tab;
+  int			graphic_fd;
+}			t_network;
 
 typedef struct		s_data
 {
   t_player		*players_root;
+  t_network		*network;
   unsigned int		freq;
   unsigned int		width;
   unsigned int		height;
-  t_case		*map;
-  t_items		*total;// l'integralité des ressources de la map, respawn de ressource si trop bas ?
-  //  t_items		**map   il peut y avoir plusieur chose sur une case de la map;
-  t_team		*team_list;
-  //t_team		**team_list  ptr sur debut de list suffit ?;
+  t_items		**map;
+  unsigned int		nbr_teams;
+  t_team		**team_list;
   t_egg			*eggs;
   unsigned int		player_limit;
+  unsigned int		seed;
 }			t_data;
 
 /*
