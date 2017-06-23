@@ -1,19 +1,18 @@
 /*
 ** init_data.c for Project-Master in /home/nathalie/rendu/network/PSU_2016_zappy/src
-** 
+**
 ** Made by Nathalie CAI
 ** Login   <abel@epitech.eu>
-** 
+**
 ** Started on  Wed Jun 21 12:12:58 2017 Nathalie CAI
-** Last update Fri Jun 23 18:13:49 2017 Nathalie CAI
+** Last update Fri Jun 23 18:22:05 2017 Baptiste Veyssiere
 */
 
-#include "all_structs.h"
-#include "server.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include "server.h"
 
 static t_data	*init_map(t_data *data)
 {
@@ -94,6 +93,8 @@ t_data	*init_data(t_data *data, int ac, char **av)
   if ((data->width = get_uint(ac, av, "-x")) == 0)
     return (NULL);
   if ((data->height = get_uint(ac, av, "-y")) == 0)
+    return (NULL);
+  if ((data->port = get_uint(ac, av, "-n")) == 0)
     return (NULL);
   if ((data = init_map(data)) == NULL)
     return (NULL);
