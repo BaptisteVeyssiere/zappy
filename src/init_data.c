@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 12:12:58 2017 Nathalie CAI
-** Last update Fri Jun 23 18:22:05 2017 Baptiste Veyssiere
+** Last update Fri Jun 23 18:25:57 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -94,7 +94,7 @@ t_data	*init_data(t_data *data, int ac, char **av)
     return (NULL);
   if ((data->height = get_uint(ac, av, "-y")) == 0)
     return (NULL);
-  if ((data->port = get_uint(ac, av, "-n")) == 0)
+  if ((data->port = get_uint(ac, av, "-p")) == 0)
     return (NULL);
   if ((data = init_map(data)) == NULL)
     return (NULL);
