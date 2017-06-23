@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 14:03:46 2017 Nathan Scutari
-// Last update Fri Jun 23 16:47:39 2017 Nathan Scutari
+// Last update Fri Jun 23 16:52:57 2017 Nathan Scutari
 //
 
 #ifndef __ICOMMAND_HPP__
@@ -25,9 +25,13 @@ namespace zappy
 
   public:
     std::string	&getStr();
+    //renvoie la chaine complete
     void	addArg();
+    //rajouet un argument
     void	getArg(int);
-    void	getResponse(Player &);
+    //recupere argument x
+    void	getResponse(Player &, std::string &);
+    //recupere la reponse du serveur(ok / ko / inventaire (dépend de la commande), stock dans player(qui doit contenir les infos sur le joueur (inventaire) (vision) ...))
   }
 }
 
