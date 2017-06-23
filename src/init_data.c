@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 ** 
 ** Started on  Wed Jun 21 12:12:58 2017 Nathalie CAI
-** Last update Thu Jun 22 10:37:49 2017 Nathalie CAI
+** Last update Fri Jun 23 18:13:49 2017 Nathalie CAI
 */
 
 #include "all_structs.h"
@@ -62,9 +62,9 @@ static t_data	*init_team_list(t_data *data, int ac, char **av)
   int	j;
   unsigned  int	i;
 
-  if ((data->team_list = malloc(sizeof (t_team) * data->nbr_teams)) == NULL)
+  if ((data->team_list = malloc(sizeof (t_team *) * (data->nbr_teams + 1))) == NULL)
     return (NULL);
-  bzero(data->team_list, sizeof (t_team) * data->nbr_teams);
+  bzero(data->team_list, sizeof (t_team *) * (data->nbr_teams + 1));
   j = 0;
   while (strcmp(av[j], "-n") != 0 && j < ac)
     j++;
@@ -72,13 +72,17 @@ static t_data	*init_team_list(t_data *data, int ac, char **av)
   i = 0;
   while (i < data->nbr_teams)
     {
-      if ((data->team_list[i].name = strdup(av[j])) == NULL)
+      if ((data->team_list[i] = malloc(sizeof (t_team))) == NULL)
+	return (NULL);
+      bzero(data->team_list[i], sizeof (t_team));
+      if ((data->team_list[i]->name = strdup(av[j])) == NULL)
       	return (NULL);
-      data->team_list[i].free_slots = data->player_limit;
-      data->team_list[i].highest_level = 1;
+      data->team_list[i]->free_slots = data->player_limit;
+      data->team_list[i]->highest_level = 1;
       j++;
       i++;
     }
+  data->team_list[i] = NULL;
   return (data);
 }
 

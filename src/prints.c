@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 ** 
 ** Started on  Wed Jun 21 15:44:39 2017 Nathalie CAI
-** Last update Wed Jun 21 18:33:55 2017 Nathalie CAI
+** Last update Fri Jun 23 18:14:08 2017 Nathalie CAI
 */
 
 #include "server.h"
@@ -23,7 +23,7 @@ void	print_data(t_data *data)
   i = 0;
   while (i < data->nbr_teams)
     {
-      printf("team name %d %s\n", i, data->team_list[i].name);
+      printf("team name %d %s\n", i, data->team_list[i]->name);
       i++;
     }
   printf("player_limit = %d\n", data->player_limit);
