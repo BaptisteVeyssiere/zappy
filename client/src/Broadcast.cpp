@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 17:08:43 2017 Nathan Scutari
-// Last update Fri Jun 23 18:02:30 2017 Nathan Scutari
+// Last update Fri Jun 23 18:21:21 2017 Nathan Scutari
 //
 
 #include <iostream> //debug
@@ -54,9 +54,9 @@ std::string	zappy::Broadcast::getArg(int nbr)
   return (command.substr(pos_s + 1, pos_e - pos_s - 1));
 }
 
-void	zappy::Broadcast::getResponse(Player &player, std::string &response)
+bool	zappy::Broadcast::getResponse(Player &player, std::string &response)
 {
   if (response != "ok") //peut renvoyer que ok pour cette commande
     throw client_exception("Server drunk", __LINE__, __FILE__);
-  return ;
+  return (true);
 }

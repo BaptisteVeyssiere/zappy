@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 17:04:46 2017 Nathan Scutari
-// Last update Fri Jun 23 17:12:58 2017 Nathan Scutari
+// Last update Fri Jun 23 18:20:36 2017 Nathan Scutari
 //
 
 #ifndef __BROADCAST_HPP__
@@ -33,7 +33,7 @@ namespace zappy
     std::string	&getStr();
     void	addArg(std::string);
     std::string	getArg(int);
-    void	getResponse(Player &, std::string &);
+    bool	getResponse(Player &, std::string &);
   };
 }
 
