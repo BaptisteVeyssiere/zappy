@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Wed Jun 21 20:48:29 2017 vigner_g
+// Last update Fri Jun 23 16:18:54 2017 vigner_g
 //
 
 #ifndef __PLAYER_HPP__
@@ -13,9 +13,9 @@
 
 #include <string>
 #include <vector>
-#include <map>
 #include "World.h"
 #include "Network.hpp"
+#include "Inventory.hpp"
 
 //direction north 0 west 1 south 2 east 3
 
@@ -29,30 +29,28 @@ namespace	zappy
     t_position				pos;
     int					food;
     int					direction;
-    std::map<std::string, int>		inventory;
-    std::map<std::string, int>		CommonInventory;
+    Inventory				OwnInventory;
+    Inventory				CommonInventory;
     std::vector<std::vector<t_tile>>	GameMap;
     int					teamNbPlayer;
+    int					nbOfEgg;
 
   private:
     Player();
     Player(Player &other);
     Player	&opeartor(Player &other);
-    void	BroadcastOwnInventory();
-    void	ResetCommonInventory();
-    void	AddToCommonInventory(std::map<std::string, int> other);
     void	TurnLeft();
     void	TurnRight();
     void	GoForward();
-    void	PickupItem(std::string item);
-    void	SetItem();
     void	Fork();
     void	Eject();
+    Player(Network *network);
 
   public:
+
     Player(Network *network);
     ~Player();
   };
 }
 
-#endif // !__CLIENT_HPP__
+#endif // !__PLAYER_HPP__

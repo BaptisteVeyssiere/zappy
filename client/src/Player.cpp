@@ -5,12 +5,15 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Wed Jun 21 20:53:49 2017 vigner_g
+// Last update Fri Jun 23 16:24:22 2017 vigner_g
 //
 
+#include "Inventory.hpp"
+#include "Network.hpp"
 #include "Player.hpp"
 
-zappy::Player::Player(Network *network)
+zappy::Player::Player(Network *network) : id(0), lvl(1), food(10),
+					  direction(0), teamNbPlayer(1)
 {
   this->pos.x = 0;
   this->pos.y = 0;
@@ -20,31 +23,16 @@ zappy::Player::~Player()
 {
 }
 
-void	zappy::Player::ResetCommonInventory()
-{
-  this->CommonInventory.clear();
-  this->CommonInventory = inventory;
-}
-
-void	zappy::Player::AddToCommonInventory(std::map<std::string, int> other)
-{
-  for(auto it = other.begin(); it != other.end(); it++)
-    this->CommonInventory[it->first] += it->second;
-  other.clear();
-}
-
 void	zappy::Player::TurnLeft()
 {
   this->direction -= 1;
   direction = (direction < 0) ? 3 : direction;
-  //envoyer la commande correspondante au serveur
 }
 
 void	zappy::Player::TurnRight()
 {
   this->direction += 1;
   direction = (direction > 3) ? 0 : direction;
-  //envoyer la commande correspondante au serveur
 }
 
 void	zappy::Player::GoForward()
@@ -62,17 +50,15 @@ void	zappy::Player::GoForward()
     }
 }
 
-void	zappy::Player::PickupItem(std::string item)
+void	zappy::Player::Fork()
 {
-  auto it = CommonInventory.find(item);
-  if (it != CommonInventory.end()) //ça c'est pas sur
-    CommonInventory[it->first] += 1;
-  else
-    CommonInventory[it->first] = 1;
+}
+
+void	zappy::Player::Eject()
+{
 }
 
 int		main()
 {
-  zappy::Network net;
-  zappy::Player	player(&net);
+  zappy::Player	player();
 }
