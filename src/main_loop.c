@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 15:33:39 2017 Baptiste Veyssiere
-** Last update Fri Jun 23 17:59:56 2017 Baptiste Veyssiere
+** Last update Fri Jun 23 18:28:49 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -30,7 +30,6 @@ static int	init_network(t_data *data)
 {
   if ((data->network = malloc(sizeof(t_network))) == NULL)
     return (write_error(__FILE__, __func__, __LINE__, -1));
-  bzero(data, sizeof(t_network));
   if ((data->network->socket_fd[0] = bind_port(data->port)) == -1 ||
       (data->network->socket_fd[1] = bind_port(GRAPHIC_PORT)) == -1 ||
       (data->network->signal_fd = create_signal_fd()) == -1 ||

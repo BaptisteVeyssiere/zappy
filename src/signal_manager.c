@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Fri Jun 23 14:19:02 2017 Baptiste Veyssiere
-** Last update Fri Jun 23 17:18:24 2017 Baptiste Veyssiere
+** Last update Fri Jun 23 18:31:14 2017 Baptiste Veyssiere
 */
 
 #include <signal.h>
@@ -25,7 +25,7 @@ int				check_signal(int fd)
       if (write(2, SIGNAL_CAUGHT, strlen(SIGNAL_CAUGHT)) <
 	  (int)strlen(SIGNAL_CAUGHT))
 	return (write_error(__FILE__, __func__, __LINE__, -1));
-      return (2);
+      return (-1);
     }
   return (0);
 }
