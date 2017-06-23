@@ -5,9 +5,10 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 17:08:43 2017 Nathan Scutari
-// Last update Fri Jun 23 17:40:48 2017 Nathan Scutari
+// Last update Fri Jun 23 18:02:30 2017 Nathan Scutari
 //
 
+#include <iostream> //debug
 #include "Broadcast.hpp"
 #include "Exception.hpp"
 
@@ -36,12 +37,13 @@ std::string	zappy::Broadcast::getArg(int nbr)
   size_t	pos_e;
 
   pos_e = -1;
-  for (int i = 0 ; i < nbr ; ++i)
+  for (int i = 0 ; i < nbr + 1 ; ++i)
     {
       pos_s = pos_e;
-      if ((pos_e = command.find(" ", pos_s)) == std::string::npos)
+      if ((pos_e = command.find(" ", pos_s + 1))
+	  == std::string::npos)
 	{
-	  if (i == nbr - 1)
+	  if (i == nbr)
 	    pos_e = command.size();
 	  else
 	    throw client_exception("Arg " + std::to_string(nbr) +

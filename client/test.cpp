@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 18:05:47 2017 Nathan Scutari
-// Last update Fri Jun 23 17:49:52 2017 Nathan Scutari
+// Last update Fri Jun 23 18:03:23 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -21,8 +21,12 @@ int	main(int ac, char **av)
 
 
   comm = new zappy::Broadcast();
-  comm->addArg("message test");
+  comm->addArg("arg1 arg2 arg3");
   std::cout << comm->getStr() << std::endl;
+  std::cout << comm->getArg(1) << std::endl;
+  std::cout << comm->getArg(2) << std::endl;
+  std::cout << comm->getArg(3) << std::endl;
+  std::cout << comm->getArg(4) << std::endl;
   /*  try
     {
       net.connectToServer("localhost", av[1], "TeamJPP");
