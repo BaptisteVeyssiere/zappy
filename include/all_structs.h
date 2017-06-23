@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Fri Jun 23 17:02:36 2017 Nathalie CAI
+** Last update Fri Jun 23 17:21:39 2017 Baptiste Veyssiere
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -88,6 +88,7 @@ typedef struct		s_network
   int			socket_fd[2];
   int			*fd_tab;
   int			graphic_fd;
+  int			signal_fd;
 }			t_network;
 
 typedef struct		s_data
