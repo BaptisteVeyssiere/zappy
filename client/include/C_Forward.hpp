@@ -1,11 +1,11 @@
 //
-// Forward.hpp for Forward in /home/vigner_g/rendu/PSU_2016_zappy/client
+// C_Forward.hpp for C_Forward in /home/vigner_g/rendu/PSU_2016_zappy/client
 //
 // Made by vigner_g
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 14:37:39 2017 vigner_g
-// Last update Sat Jun 24 14:37:40 2017 vigner_g
+// Last update Sat Jun 24 15:17:16 2017 vigner_g
 //
 
 #ifndef __FORWARD_HPP__
@@ -17,19 +17,19 @@
 
 namespace zappy
 {
-  class Forward : public ICommand
+  class C_Forward : public ICommand
   {
   private:
     int		waiting;
     std::string	command;
 
   private:
-    Forward(Forward &other);
-    Forward	&operator=(Forward &other);
+    C_Forward(C_Forward &other);
+    C_Forward	&operator=(C_Forward &other);
 
   public:
-    Forward();
-    ~Forward();
+    C_Forward();
+    ~C_Forward();
 
   public:
     std::string	&getStr();
