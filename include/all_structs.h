@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Fri Jun 23 18:20:19 2017 Baptiste Veyssiere
+** Last update Sat Jun 24 15:56:02 2017 Baptiste Veyssiere
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -48,10 +48,8 @@ typedef struct		s_waiting_queue
   struct s_waiting_queue *next;
 }			t_waiting_queue;
 
-
 typedef struct		s_egg
 {
-  int			fd;
   int			timer;
   char			*team;
   t_position		*pos;
@@ -106,6 +104,7 @@ typedef struct		s_data
   t_egg			*eggs;
   unsigned int		player_limit;
   unsigned int		seed;
+  t_waiting_queue	*queue;
   int			port;
 }			t_data;
 

@@ -5,11 +5,11 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Fri Jun 23 18:21:23 2017 Baptiste Veyssiere
+** Last update Sat Jun 24 16:06:31 2017 Baptiste Veyssiere
 */
 
-#ifndef __SERVER_H__
-# define __SERVER_H__
+#ifndef SERVER_H_
+# define SERVER_H_
 
 # include "all_structs.h"
 
@@ -74,4 +74,10 @@ int	check_sockets(t_data *data);
 
 unsigned int	get_uint(int ac, char **av, char *target);
 
-#endif /* !__SERVER_H__ */
+/*
+** free_data.c
+*/
+
+int	free_data(t_data *data);
+
+#endif /* !SERVER_H_ */

@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:43:44 2017 Baptiste Veyssiere
-** Last update Wed Jun 21 00:50:27 2017 Baptiste Veyssiere
+** Last update Sat Jun 24 16:12:06 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -18,7 +18,7 @@ int	write_error(const char *file, const char *func,
   char	msg[MSG_LEN];
 
   if (snprintf(msg, MSG_LEN,
-	       "In function %s, file %s, line %d", func, file, line) < 0)
+	       "In file %s, function %s, line %d", file, func, line) < 0)
     return (-1);
   perror(msg);
   return (ret);

@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 15:33:39 2017 Baptiste Veyssiere
-** Last update Fri Jun 23 18:28:49 2017 Baptiste Veyssiere
+** Last update Sat Jun 24 16:03:25 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -48,12 +48,11 @@ int	main_loop(t_data *data)
       // Execution des actions des joueurs (boucle)
       if (check_sockets(data) == -1) // Attribution d'une action aux joueurs avec buffer < 10 actions + Update de la waiting queue + check connection graphique
 	{
-	  // Free de la structure data
+	  free_data(data);
 	  return (84);
 	}
       // Décrémentation de la timelimit des oeufs
       usleep(100);
     }
-  // Free de la structure data
-  return (0);
+  return (free_data(data));
 }
