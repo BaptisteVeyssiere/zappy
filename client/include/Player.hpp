@@ -1,21 +1,49 @@
 //
-// Player.hpp for zappy in /home/scutar_n/rendu/PSU/PSU_2016_zappy/client/include
+// Player.hpp for Player in /home/vigner_g/rendu/PSU_2016_zappy/client
 //
-// Made by Nathan Scutari
-// Login   <scutar_n@epitech.net>
+// Made by vigner_g
+// Login   <vigner_g@epitech.net>
 //
-// Started on  Fri Jun 23 17:39:34 2017 Nathan Scutari
-// Last update Fri Jun 23 18:45:40 2017 Nathan Scutari
+// Started on  Tue Jun 20 16:44:15 2017 vigner_g
+// Last update Sat Jun 24 14:57:34 2017 vigner_g
 //
 
 #ifndef __PLAYER_HPP__
 # define __PLAYER_HPP__
 
-namespace zappy
+#include <string>
+#include <vector>
+#include "World.h"
+#include "Network.hpp"
+#include "Inventory.hpp"
+
+//direction north 0 west 1 south 2 east 3
+
+namespace	zappy
 {
   class Player
   {
+  private:
+    int					id;
+    int					lvl;
+    //t_position				pos;
+    int					food;
+    //int					direction;
+    Inventory				OwnInventory;
+    Inventory				CommonInventory;
+    //std::vector<std::vector<t_tile>>	GameMap;
+    int					teamNbPlayer;
+    int					nbOfEgg;
 
+  private:
+    Player();
+    Player(Player &other);
+    Player	&opeartor(Player &other);
+
+  public:
+
+    Player(Network *network);
+    ~Player();
   };
 }
 

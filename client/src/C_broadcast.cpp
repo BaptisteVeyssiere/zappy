@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 17:08:43 2017 Nathan Scutari
-// Last update Sat Jun 24 15:10:20 2017 Nathan Scutari
+// Last update Sat Jun 24 15:34:52 2017 vigner_g
 //
 
 #include <iostream> //debug
@@ -25,7 +25,9 @@ std::string	&zappy::C_broadcast::getStr()
 {
   return (command);
 }
-
+if (response != "ok") //peut renvoyer que ok pour cette commande
+  37 │     throw client_exception("Server drunk", __LINE__, __FILE__);
+38 │   return (true);
 void	zappy::C_broadcast::addArg(std::string arg)
 {
   command += " " + arg;

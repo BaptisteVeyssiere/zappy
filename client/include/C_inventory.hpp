@@ -1,20 +1,20 @@
 //
-// C_inventory.hpp for zappy in /home/scutar_n/rendu/PSU/PSU_2016_zappy/client
+// C_inventory.hpp for C_inventory in /home/vigner_g/rendu/PSU_2016_zappy/client
 //
-// Made by Nathan Scutari
-// Login   <scutar_n@epitech.net>
+// Made by vigner_g
+// Login   <vigner_g@epitech.net>
 //
-// Started on  Fri Jun 23 18:33:01 2017 Nathan Scutari
-// Last update Sat Jun 24 15:09:25 2017 Nathan Scutari
+// Started on  Sat Jun 24 15:50:28 2017 vigner_g
+// Last update Sat Jun 24 15:53:24 2017 vigner_g
 //
 
-#ifndef __INVENTORY_HPP__
-# define __INVENTORY_HPP__
 
-#include <string>
-#include "ICommand.hpp"
+#ifndef	__INVENTORY_HPP_
+# define __INVENTORY_HPP_
 
-namespace zappy
+#include	<map>
+
+namespace	zappy
 {
   class C_inventory : public ICommand
   {
@@ -23,7 +23,7 @@ namespace zappy
 
   private:
     C_inventory(C_inventory &other);
-    C_inventory	&operator=(C_inventory &other);
+    C_inventory &operator=(C_inventory &other);
 
   public:
     C_inventory();
@@ -36,4 +36,4 @@ namespace zappy
   };
 }
 
-#endif // !__INVENTORY_HPP__
+#endif // !__INVENTORY_HPP_
