@@ -5,23 +5,23 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 15:38:47 2017 Nathan Scutari
-// Last update Tue Jun 20 16:09:55 2017 Nathan Scutari
+// Last update Sat Jun 24 17:34:52 2017 Nathan Scutari
 //
 
+#include <iostream>
 #include "Client.hpp"
+#include "Parser.hpp"
 
 int	main(int ac, char **av)
 {
+  zappy::Parser	parser;
   zappy::Client	*client;
 
-  if (ac != 3 && ac != 4)
-    return (zappy::Client::usage());
-  else if (ac == 3)
-    client = new zappy::Client(av[1], av[2]);
-  else
-    client = new zappy::Client(av[1], av[2], av[3]);
   try
     {
+      parser.parseArgs(ac, av);
+      client = new zappy::Client(parser.getPort(), parser.getTeam(),
+				 parser.getMachine());
       client->launch();
     }
   catch (const std::exception &e)

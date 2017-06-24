@@ -5,14 +5,14 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:12 2017 Nathan Scutari
-// Last update Sat Jun 24 16:08:51 2017 Nathan Scutari
+// Last update Sat Jun 24 17:28:19 2017 Nathan Scutari
 //
 
 #include <unistd.h>
 #include <iostream>
 #include "Client.hpp"
 
-zappy::Client::Client(std::string port, std::string team, std::string machine = localhost)
+zappy::Client::Client(std::string port, std::string team, std::string machine)
   :info(), mNet(), choice(NULL)
 {
   info = mNet.connectToServer(machine, port, team);
@@ -25,7 +25,7 @@ zappy::Client::~Client()
   std::cout << "Disconnected from zappy server" << std::endl;
 }
 
-static void	zappy::Client::usage()
+void	zappy::Client::usage()
 {
   std::cout << "Usage ./zappy_ai -p port -n name -h machine" << std::endl;
   std::cout << "\tport\tis the port number" << std::endl;
@@ -34,7 +34,7 @@ static void	zappy::Client::usage()
 	    << std::endl;
 }
 
-void	zappy::Client::launch()
+/*void	zappy::Client::launch()
 {
   std::string	server_msg;
 
@@ -60,5 +60,5 @@ void	zappy::Client::launch()
 	  mNet.sendMsg(choice.getStr());
 	}
       usleep(100);
-    }
-}
+      }
+      }*/
