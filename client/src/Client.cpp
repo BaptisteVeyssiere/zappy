@@ -5,18 +5,60 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:12 2017 Nathan Scutari
-// Last update Sat Jun 24 15:04:50 2017 Nathan Scutari
+// Last update Sat Jun 24 16:08:51 2017 Nathan Scutari
 //
 
+#include <unistd.h>
+#include <iostream>
 #include "Client.hpp"
 
 zappy::Client::Client(std::string port, std::string team, std::string machine = localhost)
-  :info(), mNet()
+  :info(), mNet(), choice(NULL)
 {
-  mNet.connectToServer(machine, port, team);
+  info = mNet.connectToServer(machine, port, team);
+  std::cout << "Connected to zappy server !" << std::endl;
 }
 
 zappy::Client::~Client()
 {
   mNet.disconnect();
+  std::cout << "Disconnected from zappy server" << std::endl;
+}
+
+static void	zappy::Client::usage()
+{
+  std::cout << "Usage ./zappy_ai -p port -n name -h machine" << std::endl;
+  std::cout << "\tport\tis the port number" << std::endl;
+  std::cout << "\tname\tis the name of the team" << std::endl;
+  std::cout << "\tmachine\tis the name of the machine; localhost by default"
+	    << std::endl;
+}
+
+void	zappy::Client::launch()
+{
+  std::string	server_msg;
+
+  std::cout << "Starting game loop" << std::endl;
+  while (1)
+    {
+      if (mNet.isReadable())
+	mNet.readMsg();
+      if (mNet.isCmdReady())
+	{
+	  server_msg = mNet.getNextCmd();
+	  if (mCmdManager.isResponse() && !choice)
+	    throw client_exception("Unexpected server msg", __LINE__, __FILE__);
+	  else if (choice)
+	    if (choice.getResponse(server_msg))
+	    choice = NULL;
+	  else
+	    mCmdManager.analyse_data(server_msg, player);
+	}
+      if (!choice)
+	{
+	  //choice = IA.makeAChoice;
+	  mNet.sendMsg(choice.getStr());
+	}
+      usleep(100);
+    }
 }
