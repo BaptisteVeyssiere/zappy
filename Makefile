@@ -21,7 +21,9 @@ SRC	= src/write_error.c \
 	src/init_data.c \
 	src/main.c \
 	src/prints.c \
-	src/get_args.c
+	src/get_args.c \
+	src/signal_manager.c \
+	src/check_sockets.c
 
 SRCDIR	= src
 
