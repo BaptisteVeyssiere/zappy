@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 14:37:39 2017 vigner_g
-// Last update Sat Jun 24 15:17:16 2017 vigner_g
+// Last update Sat Jun 24 15:46:53 2017 vigner_g
 //
 
 #ifndef __FORWARD_HPP__
@@ -20,7 +20,6 @@ namespace zappy
   class C_Forward : public ICommand
   {
   private:
-    int		waiting;
     std::string	command;
 
   private:

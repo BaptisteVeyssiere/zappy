@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 17:04:46 2017 Nathan Scutari
-// Last update Fri Jun 23 18:20:36 2017 Nathan Scutari
+// Last update Sat Jun 24 15:08:24 2017 Nathan Scutari
 //
 
 #ifndef __BROADCAST_HPP__
@@ -16,23 +16,22 @@
 
 namespace zappy
 {
-  class	Broadcast : public ICommand
+  class	C_broadcast : public ICommand
   {
   private:
     std::string	command;
 
   private:
-    Broadcast(Broadcast &other);
-    Broadcast	&operator=(Broadcast &other);
+    C_broadcast(C_broadcast &other);
+    C_broadcast	&operator=(C_broadcast &other);
 
   public:
-    Broadcast();
-    ~Broadcast();
+    C_broadcast();
+    ~C_broadcast();
 
   public:
     std::string	&getStr();
     void	addArg(std::string);
-    std::string	getArg(int);
     bool	getResponse(Player &, std::string &);
   };
 }

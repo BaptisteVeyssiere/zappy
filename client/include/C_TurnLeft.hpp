@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 14:50:40 2017 vigner_g
-// Last update Sat Jun 24 15:09:00 2017 vigner_g
+// Last update Sat Jun 24 15:47:16 2017 vigner_g
 //
 
 #ifndef __TURNLEFT_HPP__
@@ -20,7 +20,6 @@ namespace zappy
   class C_TurnLeft : public ICommand
   {
   private:
-    int		waiting;
     std::string	command;
 
   private:

@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Fri Jun 23 16:24:22 2017 vigner_g
+// Last update Sat Jun 24 15:44:51 2017 vigner_g
 //
 
 #include "Inventory.hpp"
@@ -15,50 +15,45 @@
 zappy::Player::Player(Network *network) : id(0), lvl(1), food(10),
 					  direction(0), teamNbPlayer(1)
 {
-  this->pos.x = 0;
-  this->pos.y = 0;
+  // this->pos.x = 0;
+  // this->pos.y = 0;
 }
 
 zappy::Player::~Player()
 {
 }
 
-void	zappy::Player::TurnLeft()
-{
-  this->direction -= 1;
-  direction = (direction < 0) ? 3 : direction;
-}
+// void	zappy::Player::TurnLeft()
+// {
+//   this->direction -= 1;
+//   direction = (direction < 0) ? 3 : direction;
+// }
 
-void	zappy::Player::TurnRight()
-{
-  this->direction += 1;
-  direction = (direction > 3) ? 0 : direction;
-}
+// void	zappy::Player::TurnRight()
+// {
+//   this->direction += 1;
+//   direction = (direction > 3) ? 0 : direction;
+// }
 
-void	zappy::Player::GoForward()
-{
-  switch (this->direction)
-    {
-    case 0: this->pos.x += 1;
-      break;
-    case 1: this->pos.y += 1;
-      break;
-    case 3: this->pos.x -= 1;
-      break;
-    case 4: this->pos.y -= 1;
-      break;
-    }
-}
+// void	zappy::Player::GoForward()
+// {
+//   switch (this->direction)
+//     {
+//     case 0: this->pos.x += 1;
+//       break;
+//     case 1: this->pos.y += 1;
+//       break;
+//     case 3: this->pos.x -= 1;
+//       break;
+//     case 4: this->pos.y -= 1;
+//       break;
+//     }
+// }
 
-void	zappy::Player::Fork()
-{
-}
+// void	zappy::Player::Fork()
+// {
+// }
 
-void	zappy::Player::Eject()
-{
-}
-
-int		main()
-{
-  zappy::Player	player();
-}
+// void	zappy::Player::Eject()
+// {
+// }

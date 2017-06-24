@@ -4,9 +4,10 @@
 // Made by vigner_g
 // Login   <vigner_g@epitech.net>
 //
-// Started on  Thu Jun 22 21:58:26 2017 vigner_g
-// Last update Sat Jun 24 15:14:23 2017 vigner_g
+// Started on  Sat Jun 24 15:19:58 2017 vigner_g
+// Last update Sat Jun 24 15:20:49 2017 vigner_g
 //
+
 
 #ifndef	__INVENTORY_HPP_
 # define __INVENTORY_HPP_
@@ -19,10 +20,6 @@ namespace	zappy
   {
   private:
     std::map<std::string, int>		inv;
-
-  private:
-    Inventory(Inventory &other);
-    Inventory	&operator=(Inventory &other);
 
   public:
     Inventory();

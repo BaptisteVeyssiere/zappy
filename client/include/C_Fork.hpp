@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 14:53:57 2017 vigner_g
-// Last update Sat Jun 24 15:08:21 2017 vigner_g
+// Last update Sat Jun 24 15:47:47 2017 vigner_g
 //
 
 #ifndef __FORK_HPP__
@@ -20,7 +20,6 @@ namespace zappy
   class C_Fork : public ICommand
   {
   private:
-    int		waiting;
     std::string	command;
 
   private:

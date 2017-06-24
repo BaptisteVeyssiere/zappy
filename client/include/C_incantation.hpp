@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 18:07:33 2017 Nathan Scutari
-// Last update Fri Jun 23 18:45:58 2017 Nathan Scutari
+// Last update Sat Jun 24 15:08:58 2017 Nathan Scutari
 //
 
 #ifndef __INCANTATION_HPP__
@@ -17,24 +17,23 @@
 
 namespace zappy
 {
-  class Incantation : public ICommand
+  class C_incantation : public ICommand
   {
   private:
     int		waiting;
     std::string	command;
 
   private:
-    Incantation(Incantation &other);
-    Incantation	&operator=(Incantation &other);
+    C_incantation(C_incantation &other);
+    C_incantation	&operator=(C_incantation &other);
 
   public:
-    Incantation();
-    ~Incantation();
+    C_incantation();
+    ~C_incantation();
 
   public:
     std::string	&getStr();
     void	addArg(std::string);
-    std::string	getArg(int);
     bool	getResponse(Player &, std::string &);
   };
 }

@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 14:51:32 2017 vigner_g
-// Last update Sat Jun 24 15:09:21 2017 vigner_g
+// Last update Sat Jun 24 15:47:25 2017 vigner_g
 //
 
 #ifndef __TURNRIGHT_HPP__
@@ -20,7 +20,6 @@ namespace zappy
   class C_TurnRight : public ICommand
   {
   private:
-    int		waiting;
     std::string	command;
 
   private:

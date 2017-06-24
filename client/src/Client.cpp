@@ -5,7 +5,18 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:12 2017 Nathan Scutari
-// Last update Tue Jun 20 16:10:25 2017 Nathan Scutari
+// Last update Sat Jun 24 15:04:50 2017 Nathan Scutari
 //
 
 #include "Client.hpp"
+
+zappy::Client::Client(std::string port, std::string team, std::string machine = localhost)
+  :info(), mNet()
+{
+  mNet.connectToServer(machine, port, team);
+}
+
+zappy::Client::~Client()
+{
+  mNet.disconnect();
+}

@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 14:55:21 2017 vigner_g
-// Last update Sat Jun 24 15:08:29 2017 vigner_g
+// Last update Sat Jun 24 15:47:03 2017 vigner_g
 //
 
 #ifndef __EJECT_HPP__
@@ -20,7 +20,6 @@ namespace zappy
   class C_Eject : public ICommand
   {
   private:
-    int		waiting;
     std::string	command;
 
   private:
