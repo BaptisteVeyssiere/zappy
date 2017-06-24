@@ -13,10 +13,11 @@
 
 enum	dir
   {
-    UP,
+    UP = 0,
+    RIGHT,
     DOWN,
     LEFT,
-    RIGHT
+    UNKNOWN
   };
 
 typedef struct		s_team
@@ -57,13 +58,14 @@ typedef struct		s_egg
 
 typedef struct		s_items
 {
-  unsigned int		food;
+/*  unsigned int		food;
   unsigned int		linemate;
   unsigned int		deraumere;
   unsigned int		sibur;
   unsigned int		mendiane;
   unsigned int		phiras;
-  unsigned int		thystame;
+  unsigned int		thystame;*/
+  unsigned int		item[ITEMNBR];
   unsigned int		players;
   unsigned int		eggs;
 }			t_items;
