@@ -50,7 +50,18 @@ static  t_action[] =
   {"Death", action_dead}, // free player et envoie reponse "dead"
   {"Take", action_take},//
   {"Set", action_set},//
-  {"Incantation", action_incantation}
+  {"Incantation", action_incantation}//
+};
+
+static		(*incant[7])(t_data *, t_player *, t_items *) =
+{
+  UpgradeToLvl2,
+  UpgradeToLvl3,
+  UpgradeToLvl4,
+  UpgradeToLvl5,
+  UpgradeToLvl6,
+  UpgradeToLvl7,
+  UpgradeToLvl8
 };
 
 #endif //PSU_2016_ZAPPY_ACTION_H

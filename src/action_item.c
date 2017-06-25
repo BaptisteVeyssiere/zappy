@@ -52,3 +52,11 @@ bool		action_inventory(t_data *data, t_player *player, char *prm)
   // ecrire
   return (true);
 }
+
+bool		action_incantation(t_data *data, t_player *player, char *prm)
+{
+  if (!(incant[player->level - 1])(player->inventory))
+    return (false);
+  // ecrire
+  return (true);
+}

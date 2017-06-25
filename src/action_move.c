@@ -59,7 +59,7 @@ bool		action_eject(t_data *data, t_player *player, char *prm)
   off.x = player->pos->x + ((dir == RIGHT) ? 1 : (dir == LEFT) ? -1 : 0);
   off.y = player->pos->y + ((dir == DOWN) ? 1 : (dir == UP) ? -1 : 0);
   getRealPosFrom(data, &off);
-  tmp = data->player;
+  tmp = data->players_root;
   while (tmp != NULL)
     {
       if (tmp->pos->x == player->pos->x &&

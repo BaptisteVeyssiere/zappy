@@ -78,7 +78,7 @@ typedef struct		s_player
   char			*team;
   int			fd;
   t_position		*pos;
-  unsigned int		sightline;
+  //unsigned int		sightline;
   enum dir		direction;
   unsigned int		level;
   unsigned int		life;
