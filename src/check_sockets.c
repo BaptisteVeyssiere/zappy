@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Fri Jun 23 17:55:38 2017 Baptiste Veyssiere
-** Last update Sun Jun 25 04:54:44 2017 Baptiste Veyssiere
+** Last update Sun Jun 25 21:12:12 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -93,10 +93,9 @@ static int	check_set(t_data *data, fd_set *set)
 {
   if (FD_ISSET(data->network->signal_fd, set))
     return (check_signal(data->network->signal_fd));
-  if (FD_ISSET(data->network->socket_fd[0], set) &&
-      extend_queue(data) == -1)
-    return (-1);
-  if (update_queue(data, set) == -1)
+  if ((FD_ISSET(data->network->socket_fd[0], set) &&
+       extend_queue(data) == -1) || update_queue(data, set) == -1 ||
+      update_player_action(data, set) == -1)
     return (-1);
   return (0);
 }

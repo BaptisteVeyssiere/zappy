@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Sun Jun 25 05:01:13 2017 Baptiste Veyssiere
+** Last update Sun Jun 25 22:28:02 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -87,11 +87,25 @@ int	free_data(t_data *data);
 */
 
 int	check_team_wish(t_data *data, t_waiting_queue *elem);
+char	*check_ring(t_ringbuffer *ringbuffer, char first, int *is_cmd);
+int	read_socket(int fd, t_ringbuffer *ringbuffer);
 
 /*
 ** add_player.c
 */
 
 int	try_add_player(t_data *data, int fd, char *team, t_ringbuffer *ringbuffer);
+
+/*
+** update_player_action.c
+*/
+
+int	update_player_action(t_data *data, fd_set *set);
+
+/*
+** free_tools.c
+*/
+
+void	free_actions(t_action *action);
 
 #endif /* !SERVER_H_ */

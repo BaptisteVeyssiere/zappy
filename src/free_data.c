@@ -5,11 +5,12 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sat Jun 24 15:17:39 2017 Baptiste Veyssiere
-** Last update Sun Jun 25 05:02:25 2017 Baptiste Veyssiere
+** Last update Sun Jun 25 22:12:06 2017 Baptiste Veyssiere
 */
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 #include "server.h"
 
 static int	free_players(t_player *player)
@@ -29,6 +30,7 @@ static int	free_players(t_player *player)
       while (action)
 	{
 	  _tmp = action->next;
+	  printf("Delete action <%s>\n", action->action);
 	  free(action->action);
 	  free(action);
 	  action = _tmp;

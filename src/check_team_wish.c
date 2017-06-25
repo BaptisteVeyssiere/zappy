@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 02:09:52 2017 Baptiste Veyssiere
-** Last update Sun Jun 25 05:01:34 2017 Baptiste Veyssiere
+** Last update Sun Jun 25 22:09:13 2017 Baptiste Veyssiere
 */
 
 #include <strings.h>
@@ -15,11 +15,11 @@
 #include <string.h>
 #include "server.h"
 
-static int	read_socket(int fd, t_ringbuffer *ringbuffer)
+int	read_socket(int fd, t_ringbuffer *ringbuffer)
 {
-  int		ret;
-  char		buff[READING_SIZE + 1];
-  int		i;
+  int	ret;
+  char	buff[READING_SIZE + 1];
+  int	i;
 
   bzero(buff, READING_SIZE + 1);
   ret = read(fd, buff, READING_SIZE);
@@ -71,7 +71,7 @@ static char	*dynamic_cmd(char buff[RINGLENGTH + 1])
   return (ret);
 }
 
-static char	*check_ring(t_ringbuffer *ringbuffer, char first, int *is_cmd)
+char		*check_ring(t_ringbuffer *ringbuffer, char first, int *is_cmd)
 {
   static char	buff[RINGLENGTH + 1];
   int		tmp;
@@ -103,10 +103,8 @@ int	check_team_wish(t_data *data, t_waiting_queue *elem)
   int	is_cmd;
   char	*command;
 
-  data = data;
-  if ((ret = read_socket(elem->fd, elem->ringbuffer) == -1))
+  if ((ret = read_socket(elem->fd, elem->ringbuffer)) == -1)
     {
-      printf("Connection lost\n");
       FD_CLR(elem->fd, data->network->set);
       return (1);
     }
@@ -114,7 +112,8 @@ int	check_team_wish(t_data *data, t_waiting_queue *elem)
   while ((command = check_ring(elem->ringbuffer, 0, &is_cmd)))
     {
       printf("<%s>\n", command);
-      if ((ret = try_add_player(data, elem->fd, command, elem->ringbuffer)) == -1)
+      if ((ret = try_add_player(data, elem->fd,
+				command, elem->ringbuffer)) == -1)
 	return (-1);
       else if (ret == 1)
 	{
@@ -124,7 +123,5 @@ int	check_team_wish(t_data *data, t_waiting_queue *elem)
       free(command);
       is_cmd = 0;
     }
-  if (is_cmd)
-    return (-1);
-  return (0);
+  return (is_cmd != 0 ? -1 : 0);
 }
