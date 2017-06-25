@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sat Jun 24 15:17:39 2017 Baptiste Veyssiere
-** Last update Sat Jun 24 16:15:25 2017 Baptiste Veyssiere
+** Last update Sun Jun 25 05:02:25 2017 Baptiste Veyssiere
 */
 
 #include <stdlib.h>
@@ -24,6 +24,7 @@ static int	free_players(t_player *player)
       free(player->inventory);
       free(player->team);
       free(player->pos);
+      free(player->ringbuffer);
       action = player->action;
       while (action)
 	{
@@ -32,9 +33,9 @@ static int	free_players(t_player *player)
 	  free(action);
 	  action = _tmp;
 	}
-      free(player);
       if (player->fd > 2 && close(player->fd) == -1)
 	return (write_error(__FILE__, __func__, __LINE__, -1));
+      free(player);
       player = tmp;
     }
   return (0);
@@ -77,7 +78,6 @@ static int		free_queue(t_waiting_queue *queue)
   while (queue)
     {
       tmp = queue->next;
-      free(queue->team);
       if (queue->fd > 2 && close(queue->fd) == -1)
 	return (write_error(__FILE__, __func__, __LINE__, -1));
       free(queue);

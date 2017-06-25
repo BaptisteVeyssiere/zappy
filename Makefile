@@ -15,7 +15,7 @@ CC	= gcc -g
 
 MKDIR	= mkdir -p
 
-SRC	= src/write_error.c \
+SRC	= src/writes.c \
 	src/init_server.c \
 	src/main_loop.c \
 	src/init_data.c \
@@ -24,7 +24,9 @@ SRC	= src/write_error.c \
 	src/get_args.c \
 	src/signal_manager.c \
 	src/check_sockets.c \
-	src/free_data.c
+	src/free_data.c \
+	src/check_team_wish.c \
+	src/add_player.c
 
 SRCDIR	= src
 

@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Sat Jun 24 16:06:31 2017 Baptiste Veyssiere
+** Last update Sun Jun 25 05:01:13 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -16,14 +16,16 @@
 # define MSG_LEN 512
 # define QUEUE_SIZE 42
 # define GRAPHIC_PORT 50000
+# define READING_SIZE 256
 # define SIGNAL_CAUGHT "Signal caught, closing session...\n"
 
 /*
-** write_error.c
+** writes.c
 */
 
 int	write_error(const char *file, const char *func,
 		    const int line, const int ret);
+int	socket_write(int fd, char *str);
 
 /*
 ** init_server.c
@@ -79,5 +81,17 @@ unsigned int	get_uint(int ac, char **av, char *target);
 */
 
 int	free_data(t_data *data);
+
+/*
+** check_team_wish.c
+*/
+
+int	check_team_wish(t_data *data, t_waiting_queue *elem);
+
+/*
+** add_player.c
+*/
+
+int	try_add_player(t_data *data, int fd, char *team, t_ringbuffer *ringbuffer);
 
 #endif /* !SERVER_H_ */

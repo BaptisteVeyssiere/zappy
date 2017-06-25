@@ -5,17 +5,32 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Fri Jun 23 17:55:38 2017 Baptiste Veyssiere
-** Last update Sat Jun 24 15:57:12 2017 Baptiste Veyssiere
+** Last update Sun Jun 25 04:54:44 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
 #include <sys/socket.h>
 #include <stdlib.h>
 #include <netinet/in.h>
-#include <stdio.h>
+#include <strings.h>
 #include "server.h"
 
-static int		update_queue(t_data *data)
+static t_ringbuffer	*init_ringbuffer(void)
+{
+  t_ringbuffer		*elem;
+
+  if (!(elem = malloc(sizeof(t_ringbuffer))))
+    {
+      write_error(__FILE__, __func__, __LINE__, 0);
+      return (NULL);
+    }
+  bzero(elem->data, RINGLENGTH);
+  elem->write_ptr = 0;
+  elem->read_ptr = 0;
+  return (elem);
+}
+
+static int		extend_queue(t_data *data)
 {
   struct sockaddr_in	s_in;
   socklen_t		s_in_size;
@@ -28,9 +43,10 @@ static int		update_queue(t_data *data)
 		   (struct sockaddr *)&s_in, &s_in_size)) == -1 ||
       (last = malloc(sizeof(t_waiting_queue))) == NULL)
     return (write_error(__FILE__, __func__, __LINE__, -1));
-  last->team = NULL;
   last->fd = fd;
   last->next = NULL;
+  if (!(last->ringbuffer = init_ringbuffer()))
+    return (-1);
   if (!(data->queue))
     data->queue = last;
   else
@@ -40,7 +56,36 @@ static int		update_queue(t_data *data)
 	queue = queue->next;
       queue->next = last;
     }
-  printf("Connexion of client fd = %d\n", last->fd);
+  FD_SET(fd, data->network->set);
+  return (socket_write(fd, "WELCOME\n"));
+}
+
+static int	update_queue(t_data *data, fd_set *set)
+{
+  t_waiting_queue	*elem;
+  t_waiting_queue	*tmp;
+  t_waiting_queue	*prev;
+  int			ret;
+
+  elem = data->queue;
+  prev = NULL;
+  while (elem)
+    {
+      ret = 0;
+      tmp = elem->next;
+      if (FD_ISSET(elem->fd, set))
+	{
+	  if ((ret = check_team_wish(data, elem)) == -1)
+	    return (-1);
+	  if (ret == 1 && prev != NULL)
+	    prev->next = tmp;
+	  else if (ret == 1)
+	    data->queue = tmp;
+	}
+      if (ret == 0)
+	prev = elem;
+      elem = tmp;
+    }
   return (0);
 }
 
@@ -48,8 +93,10 @@ static int	check_set(t_data *data, fd_set *set)
 {
   if (FD_ISSET(data->network->signal_fd, set))
     return (check_signal(data->network->signal_fd));
-  else if (FD_ISSET(data->network->socket_fd[0], set) &&
-	   update_queue(data) == -1)
+  if (FD_ISSET(data->network->socket_fd[0], set) &&
+      extend_queue(data) == -1)
+    return (-1);
+  if (update_queue(data, set) == -1)
     return (-1);
   return (0);
 }
