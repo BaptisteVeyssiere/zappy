@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 15:52:23 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 17:34:06 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -68,7 +68,8 @@ int	main_loop(t_data *data);
 ** check_sockets.c
 */
 
-int	check_sockets(t_data *data);
+int		check_sockets(t_data *data);
+t_ringbuffer	*init_ringbuffer(void);
 
 /*
 ** get_args.c
@@ -121,5 +122,28 @@ void	update_action_status(t_data *data);
 */
 
 int	send_basic_info(int fd, int free_slot, int width, int height);
+
+/*
+** init_graphic.c
+*/
+
+int	init_graphic(t_data *data);
+int	get_graphic_info(t_data *data);
+
+/*
+** graphic_init_cmd.c
+*/
+
+int	init_pnw(t_data *data);
+int	init_enw(t_data *data);
+
+/*
+** graphic_command.c
+*/
+
+int	msz(t_data *data);
+int	sgt(t_data *data);
+int	bct(t_data *data);
+int	tna(t_data *data);
 
 #endif /* !SERVER_H_ */

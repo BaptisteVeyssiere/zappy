@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 04:33:42 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 15:42:42 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 17:01:26 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -38,6 +38,8 @@ static void	add_player_to_list(t_data *data, t_player *last)
 {
   t_player	*root;
 
+  last->id = data->pid;
+  ++data->pid;
   root = data->players_root;
   while (root && root->next)
     root = root->next;
