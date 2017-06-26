@@ -1,16 +1,15 @@
 /*
 ** prints.c for Project-Master in /home/nathalie/rendu/network/PSU_2016_zappy/src
-** 
+**
 ** Made by Nathalie CAI
 ** Login   <abel@epitech.eu>
-** 
+**
 ** Started on  Wed Jun 21 15:44:39 2017 Nathalie CAI
-** Last update Fri Jun 23 18:14:08 2017 Nathalie CAI
+** Last update Sat Jun 24 16:06:04 2017 Baptiste Veyssiere
 */
 
-#include "server.h"
-#include "all_structs.h"
 #include <stdio.h>
+#include "server.h"
 
 void	print_data(t_data *data)
 {

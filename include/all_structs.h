@@ -5,13 +5,15 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Mon Jun 26 13:24:35 2017 Mathis Guilbon
+** Last update Mon Jun 26 13:35:37 2017 Mathis Guilbon
 */
 
 #ifndef ALL_STRUCTS_H_
 # define ALL_STRUCTS_H_
 
 # include <sys/select.h>
+
+# define RINGLENGTH 4096
 
 enum	dir
   {
@@ -53,19 +55,26 @@ typedef struct		s_action
   struct s_action	*next;
 }			t_action;
 
+typedef struct		s_ringbuffer
+{
+  char			data[RINGLENGTH];
+  int			write_ptr;
+  int			read_ptr;
+}			t_ringbuffer;
+
 typedef struct		s_waiting_queue
 {
-  char			*team;
   int			fd;
   struct s_waiting_queue *next;
+  t_ringbuffer		*ringbuffer;
 }			t_waiting_queue;
 
 typedef struct		s_egg
 {
-  int			fd;
   int			timer;
   char			*team;
   t_position		*pos;
+  char			ready;
   struct s_egg		*next;
 }			t_egg;
 
@@ -86,6 +95,7 @@ typedef struct		s_player
   unsigned int		life;
   t_action		*action;
   struct s_player	*next;
+  t_ringbuffer		*ringbuffer;
 }			t_player;
 
 typedef struct		s_network
@@ -109,6 +119,7 @@ typedef struct		s_data
   t_egg			*eggs;
   unsigned int		player_limit;
   unsigned int		seed;
+  t_waiting_queue	*queue;
   int			port;
 }			t_data;
 

@@ -1,6 +1,12 @@
-//
-// Created by root on 21/06/17.
-//
+/*
+** action.h for zappy in /home/guilbo_m/rendu/PSU/PSU_2016_zappy
+** 
+** Made by Mathis Guilbon
+** Login   <guilbo_m@epitech.net>
+** 
+** Started on  Mon Jun 19 15:24:44 2017 Mathis Guilbon
+** Last update Mon Jun 26 13:26:12 2017 Mathis Guilbon
+*/
 
 #ifndef PSU_2016_ZAPPY_ACTION_H
 #  define PSU_2016_ZAPPY_ACTION_H
@@ -53,4 +59,4 @@ static		(*incant[7])(t_data *, t_player *, t_items *) =
   UpgradeToLvl8
 };
 
-#endif //PSU_2016_ZAPPY_ACTION_H
+#endif /* !PSU_2016_ZAPPY_ACTION_H */

@@ -1,11 +1,11 @@
 /*
-** incantation.c for zappy in /home/guilbom/rendu/PSU_2016_zappy
+** incantation.c for zappy in /home/guilbo_m/rendu/PSU/PSU_2016_zappy
 ** 
-** Made by guilbo_m
-** Login   <mathis.guilbon@epitech.eu>
+** Made by Mathis Guilbon
+** Login   <guilbo_m@epitech.net>
 ** 
-** Started on  Mon Jun 26 12:00:51 2017 chalie_a
-** Last update Mon Jun 26 12:01:24 2017 chalie_a
+** Started on  Sun Jun 24 14:10:14 2017 Mathis Guilbon
+** Last update Mon Jun 26 14:22:54 2017 Mathis Guilbon
 */
 
 #include "action.h"
@@ -40,43 +40,51 @@ bool		enoughPeople(t_data *data, t_player *player, unsigned int needed)
       ++count;
     tmp = tmp->next;
   }
-  return (count >= needed);
+  return (count == needed);
 }
 
 bool		upgradeToLvl2(t_data *data, t_player *player, t_items *items)
 {
-  if (items->players > 0 && items->item[LINEMATE] > 0)
+  if (items->players == 1 && items->item[LINEMATE] == 1 &&
+      items->item[DERAUMERE] == 0 && items->item[SIBUR] == 0 &&
+      items->item[MENDIANE] == 0 && items->item[PHIRAS] == 0 &&
+      items->item[THYSTAME] == 0)
   {
     --items->item[LINEMATE];
     upgrade_player(data, player);
+    return (true);
   }
-  return (true);
+  return (false);
 }
 
 bool		upgradeToLvl3(t_data *data, t_player *player, t_items *items)
 {
-  if (items->players > 1 && enoughPeople(data, player, 2) &&
-      items->item[LINEMATE] > 0 && items->item[DERAUMERE] > 0 &&
-      items->item[SIBUR] > 0)
+  if (items->players == 2 && enoughPeople(data, player, 2) &&
+      items->item[LINEMATE] == 1 && items->item[DERAUMERE] == 1 &&
+      items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&
+      items->item[PHIRAS] == 0 && items->item[THYSTAME] == 0)
     {
       --items->item[LINEMATE];
       --items->item[DERAUMERE];
       --items->item[SIBUR];
       upgrade_player(data, player);
+      return (true);
     }
-  return (true);
+  return (false);
 }
 
 bool		upgradeToLvl4(t_data *data, t_player *player, t_items *items)
 {
-  if (items->players > 0 && enoughPeople(data, player, 2) &&
-      items->item[LINEMATE] > 1 && items->item[SIBUR] > 0 &&
-      items->item[PHIRAS] > 1)
+  if (items->players == 2 && enoughPeople(data, player, 2) &&
+      items->item[LINEMATE] == 2 && items->item[DERAUMERE] == 0 &&
+      items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&
+      items->item[PHIRAS] == 2 && items->item[THYSTAME] == 0)
     {
       items->item[LINEMATE] -= 2;
       --items->item[SIBUR];
       items->item[PHIRAS] -= 2;
       upgrade_player(data, player);
+      return (true);
     }
-  return (true);
+  return (false);
 }

@@ -1,6 +1,12 @@
-//
-// Created by root on 25/06/17.
-//
+/*
+** action_connect.c for zappy in /home/guilbo_m/rendu/PSU/PSU_2016_zappy
+** 
+** Made by Mathis Guilbon
+** Login   <guilbo_m@epitech.net>
+** 
+** Started on  Mon Jun 19 19:38:17 2017 Mathis Guilbon
+** Last update Mon Jun 26 13:38:28 2017 Mathis Guilbon
+*/
 
 bool		action_connect_nbr(t_data *data, t_player *player, char *prm)
 {
