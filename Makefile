@@ -29,7 +29,7 @@ SRC	= src/writes.c \
 	src/add_player.c \
 	src/update_player_action.c \
 	src/free_tools.c \
-	src/update_egg_status.c \
+	src/update_status.c \
 	src/send_basic_info.c
 
 SRCDIR	= src
