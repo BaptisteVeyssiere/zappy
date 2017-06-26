@@ -5,7 +5,7 @@
 ** Login   <mathis.guilbon@epitech.eu>
 ** 
 ** Started on  Mon Jun 26 12:01:39 2017 chalie_a
-** Last update Mon Jun 26 14:27:32 2017 Mathis Guilbon
+** Last update Mon Jun 26 15:00:51 2017 Mathis Guilbon
 */
 
 #include "action.h"
@@ -21,7 +21,6 @@ bool		upgradeToLvl5(t_data *data, t_player *player, t_items *items)
       --items->item[DERAUMERE];
       items->item[SIBUR] -= 2;
       --items->item[PHIRAS];
-      upgrade_player(data, player);
       return (true);
   }
   return (false);
@@ -38,7 +37,6 @@ bool		upgradeToLvl6(t_data *data, t_player *player, t_items *items)
       items->item[DERAUMERE] -= 2;
       --items->item[SIBUR];
       items->item[PHIRAS] -= 3;
-      upgrade_player(data, player);
       return (true);
     }
   return (false);
@@ -55,7 +53,6 @@ bool		upgradeToLvl7(t_data *data, t_player *player, t_items *items)
       items->item[DERAUMERE] -= 2;
       --items->item[SIBUR];
       items->item[PHIRAS] -= 3;
-      upgrade_player(data, player);
       return (true);
     }
   return (false);
@@ -74,7 +71,6 @@ bool		upgradeToLvl8(t_data *data, t_player *player, t_items *items)
       items->item[MENDIANE] -= 2;
       items->item[PHIRAS] -= 2;
       --items->item[THYSTAME];
-      upgrade_player(data, player);
       return (true);
     }
   return (false);

@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Sun Jun 24 14:10:14 2017 Mathis Guilbon
-** Last update Mon Jun 26 14:22:54 2017 Mathis Guilbon
+** Last update Mon Jun 26 14:59:44 2017 Mathis Guilbon
 */
 
 #include "action.h"
@@ -51,7 +51,6 @@ bool		upgradeToLvl2(t_data *data, t_player *player, t_items *items)
       items->item[THYSTAME] == 0)
   {
     --items->item[LINEMATE];
-    upgrade_player(data, player);
     return (true);
   }
   return (false);
@@ -67,7 +66,6 @@ bool		upgradeToLvl3(t_data *data, t_player *player, t_items *items)
       --items->item[LINEMATE];
       --items->item[DERAUMERE];
       --items->item[SIBUR];
-      upgrade_player(data, player);
       return (true);
     }
   return (false);
@@ -83,7 +81,6 @@ bool		upgradeToLvl4(t_data *data, t_player *player, t_items *items)
       items->item[LINEMATE] -= 2;
       --items->item[SIBUR];
       items->item[PHIRAS] -= 2;
-      upgrade_player(data, player);
       return (true);
     }
   return (false);
