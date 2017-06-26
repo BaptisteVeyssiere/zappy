@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 19 15:24:44 2017 Mathis Guilbon
-** Last update Mon Jun 26 14:55:42 2017 Mathis Guilbon
+** Last update Mon Jun 26 18:27:08 2017 Mathis Guilbon
 */
 
 #ifndef PSU_2016_ZAPPY_ACTION_H
@@ -14,7 +14,7 @@
 #  include "server.h"
 #  include <string.h>
 
-static	*char[] =
+static	char *item_name[] =
 {
   "food",
   "sibur",
@@ -76,7 +76,6 @@ bool		action_take(t_data *, t_player *, char *);
 bool		action_set(t_data *, t_player *, char *);
 bool		action_inventory(t_data *, t_player *, char *);
 bool		action_incantation(t_data *, t_player *, char *);
-bool		action_look(t_data *, t_player *, char *);
 
 /*
 **	action_move.c
@@ -106,5 +105,14 @@ bool		upgradeToLvl5(t_data *, t_player *, t_items *);
 bool		upgradeToLvl6(t_data *, t_player *, t_items *);
 bool		upgradeToLvl7(t_data *, t_player *, t_items *);
 bool		upgradeToLvl8(t_data *, t_player *, t_items *);
+
+/*
+**	action_look.c
+*/
+
+bool		checkOverflow(int *, char *, int);
+bool		lookOneCase(t_items *, int *, char *, int);
+void		changeOffset(enum dir, t_position *, int *, int);
+bool		action_look(t_data *, t_player *, char *);
 
 #endif /* !PSU_2016_ZAPPY_ACTION_H */
