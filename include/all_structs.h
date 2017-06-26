@@ -78,10 +78,10 @@ typedef struct		s_player
   char			*team;
   int			fd;
   t_position		*pos;
-  //unsigned int		sightline;
+  //unsigned int		sightline; = level
   enum dir		direction;
   unsigned int		level;
-  unsigned int		life;
+  //unsigned int		life; = inventory->item[FOOD]
   t_action		*action;
   struct s_player	*next;
 }			t_player;

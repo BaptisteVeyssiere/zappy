@@ -27,6 +27,7 @@ bool		action_forward(t_data *data, t_player *player, char *prm)
   player->pos->y += (dir == DOWN) ? 1 : (dir == UP) ? -1 : 0;
   getRealPosFrom(data, player->pos);
   ++data->map[player->pos->y][player->pos->x].players;
+  // ecrire ok
   return (true);
 }
 
@@ -36,6 +37,7 @@ bool		action_right(t_data *data, t_player *player, char *prm)
   (void)prm;
   if ((++player->direction) == UNKNOWN)
     player->direction = 0;
+  // ecrire ok
   return (true);
 }
 
@@ -45,6 +47,7 @@ bool		action_left(t_data *data, t_player *player, char *prm)
   (void)prm;
   if ((--player->direction) < 0)
     player->direction = LEFT;
+  // ecrire ok
   return (true);
 }
 

@@ -44,7 +44,7 @@ static  t_action[] =
   {"Look", action_look},
   {"Inventory", action_inventory},//
   {"Broadcast", action_broadcast},
-  {"Connect_nbr", action_connect_nbr},
+  {"Connect_nbr", action_connect_nbr},//
   {"Fork", action_fork},
   {"Eject", action_eject},//
   {"Death", action_dead}, // free player et envoie reponse "dead"

@@ -1,6 +1,12 @@
-//
-// Created by root on 25/06/17.
-//
+/*
+** incantation2.c for zappy in /home/guilbom/rendu/PSU_2016_zappy
+** 
+** Made by guilbo_m
+** Login   <mathis.guilbon@epitech.eu>
+** 
+** Started on  Mon Jun 26 12:01:39 2017 chalie_a
+** Last update Mon Jun 26 12:01:57 2017 chalie_a
+*/
 
 #include "action.h"
 

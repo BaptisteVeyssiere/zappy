@@ -11,10 +11,12 @@ bool		action_take(t_data *data, t_player *player, char *prm)
   while (++i < ITEMNBR && strcmp(item[i], prm + 1) != 0);
   if (i < ITEMNBR)
     {
-      ++player->inventory->item[i];
+     player->inventory->item[i] += (i != FOOD) ? 1 : 126;
       if (data->map[player->pos->y][player->pos->x].item[i] > 0)
 	--data->map[player->pos->y][player->pos->x].item[i];
+      // ecrire ok
     }
+  // ecrire ko
   return (true);
 }
 
@@ -25,12 +27,14 @@ bool		action_set(t_data *data, t_player *player, char *prm)
   (void)data;
   i = -1;
   while (++i < ITEMNBR && strcmp(item[i], prm + 1) != 0);
-  if (i < ITEMNBR)
+  if (i < ITEMNBR && i != FOOD)
     {
       if (player->inventory->item[i] > 0)
 	--player->inventory->item[i];
       ++data->map[player->pos->y][player->pos->x].item[i];
+      // ecrire ok
     }
+  // ecrire ko
   return (true);
 }
 
@@ -57,6 +61,11 @@ bool		action_incantation(t_data *data, t_player *player, char *prm)
 {
   if (!(incant[player->level - 1])(player->inventory))
     return (false);
-  // ecrire
+  // ecrire ok
+  return (true);
+}
+
+bool		action_look(t_data *data, t_player *player, char *prm)
+{
   return (true);
 }
