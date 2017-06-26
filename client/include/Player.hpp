@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Sat Jun 24 14:57:34 2017 vigner_g
+// Last update Sat Jun 24 17:16:11 2017 vigner_g
 //
 
 #ifndef __PLAYER_HPP__
@@ -31,7 +31,7 @@ namespace	zappy
     //int					direction;
     Inventory				OwnInventory;
     Inventory				CommonInventory;
-    //std::vector<std::vector<t_tile>>	GameMap;
+    std::vector<std::vector<t_tile>>	GameMap;
     int					teamNbPlayer;
     int					nbOfEgg;
 
@@ -41,9 +41,13 @@ namespace	zappy
     Player	&opeartor(Player &other);
 
   public:
-
     Player(Network *network);
     ~Player();
+
+  public:
+    void	SetTeamNbPlayer(int nb);
+    void	SetId(int id);
+    void	AddALvl();
   };
 }
 

@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 17:08:43 2017 Nathan Scutari
-// Last update Sat Jun 24 17:56:35 2017 vigner_g
+// Last update Mon Jun 26 14:17:06 2017 vigner_g
 //
 
 #include <iostream> //debug
@@ -29,11 +29,13 @@ std::string	&zappy::C_broadcast::getStr()
 void	zappy::C_broadcast::addArg(std::string arg)
 {
   command += " " + arg;
+  item = arg;
 }
 
 bool	zappy::C_broadcast::getResponse(Player &player, std::string &response)
 {
-  if (response != "ok") //peut renvoyer que ok pour cette commande
+  if (response != "ok" || response != 'ko') //peut renvoyer que ok pour cette commande
     throw client_exception("Server drunk", __LINE__, __FILE__);
+
   return (true);
 }

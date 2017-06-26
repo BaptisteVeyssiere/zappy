@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Sat Jun 24 15:44:51 2017 vigner_g
+// Last update Sat Jun 24 17:18:57 2017 vigner_g
 //
 
 #include "Inventory.hpp"
@@ -15,12 +15,25 @@
 zappy::Player::Player(Network *network) : id(0), lvl(1), food(10),
 					  direction(0), teamNbPlayer(1)
 {
-  // this->pos.x = 0;
-  // this->pos.y = 0;
 }
 
 zappy::Player::~Player()
 {
+}
+
+void	zappy::Player::SetTeamNbPlayer(int nb)
+{
+  this->teamNbPlayer = nb;
+}
+
+void	zappy::Player::SetId(int nb)
+{
+  this->id = nb;
+}
+
+void	zappy::Player::AddALvl()
+{
+  this->lvl += 1;
 }
 
 // void	zappy::Player::TurnLeft()

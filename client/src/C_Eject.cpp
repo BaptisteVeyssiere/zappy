@@ -1,11 +1,11 @@
 //
-// C_Eject.cpp for Forward in /home/vigner_g/rendu/PSU_2016_zappy/client
+// C_Eject.cpp for C_Eject in /home/vigner_g/rendu/PSU_2016_zappy/client
 //
 // Made by vigner_g
 // Login   <vigner_g@epitech.net>
 //
-// Started on  Sat Jun 24 15:25:31 2017 vigner_g
-// Last update Sat Jun 24 15:34:46 2017 vigner_g
+// Started on  Sat Jun 24 16:58:22 2017 vigner_g
+// Last update Sat Jun 24 16:58:48 2017 vigner_g
 //
 
 #include "C_Eject.hpp"
@@ -29,7 +29,7 @@ std::string	&zappy::C_Eject::getStr()
 
 void		zappy::C_Eject::addArg(std::string arg)
 {
-  throw client_exception("Forward does not take any argument",
+  throw client_exception("Eject does not take any argument",
 			 __LINE__, __FILE__);
 }
 
