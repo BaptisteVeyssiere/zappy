@@ -8,17 +8,6 @@
 #  include "server.h"
 #  include <string.h>
 
-enum {
-  FOOD,
-  SIBUR,
-  PHIRAS,
-  LINEMATE,
-  MENDIANE,
-  THYSTAME,
-  DERAUMERE,
-  ITEMNBR
-};
-
 static	*char[] =
 {
   "food",

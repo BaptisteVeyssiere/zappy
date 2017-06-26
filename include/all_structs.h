@@ -22,6 +22,17 @@ enum	dir
     UNKNOWN
   };
 
+enum {
+  FOOD,
+  SIBUR,
+  PHIRAS,
+  LINEMATE,
+  MENDIANE,
+  THYSTAME,
+  DERAUMERE,
+  ITEMNBR
+};
+
 typedef struct		s_team
 {
   char			*name;
