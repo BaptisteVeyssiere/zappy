@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sat Jun 24 15:17:39 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 17:50:28 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 20:37:23 2017 Baptiste Veyssiere
 */
 
 #include <stdlib.h>
@@ -30,7 +30,6 @@ static int	free_players(t_player *player)
       while (action)
 	{
 	  _tmp = action->next;
-	  printf("Delete action <%s>\n", action->action);
 	  free(action->action);
 	  free(action);
 	  action = _tmp;

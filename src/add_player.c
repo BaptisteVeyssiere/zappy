@@ -5,19 +5,23 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 04:33:42 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 17:01:26 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 22:04:57 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/time.h>
 #include "server.h"
 
-static void	init_player(t_player *last, char *team, t_position pos, int fd)
+static void		init_player(t_player *last, char *team,
+				    t_position pos, int fd)
 {
-  int		i;
+  int			i;
+  struct timeval	tv;
 
   i = -1;
+  gettimeofday(&tv, NULL);
   while (++i < ITEMNBR)
     {
       last->inventory->item[i] = 0;
@@ -32,6 +36,7 @@ static void	init_player(t_player *last, char *team, t_position pos, int fd)
   last->life = 126;
   last->next = NULL;
   last->action = NULL;
+  last->life = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 }
 
 static void	add_player_to_list(t_data *data, t_player *last)
