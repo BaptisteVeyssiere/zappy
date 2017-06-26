@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Mon Jun 26 13:35:37 2017 Mathis Guilbon
+** Last update Mon Jun 26 14:33:50 2017 Mathis Guilbon
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -17,7 +17,7 @@
 
 enum	dir
   {
-    UP = 0,
+    UP = 1,
     RIGHT,
     DOWN,
     LEFT,

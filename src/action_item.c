@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Mon Jun 26 14:10:02 2017 Mathis Guilbon
+** Last update Mon Jun 26 14:34:34 2017 Mathis Guilbon
 */
 
 #include "action.h"
@@ -66,7 +66,7 @@ bool		action_inventory(t_data *data, t_player *player, char *prm)
 bool		action_incantation(t_data *data, t_player *player, char *prm)
 {
   char		buff[64];
-  
+
   if (!(incant[player->level - 1])(player->inventory))
     return (socket_write(player->fd, "ko\n"));
   snprintf(buff, 64, "Elevation underway\nCurrent level: %d\n", player->level);
