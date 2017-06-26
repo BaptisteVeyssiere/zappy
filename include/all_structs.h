@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Fri Jun 23 18:20:19 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 13:24:35 2017 Mathis Guilbon
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -71,16 +71,8 @@ typedef struct		s_egg
 
 typedef struct		s_items
 {
-/*  unsigned int		food;
-  unsigned int		linemate;
-  unsigned int		deraumere;
-  unsigned int		sibur;
-  unsigned int		mendiane;
-  unsigned int		phiras;
-  unsigned int		thystame;*/
   unsigned int		item[ITEMNBR];
   unsigned int		players;
-  unsigned int		eggs;
 }			t_items;
 
 typedef struct		s_player
@@ -89,10 +81,9 @@ typedef struct		s_player
   char			*team;
   int			fd;
   t_position		*pos;
-  //unsigned int		sightline; = level
   enum dir		direction;
   unsigned int		level;
-  //unsigned int		life; = inventory->item[FOOD]
+  unsigned int		life;
   t_action		*action;
   struct s_player	*next;
 }			t_player;
