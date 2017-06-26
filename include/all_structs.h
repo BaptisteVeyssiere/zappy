@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Mon Jun 26 14:15:44 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 15:28:28 2017 Baptiste Veyssiere
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -17,11 +17,23 @@
 
 enum	dir
   {
-    UP,
+    UP = 0,
     RIGHT,
     DOWN,
-    LEFT
+    LEFT,
+    UNKNOWN
   };
+
+enum {
+  FOOD,
+  SIBUR,
+  PHIRAS,
+  LINEMATE,
+  MENDIANE,
+  THYSTAME,
+  DERAUMERE,
+  ITEMNBR
+};
 
 typedef struct		s_team
 {
@@ -68,13 +80,7 @@ typedef struct		s_egg
 
 typedef struct		s_items
 {
-  unsigned int		food;
-  unsigned int		linemate;
-  unsigned int		deraumere;
-  unsigned int		sibur;
-  unsigned int		mendiane;
-  unsigned int		phiras;
-  unsigned int		thystame;
+  unsigned int		item[ITEMNBR];
   unsigned int		players;
 }			t_items;
 
@@ -84,7 +90,6 @@ typedef struct		s_player
   char			*team;
   int			fd;
   t_position		*pos;
-  unsigned int		sightline;
   enum dir		direction;
   unsigned int		level;
   unsigned int		life;

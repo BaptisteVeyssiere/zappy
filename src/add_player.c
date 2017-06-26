@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 04:33:42 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 14:57:50 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 15:33:28 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -15,18 +15,18 @@
 
 static void	init_player(t_player *last, char *team, t_position pos, int fd)
 {
-  last->inventory->food = 9;
-  last->inventory->linemate = 0;
-  last->inventory->deraumere = 0;
-  last->inventory->sibur = 0;
-  last->inventory->mendiane = 0;
-  last->inventory->phiras = 0;
-  last->inventory->thystame = 0;
-  last->inventory->players = 0;
+  int		i;
+
+  i = -1;
+  while (++i < ITEMNBR)
+    {
+      last->inventory->item[i] = 0;
+      if (i == FOOD)
+	last->inventory->item[i] = 9;
+    }
   last->team = team;
   *(last->pos) = pos;
   last->fd = fd;
-  last->sightline = 1;
   last->direction = rand() % 4;
   last->level = 1;
   last->life = 126;
