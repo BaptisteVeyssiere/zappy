@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 04:33:42 2017 Baptiste Veyssiere
-** Last update Sun Jun 25 21:10:41 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 14:57:50 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -104,18 +104,20 @@ static int	add_player(t_data *data, int fd,
 int	try_add_player(t_data *data, int fd, char *team, t_ringbuffer *ringbuffer)
 {
   int	i;
+  int	slot;
 
   i = -1;
   while (data->team_list[++i])
     if (strcmp(data->team_list[i]->name, team) == 0)
       {
-        if (data->team_list[i]->free_slots < 1)
+        if ((slot = data->team_list[i]->free_slots) < 1)
 	  {
 	    if (socket_write(fd, "ko\n") == -1)
 	      return (-1);
 	    return (0);
 	  }
-        else if (add_player(data, fd, team, ringbuffer) == -1)
+        else if (add_player(data, fd, team, ringbuffer) == -1 ||
+		 send_basic_info(fd, slot - 1, data->width, data->height) == -1)
           return (-1);
         --data->team_list[i]->free_slots;
         return (1);

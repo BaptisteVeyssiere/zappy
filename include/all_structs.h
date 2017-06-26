@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Sun Jun 25 04:59:10 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 14:15:44 2017 Baptiste Veyssiere
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -18,9 +18,9 @@
 enum	dir
   {
     UP,
+    RIGHT,
     DOWN,
-    LEFT,
-    RIGHT
+    LEFT
   };
 
 typedef struct		s_team
@@ -62,6 +62,7 @@ typedef struct		s_egg
   int			timer;
   char			*team;
   t_position		*pos;
+  char			ready;
   struct s_egg		*next;
 }			t_egg;
 
