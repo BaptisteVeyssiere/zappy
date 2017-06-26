@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 16:45:16 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 17:37:24 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 19:54:40 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -40,7 +40,7 @@ int		init_pnw(t_data *data)
     {
       bzero(buff, 500);
       if (snprintf(buff, 500, "pnw %d %d %d %d %d %s\n", tmp->id, tmp->pos->x,
-		   tmp->pos->y, tmp->direction, tmp->level, tmp->team) < 0 ||
+		   tmp->pos->y, tmp->direction + 1, tmp->level, tmp->team) < 0 ||
 	  socket_write(data->network->graphic_fd, buff) == -1)
 	return (-1);
       tmp = tmp->next;
