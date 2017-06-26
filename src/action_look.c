@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 26 17:31:29 2017 Mathis Guilbon
-** Last update Mon Jun 26 18:20:58 2017 Mathis Guilbon
+** Last update Mon Jun 26 18:31:36 2017 Mathis Guilbon
 */
 
 #include "action.h"
@@ -47,24 +47,27 @@ bool		lookOneCase(t_items *item, int *written, char *buff, int fd)
   return (true);
 }
 
-void		changeOffset(enum dir dir, t_position *off, int *turn, int saw)
+void		changeOffset(enum dir dir, t_position *off, int *line, int saw)
 {
-  if (saw + 1 == *turn)
+  if (saw + 1 == *line)
     {
       if (dir == UP || dir == DOWN)
 	{
-	  off->x += (dir == UP) ? -*turn : *turn;
+	  off->x += (dir == UP) ? -*line : *line;
 	  off->y += (dir == UP) ? -1 : 1;
 	}
       else if (dir == RIGHT || dir == LEFT)
 	{
 	  off->x += (dir == RIGHT) ? 1 : -1;
-	  off->y += (dir == RIGHT) ? -*turn : *turn;
+	  off->y += (dir == RIGHT) ? -*line : *line;
 	}
-      *turn += *turn + 2;
+      *line += *line + 2;
     }
-  off->x += (dir == UP) ? 1 : (dir == DOWN) ? -1 : 0;
-  off->y += (dir == RIGHT) ? 1 : (dir == LEFT) ? -1 : 0;
+  else
+    {
+      off->x += (dir == UP) ? 1 : (dir == DOWN) ? -1 : 0;
+      off->y += (dir == RIGHT) ? 1 : (dir == LEFT) ? -1 : 0;
+    }
 }
 
 bool		action_look(t_data *data, t_player *player, char *prm)
@@ -74,9 +77,9 @@ bool		action_look(t_data *data, t_player *player, char *prm)
   int	      	saw;
   t_pos		off;
   int		written;
-  int		turn;
-  
-  turn = 1;
+  int		line;
+
+  line = 1;
   saw = -1;
   written = 1;
   buff[0] = '[';
@@ -87,9 +90,10 @@ bool		action_look(t_data *data, t_player *player, char *prm)
     {
       getRealPosFrom(data, &off);
       if (!lookOneCase(data, &off, &written, buff))
-	return (false);
-      written += snprintf(buff + written, 512 - written, (saw + 1 == toSee) ? " ]" : ",");
-      changeOffset(player->dir, &off, &turn, saw);
+	reline (false);
+      written += snprintf(buff + written, 512 - written,
+			  (saw + 1 == toSee) ? " ]" : ",");
+      changeOffset(player->dir, &off, &line, saw);
     }
   return (socket_write(player->fd, buff) != -1);
 }
