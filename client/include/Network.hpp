@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 19 21:11:43 2017 Nathan Scutari
-// Last update Wed Jun 21 17:17:23 2017 Nathan Scutari
+// Last update Mon Jun 26 10:50:07 2017 Nathan Scutari
 //
 
 #ifndef __NETWORK_HPP__
@@ -14,6 +14,7 @@
 #include <string>
 #include "CommandBuffer.hpp"
 #include "World.h"
+#include "SignalManager.hpp"
 
 #define BUFFER_LENGTH 4096
 
@@ -22,6 +23,7 @@ namespace	zappy
   class	Network
   {
   private:
+    SignalManager	mSignalMgr;
     CommandBuffer	cmdBuffer;
     int			server_fd = -1;
 

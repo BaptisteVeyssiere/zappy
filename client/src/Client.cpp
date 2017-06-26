@@ -5,12 +5,13 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:12 2017 Nathan Scutari
-// Last update Sat Jun 24 17:28:19 2017 Nathan Scutari
+// Last update Mon Jun 26 11:57:55 2017 Nathan Scutari
 //
 
 #include <unistd.h>
 #include <iostream>
 #include "Client.hpp"
+#include "Exception.hpp"
 
 zappy::Client::Client(std::string port, std::string team, std::string machine)
   :info(), mNet(), choice(NULL)
@@ -34,7 +35,7 @@ void	zappy::Client::usage()
 	    << std::endl;
 }
 
-/*void	zappy::Client::launch()
+void	zappy::Client::launch()
 {
   std::string	server_msg;
 
@@ -46,19 +47,19 @@ void	zappy::Client::usage()
       if (mNet.isCmdReady())
 	{
 	  server_msg = mNet.getNextCmd();
-	  if (mCmdManager.isResponse() && !choice)
+	  if (mCmdMgr.isResponse(server_msg) && !choice)
 	    throw client_exception("Unexpected server msg", __LINE__, __FILE__);
 	  else if (choice)
-	    if (choice.getResponse(server_msg))
+	    if (choice->getResponse(player, server_msg))
 	    choice = NULL;
 	  else
-	    mCmdManager.analyse_data(server_msg, player);
+	    mCmdMgr.analyseData(server_msg, player);
 	}
       if (!choice)
 	{
 	  //choice = IA.makeAChoice;
-	  mNet.sendMsg(choice.getStr());
+	  //mNet.sendMsg(choice->getStr());
 	}
       usleep(100);
       }
-      }*/
+}

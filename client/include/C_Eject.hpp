@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 14:55:21 2017 vigner_g
-// Last update Sat Jun 24 15:47:03 2017 vigner_g
+// Last update Mon Jun 26 11:39:05 2017 Nathan Scutari
 //
 
 #ifndef __EJECT_HPP__
@@ -24,7 +24,7 @@ namespace zappy
 
   private:
     C_Eject(C_Eject &other);
-    C_Eject	&operator=(Eject &other);
+    C_Eject	&operator=(C_Eject &other);
 
   public:
     C_Eject();

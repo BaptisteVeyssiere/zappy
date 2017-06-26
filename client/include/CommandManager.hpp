@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 26 10:05:18 2017 Nathan Scutari
-// Last update Mon Jun 26 10:16:33 2017 Nathan Scutari
+// Last update Mon Jun 26 11:49:00 2017 Nathan Scutari
 //
 
 #ifndef __COMMANDMANAGER_HPP__
@@ -28,6 +28,9 @@ namespace zappy
   public:
     CommandManager();
     ~CommandManager();
+
+  private:
+    void	cleanString(std::string &) const;
 
   public:
     bool	isResponse(std::string &msg);

@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Sat Jun 24 14:57:34 2017 vigner_g
+// Last update Mon Jun 26 11:42:37 2017 Nathan Scutari
 //
 
 #ifndef __PLAYER_HPP__
@@ -23,7 +23,7 @@ namespace	zappy
 {
   class Player
   {
-  private:
+    /*  private:
     int					id;
     int					lvl;
     //t_position				pos;
@@ -36,14 +36,13 @@ namespace	zappy
     int					nbOfEgg;
 
   private:
-    Player();
     Player(Player &other);
-    Player	&opeartor(Player &other);
+    Player	&operator=(Player &other);
 
   public:
 
-    Player(Network *network);
-    ~Player();
+    Player();
+    ~Player();*/
   };
 }
 

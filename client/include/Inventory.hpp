@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:19:58 2017 vigner_g
-// Last update Sat Jun 24 15:20:49 2017 vigner_g
+// Last update Mon Jun 26 11:55:19 2017 Nathan Scutari
 //
 
 
@@ -26,7 +26,7 @@ namespace	zappy
     ~Inventory();
     void	Reset();
     void	Reset(Inventory &other);
-    void	Broadcast(Network &net);
+    void	Broadcast();
     void	AddToInventory(Inventory &other);
     void	PickupItem(std::string item);
     int		SetItem(std::string item);

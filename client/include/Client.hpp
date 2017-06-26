@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 19 22:50:21 2017 Nathan Scutari
-// Last update Sat Jun 24 17:27:26 2017 Nathan Scutari
+// Last update Mon Jun 26 11:47:55 2017 Nathan Scutari
 //
 
 #ifndef __CLIENT_HPP__
@@ -14,15 +14,19 @@
 #include "Network.hpp"
 #include "World.h"
 #include "ICommand.hpp"
+#include "CommandManager.hpp"
+#include "Player.hpp"
 
 namespace zappy
 {
   class Client
   {
   private:
-    World	info;
-    Network	mNet;
-    ICommand	*choice;
+    World		info;
+    Network		mNet;
+    ICommand		*choice;
+    CommandManager	mCmdMgr;
+    Player		player;
     //AI
 
   private:
