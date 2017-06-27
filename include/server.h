@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Tue Jun 27 15:03:19 2017 Mathis Guilbon
+** Last update Tue Jun 27 16:20:37 2017 Mathis Guilbon
 */
 
 #ifndef SERVER_H_
@@ -15,6 +15,9 @@
 # include <string.h>
 # include <stdbool.h>
 # include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <sys/time.h>
 
 # define MSG_LEN 512
 # define QUEUE_SIZE 42
@@ -104,6 +107,7 @@ int	try_add_player(t_data *data, int fd, char *team, t_ringbuffer *ringbuffer);
 ** update_player_action.c
 */
 
+void	set_action_timer(t_action *action, int duration, unsigned int freq);
 int	update_player_action(t_data *data, fd_set *set);
 
 /*

@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Tue Jun 27 15:04:01 2017 Mathis Guilbon
+** Last update Tue Jun 27 15:31:00 2017 Mathis Guilbon
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -33,17 +33,6 @@ enum {
   THYSTAME,
   DERAUMERE,
   ITEMNBR
-};
-
-const	char *item_name[] =
-{
-  "food",
-  "sibur",
-  "phiras",
-  "linemate",
-  "mendiane",
-  "thystame",
-  "deraumere"
 };
 
 typedef struct		s_team

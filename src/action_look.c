@@ -5,10 +5,11 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Tue Jun 27 13:32:21 2017 Mathis Guilbon
+** Last update Tue Jun 27 15:33:12 2017 Mathis Guilbon
 */
 
 #include "server.h"
+#include "item_name.h"
 
 int		power(int nb, int p)
 {

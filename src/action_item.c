@@ -5,11 +5,12 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Tue Jun 27 13:28:04 2017 Mathis Guilbon
+** Last update Tue Jun 27 15:33:26 2017 Mathis Guilbon
 */
 
 #include "server.h"
 #include "incantation.h"
+#include "item_name.h"
 
 bool		action_take(t_data *data, t_player *player, char *prm)
 {

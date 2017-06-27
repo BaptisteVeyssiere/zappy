@@ -36,6 +36,12 @@ SRC	= src/writes.c \
 	src/graphic_command.c \
 	src/update_player_status.c \
 	src/get_command_duration.c \
+	src/action_move.c \
+	src/action_look.c \
+	src/action_connect.c \
+	src/action_item.c \
+	src/incantation.c \
+	src/incantation2.c \
 	src/execute_actions.c
 
 SRCDIR	= src

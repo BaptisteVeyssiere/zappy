@@ -5,13 +5,9 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 21:12:34 2017 Baptiste Veyssiere
-** Last update Tue Jun 27 15:47:14 2017 Baptiste Veyssiere
+** Last update Tue Jun 27 16:18:39 2017 Mathis Guilbon
 */
 
-#include <unistd.h>
-#include <sys/time.h>
-#include <stdlib.h>
-#include <string.h>
 #include "server.h"
 
 static int	get_action_nbr(t_player *player)
@@ -32,14 +28,10 @@ static int	get_action_nbr(t_player *player)
 static void		init_action(char *command, int duration,
 				    unsigned int freq, t_action *action)
 {
-  struct timeval	tv;
-
   action->next = NULL;
   action->ready = 0;
   action->action = command;
-  gettimeofday(&tv, NULL);
-  action->timer = tv.tv_sec * 1000 + tv.tv_usec / 1000 +
-    ((float)duration / (float)freq) * 1000.0;
+  set_action_timer(action, duration, freq);
 }
 
 static int		try_add_action(t_player *player, t_data *data, char *command)

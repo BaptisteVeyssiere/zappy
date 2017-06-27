@@ -5,10 +5,10 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Sun Jun 24 14:10:14 2017 Mathis Guilbon
-** Last update Tue Jun 27 13:30:11 2017 Mathis Guilbon
+** Last update Tue Jun 27 15:36:39 2017 Mathis Guilbon
 */
 
-#include "action.h"
+#include "server.h"
 
 void		upgrade_player(t_data *data, t_player *player)
 {
@@ -18,7 +18,7 @@ void		upgrade_player(t_data *data, t_player *player)
   while (tmp != NULL)
     {
       if (tmp->pos->x == player->pos->x &&
-	  tmp->pos->y = player->pos->y &&
+	  tmp->pos->y == player->pos->y &&
 	  tmp->level == player->level)
 	++tmp->level;
       tmp = tmp->next;
@@ -28,14 +28,14 @@ void		upgrade_player(t_data *data, t_player *player)
 bool		enoughPeople(t_data *data, t_player *player, unsigned int needed)
 {
   t_player	*tmp;
-  int		count;
+  unsigned int	count;
 
   tmp = data->players_root;
   count = 0;
   while (tmp != NULL)
   {
     if (tmp->pos->x == player->pos->x &&
-        tmp->pos->y = player->pos->y &&
+        tmp->pos->y == player->pos->y &&
         tmp->level == player->level)
       ++count;
     tmp = tmp->next;
@@ -45,6 +45,9 @@ bool		enoughPeople(t_data *data, t_player *player, unsigned int needed)
 
 bool		upgradeToLvl2(t_data *data, t_player *player, bool check)
 {
+  t_items	*items;
+
+  items = &data->map[player->pos->y][player->pos->y];
   if (items->players == 1 && items->item[LINEMATE] == 1 &&
       items->item[DERAUMERE] == 0 && items->item[SIBUR] == 0 &&
       items->item[MENDIANE] == 0 && items->item[PHIRAS] == 0 &&
@@ -61,7 +64,7 @@ bool		upgradeToLvl3(t_data *data, t_player *player, bool check)
 {
   t_items	*items;
 
-  items = data->map[player->pos->y][player->pos->y];
+  items = &data->map[player->pos->y][player->pos->y];
   if (items->players == 2 && enoughPeople(data, player, 2) &&
       items->item[LINEMATE] == 1 && items->item[DERAUMERE] == 1 &&
       items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&
@@ -82,7 +85,7 @@ bool		upgradeToLvl4(t_data *data, t_player *player, bool check)
 {
   t_items	*items;
 
-  items = data->map[player->pos->y][player->pos->y];
+  items = &data->map[player->pos->y][player->pos->y];
   if (items->players == 2 && enoughPeople(data, player, 2) &&
       items->item[LINEMATE] == 2 && items->item[DERAUMERE] == 0 &&
       items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&
