@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Tue Jun 27 16:59:30 2017 Nathan Scutari
+// Last update Tue Jun 27 18:39:01 2017 vigner_g
 //
 
 #ifndef __PLAYER_HPP__
@@ -56,6 +56,7 @@ namespace	zappy
     Inventory	&getSharedInventory();
     t_position	&getFacing();
     t_position	&getPosition();
+    Map		&getMap();
   };
 }
 

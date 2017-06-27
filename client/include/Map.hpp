@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Mon Jun 26 15:59:52 2017 vigner_g
-// Last update Tue Jun 27 16:59:43 2017 Nathan Scutari
+// Last update Tue Jun 27 19:00:27 2017 vigner_g
 //
 
 #ifndef	__MAP_HPP__
@@ -15,11 +15,6 @@
 #include "World.h"
 #include <string>
 #include "Inventory.hpp"
-
-namespace zappy
-{
-  class Inventory;
-};
 
 namespace zappy
 {

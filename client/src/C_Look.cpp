@@ -5,11 +5,12 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:25:31 2017 vigner_g
-// Last update Mon Jun 26 16:47:04 2017 vigner_g
+// Last update Tue Jun 27 18:50:26 2017 vigner_g
 //
 
 #include "C_Look.hpp"
 #include "Exception.hpp"
+#include <string>
 
 zappy::C_Look::C_Look()
   :ICommand(), command("Look")
@@ -33,8 +34,37 @@ void		zappy::C_Look::addArg(std::string arg)
 			 __LINE__, __FILE__);
 }
 
+std::string	getSubString(std::string &phrase, std::string delimiter)
+{
+  std::string	ret;
+  size_t	pos;
+
+  if ((pos = phrase.find(delimiter)) == std::string::npos)
+    {
+      ret = phrase.substr(0, std::string::npos);
+      phrase.erase(0, std::string::npos);
+      return (ret);
+    }
+  ret = phrase.substr(0, pos);
+  phrase.erase(0, pos + delimiter.length());
+  return (ret);
+}
+
 bool		zappy::C_Look::getResponse(Player &player, std::string &response)
 {
+  std::string	sub;
+  std::string	sub2;
+  // int		a;
 
+  response.erase(0, 1);
+  response.erase(response.size() - 1 , response.size());
+  while ((sub = getSubString(response, ",")) != "*end*" && response.size() > 0)
+    {
+      while ((sub2 = getSubString(sub, " ")) != "*end*" && sub2.size() > 0)
+	{
+	  player.getMap().getGrid()[0][0].addItem("tomate");
+	  player.getMap().getGrid()[0][0].broadcast();
+	}
+    }
   //remplir la map perso du client
 }
