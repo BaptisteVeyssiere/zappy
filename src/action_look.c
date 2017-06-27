@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Tue Jun 27 13:07:54 2017 Mathis Guilbon
+** Last update Tue Jun 27 13:32:21 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -53,7 +53,8 @@ bool		lookOneCase(t_items *item, int *written, char *buff, int fd)
       i = -1;
       while (++i < (int)item->item[j])
 	{
-	  *written += snprintf(buff + *written, MSG_LEN - *written, " %s", item_name[j]);
+	  *written += snprintf(buff + *written, MSG_LEN - *written,
+			       " %s", item_name[j]);
 	  if (!checkOverflow(written, buff, fd))
 	    return (false);
 	}

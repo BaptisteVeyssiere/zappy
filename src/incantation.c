@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Sun Jun 24 14:10:14 2017 Mathis Guilbon
-** Last update Tue Jun 27 13:19:05 2017 Mathis Guilbon
+** Last update Tue Jun 27 13:30:11 2017 Mathis Guilbon
 */
 
 #include "action.h"
@@ -43,20 +43,21 @@ bool		enoughPeople(t_data *data, t_player *player, unsigned int needed)
   return (count == needed);
 }
 
-bool		upgradeToLvl2(t_data *data, t_player *player, t_items *items)
+bool		upgradeToLvl2(t_data *data, t_player *player, bool check)
 {
   if (items->players == 1 && items->item[LINEMATE] == 1 &&
       items->item[DERAUMERE] == 0 && items->item[SIBUR] == 0 &&
       items->item[MENDIANE] == 0 && items->item[PHIRAS] == 0 &&
       items->item[THYSTAME] == 0)
   {
-    --items->item[LINEMATE];
+    if (!check)
+      --items->item[LINEMATE];
     return (true);
   }
   return (false);
 }
 
-bool		upgradeToLvl3(t_data *data, t_player *player)
+bool		upgradeToLvl3(t_data *data, t_player *player, bool check)
 {
   t_items	*items;
 
@@ -66,15 +67,18 @@ bool		upgradeToLvl3(t_data *data, t_player *player)
       items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&
       items->item[PHIRAS] == 0 && items->item[THYSTAME] == 0)
     {
-      --items->item[LINEMATE];
-      --items->item[DERAUMERE];
-      --items->item[SIBUR];
+      if (!check)
+	{
+	  --items->item[LINEMATE];
+	  --items->item[DERAUMERE];
+	  --items->item[SIBUR];
+	}
       return (true);
     }
   return (false);
 }
 
-bool		upgradeToLvl4(t_data *data, t_player *player)
+bool		upgradeToLvl4(t_data *data, t_player *player, bool check)
 {
   t_items	*items;
 
@@ -84,9 +88,12 @@ bool		upgradeToLvl4(t_data *data, t_player *player)
       items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&
       items->item[PHIRAS] == 2 && items->item[THYSTAME] == 0)
     {
-      items->item[LINEMATE] -= 2;
-      --items->item[SIBUR];
-      items->item[PHIRAS] -= 2;
+      if (!check)
+	{
+	  items->item[LINEMATE] -= 2;
+	  --items->item[SIBUR];
+	  items->item[PHIRAS] -= 2;
+	}
       return (true);
     }
   return (false);

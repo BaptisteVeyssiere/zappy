@@ -5,12 +5,12 @@
 ** Login   <mathis.guilbon@epitech.eu>
 ** 
 ** Started on  Mon Jun 26 12:01:39 2017 chalie_a
-** Last update Tue Jun 27 13:19:46 2017 Mathis Guilbon
+** Last update Tue Jun 27 13:31:39 2017 Mathis Guilbon
 */
 
 #include "action.h"
 
-bool		upgradeToLvl5(t_data *data, t_player *player)
+bool		upgradeToLvl5(t_data *data, t_player *player, bool check)
 {
   t_items	*items;
 
@@ -20,16 +20,19 @@ bool		upgradeToLvl5(t_data *data, t_player *player)
       items->item[SIBUR] == 2 && items->item[MENDIANE] == 0 &&
       items->item[PHIRAS] == 1 && items->item[THYSTAME] == 0)
   {
-      --items->item[LINEMATE];
-      --items->item[DERAUMERE];
-      items->item[SIBUR] -= 2;
-      --items->item[PHIRAS];
-      return (true);
+    if (!check)
+      {
+	--items->item[LINEMATE];
+	--items->item[DERAUMERE];
+	items->item[SIBUR] -= 2;
+	--items->item[PHIRAS];
+      }
+    return (true);
   }
   return (false);
 }
 
-bool		upgradeToLvl6(t_data *data, t_player *player)
+bool		upgradeToLvl6(t_data *data, t_player *player, bool check)
 {
   t_items	*items;
 
@@ -39,16 +42,19 @@ bool		upgradeToLvl6(t_data *data, t_player *player)
       items->item[SIBUR] == 1 && items->item[MENDIANE] == 3 &&
       items->item[PHIRAS] == 0 && items->item[THYSTAME] == 0)
     {
-      --items->item[LINEMATE];
-      items->item[DERAUMERE] -= 2;
-      --items->item[SIBUR];
-      items->item[PHIRAS] -= 3;
+      if (!check)
+	{
+	  --items->item[LINEMATE];
+	  items->item[DERAUMERE] -= 2;
+	  --items->item[SIBUR];
+	  items->item[PHIRAS] -= 3;
+	}
       return (true);
     }
   return (false);
 }
 
-bool		upgradeToLvl7(t_data *data, t_player *player)
+bool		upgradeToLvl7(t_data *data, t_player *player, bool check)
 {
   t_items	*items;
 
@@ -58,16 +64,19 @@ bool		upgradeToLvl7(t_data *data, t_player *player)
       items->item[SIBUR] == 3 && items->item[MENDIANE] == 0 &&
       items->item[PHIRAS] == 1 && items->item[THYSTAME] == 0)
     {
-      --items->item[LINEMATE];
-      items->item[DERAUMERE] -= 2;
-      --items->item[SIBUR];
-      items->item[PHIRAS] -= 3;
+      if (!check)
+	{
+	  --items->item[LINEMATE];
+	  items->item[DERAUMERE] -= 2;
+	  --items->item[SIBUR];
+	  items->item[PHIRAS] -= 3;
+	}
       return (true);
     }
   return (false);
 }
 
-bool		upgradeToLvl8(t_data *data, t_player *player)
+bool		upgradeToLvl8(t_data *data, t_player *player, bool check)
 {
   t_items	*items;
 
@@ -77,12 +86,15 @@ bool		upgradeToLvl8(t_data *data, t_player *player)
       items->item[SIBUR] == 2 && items->item[MENDIANE] == 2 &&
       items->item[PHIRAS] == 2 && items->item[THYSTAME] == 1)
     {
-      items->item[LINEMATE] -= 2;
-      items->item[DERAUMERE] -= 2;
-      items->item[SIBUR] -= 2;
-      items->item[MENDIANE] -= 2;
-      items->item[PHIRAS] -= 2;
-      --items->item[THYSTAME];
+      if (!check)
+	{
+	  items->item[LINEMATE] -= 2;
+	  items->item[DERAUMERE] -= 2;
+	  items->item[SIBUR] -= 2;
+	  items->item[MENDIANE] -= 2;
+	  items->item[PHIRAS] -= 2;
+	  --items->item[THYSTAME];
+	}
       return (true);
     }
   return (false);
