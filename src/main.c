@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:33:09 2017 Nathalie CAI
-** Last update Sat Jun 24 15:56:44 2017 Baptiste Veyssiere
+** Last update Tue Jun 27 11:44:45 2017 Nathalie CAI
 */
 
 #include <stdio.h>
@@ -21,5 +21,7 @@ int		main(int ac, char **av)
   if ((data = init_data(data, ac, av)) == NULL)
     return (-1);
   print_data(data);
+  printf("\n");
+  print_map(data);
   return (main_loop(data));
 }
