@@ -5,7 +5,7 @@
 ** Login   <nathalie.cai@epitech.eu>
 **
 ** Started on  Mon Jun 26 16:47:55 2017 Nathalie CAI
-** Last update Tue Jun 27 18:48:32 2017 Nathalie CAI
+** Last update Tue Jun 27 18:52:13 2017 Baptiste Veyssiere
 */
 
 #include <stdlib.h>
@@ -20,7 +20,7 @@ static t_data	*filling_loop(t_data *data,
   unsigned int	k;
 
   j = 0;
-  while (j < data->width)
+  while (j < (int)data->width)
     {
       k = 0;
       while (k < ITEMNBR)
@@ -58,7 +58,7 @@ static t_data	*fill_tile(t_data *data)
     }
   srand(data->seed);
   i = 0;
-  while (i < data->height)
+  while (i < (int)data->height)
     {
       data = filling_loop(data, max_rocks, i);
       i++;
