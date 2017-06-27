@@ -5,32 +5,21 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 19 19:38:17 2017 Mathis Guilbon
-** Last update Tue Jun 27 13:23:12 2017 Mathis Guilbon
+** Last update Tue Jun 27 16:48:03 2017 Mathis Guilbon
 */
 
 #include "server.h"
 
-bool		eject(t_data *data, t_player *player, t_position *off, char *buff)
+void		getRealPosFrom(t_data *data, t_position *pos)
 {
-  t_player	*tmp;
-
-  tmp = data->players_root;
-  while (tmp != NULL)
-    {
-      if (tmp->pos->x == player->pos->x &&
-	  tmp->pos->y == player->pos->y &&
-	  tmp != player)
-	{
-	  if (socket_write(tmp->fd, buff) == -1)
-	    return (false);
-	  --data->map[player->pos->y][player->pos->x].players;
-	  ++data->map[off->y][off->x].players;
-	  tmp->pos->x = off->x;
-	  tmp->pos->y = off->y;
-	}
-      tmp = tmp->next;
-    }
-  return (true);
+  if (pos->y >= (int)data->height - 1)
+    pos->y -= data->height - 1;
+  else if (pos->y < 0)
+    pos->y += data->height - 1;
+  if (pos->x >= (int)data->width - 1)
+    pos->x -= data->width - 1;
+  else if (pos->x < 0)
+    pos->x += data->width - 1;
 }
 
 bool		action_connect_nbr(t_data *data, t_player *player, char *prm)
@@ -51,14 +40,6 @@ bool		action_connect_nbr(t_data *data, t_player *player, char *prm)
 }
 
 bool		action_fork(t_data *data, t_player *player, char *prm)
-{
-  (void)prm;
-  (void)data;
-  (void)player;
-  return (true);
-}
-
-bool		action_broadcast(t_data *data, t_player *player, char *prm)
 {
   (void)prm;
   (void)data;

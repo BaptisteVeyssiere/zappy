@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Tue Jun 27 16:20:37 2017 Mathis Guilbon
+** Last update Tue Jun 27 16:27:01 2017 Mathis Guilbon
 */
 
 #ifndef SERVER_H_
@@ -133,7 +133,7 @@ int	send_basic_info(int fd, int free_slot, int width, int height);
 **	action_connect.c
 */
 
-bool		eject(t_data *, t_player *, t_position *, char *);
+void		getRealPosFrom(t_data *, t_position *);
 bool		action_connect_nbr(t_data *, t_player *, char *);
 bool		action_fork(t_data *, t_player *, char *);
 bool		action_broadcast(t_data *, t_player *, char *);
@@ -151,7 +151,6 @@ bool		action_incantation(t_data *, t_player *, char *);
 **	action_move.c
 */
 
-void		getRealPosFrom(t_data *, t_position *);
 bool		action_forward(t_data *, t_player *, char *);
 bool		action_right(t_data *, t_player *, char *);
 bool		action_left(t_data *, t_player *, char *);
@@ -180,10 +179,6 @@ bool		upgradeToLvl8(t_data *, t_player *, bool);
 **	action_look.c
 */
 
-int		power(int, int);
-bool		checkOverflow(int *, char *, int);
-bool		lookOneCase(t_items *, int *, char *, int);
-void		changeOffset(enum dir, t_position *, int *, int);
 bool		action_look(t_data *, t_player *, char *);
 
 /*

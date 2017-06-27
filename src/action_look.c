@@ -5,13 +5,13 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Tue Jun 27 15:33:12 2017 Mathis Guilbon
+** Last update Tue Jun 27 16:25:34 2017 Mathis Guilbon
 */
 
 #include "server.h"
 #include "item_name.h"
 
-int		power(int nb, int p)
+static int	power(int nb, int p)
 {
   int		i;
   int		mul;
@@ -25,7 +25,7 @@ int		power(int nb, int p)
   return (nb);
 }
 
-bool		checkOverflow(int *written, char *buff, int fd)
+static bool	checkOverflow(int *written, char *buff, int fd)
 {
   if (*written >= MSG_LEN - 32)
     {
@@ -36,7 +36,7 @@ bool		checkOverflow(int *written, char *buff, int fd)
   return (true);
 }
 
-bool		lookOneCase(t_items *item, int *written, char *buff, int fd)
+static bool	lookOneCase(t_items *item, int *written, char *buff, int fd)
 {
   int		i;
   int		j;
@@ -63,7 +63,7 @@ bool		lookOneCase(t_items *item, int *written, char *buff, int fd)
   return (true);
 }
 
-void		changeOffset(enum dir dir, t_position *off, int *line, int saw)
+static void	changeOffset(enum dir dir, t_position *off, int *line, int saw)
 {
   if (saw + 1 == *line)
     {

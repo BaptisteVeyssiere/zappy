@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Tue Jun 27 15:33:26 2017 Mathis Guilbon
+** Last update Tue Jun 27 16:49:17 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -18,7 +18,7 @@ bool		action_take(t_data *data, t_player *player, char *prm)
 
   (void)data;
   i = -1;
-  while (++i < ITEMNBR && strcmp(item_name[i], prm + 1) != 0);
+  while (++i < ITEMNBR && strcmp(item_name[i], prm) != 0);
   if (i < ITEMNBR)
     {
       ++player->inventory->item[i];
@@ -35,7 +35,7 @@ bool		action_set(t_data *data, t_player *player, char *prm)
 
   (void)data;
   i = -1;
-  while (++i < ITEMNBR && strcmp(item_name[i], prm + 1) != 0);
+  while (++i < ITEMNBR && strcmp(item_name[i], prm) != 0);
   if (i < ITEMNBR && i != FOOD)
     {
       if (player->inventory->item[i] > 0)

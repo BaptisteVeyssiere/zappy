@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Tue Jun 27 15:31:00 2017 Mathis Guilbon
+** Last update Tue Jun 27 21:10:33 2017 Mathis Guilbon
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -15,6 +15,7 @@
 
 # define RINGLENGTH 4096
 
+// norme e_dir ?
 enum	dir
   {
     UP = 1,
@@ -24,16 +25,17 @@ enum	dir
     UNKNOWN
   };
 
-enum {
-  FOOD,
-  SIBUR,
-  PHIRAS,
-  LINEMATE,
-  MENDIANE,
-  THYSTAME,
-  DERAUMERE,
-  ITEMNBR
-};
+enum
+  {
+    FOOD = 0,
+    SIBUR,
+    PHIRAS,
+    LINEMATE,
+    MENDIANE,
+    THYSTAME,
+    DERAUMERE,
+    ITEMNBR
+  };
 
 typedef struct		s_team
 {
