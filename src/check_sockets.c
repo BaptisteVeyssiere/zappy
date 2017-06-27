@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Fri Jun 23 17:55:38 2017 Baptiste Veyssiere
-** Last update Sun Jun 25 21:12:12 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 17:33:42 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -15,9 +15,9 @@
 #include <strings.h>
 #include "server.h"
 
-static t_ringbuffer	*init_ringbuffer(void)
+t_ringbuffer	*init_ringbuffer(void)
 {
-  t_ringbuffer		*elem;
+  t_ringbuffer	*elem;
 
   if (!(elem = malloc(sizeof(t_ringbuffer))))
     {
@@ -95,7 +95,11 @@ static int	check_set(t_data *data, fd_set *set)
     return (check_signal(data->network->signal_fd));
   if ((FD_ISSET(data->network->socket_fd[0], set) &&
        extend_queue(data) == -1) || update_queue(data, set) == -1 ||
-      update_player_action(data, set) == -1)
+      update_player_action(data, set) == -1 ||
+      (FD_ISSET(data->network->socket_fd[1], set) &&
+       init_graphic(data) == -1) ||
+      (FD_ISSET(data->network->graphic_fd, set) &&
+       get_graphic_info(data) == -1))
     return (-1);
   return (0);
 }

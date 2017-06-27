@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 04:33:42 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 15:33:28 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 17:01:26 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -38,6 +38,8 @@ static void	add_player_to_list(t_data *data, t_player *last)
 {
   t_player	*root;
 
+  last->id = data->pid;
+  ++data->pid;
   root = data->players_root;
   while (root && root->next)
     root = root->next;
@@ -78,13 +80,16 @@ static int	add_player(t_data *data, int fd,
   t_egg		*tmp;
   t_position	pos;
   t_player	*last;
+  char		is_egg;
 
   tmp = data->eggs;
   pos.x = rand() % data->width;
   pos.y = rand() % data->height;
+  is_egg = 0;
   while (tmp)
-    if (strcmp(tmp->team, team) == 0)
+    if (strcmp(tmp->team, team) == 0 && tmp->ready)
       {
+	is_egg = 1;
 	pos = *(tmp->pos);
 	free_egg(data, tmp);
 	tmp = NULL;
@@ -96,6 +101,7 @@ static int	add_player(t_data *data, int fd,
       !(last->pos = malloc(sizeof(t_position))))
     return (write_error(__FILE__, __func__, __LINE__, -1));
   init_player(last, team, pos, fd);
+  last->eggborn = is_egg;
   last->ringbuffer = ringbuffer;
   add_player_to_list(data, last);
   return (0);

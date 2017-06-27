@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Tue Jun 27 11:43:46 2017 Nathalie CAI
+** Last update Tue Jun 27 13:37:44 2017 Nathalie CAI
 */
 
 #ifndef SERVER_H_
@@ -87,7 +87,8 @@ int	main_loop(t_data *data);
 ** check_sockets.c
 */
 
-int	check_sockets(t_data *data);
+int		check_sockets(t_data *data);
+t_ringbuffer	*init_ringbuffer(void);
 
 /*
 ** get_args.c
@@ -120,6 +121,7 @@ int	try_add_player(t_data *data, int fd, char *team, t_ringbuffer *ringbuffer);
 */
 
 int	update_player_action(t_data *data, fd_set *set);
+int	get_command_duration(char *command, int fd);
 
 /*
 ** free_tools.c
@@ -128,15 +130,39 @@ int	update_player_action(t_data *data, fd_set *set);
 void	free_actions(t_action *action);
 
 /*
-** update_egg_status.c
+** update_status.c
 */
 
 void	update_egg_status(t_data *data);
+void	update_action_status(t_data *data);
 
 /*
 ** send_basic_info.c
 */
 
 int	send_basic_info(int fd, int free_slot, int width, int height);
+
+/*
+** init_graphic.c
+*/
+
+int	init_graphic(t_data *data);
+int	get_graphic_info(t_data *data);
+
+/*
+** graphic_init_cmd.c
+*/
+
+int	init_pnw(t_data *data);
+int	init_enw(t_data *data);
+
+/*
+** graphic_command.c
+*/
+
+int	msz(t_data *data);
+int	sgt(t_data *data);
+int	bct(t_data *data);
+int	tna(t_data *data);
 
 #endif /* !SERVER_H_ */

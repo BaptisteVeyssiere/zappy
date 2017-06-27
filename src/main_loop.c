@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 15:33:39 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 14:23:50 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 16:37:26 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -36,6 +36,8 @@ static int	init_network(t_data *data)
       (data->network->set = create_data_set(data->network)) == NULL)
     return (-1);
   data->network->graphic_fd = -1;
+  data->network->graphic_ready = -1;
+  data->network->graphic_buffer = NULL;
   return (0);
 }
 

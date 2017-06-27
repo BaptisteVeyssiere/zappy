@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sat Jun 24 15:17:39 2017 Baptiste Veyssiere
-** Last update Sun Jun 25 22:12:06 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 17:50:28 2017 Baptiste Veyssiere
 */
 
 #include <stdlib.h>
@@ -55,6 +55,7 @@ static int	free_network(t_network *network)
   if ((network->graphic_fd > 2 && close(network->graphic_fd) == -1) ||
       (network->signal_fd > 2 && close(network->signal_fd) == -1))
     return (write_error(__FILE__, __func__, __LINE__, -1));
+  free(network->graphic_buffer);
   free(network);
   return (0);
 }

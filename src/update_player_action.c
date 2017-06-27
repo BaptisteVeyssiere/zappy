@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 21:12:34 2017 Baptiste Veyssiere
-** Last update Sun Jun 25 22:25:07 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 15:51:58 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -30,7 +30,7 @@ static int	get_action_nbr(t_player *player)
   return (nbr);
 }
 
-static int	get_command_duration(char *command, int fd)
+int		get_command_duration(char *command, int fd)
 {
   int		duration;
   static char	*command_list[12] =
@@ -77,6 +77,7 @@ static int		try_add_action(t_player *player, t_data *data, char *command)
   if (!(action = malloc(sizeof(t_action))))
     return (write_error(__FILE__, __func__, __LINE__, -1));
   action->next = NULL;
+  action->ready = 0;
   action->action = command;
   gettimeofday(&tv, NULL);
   action->timer = tv.tv_sec * 1000 + tv.tv_usec / 1000 +
