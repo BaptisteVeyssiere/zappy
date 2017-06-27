@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Tue Jun 27 16:27:38 2017 Nathalie CAI
+** Last update Tue Jun 27 16:49:12 2017 Nathalie CAI
 */
 
 #ifndef SERVER_H_
@@ -122,7 +122,6 @@ int	try_add_player(t_data *data, int fd, char *team, t_ringbuffer *ringbuffer);
 */
 
 int	update_player_action(t_data *data, fd_set *set);
-int	get_command_duration(char *command, int fd);
 
 /*
 ** free_tools.c
@@ -171,5 +170,17 @@ int	tna(t_data *data);
 */
 
 int	update_player_status(t_data *data);
+
+/*
+** execute_actions.c
+*/
+
+int	execute_actions(t_data *data);
+
+/*
+** get_command_duration.c
+*/
+
+int	get_command_duration(char *command, int fd);
 
 #endif /* !SERVER_H_ */
