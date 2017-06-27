@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 04:33:42 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 22:04:57 2017 Baptiste Veyssiere
+** Last update Tue Jun 27 16:02:01 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -39,10 +39,13 @@ static void		init_player(t_player *last, char *team,
   last->life = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 }
 
-static void	add_player_to_list(t_data *data, t_player *last)
+static void	add_player_to_list(t_data *data, t_player *last,
+				   char is_egg, t_ringbuffer *ringbuffer)
 {
   t_player	*root;
 
+  last->eggborn = is_egg;
+  last->ringbuffer = ringbuffer;
   last->id = data->pid;
   ++data->pid;
   root = data->players_root;
@@ -92,9 +95,8 @@ static int	add_player(t_data *data, int fd,
   pos.y = rand() % data->height;
   is_egg = 0;
   while (tmp)
-    if (strcmp(tmp->team, team) == 0 && tmp->ready)
+    if (strcmp(tmp->team, team) == 0 && tmp->ready && (is_egg = 1) == 1)
       {
-	is_egg = 1;
 	pos = *(tmp->pos);
 	free_egg(data, tmp);
 	tmp = NULL;
@@ -102,13 +104,11 @@ static int	add_player(t_data *data, int fd,
     else
       tmp = tmp->next;
   if (!(last = malloc(sizeof(t_player))) ||
-      !(last->inventory = malloc(sizeof(t_items))) ||
-      !(last->pos = malloc(sizeof(t_position))))
+      (last->inventory = malloc(sizeof(t_items))) == NULL ||
+      (last->pos = malloc(sizeof(t_position))) == NULL)
     return (write_error(__FILE__, __func__, __LINE__, -1));
   init_player(last, team, pos, fd);
-  last->eggborn = is_egg;
-  last->ringbuffer = ringbuffer;
-  add_player_to_list(data, last);
+  add_player_to_list(data, last, is_egg, ringbuffer);
   return (0);
 }
 

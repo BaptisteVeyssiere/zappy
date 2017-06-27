@@ -5,12 +5,11 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 16:02:11 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 17:51:29 2017 Baptiste Veyssiere
+** Last update Tue Jun 27 15:29:09 2017 Baptiste Veyssiere
 */
 
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "server.h"
@@ -51,7 +50,8 @@ int	get_graphic_info(t_data *data)
 
   if (data->network->graphic_ready != 0)
     return (0);
-  if ((ret = read_socket(data->network->graphic_fd, data->network->graphic_buffer)) == -1)
+  if ((ret = read_socket(data->network->graphic_fd,
+			 data->network->graphic_buffer)) == -1)
     {
       FD_CLR(data->network->graphic_fd, data->network->set);
       return (0);
@@ -59,7 +59,6 @@ int	get_graphic_info(t_data *data)
   is_cmd = 0;
   while ((command = check_ring(data->network->graphic_buffer, 0, &is_cmd)))
     {
-      printf("[%s]\n", command);
       if (strcmp(command, "GRAPHIC\0") == 0)
 	{
 	  data->network->graphic_ready = 1;

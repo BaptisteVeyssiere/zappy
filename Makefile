@@ -34,7 +34,9 @@ SRC	= src/writes.c \
 	src/init_graphic.c \
 	src/graphic_init_cmd.c \
 	src/graphic_command.c \
-	src/update_player_status.c
+	src/update_player_status.c \
+	src/get_command_duration.c \
+	src/execute_actions.c
 
 SRCDIR	= src
 

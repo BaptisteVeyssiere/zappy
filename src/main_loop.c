@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 15:33:39 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 20:59:20 2017 Baptiste Veyssiere
+** Last update Tue Jun 27 14:40:11 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -47,8 +47,9 @@ int	main_loop(t_data *data)
     return (84);
   while (1)
     {
-      // Execution des actions des joueurs (boucle)
-      if (update_player_status(data) == -1 ||
+
+      if (execute_actions(data) == -1 ||
+	  update_player_status(data) == -1 ||
 	  check_sockets(data) == -1)
 	{
 	  free_data(data);
