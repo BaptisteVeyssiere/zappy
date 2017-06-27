@@ -5,13 +5,15 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 17:58:03 2017 Nathan Scutari
-// Last update Tue Jun 27 18:14:57 2017 Nathan Scutari
+// Last update Tue Jun 27 18:54:21 2017 Nathan Scutari
 //
 
 #ifndef __IA_HPP__
 # define __IA_HPP__
 
 #include "ICommand.hpp"
+#include "C_Forward.hpp"
+#include "Player.hpp"
 
 namespace zappy
 {
@@ -26,8 +28,7 @@ namespace zappy
     ~IA();
 
   public:
-
-
+    ICommand	*makeAChoice(Player &);
   };
 }
 

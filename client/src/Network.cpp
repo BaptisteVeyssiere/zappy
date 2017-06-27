@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:35 2017 Nathan Scutari
-// Last update Tue Jun 27 15:50:45 2017 Nathan Scutari
+// Last update Tue Jun 27 22:02:32 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -86,14 +86,18 @@ void		zappy::Network::getDimensions(World &data, std::string &msg)
 
   while (msg.front() == ' ')
     msg.erase(0, 1);
+  std::cout << msg << std::endl;
   if ((width = std::stoi(msg)) < 5)
     throw client_exception("Error while getting map dimensions", __LINE__, __FILE__);
-  while (msg.front() != ' ')
+  while (isdigit(msg.front()))
     msg.erase(0, 1);
-  msg.erase(0, 1);
+  while (!isdigit(msg.front()))
+    msg.erase(0, 1);
+  std::cout << msg << std::endl;
   if ((height = std::stoi(msg)) < 5)
     throw client_exception("Error while getting map dimensions", __LINE__, __FILE__);
-
+  data.width = width;
+  data.height = height;
 }
 
 void		zappy::Network::registerPlayer(World &data, const std::string &team)
