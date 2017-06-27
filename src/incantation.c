@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Sun Jun 24 14:10:14 2017 Mathis Guilbon
-** Last update Mon Jun 26 14:59:44 2017 Mathis Guilbon
+** Last update Tue Jun 27 13:19:05 2017 Mathis Guilbon
 */
 
 #include "action.h"
@@ -56,8 +56,11 @@ bool		upgradeToLvl2(t_data *data, t_player *player, t_items *items)
   return (false);
 }
 
-bool		upgradeToLvl3(t_data *data, t_player *player, t_items *items)
+bool		upgradeToLvl3(t_data *data, t_player *player)
 {
+  t_items	*items;
+
+  items = data->map[player->pos->y][player->pos->y];
   if (items->players == 2 && enoughPeople(data, player, 2) &&
       items->item[LINEMATE] == 1 && items->item[DERAUMERE] == 1 &&
       items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&
@@ -71,8 +74,11 @@ bool		upgradeToLvl3(t_data *data, t_player *player, t_items *items)
   return (false);
 }
 
-bool		upgradeToLvl4(t_data *data, t_player *player, t_items *items)
+bool		upgradeToLvl4(t_data *data, t_player *player)
 {
+  t_items	*items;
+
+  items = data->map[player->pos->y][player->pos->y];
   if (items->players == 2 && enoughPeople(data, player, 2) &&
       items->item[LINEMATE] == 2 && items->item[DERAUMERE] == 0 &&
       items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&

@@ -5,13 +5,16 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 14:57:16 2017 Baptiste Veyssiere
+** Last update Tue Jun 27 13:20:48 2017 Mathis Guilbon
 */
 
 #ifndef SERVER_H_
 # define SERVER_H_
 
 # include "all_structs.h"
+# include <string.h>
+# include <stdbool.h>
+# include <stdio.h>
 
 # define MSG_LEN 512
 # define QUEUE_SIZE 42
@@ -119,5 +122,62 @@ void	update_egg_status(t_data *data);
 */
 
 int	send_basic_info(int fd, int free_slot, int width, int height);
+
+/*
+**	action_connect.c
+*/
+
+bool		eject(t_data *, t_player *, t_position *, char *);
+bool		action_connect_nbr(t_data *, t_player *, char *);
+bool		action_fork(t_data *, t_player *, char *);
+bool		action_broadcast(t_data *, t_player *, char *);
+
+/*
+**	action_item.c
+*/
+
+bool		action_take(t_data *, t_player *, char *);
+bool		action_set(t_data *, t_player *, char *);
+bool		action_inventory(t_data *, t_player *, char *);
+bool		action_incantation(t_data *, t_player *, char *);
+
+/*
+**	action_move.c
+*/
+
+void		getRealPosFrom(t_data *, t_position *);
+bool		action_forward(t_data *, t_player *, char *);
+bool		action_right(t_data *, t_player *, char *);
+bool		action_left(t_data *, t_player *, char *);
+bool		action_eject(t_data *, t_player *, char *);
+
+/*
+**	incantation.c
+*/
+
+void		upgrade_player(t_data *, t_player *);
+bool		enoughPeople(t_data *, t_player *, unsigned int);
+bool		upgradeToLvl2(t_data *, t_player *);
+bool		upgradeToLvl3(t_data *, t_player *);
+bool		upgradeToLvl4(t_data *, t_player *);
+
+/*
+**	incantation2.c
+*/
+
+bool		upgradeToLvl5(t_data *, t_player *);
+bool		upgradeToLvl6(t_data *, t_player *);
+bool		upgradeToLvl7(t_data *, t_player *);
+bool		upgradeToLvl8(t_data *, t_player *);
+
+/*
+**	action_look.c
+*/
+
+int		power(int, int);
+bool		checkOverflow(int *, char *, int);
+bool		lookOneCase(t_items *, int *, char *, int);
+void		changeOffset(enum dir, t_position *, int *, int);
+bool		action_look(t_data *, t_player *, char *);
 
 #endif /* !SERVER_H_ */

@@ -5,20 +5,20 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 19 16:38:50 2017 Mathis Guilbon
-** Last update Mon Jun 26 14:42:38 2017 Mathis Guilbon
+** Last update Tue Jun 27 13:11:53 2017 Mathis Guilbon
 */
 
-#include "action.h"
+#include "server.h"
 
-void		getRealPosFrom(t_data *data, t_pos *pos)
+void		getRealPosFrom(t_data *data, t_position *pos)
 {
-  if (pos->y >= data->height - 1)
+  if (pos->y >= (int)data->height - 1)
     pos->y -= data->height - 1;
   else if (pos->y < 0)
     pos->y += data->height - 1;
-  if (pos->x >= data->width - 1)
+  if (pos->x >= (int)data->width - 1)
     pos->x -= data->width - 1;
-  else if (x < 0)
+  else if (pos->x < 0)
     pos->x += data->width - 1;
 }
 
@@ -58,7 +58,7 @@ bool		action_eject(t_data *data, t_player *player, char *prm)
 {
   enum dir	dir;
   char		buff[32];
-  t_pos		off;
+  t_position	off;
 
   (void)prm;
   if (data->map[player->pos->y][player->pos->x].players < 2)

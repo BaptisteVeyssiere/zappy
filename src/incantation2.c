@@ -5,13 +5,16 @@
 ** Login   <mathis.guilbon@epitech.eu>
 ** 
 ** Started on  Mon Jun 26 12:01:39 2017 chalie_a
-** Last update Mon Jun 26 15:00:51 2017 Mathis Guilbon
+** Last update Tue Jun 27 13:19:46 2017 Mathis Guilbon
 */
 
 #include "action.h"
 
-bool		upgradeToLvl5(t_data *data, t_player *player, t_items *items)
+bool		upgradeToLvl5(t_data *data, t_player *player)
 {
+  t_items	*items;
+
+  items = data->map[player->pos->y][player->pos->y];
   if (items->players > 0  && enoughPeople(data, player, 4) &&
       items->item[LINEMATE] == 1 && items->item[DERAUMERE] == 1 &&
       items->item[SIBUR] == 2 && items->item[MENDIANE] == 0 &&
@@ -26,8 +29,11 @@ bool		upgradeToLvl5(t_data *data, t_player *player, t_items *items)
   return (false);
 }
 
-bool		upgradeToLvl6(t_data *data, t_player *player, t_items *items)
+bool		upgradeToLvl6(t_data *data, t_player *player)
 {
+  t_items	*items;
+
+  items = data->map[player->pos->y][player->pos->y];
   if (items->players > 0  && enoughPeople(data, player, 4) &&
       items->item[LINEMATE] == 1 && items->item[DERAUMERE] == 2 &&
       items->item[SIBUR] == 1 && items->item[MENDIANE] == 3 &&
@@ -42,8 +48,11 @@ bool		upgradeToLvl6(t_data *data, t_player *player, t_items *items)
   return (false);
 }
 
-bool		upgradeToLvl7(t_data *data, t_player *player, t_items *items)
+bool		upgradeToLvl7(t_data *data, t_player *player)
 {
+  t_items	*items;
+
+  items = data->map[player->pos->y][player->pos->y];
   if (items->players > 0  && enoughPeople(data, player, 6) &&
       items->item[LINEMATE] == 1 && items->item[DERAUMERE] == 2 &&
       items->item[SIBUR] == 3 && items->item[MENDIANE] == 0 &&
@@ -58,8 +67,11 @@ bool		upgradeToLvl7(t_data *data, t_player *player, t_items *items)
   return (false);
 }
 
-bool		upgradeToLvl8(t_data *data, t_player *player, t_items *items)
+bool		upgradeToLvl8(t_data *data, t_player *player)
 {
+  t_items	*items;
+
+  items = data->map[player->pos->y][player->pos->y];
   if (items->players > 0  && enoughPeople(data, player, 6) &&
       items->item[LINEMATE] == 2 && items->item[DERAUMERE] == 2 &&
       items->item[SIBUR] == 2 && items->item[MENDIANE] == 2 &&

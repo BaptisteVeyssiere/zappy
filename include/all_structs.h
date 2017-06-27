@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Mon Jun 26 14:33:50 2017 Mathis Guilbon
+** Last update Tue Jun 27 13:11:24 2017 Mathis Guilbon
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -35,6 +35,17 @@ enum {
   ITEMNBR
 };
 
+const	char *item_name[] =
+{
+  "food",
+  "sibur",
+  "phiras",
+  "linemate",
+  "mendiane",
+  "thystame",
+  "deraumere"
+};
+
 typedef struct		s_team
 {
   char			*name;
@@ -44,8 +55,10 @@ typedef struct		s_team
 
 typedef struct		s_position
 {
-  unsigned int		x;
-  unsigned int		y;
+  /*  unsigned int		x;
+      unsigned int		y;*/
+  int			x;
+  int			y;
 }			t_position;
 
 typedef struct		s_action
