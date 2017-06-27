@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 19 21:11:43 2017 Nathan Scutari
-// Last update Mon Jun 26 10:50:07 2017 Nathan Scutari
+// Last update Tue Jun 27 15:35:48 2017 Nathan Scutari
 //
 
 #ifndef __NETWORK_HPP__
@@ -34,6 +34,11 @@ namespace	zappy
   public:
     Network();
     ~Network();
+
+  private:
+    void		getDimensions(World &, std::string &);
+    void		registerPlayer(World &, const std::string &);
+
 
   public:
     World		connectToServer(const std::string &host,

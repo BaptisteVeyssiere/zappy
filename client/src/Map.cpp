@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Mon Jun 26 16:54:14 2017 vigner_g
+// Last update Tue Jun 27 16:26:20 2017 Nathan Scutari
 //
 
 #include "Inventory.hpp"
@@ -20,12 +20,12 @@ zappy::Map::~Map()
 {
 }
 
-zappy::Map	&getGrid() const
+std::vector<std::vector<zappy::Inventory> >	&zappy::Map::getGrid()
 {
   return (this->grid);
 }
 
-void		setSize(int width, int height)
+void		zappy::Map::setSize(int width, int height)
 {
   this->grid.resize(height);
   for (int i = 0; i < height; ++i)

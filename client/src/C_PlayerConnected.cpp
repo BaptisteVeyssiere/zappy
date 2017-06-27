@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 17:00:51 2017 vigner_g
-// Last update Sat Jun 24 17:21:54 2017 vigner_g
+// Last update Tue Jun 27 16:17:09 2017 Nathan Scutari
 //
 
 #include <string>
@@ -36,9 +36,9 @@ void		zappy::C_PlayerConnected::addArg(std::string arg)
 
 bool		zappy::C_PlayerConnected::IsNbr(std::string arg)
 {
-  for(int i = 0; i < (strlen(str) - 1); i++)
+  for(int i = 0; i < (arg.size() - 1); i++)
     {
-      if((int)str[i] > 9)
+      if(static_cast<int>(arg[i]) > 9)
 	return (false);
     }
   return (true);
@@ -49,6 +49,6 @@ bool		zappy::C_PlayerConnected::getResponse(Player &player, std::string &respons
   if (IsNbr(response) == false)
     throw client_exception("Server drunk", __LINE__, __FILE__);
   else
-    player.SetTeamNbPlayer(std::stoi(reponse));
+    player.SetTeamNbPlayer(std::stoi(response));
   return (true);
 }

@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Tue Jun 27 15:10:56 2017 vigner_g
+// Last update Tue Jun 27 16:26:46 2017 Nathan Scutari
 //
 
 #ifndef __PLAYER_HPP__
@@ -16,6 +16,7 @@
 #include "World.h"
 #include "Network.hpp"
 #include "Inventory.hpp"
+#include "Map.hpp"
 
 //direction north 0 west 1 south 2 east 3
 
@@ -23,7 +24,7 @@ namespace	zappy
 {
   class Player
   {
-    /*  private:
+  private:
     int					id;
     int					lvl;
     t_position				pos;
@@ -48,12 +49,12 @@ namespace	zappy
     void	SetTeamNbPlayer(int nb);
     void	SetId(int id);
     void	AddALvl();
-    */
+
   public:
-    Inventory	&getOwnInventory() const;
-    Inventory	&getSharedInventory() const;
-    t_position	&getFacing() const;
-    t_position	&getPosition() const;
+    Inventory	&getOwnInventory();
+    Inventory	&getSharedInventory();
+    t_position	&getFacing();
+    t_position	&getPosition();
   };
 }
 

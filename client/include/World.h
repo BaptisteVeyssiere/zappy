@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Mon Jun 19 22:57:24 2017 Nathan Scutari
-** Last update Wed Jun 21 20:53:06 2017 vigner_g
+** Last update Tue Jun 27 15:21:38 2017 Nathan Scutari
 */
 
 #ifndef __WORLD_H__
@@ -19,6 +19,7 @@ namespace	zappy
   {
     int		height;
     int		width;
+    int		client_num;
   };
 }
 

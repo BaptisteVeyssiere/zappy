@@ -5,12 +5,12 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:50:28 2017 vigner_g
-// Last update Mon Jun 26 11:40:24 2017 Nathan Scutari
+// Last update Tue Jun 27 16:12:07 2017 Nathan Scutari
 //
 
 
-#ifndef	__INVENTORY_HPP_
-# define __INVENTORY_HPP_
+#ifndef	__C_INVENTORY_HPP_
+# define __C_INVENTORY_HPP_
 
 #include <string>
 #include "ICommand.hpp"
@@ -37,4 +37,4 @@ namespace	zappy
   };
 }
 
-#endif // !__INVENTORY_HPP_
+#endif // !__C_INVENTORY_HPP_

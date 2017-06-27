@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:35 2017 Nathan Scutari
-// Last update Mon Jun 26 12:00:58 2017 Nathan Scutari
+// Last update Tue Jun 27 15:50:45 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -64,6 +64,7 @@ void	zappy::Network::sendMsg(std::string &msg) const
   ssize_t	ret;
   int		size;
 
+  msg += '\n';
   if (server_fd == -1)
     throw client_exception("Connection to server lost", __LINE__, __FILE__);
   sent = 0;
@@ -78,6 +79,67 @@ void	zappy::Network::sendMsg(std::string &msg) const
     }
 }
 
+void		zappy::Network::getDimensions(World &data, std::string &msg)
+{
+  int	width;
+  int	height;
+
+  while (msg.front() == ' ')
+    msg.erase(0, 1);
+  if ((width = std::stoi(msg)) < 5)
+    throw client_exception("Error while getting map dimensions", __LINE__, __FILE__);
+  while (msg.front() != ' ')
+    msg.erase(0, 1);
+  msg.erase(0, 1);
+  if ((height = std::stoi(msg)) < 5)
+    throw client_exception("Error while getting map dimensions", __LINE__, __FILE__);
+
+}
+
+void		zappy::Network::registerPlayer(World &data, const std::string &team)
+{
+  std::string	msg;
+  std::string	copy(team);
+  bool		welcome = true;
+
+
+  std::cout << "Registering player" << std::endl;
+  while (welcome)
+    {
+      if (isReadable())
+	readMsg();
+      if (isCmdReady())
+	{
+	  msg = getNextCmd();
+	  if (msg != "WELCOME")
+	    throw client_exception("The server did not welcome me :-(",
+				   __LINE__, __FILE__);
+	  else
+	    welcome = false;
+	}
+    }
+  sendMsg(copy);
+  while (1)
+    {
+      if (isReadable())
+	readMsg();
+      if (isCmdReady())
+	{
+	  msg = getNextCmd();
+	  if (msg == "ko")
+	    throw client_exception("Could not connect, The team does not exist or is full", __LINE__, __FILE__);
+	  if (data.client_num == -1)
+	    data.client_num = std::stoi(msg);
+	  else
+	    {
+	      getDimensions(data, msg);
+	      std::cout << "Registration successful" << std::endl;
+	      return ;
+	    }
+	}
+    }
+}
+
 zappy::World	zappy::Network::connectToServer(const std::string &host,
 						const std::string &port,
 						const std::string &team)
@@ -86,6 +148,7 @@ zappy::World	zappy::Network::connectToServer(const std::string &host,
   struct addrinfo	*res;
   struct protoent	*pe;
 
+  data.client_num = -1;
   if (getaddrinfo(host.c_str(), port.c_str(), NULL, &res) ||
       (pe = getprotobyname("TCP")) == 0 ||
       (server_fd = socket(AF_INET, SOCK_STREAM, pe->p_proto)) == -1)
@@ -94,7 +157,10 @@ zappy::World	zappy::Network::connectToServer(const std::string &host,
     {
       if (connect(server_fd, static_cast<struct sockaddr *>(res->ai_addr),
 		  sizeof(*(res->ai_addr))) != -1)
-	return (data);
+	{
+	  registerPlayer(data, team);
+	  return (data);
+	}
       res = res->ai_next;
     }
   throw client_exception("Could not connect to " + host +

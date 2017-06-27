@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Mon Jun 26 15:08:46 2017 vigner_g
-// Last update Mon Jun 26 15:20:59 2017 vigner_g
+// Last update Tue Jun 27 16:20:52 2017 Nathan Scutari
 //
 
 #include <iostream> //debug
@@ -34,11 +34,11 @@ void	zappy::C_Take::addArg(std::string arg)
 
 bool	zappy::C_Take::getResponse(Player &player, std::string &response)
 {
-  if (response != "ok" || response != 'ko') //peut renvoyer que ok et ko pour cette commande
+  if (response != "ok" || response != "ko") //peut renvoyer que ok et ko pour cette commande
     throw client_exception("Server drunk", __LINE__, __FILE__);
   else if (response == "ko")
     throw client_exception("Item is not available", __LINE__, __FILE__);
   else
-    player.getOwnInventory().AddItem(this->item);
+    player.getOwnInventory().addItem(this->item);
   return (true);
 }

@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Thu Jun 22 22:02:54 2017 vigner_g
-// Last update Mon Jun 26 15:02:52 2017 vigner_g
+// Last update Tue Jun 27 16:19:24 2017 Nathan Scutari
 //
 
 #include "Network.hpp"
@@ -19,7 +19,7 @@ zappy::Inventory::~Inventory()
 {
 }
 
-void	zappy::Inventory::AddItem(std::string item)
+void	zappy::Inventory::addItem(std::string item)
 {
   auto it = this->inv.find(item);
   if (it != this->inv.end())
@@ -28,18 +28,18 @@ void	zappy::Inventory::AddItem(std::string item)
     this->inv[it->first] = 1;
 }
 
-void	zappy::Inventory::Reset()
+void	zappy::Inventory::reset()
 {
   this->inv.clear();
 }
 
-void	zappy::Inventory::Reset(Inventory &other)
+void	zappy::Inventory::reset(Inventory &other)
 {
   this->inv.clear();
   this->inv = other.inv;
 }
 
-void	zappy::Inventory::AddToInventory(Inventory &other)
+void	zappy::Inventory::addToInventory(Inventory &other)
 {
   for(auto it = other.inv.begin(); it != other.inv.end(); it++)
     this->inv[it->first] += it->second;
@@ -52,11 +52,11 @@ zappy::Inventory	zappy::Inventory::operator+(Inventory &other)
   return (*this);
 }
 
-void		zappy::Inventory::Broadcast()
+void		zappy::Inventory::broadcast()
 {
 }
 
-int		zappy::Inventory::DelItem(std::string item)
+int		zappy::Inventory::delItem(std::string item)
 {
   auto it = this->inv.find(item);
   if (it != this->inv.end())

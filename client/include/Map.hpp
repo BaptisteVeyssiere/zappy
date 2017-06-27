@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Mon Jun 26 15:59:52 2017 vigner_g
-// Last update Tue Jun 27 15:02:17 2017 vigner_g
+// Last update Tue Jun 27 16:27:33 2017 Nathan Scutari
 //
 
 #ifndef	__MAP_HPP__
@@ -14,6 +14,12 @@
 #include <vector>
 #include "World.h"
 #include <string>
+#include "Inventory.hpp"
+
+namespace zappy
+{
+  class Inventory;
+};
 
 namespace zappy
 {
@@ -25,14 +31,14 @@ namespace zappy
 
   private:
     Map(Map &other);
-    Map	&operator=(map &other);
+    Map	&operator=(Map &other);
 
   private:
-    std::vector<std:vector<Inventory>>	grid;
+    std::vector<std::vector<Inventory> >	grid;
 
   public:
-    Map		&getGrid() const;
-    void	setSize(int width, int height);
+    std::vector<std::vector<Inventory> >	&getGrid();
+    void					setSize(int width, int height);
   };
 }
 
