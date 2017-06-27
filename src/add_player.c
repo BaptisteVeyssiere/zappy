@@ -5,39 +5,49 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 04:33:42 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 14:57:50 2017 Baptiste Veyssiere
+** Last update Tue Jun 27 16:02:01 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/time.h>
 #include "server.h"
 
-static void	init_player(t_player *last, char *team, t_position pos, int fd)
+static void		init_player(t_player *last, char *team,
+				    t_position pos, int fd)
 {
-  last->inventory->food = 9;
-  last->inventory->linemate = 0;
-  last->inventory->deraumere = 0;
-  last->inventory->sibur = 0;
-  last->inventory->mendiane = 0;
-  last->inventory->phiras = 0;
-  last->inventory->thystame = 0;
-  last->inventory->players = 0;
+  int			i;
+  struct timeval	tv;
+
+  i = -1;
+  gettimeofday(&tv, NULL);
+  while (++i < ITEMNBR)
+    {
+      last->inventory->item[i] = 0;
+      if (i == FOOD)
+	last->inventory->item[i] = 9;
+    }
   last->team = team;
   *(last->pos) = pos;
   last->fd = fd;
-  last->sightline = 1;
   last->direction = rand() % 4;
   last->level = 1;
   last->life = 126;
   last->next = NULL;
   last->action = NULL;
+  last->life = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 }
 
-static void	add_player_to_list(t_data *data, t_player *last)
+static void	add_player_to_list(t_data *data, t_player *last,
+				   char is_egg, t_ringbuffer *ringbuffer)
 {
   t_player	*root;
 
+  last->eggborn = is_egg;
+  last->ringbuffer = ringbuffer;
+  last->id = data->pid;
+  ++data->pid;
   root = data->players_root;
   while (root && root->next)
     root = root->next;
@@ -78,12 +88,14 @@ static int	add_player(t_data *data, int fd,
   t_egg		*tmp;
   t_position	pos;
   t_player	*last;
+  char		is_egg;
 
   tmp = data->eggs;
   pos.x = rand() % data->width;
   pos.y = rand() % data->height;
+  is_egg = 0;
   while (tmp)
-    if (strcmp(tmp->team, team) == 0)
+    if (strcmp(tmp->team, team) == 0 && tmp->ready && (is_egg = 1) == 1)
       {
 	pos = *(tmp->pos);
 	free_egg(data, tmp);
@@ -92,12 +104,11 @@ static int	add_player(t_data *data, int fd,
     else
       tmp = tmp->next;
   if (!(last = malloc(sizeof(t_player))) ||
-      !(last->inventory = malloc(sizeof(t_items))) ||
-      !(last->pos = malloc(sizeof(t_position))))
+      (last->inventory = malloc(sizeof(t_items))) == NULL ||
+      (last->pos = malloc(sizeof(t_position))) == NULL)
     return (write_error(__FILE__, __func__, __LINE__, -1));
   init_player(last, team, pos, fd);
-  last->ringbuffer = ringbuffer;
-  add_player_to_list(data, last);
+  add_player_to_list(data, last, is_egg, ringbuffer);
   return (0);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Tue Jun 27 13:11:24 2017 Mathis Guilbon
+** Last update Tue Jun 27 15:04:01 2017 Mathis Guilbon
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -65,6 +65,7 @@ typedef struct		s_action
 {
   char			*action;
   int			timer;
+  char			ready;
   struct s_action	*next;
 }			t_action;
 
@@ -85,6 +86,8 @@ typedef struct		s_waiting_queue
 typedef struct		s_egg
 {
   int			timer;
+  int			id;
+  int			player_id;
   char			*team;
   t_position		*pos;
   char			ready;
@@ -106,6 +109,8 @@ typedef struct		s_player
   enum dir		direction;
   unsigned int		level;
   unsigned int		life;
+  char			eggborn;
+  int			id;
   t_action		*action;
   struct s_player	*next;
   t_ringbuffer		*ringbuffer;
@@ -117,6 +122,8 @@ typedef struct		s_network
   fd_set		*set;
   int			graphic_fd;
   int			signal_fd;
+  char			graphic_ready;
+  t_ringbuffer		*graphic_buffer;
 }			t_network;
 
 typedef struct		s_data
@@ -134,6 +141,8 @@ typedef struct		s_data
   unsigned int		seed;
   t_waiting_queue	*queue;
   int			port;
+  int			pid;
+  int			eid;
 }			t_data;
 
 /*

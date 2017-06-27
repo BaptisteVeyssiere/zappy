@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Fri Jun 23 17:55:38 2017 Baptiste Veyssiere
-** Last update Sun Jun 25 21:12:12 2017 Baptiste Veyssiere
+** Last update Tue Jun 27 15:59:54 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -15,9 +15,9 @@
 #include <strings.h>
 #include "server.h"
 
-static t_ringbuffer	*init_ringbuffer(void)
+t_ringbuffer	*init_ringbuffer(void)
 {
-  t_ringbuffer		*elem;
+  t_ringbuffer	*elem;
 
   if (!(elem = malloc(sizeof(t_ringbuffer))))
     {
@@ -30,13 +30,12 @@ static t_ringbuffer	*init_ringbuffer(void)
   return (elem);
 }
 
-static int		extend_queue(t_data *data)
+static int		extend_queue(t_data *data, int fd)
 {
   struct sockaddr_in	s_in;
   socklen_t		s_in_size;
   t_waiting_queue	*last;
   t_waiting_queue	*queue;
-  int			fd;
 
   s_in_size = sizeof(s_in);
   if ((fd = accept(data->network->socket_fd[0],
@@ -56,8 +55,8 @@ static int		extend_queue(t_data *data)
 	queue = queue->next;
       queue->next = last;
     }
-  FD_SET(fd, data->network->set);
-  return (socket_write(fd, "WELCOME\n"));
+  FD_SET(last->fd, data->network->set);
+  return (socket_write(last->fd, "WELCOME\n"));
 }
 
 static int	update_queue(t_data *data, fd_set *set)
@@ -93,9 +92,13 @@ static int	check_set(t_data *data, fd_set *set)
 {
   if (FD_ISSET(data->network->signal_fd, set))
     return (check_signal(data->network->signal_fd));
-  if ((FD_ISSET(data->network->socket_fd[0], set) &&
-       extend_queue(data) == -1) || update_queue(data, set) == -1 ||
-      update_player_action(data, set) == -1)
+  if (update_player_action(data, set) == -1 ||
+      (FD_ISSET(data->network->socket_fd[0], set) &&
+       extend_queue(data, 0) == -1) || update_queue(data, set) == -1 ||
+      (FD_ISSET(data->network->socket_fd[1], set) &&
+       init_graphic(data) == -1) ||
+      (FD_ISSET(data->network->graphic_fd, set) &&
+      get_graphic_info(data) == -1))
     return (-1);
   return (0);
 }

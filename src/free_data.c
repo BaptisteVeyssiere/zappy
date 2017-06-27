@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sat Jun 24 15:17:39 2017 Baptiste Veyssiere
-** Last update Sun Jun 25 22:12:06 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 20:37:23 2017 Baptiste Veyssiere
 */
 
 #include <stdlib.h>
@@ -30,7 +30,6 @@ static int	free_players(t_player *player)
       while (action)
 	{
 	  _tmp = action->next;
-	  printf("Delete action <%s>\n", action->action);
 	  free(action->action);
 	  free(action);
 	  action = _tmp;
@@ -55,6 +54,7 @@ static int	free_network(t_network *network)
   if ((network->graphic_fd > 2 && close(network->graphic_fd) == -1) ||
       (network->signal_fd > 2 && close(network->signal_fd) == -1))
     return (write_error(__FILE__, __func__, __LINE__, -1));
+  free(network->graphic_buffer);
   free(network);
   return (0);
 }

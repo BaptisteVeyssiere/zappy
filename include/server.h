@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Tue Jun 27 13:28:39 2017 Mathis Guilbon
+** Last update Tue Jun 27 15:03:19 2017 Mathis Guilbon
 */
 
 #ifndef SERVER_H_
@@ -71,7 +71,8 @@ int	main_loop(t_data *data);
 ** check_sockets.c
 */
 
-int	check_sockets(t_data *data);
+int		check_sockets(t_data *data);
+t_ringbuffer	*init_ringbuffer(void);
 
 /*
 ** get_args.c
@@ -112,10 +113,11 @@ int	update_player_action(t_data *data, fd_set *set);
 void	free_actions(t_action *action);
 
 /*
-** update_egg_status.c
+** update_status.c
 */
 
 void	update_egg_status(t_data *data);
+void	update_action_status(t_data *data);
 
 /*
 ** send_basic_info.c
@@ -179,5 +181,46 @@ bool		checkOverflow(int *, char *, int);
 bool		lookOneCase(t_items *, int *, char *, int);
 void		changeOffset(enum dir, t_position *, int *, int);
 bool		action_look(t_data *, t_player *, char *);
+
+/*
+** init_graphic.c
+*/
+
+int	init_graphic(t_data *data);
+int	get_graphic_info(t_data *data);
+
+/*
+** graphic_init_cmd.c
+*/
+
+int	init_pnw(t_data *data);
+int	init_enw(t_data *data);
+
+/*
+** graphic_command.c
+*/
+
+int	msz(t_data *data);
+int	sgt(t_data *data);
+int	bct(t_data *data);
+int	tna(t_data *data);
+
+/*
+** update_player_status.c
+*/
+
+int	update_player_status(t_data *data);
+
+/*
+** execute_actions.c
+*/
+
+int	execute_actions(t_data *data);
+
+/*
+** get_command_duration.c
+*/
+
+int	get_command_duration(char *command, int fd);
 
 #endif /* !SERVER_H_ */

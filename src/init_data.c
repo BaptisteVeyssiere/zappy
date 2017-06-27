@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 12:12:58 2017 Nathalie CAI
-** Last update Sat Jun 24 16:07:31 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 19:47:21 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -17,17 +17,23 @@
 static t_data	*init_map(t_data *data)
 {
   unsigned int	i;
+  unsigned int	j;
+  int		k;
 
-  if ((data->map = malloc(sizeof (t_items *) * data->height)) == NULL)
+  if ((data->map = malloc(sizeof(t_items *) * data->height)) == NULL)
     return (NULL);
-  bzero(data->map, sizeof (t_items*));
-  i = 0;
-  while (i < data->height)
+  i = -1;
+  while (++i < data->height)
     {
-      if ((data->map[i] = malloc(sizeof (t_items) * data->width)) == NULL)
+      if ((data->map[i] = malloc(sizeof(t_items) * data->width)) == NULL)
 	return (NULL);
-      bzero(data->map[i], sizeof (t_items));
-      i++;
+      j = -1;
+      while (++j < data->width)
+	{
+	  k = -1;
+	  while (++k < ITEMNBR)
+	    data->map[i][j].item[k] = 0;
+	}
     }
   return (data);
 }
@@ -107,6 +113,8 @@ t_data	*init_data(t_data *data, int ac, char **av)
   if ((data = init_team_list(data, ac, av)) == NULL)
     return (NULL);
   data->eggs = NULL;
+  data->pid = 0;
+  data->eid = 0;
   if ((data->seed = get_uint(ac, av, "-s")) == 0)
     data->seed = time(NULL);
   return (data);

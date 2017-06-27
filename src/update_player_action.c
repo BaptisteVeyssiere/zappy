@@ -5,14 +5,13 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 21:12:34 2017 Baptiste Veyssiere
-** Last update Sun Jun 25 22:25:07 2017 Baptiste Veyssiere
+** Last update Tue Jun 27 15:47:14 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
 #include <sys/time.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
 #include "server.h"
 
 static int	get_action_nbr(t_player *player)
@@ -30,38 +29,23 @@ static int	get_action_nbr(t_player *player)
   return (nbr);
 }
 
-static int	get_command_duration(char *command, int fd)
+static void		init_action(char *command, int duration,
+				    unsigned int freq, t_action *action)
 {
-  int		duration;
-  static char	*command_list[12] =
-    {
-      "Forward\0", "Right\0", "Left\0", "Look\0", "Inventory\0", "Broadcast ",
-      "Connect_nbr\0", "Fork\0", "Eject\0", "Take ", "Set ", "Incantation\0"
-    };
-  static int	command_duration[12] =
-    {
-      7, 7, 7, 7, 1, 7, 0, 42, 7, 7, 7, 300
-    };
-  int		i;
+  struct timeval	tv;
 
-  i = -1;
-  duration = -2;
-  while (++i < 12)
-    if (strncmp(command_list[i], command, strlen(command_list[i])) == 0)
-      {
-	duration = command_duration[i];
-	i = 12;
-      }
-  if (duration == -2 && socket_write(fd, "ko\n") == -1)
-    return (-1);
-  return (duration);
+  action->next = NULL;
+  action->ready = 0;
+  action->action = command;
+  gettimeofday(&tv, NULL);
+  action->timer = tv.tv_sec * 1000 + tv.tv_usec / 1000 +
+    ((float)duration / (float)freq) * 1000.0;
 }
 
 static int		try_add_action(t_player *player, t_data *data, char *command)
 {
   t_action		*action;
   int			duration;
-  struct timeval	tv;
   t_action		*tmp;
 
   if ((duration = get_command_duration(command, player->fd)) < 0 ||
@@ -76,11 +60,7 @@ static int		try_add_action(t_player *player, t_data *data, char *command)
     tmp = tmp->next;
   if (!(action = malloc(sizeof(t_action))))
     return (write_error(__FILE__, __func__, __LINE__, -1));
-  action->next = NULL;
-  action->action = command;
-  gettimeofday(&tv, NULL);
-  action->timer = tv.tv_sec * 1000 + tv.tv_usec / 1000 +
-    ((float)duration / (float)data->freq) * 1000.0;
+  init_action(command, duration, data->freq, action);
   if (!tmp)
     player->action = action;
   else
@@ -105,17 +85,13 @@ static int	update_actions(t_player *player, t_data *data)
       free(player);
       return (1);
     }
-  is_cmd = 0;
-  while ((command = check_ring(player->ringbuffer, 0, &is_cmd)))
-    {
-      printf("<%s>\n", command);
-      if (try_add_action(player, data, command) == -1)
-	{
-	  free(command);
-	  return (-1);
-	}
-      is_cmd = 0;
-    }
+  while ((is_cmd = 0) == 0 &&
+	 (command = check_ring(player->ringbuffer, 0, &is_cmd)))
+    if (try_add_action(player, data, command) == -1)
+      {
+	free(command);
+	return (-1);
+      }
   return (is_cmd != 0 ? -1 : 0);
 }
 
