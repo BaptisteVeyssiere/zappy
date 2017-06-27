@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Tue Jun 27 16:59:38 2017 Nathan Scutari
+// Last update Tue Jun 27 17:51:30 2017 Nathan Scutari
 //
 
 #include "Inventory.hpp"
@@ -22,6 +22,11 @@ zappy::Player::Player(World &world)
 zappy::Player::~Player()
 {
 
+}
+
+void	zappy::Player::setFood(int nbr)
+{
+  food = nbr;
 }
 
 void	zappy::Player::SetTeamNbPlayer(int nb)

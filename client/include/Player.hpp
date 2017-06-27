@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Tue Jun 27 16:59:30 2017 Nathan Scutari
+// Last update Tue Jun 27 17:51:12 2017 Nathan Scutari
 //
 
 #ifndef __PLAYER_HPP__
@@ -50,6 +50,7 @@ namespace	zappy
     void	SetTeamNbPlayer(int nb);
     void	SetId(int id);
     void	AddALvl();
+    void	setFood(int nbr);
 
   public:
     Inventory	&getOwnInventory();

@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:12 2017 Nathan Scutari
-// Last update Tue Jun 27 16:56:52 2017 Nathan Scutari
+// Last update Tue Jun 27 17:57:19 2017 Nathan Scutari
 //
 
 #include <unistd.h>
@@ -58,7 +58,7 @@ void	zappy::Client::launch()
 	}
       if (!choice)
 	{
-	  //choice = IA.makeAChoice;
+	  //choice = IA.makeAChoice();
 	  //mNet.sendMsg(choice->getStr());
 	}
       usleep(100);
