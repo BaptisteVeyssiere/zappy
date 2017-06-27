@@ -5,7 +5,7 @@
 ** Login   <nathalie.cai@epitech.eu>
 **
 ** Started on  Wed Jun 21 15:44:39 2017 Nathalie CAI
-** Last update Tue Jun 27 16:28:31 2017 Nathalie CAI
+** Last update Tue Jun 27 17:43:48 2017 Nathalie CAI
 */
 
 #include <stdio.h>
@@ -29,23 +29,20 @@ void	print_map(t_data *data)
   unsigned int	j;
   int	k;
 
-  i = 0;
-  while (i < data->height)
+  i = -1;
+  while (++i < data->height)
     {
-      j = 0;
-      while (j < data->width)
+      j = -1;
+      while (++j < data->width)
 	{
-	  k = 0;
+	  k = -1;
 	  printf("[%d:%d] ", i, j);
-	  while (k < ITEMNBR)
+	  while (++k < ITEMNBR)
 	    {
 	      printf("%d ", data->map[i][j].item[k]);
-	      k++;
 	    }
 	  printf("\n");
-	  j++;
 	}
-      i++;
     }
 }
 

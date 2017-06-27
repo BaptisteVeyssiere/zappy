@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 12:12:58 2017 Nathalie CAI
-** Last update Tue Jun 27 17:23:22 2017 Nathalie CAI
+** Last update Tue Jun 27 18:47:51 2017 Nathalie CAI
 */
 
 #include <string.h>
@@ -32,6 +32,8 @@ t_data	*init_data(t_data *data, int ac, char **av)
     return (NULL);
   if ((data->port = get_uint(ac, av, "-p")) == 0)
     return (NULL);
+  if ((data->seed = get_uint(ac, av, "-s")) == 0)
+    data->seed = time(NULL);
   if ((data = init_map(data)) == NULL)
     return (NULL);
   if ((data->player_limit = get_uint(ac, av, "-c")) == 0)
@@ -41,7 +43,5 @@ t_data	*init_data(t_data *data, int ac, char **av)
   data->eggs = NULL;
   data->pid = 0;
   data->eid = 0;
-  if ((data->seed = get_uint(ac, av, "-s")) == 0)
-    data->seed = time(NULL);
   return (data);
 }

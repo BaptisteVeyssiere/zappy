@@ -11,7 +11,7 @@ SERVER	= zappy_server
 
 RM	= rm -rf
 
-CC	= gcc -g
+CC	= gcc
 
 MKDIR	= mkdir -p
 

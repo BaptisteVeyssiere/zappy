@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:33:09 2017 Nathalie CAI
-** Last update Tue Jun 27 16:27:12 2017 Nathalie CAI
+** Last update Tue Jun 27 18:18:14 2017 Nathalie CAI
 */
 
 #include <stdio.h>
@@ -17,7 +17,7 @@ int		main(int ac, char **av)
 {
   t_data	*data;
 
-  if (ac > 1 && strcmp(av[1], "-help") == 0)
+  if ((ac > 1 && strcmp(av[1], "-help") == 0) || ac < 11)
     return (print_usage());
   if (!(data = malloc(sizeof(t_data))))
     return (write_error(__FILE__, __func__, __LINE__, 84));

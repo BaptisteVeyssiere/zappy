@@ -1,11 +1,11 @@
 /*
 ** init_map.c for Project-Master in /home/nathalie/rendu/network/PSU_2016_zappy/src
-** 
+**
 ** Made by Nathalie CAI
 ** Login   <nathalie.cai@epitech.eu>
-** 
+**
 ** Started on  Mon Jun 26 16:47:55 2017 Nathalie CAI
-** Last update Tue Jun 27 17:15:28 2017 Nathalie CAI
+** Last update Tue Jun 27 18:48:32 2017 Nathalie CAI
 */
 
 #include <stdlib.h>
@@ -16,7 +16,7 @@
 static t_data	*filling_loop(t_data *data,
 			      unsigned int max_rocks[ITEMNBR], int i)
 {
-  unsigned int	j;
+  int	j;
   unsigned int	k;
 
   j = 0;
@@ -26,10 +26,10 @@ static t_data	*filling_loop(t_data *data,
       while (k < ITEMNBR)
 	{
 	  if (rand() % 2 == 0 && k == 0 && max_rocks[k] > 0)
-		{
-		  data->map[i][j].item[k] = rand() % 5;
-		  max_rocks[k] = max_rocks[k] - data->map[i][j].item[k];
-		}
+	    {
+	      data->map[i][j].item[k] = rand() % 5;
+	      max_rocks[k] = max_rocks[k] - data->map[i][j].item[k];
+	    }
 	  if (rand() % 2 == 0 && k > 0 && max_rocks[k] > 0)
 	    {
 	      data->map[i][j].item[k] = rand() % 2;
@@ -45,7 +45,7 @@ static t_data	*filling_loop(t_data *data,
 static t_data	*fill_tile(t_data *data)
 {
   unsigned int	max_rocks[ITEMNBR];
-  unsigned int	i;
+  int	i;
 
   i = 0;
   while (i < ITEMNBR)
@@ -69,17 +69,24 @@ static t_data	*fill_tile(t_data *data)
 t_data	*init_map(t_data *data)
 {
   unsigned int  i;
+  unsigned int	j;
+  int		k;
 
-  if ((data->map = malloc(sizeof (t_items *) * data->height)) == NULL)
+  if ((data->map = malloc(sizeof(t_items *) * data->height)) == NULL)
     return (NULL);
-  bzero(data->map, sizeof (t_items*));
-  i = 0;
-  while (i < data->height)
+  i = -1;
+  while (++i < data->height)
     {
-      if ((data->map[i] = malloc(sizeof (t_items) * data->width)) == NULL)
+      if ((data->map[i] = malloc(sizeof(t_items) * data->width + 1)) == NULL)
 	return (NULL);
-      bzero(data->map[i], sizeof (t_items));
-      i++;
+      j = -1;
+      while (++j < data->width)
+	{
+	  k = -1;
+	  while (++k < ITEMNBR)
+	    data->map[i][j].item[k] = 0;
+	  data->map[i][j].players = 0;
+	}
     }
   data = fill_tile(data);
   return (data);
