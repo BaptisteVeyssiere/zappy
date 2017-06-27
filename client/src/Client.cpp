@@ -5,14 +5,15 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:12 2017 Nathan Scutari
-// Last update Sat Jun 24 16:08:51 2017 Nathan Scutari
+// Last update Mon Jun 26 11:57:55 2017 Nathan Scutari
 //
 
 #include <unistd.h>
 #include <iostream>
 #include "Client.hpp"
+#include "Exception.hpp"
 
-zappy::Client::Client(std::string port, std::string team, std::string machine = localhost)
+zappy::Client::Client(std::string port, std::string team, std::string machine)
   :info(), mNet(), choice(NULL)
 {
   info = mNet.connectToServer(machine, port, team);
@@ -25,7 +26,7 @@ zappy::Client::~Client()
   std::cout << "Disconnected from zappy server" << std::endl;
 }
 
-static void	zappy::Client::usage()
+void	zappy::Client::usage()
 {
   std::cout << "Usage ./zappy_ai -p port -n name -h machine" << std::endl;
   std::cout << "\tport\tis the port number" << std::endl;
@@ -46,19 +47,19 @@ void	zappy::Client::launch()
       if (mNet.isCmdReady())
 	{
 	  server_msg = mNet.getNextCmd();
-	  if (mCmdManager.isResponse() && !choice)
+	  if (mCmdMgr.isResponse(server_msg) && !choice)
 	    throw client_exception("Unexpected server msg", __LINE__, __FILE__);
 	  else if (choice)
-	    if (choice.getResponse(server_msg))
+	    if (choice->getResponse(player, server_msg))
 	    choice = NULL;
 	  else
-	    mCmdManager.analyse_data(server_msg, player);
+	    mCmdMgr.analyseData(server_msg, player);
 	}
       if (!choice)
 	{
 	  //choice = IA.makeAChoice;
-	  mNet.sendMsg(choice.getStr());
+	  //mNet.sendMsg(choice->getStr());
 	}
       usleep(100);
-    }
+      }
 }

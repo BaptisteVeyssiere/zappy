@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 18:05:47 2017 Nathan Scutari
-// Last update Sat Jun 24 15:12:13 2017 Nathan Scutari
+// Last update Mon Jun 26 11:35:55 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
   comm = new zappy::C_broadcast();
   comm->addArg("arg1 arg2 arg3");
   std::cout << comm->getStr() << std::endl;
-  /*  try
+  try
     {
       net.connectToServer("localhost", av[1], "TeamJPP");
       net.sendMsg(msg);
@@ -41,6 +41,6 @@ int	main(int ac, char **av)
   catch (std::exception &e)
     {
       std::cerr << e.what() << std::endl;
-      }*/
+    }
   return (0);
 }

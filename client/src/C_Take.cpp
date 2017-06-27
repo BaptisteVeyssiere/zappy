@@ -1,41 +1,44 @@
 //
-// C_broadcast.cpp for zappy in /home/scutar_n/rendu/PSU/PSU_2016_zappy/client/include
+// C_Take.cpp for Take in /home/vigner_g/rendu/PSU_2016_zappy
 //
-// Made by Nathan Scutari
-// Login   <scutar_n@epitech.net>
+// Made by vigner_g
+// Login   <vigner_g@epitech.net>
 //
-// Started on  Fri Jun 23 17:08:43 2017 Nathan Scutari
-// Last update Mon Jun 26 14:17:06 2017 vigner_g
+// Started on  Mon Jun 26 15:08:46 2017 vigner_g
+// Last update Mon Jun 26 15:20:59 2017 vigner_g
 //
 
 #include <iostream> //debug
-#include "C_broadcast.hpp"
+#include "C_Take.hpp"
 #include "Exception.hpp"
 
-zappy::C_broadcast::C_broadcast()
-  :ICommand(), command("Broadcast")
+zappy::C_Take::C_Take()
+  :ICommand(), command("Take")
 {
 }
 
-zappy::C_broadcast::~C_broadcast()
+zappy::C_Take::~C_Take()
 {
 }
 
-std::string	&zappy::C_broadcast::getStr()
+std::string	&zappy::C_Take::getStr()
 {
   return (command);
 }
 
-void	zappy::C_broadcast::addArg(std::string arg)
+void	zappy::C_Take::addArg(std::string arg)
 {
   command += " " + arg;
   item = arg;
 }
 
-bool	zappy::C_broadcast::getResponse(Player &player, std::string &response)
+bool	zappy::C_Take::getResponse(Player &player, std::string &response)
 {
-  if (response != "ok" || response != 'ko') //peut renvoyer que ok pour cette commande
+  if (response != "ok" || response != 'ko') //peut renvoyer que ok et ko pour cette commande
     throw client_exception("Server drunk", __LINE__, __FILE__);
-
+  else if (response == "ko")
+    throw client_exception("Item is not available", __LINE__, __FILE__);
+  else
+    player.getOwnInventory().AddItem(this->item);
   return (true);
 }

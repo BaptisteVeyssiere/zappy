@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:35 2017 Nathan Scutari
-// Last update Wed Jun 21 18:35:48 2017 Nathan Scutari
+// Last update Mon Jun 26 12:00:58 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -36,11 +36,16 @@ bool	zappy::Network::isReadable() const
 
   FD_ZERO(&set);
   FD_SET(server_fd, &set);
+  FD_SET(mSignalMgr.getSignalFd(), &set);
   if (server_fd == -1)
-    throw client_exception("Not connected to server", __LINE__, __FILE__);
+    throw client_exception("Connection to server lost", __LINE__, __FILE__);
   if ((ret = select(FD_SETSIZE, &set, NULL, NULL, &timerange)) == -1)
     throw client_exception("Select failed", __LINE__, __FILE__);
-  return ((ret == 0) ? false : true);
+  else if (ret > 0 && FD_ISSET(mSignalMgr.getSignalFd(), &set))
+    mSignalMgr.checkSignal();
+  else if (ret > 0 && FD_ISSET(server_fd, &set))
+    return (true);
+  return (false);
 }
 
 bool	zappy::Network::isCmdReady() const
@@ -60,7 +65,7 @@ void	zappy::Network::sendMsg(std::string &msg) const
   int		size;
 
   if (server_fd == -1)
-    throw client_exception("Not connected to server", __LINE__, __FILE__);
+    throw client_exception("Connection to server lost", __LINE__, __FILE__);
   sent = 0;
   size = msg.size();
   while (sent != size)

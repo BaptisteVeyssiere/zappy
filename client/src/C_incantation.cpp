@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 18:10:48 2017 Nathan Scutari
-// Last update Sat Jun 24 15:10:51 2017 Nathan Scutari
+// Last update Mon Jun 26 11:54:01 2017 Nathan Scutari
 //
 
 #include "C_incantation.hpp"
@@ -33,7 +33,8 @@ void		zappy::C_incantation::addArg(std::string arg)
 			 __LINE__, __FILE__);
 }
 
-bool		zappy::C_incantation::getResponse(Player &player, std::string &response)
+bool		zappy::C_incantation::getResponse(Player &player,
+						  std::string &response)
 {
   if (waiting == 0)
     {

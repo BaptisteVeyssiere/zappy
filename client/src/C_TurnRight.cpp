@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:25:31 2017 vigner_g
-// Last update Sat Jun 24 15:30:01 2017 vigner_g
+// Last update Tue Jun 27 15:15:30 2017 vigner_g
 //
 
 #include "C_TurnRight.hpp"
@@ -37,5 +37,9 @@ bool		zappy::C_TurnRight::getResponse(Player &player, std::string &response)
 {
   if (response != "ok") //peut renvoyer que ok pour cette commande
     throw client_exception("Server drunk", __LINE__, __FILE__);
+  player.getPosition().x =
+    (player.getPosition().x > 1) ? -1 : (player.getPosition().x + 1);
+  player.getPosition().y =
+    (player.getPosition().y > 1) ? -1 : (player.getPosition().y + 1);
   return (true);
 }

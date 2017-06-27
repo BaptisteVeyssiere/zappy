@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:25:31 2017 vigner_g
-// Last update Sat Jun 24 16:43:09 2017 vigner_g
+// Last update Mon Jun 26 16:47:04 2017 vigner_g
 //
 
 #include "C_Look.hpp"
@@ -35,5 +35,6 @@ void		zappy::C_Look::addArg(std::string arg)
 
 bool		zappy::C_Look::getResponse(Player &player, std::string &response)
 {
+
   //remplir la map perso du client
 }

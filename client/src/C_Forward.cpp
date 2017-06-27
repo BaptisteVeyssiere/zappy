@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:25:31 2017 vigner_g
-// Last update Sat Jun 24 15:27:41 2017 vigner_g
+// Last update Tue Jun 27 15:22:16 2017 vigner_g
 //
 
 #include "C_Forward.hpp"
@@ -37,5 +37,7 @@ bool		zappy::C_Forward::getResponse(Player &player, std::string &response)
 {
   if (response != "ok") //peut renvoyer que ok pour cette commande
     throw client_exception("Server drunk", __LINE__, __FILE__);
+  player.getPosition.x += player.getFacing().x;
+  player.getPosition.y += player.getFacing().y;
   return (true);
 }
