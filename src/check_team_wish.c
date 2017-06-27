@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 02:09:52 2017 Baptiste Veyssiere
-** Last update Sun Jun 25 22:09:13 2017 Baptiste Veyssiere
+** Last update Mon Jun 26 21:47:57 2017 Baptiste Veyssiere
 */
 
 #include <strings.h>
