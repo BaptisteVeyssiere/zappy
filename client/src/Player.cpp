@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Tue Jun 27 16:31:19 2017 Nathan Scutari
+// Last update Tue Jun 27 16:59:38 2017 Nathan Scutari
 //
 
 #include "Inventory.hpp"
@@ -15,6 +15,8 @@
 zappy::Player::Player(World &world)
   : id(0), lvl(1), food(10), teamNbPlayer(1)
 {
+  map.setSize(world.width, world.height);
+  slot = world.client_num;
 }
 
 zappy::Player::~Player()

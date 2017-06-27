@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Tue Jun 27 16:26:46 2017 Nathan Scutari
+// Last update Tue Jun 27 16:59:30 2017 Nathan Scutari
 //
 
 #ifndef __PLAYER_HPP__
@@ -36,13 +36,14 @@ namespace	zappy
     Map					map;
     int					teamNbPlayer;
     int					nbOfEgg;
+    int					slot;
 
   private:
     Player(Player &other);
     Player	&operator=(Player &other);
 
   public:
-    Player();
+    Player(World &);
     ~Player();
 
   public:
