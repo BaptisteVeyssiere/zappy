@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 16:02:11 2017 Baptiste Veyssiere
-** Last update Tue Jun 27 16:47:11 2017 Baptiste Veyssiere
+** Last update Tue Jun 27 19:04:33 2017 Baptiste Veyssiere
 */
 
 #include <sys/socket.h>
@@ -13,7 +13,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
-
+#include <stdio.h>
 #include "server.h"
 
 int	init_graphic(t_data *data)
@@ -69,6 +69,7 @@ int	get_graphic_info(t_data *data)
     {
       if (strcmp(command, "GRAPHIC\0") == 0)
 	{
+	  printf("Le GUI est connecté\n");
 	  data->network->graphic_ready = 1;
 	  free(command);
 	  return (send_graphic_info(data));
