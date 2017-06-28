@@ -5,7 +5,7 @@
 ** Login   <nathalie.cai@epitech.eu>
 ** 
 ** Started on  Wed Jun 28 12:54:55 2017 Nathalie CAI
-** Last update Wed Jun 28 15:35:41 2017 Nathalie CAI
+** Last update Wed Jun 28 15:51:40 2017 Nathalie CAI
 */
 
 #include <string.h>
@@ -54,7 +54,7 @@ int	check_args(int ac, char **av)
     return (print_error_param("-f should be between 2 and 1000.\n"));
   if ((player_limit != 0 && player_limit < 2) || player_limit > 1000)
     return (print_error_param("-c should be between 1 and 50.\n"));
-  if (port < 1025 || port > 65535)
+  if ((port != 0 && port < 1025) || port > 65535)
     return (print_error_param("-p should be between 1025 and 65535.\n"));
   return (check_team_names(ac, av));
   return (0);

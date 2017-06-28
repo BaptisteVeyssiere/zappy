@@ -5,7 +5,7 @@
 ** Login   <nathalie.cai@epitech.eu>
 **
 ** Started on  Wed Jun 21 15:44:39 2017 Nathalie CAI
-** Last update Wed Jun 28 13:49:34 2017 Nathalie CAI
+** Last update Wed Jun 28 15:58:58 2017 Nathalie CAI
 */
 
 #include <stdio.h>
@@ -41,23 +41,29 @@ void	print_map(t_data *data)
 {
   unsigned int	i;
   unsigned int	j;
-  int	k;
 
+  i = -1;
+  while (++i < data->width * 2 + 1)
+    printf("-");
+  printf("\n");
   i = -1;
   while (++i < data->height)
     {
       j = -1;
+      printf("|");
       while (++j < data->width)
 	{
-	  k = -1;
-	  printf("[%d:%d] ", i, j);
-	  while (++k < ITEMNBR)
-	    {
-	      printf("%d ", data->map[i][j].item[k]);
-	    }
-	  printf("\n");
+	  if (data->map[i][j].players > 0)
+	    printf("x|");
+	  else
+	    printf(" |");
 	}
+      printf("\n");
     }
+  i = -1;
+  while (++i < data->width * 2 + 1)
+    printf("-");
+  printf("\n");
 }
 
 void	print_data(t_data *data)
