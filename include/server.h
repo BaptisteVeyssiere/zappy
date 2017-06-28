@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Tue Jun 27 16:27:01 2017 Mathis Guilbon
+** Last update Wed Jun 28 13:12:46 2017 Mathis Guilbon
 */
 
 #ifndef SERVER_H_
@@ -133,7 +133,7 @@ int	send_basic_info(int fd, int free_slot, int width, int height);
 **	action_connect.c
 */
 
-void		getRealPosFrom(t_data *, t_position *);
+void		get_real_pos_from(t_data *, t_position *);
 bool		action_connect_nbr(t_data *, t_player *, char *);
 bool		action_fork(t_data *, t_player *, char *);
 bool		action_broadcast(t_data *, t_player *, char *);
@@ -161,25 +161,31 @@ bool		action_eject(t_data *, t_player *, char *);
 */
 
 void		upgrade_player(t_data *, t_player *);
-bool		enoughPeople(t_data *, t_player *, unsigned int);
-bool		upgradeToLvl2(t_data *, t_player *, bool);
-bool		upgradeToLvl3(t_data *, t_player *, bool);
-bool		upgradeToLvl4(t_data *, t_player *, bool);
+bool		enough_people(t_data *, t_player *, unsigned int);
+bool		upgrade_to_lvl2(t_data *, t_player *, bool);
+bool		upgrade_to_lvl3(t_data *, t_player *, bool);
+bool		upgrade_to_lvl4(t_data *, t_player *, bool);
 
 /*
 **	incantation2.c
 */
 
-bool		upgradeToLvl5(t_data *, t_player *, bool);
-bool		upgradeToLvl6(t_data *, t_player *, bool);
-bool		upgradeToLvl7(t_data *, t_player *, bool);
-bool		upgradeToLvl8(t_data *, t_player *, bool);
+bool		upgrade_to_lvl5(t_data *, t_player *, bool);
+bool		upgrade_to_lvl6(t_data *, t_player *, bool);
+bool		upgrade_to_lvl7(t_data *, t_player *, bool);
+bool		upgrade_to_lvl8(t_data *, t_player *, bool);
 
 /*
 **	action_look.c
 */
 
 bool		action_look(t_data *, t_player *, char *);
+
+/*
+**	action_broadcast.c
+*/
+
+bool		action_broadcast(t_data *, t_player *, char *);
 
 /*
 ** init_graphic.c

@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Tue Jun 27 22:44:03 2017 Mathis Guilbon
+** Last update Wed Jun 28 13:24:57 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -13,7 +13,21 @@
 
 static int	get_shorter(t_data *data, t_position *rec, t_position *inter)
 {
-
+  unsigned int	dist[4];
+  unsigned int	min;
+  int		i;
+  
+  i = -1;
+  dist[0] = (rec->x - inter[0].x) * (rec->x - inter[0].x) +
+    (rec->y - inter[0].y) * (rec->y - inter[0].y);
+  dist[1] = ;
+  dist[2] = (rec->x - inter[1].x) * (rec->x - inter[1].x) +
+    (rec->y - inter[1].y) * (rec->y - inter[1].y);
+  dist[3] =;
+  while (++i < 4)
+    {
+      if ();
+    }
   return (0);
 }
 

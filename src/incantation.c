@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Sun Jun 24 14:10:14 2017 Mathis Guilbon
-** Last update Tue Jun 27 15:36:39 2017 Mathis Guilbon
+** Last update Wed Jun 28 13:05:51 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -25,7 +25,7 @@ void		upgrade_player(t_data *data, t_player *player)
     }
 }
 
-bool		enoughPeople(t_data *data, t_player *player, unsigned int needed)
+bool		enough_people(t_data *data, t_player *player, unsigned int needed)
 {
   t_player	*tmp;
   unsigned int	count;
@@ -43,7 +43,7 @@ bool		enoughPeople(t_data *data, t_player *player, unsigned int needed)
   return (count == needed);
 }
 
-bool		upgradeToLvl2(t_data *data, t_player *player, bool check)
+bool		upgrade_to_lvl2(t_data *data, t_player *player, bool check)
 {
   t_items	*items;
 
@@ -60,12 +60,12 @@ bool		upgradeToLvl2(t_data *data, t_player *player, bool check)
   return (false);
 }
 
-bool		upgradeToLvl3(t_data *data, t_player *player, bool check)
+bool		upgrade_to_lvl3(t_data *data, t_player *player, bool check)
 {
   t_items	*items;
 
   items = &data->map[player->pos->y][player->pos->y];
-  if (items->players == 2 && enoughPeople(data, player, 2) &&
+  if (items->players == 2 && enough_people(data, player, 2) &&
       items->item[LINEMATE] == 1 && items->item[DERAUMERE] == 1 &&
       items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&
       items->item[PHIRAS] == 0 && items->item[THYSTAME] == 0)
@@ -81,12 +81,12 @@ bool		upgradeToLvl3(t_data *data, t_player *player, bool check)
   return (false);
 }
 
-bool		upgradeToLvl4(t_data *data, t_player *player, bool check)
+bool		upgrade_to_lvl4(t_data *data, t_player *player, bool check)
 {
   t_items	*items;
 
   items = &data->map[player->pos->y][player->pos->y];
-  if (items->players == 2 && enoughPeople(data, player, 2) &&
+  if (items->players == 2 && enough_people(data, player, 2) &&
       items->item[LINEMATE] == 2 && items->item[DERAUMERE] == 0 &&
       items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&
       items->item[PHIRAS] == 2 && items->item[THYSTAME] == 0)
