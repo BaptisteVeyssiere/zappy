@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Wed Jun 28 13:15:42 2017 Mathis Guilbon
+** Last update Wed Jun 28 15:30:52 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -106,10 +106,11 @@ bool		action_look(t_data *data, t_player *player, char *prm)
   while (++saw < toSee)
     {
       get_real_pos_from(data, &off);
+      fprintf(stderr, "see case [%d][%d]\n", off.y, off.x);
       if (!look_one_case(&data->map[off.y][off.x], &written, buff, player->fd))
 	return (false);
       written += snprintf(buff + written, MSG_LEN - written,
-			  (saw + 1 == toSee) ? " ]" : ",");
+			  (saw + 1 == toSee) ? " ]\n" : ",");
       change_offset(player->direction, &off, &line, saw);
     }
   return (socket_write(player->fd, buff) != -1);
