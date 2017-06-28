@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Wed Jun 28 15:10:50 2017 Mathis Guilbon
+** Last update Wed Jun 28 16:01:59 2017 Mathis Guilbon
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -54,6 +54,7 @@ typedef struct		s_action
   char			*action;
   unsigned long int	timer;
   char			ready;
+  char			incant_checked;
   struct s_action	*next;
 }			t_action;
 
@@ -96,7 +97,7 @@ typedef struct		s_player
   t_position		*pos;
   enum dir		direction;
   unsigned int		level;
-  unsigned int		life;
+  unsigned long int	life;
   char			eggborn;
   int			id;
   t_action		*action;

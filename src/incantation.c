@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Sun Jun 24 14:10:14 2017 Mathis Guilbon
-** Last update Wed Jun 28 13:50:08 2017 Mathis Guilbon
+** Last update Wed Jun 28 15:53:08 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -47,7 +47,7 @@ bool		upgrade_to_lvl2(t_data *data, t_player *player)
 {
   t_items	*items;
 
-  items = &data->map[player->pos->y][player->pos->y];
+  items = &data->map[player->pos->y][player->pos->x];
   return (items->players == 1 && items->item[LINEMATE] == 1 &&
 	  items->item[DERAUMERE] == 0 && items->item[SIBUR] == 0 &&
 	  items->item[MENDIANE] == 0 && items->item[PHIRAS] == 0 &&
@@ -58,7 +58,7 @@ bool		upgrade_to_lvl3(t_data *data, t_player *player)
 {
   t_items	*items;
 
-  items = &data->map[player->pos->y][player->pos->y];
+  items = &data->map[player->pos->y][player->pos->x];
   return (items->players == 2 && enough_people(data, player, 2) &&
 	  items->item[LINEMATE] == 1 && items->item[DERAUMERE] == 1 &&
 	  items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&
@@ -69,7 +69,7 @@ bool		upgrade_to_lvl4(t_data *data, t_player *player)
 {
   t_items	*items;
 
-  items = &data->map[player->pos->y][player->pos->y];
+  items = &data->map[player->pos->y][player->pos->x];
   return (items->players == 2 && enough_people(data, player, 2) &&
 	  items->item[LINEMATE] == 2 && items->item[DERAUMERE] == 0 &&
 	  items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&

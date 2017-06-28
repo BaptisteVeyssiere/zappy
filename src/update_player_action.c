@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 21:12:34 2017 Baptiste Veyssiere
-** Last update Tue Jun 27 16:18:39 2017 Mathis Guilbon
+** Last update Wed Jun 28 15:47:16 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -31,6 +31,7 @@ static void		init_action(char *command, int duration,
   action->next = NULL;
   action->ready = 0;
   action->action = command;
+  action->incant_checked = 0;
   set_action_timer(action, duration, freq);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Wed Jun 28 14:00:43 2017 Mathis Guilbon
+** Last update Wed Jun 28 16:03:21 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -55,7 +55,7 @@ bool		action_inventory(t_data *data, t_player *player, char *prm)
 
   (void)data;
   (void)prm;
-  snprintf(buff, MSG_LEN, "[food %u, sibur %u, phiras %u, "
+  snprintf(buff, MSG_LEN, "[food %lu, sibur %u, phiras %u, "
 	   "linemate %u, mendiane %u, thystame %u, "
 	   "deraumere %u]\n",
            player->inventory->item[FOOD] * 126 + player->life,
