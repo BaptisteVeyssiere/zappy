@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 21:12:34 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 15:47:16 2017 Mathis Guilbon
+** Last update Wed Jun 28 21:08:09 2017 Baptiste Veyssiere
 */
 
 #include "server.h"
@@ -41,7 +41,7 @@ static int		try_add_action(t_player *player, t_data *data, char *command)
   int			duration;
   t_action		*tmp;
 
-  if ((duration = get_command_duration(command, player->fd)) < 0 ||
+  if ((duration = get_command_duration(command)) == -1 ||
       get_action_nbr(player) == 10)
     {
       if (duration != -1 && (duration = 0) == 0)
@@ -70,6 +70,8 @@ static int	update_actions(t_player *player, t_data *data)
   if ((ret = read_socket(player->fd, player->ringbuffer)) == -1)
     {
       FD_CLR(player->fd, data->network->set);
+      --(data->map[player->pos->y][player->pos->x].players);
+      add_slot_for_team(data, player);
       free(player->inventory);
       free(player->team);
       free(player->pos);

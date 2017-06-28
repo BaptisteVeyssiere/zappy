@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 14:40:30 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 16:56:40 2017 Mathis Guilbon
+** Last update Wed Jun 28 21:08:34 2017 Baptiste Veyssiere
 */
 
 #include "action.h"
@@ -36,7 +36,7 @@ static bool	get_next_valid_action(t_data *data, t_player *tmp)
       free(act);
       if (tmp->action != NULL)
 	{
-	  if ((duration = get_command_duration(tmp->action->action, tmp->fd)) == -1)
+	  if ((duration = get_command_duration(tmp->action->action)) == -1)
 	    return (false);
 	  if (duration == -2)
 	    ++cont;

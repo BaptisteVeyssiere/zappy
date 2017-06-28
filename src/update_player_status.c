@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 20:24:46 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 19:12:51 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 21:03:03 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>
@@ -39,9 +39,9 @@ static int	free_player(t_player *player, t_data *data)
   return (0);
 }
 
-static void	add_slot_for_team(t_data *data, t_player *player)
+void	add_slot_for_team(t_data *data, t_player *player)
 {
-  int		i;
+  int	i;
 
   i = -1;
   if (player->eggborn)
