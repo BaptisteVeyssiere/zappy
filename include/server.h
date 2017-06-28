@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 16:16:38 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 16:36:49 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -268,5 +268,6 @@ void	respawn(t_data *data, int type);
 */
 
 int	ppo(t_player *player, t_data *data);
+int	pnw(t_player *player, t_data *data);
 
 #endif /* !SERVER_H_ */

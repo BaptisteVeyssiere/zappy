@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 17:12:34 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 16:19:58 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 16:45:55 2017 Baptiste Veyssiere
 */
 
 #include <strings.h>
@@ -17,7 +17,7 @@ int	tna(t_data *data)
   char	buff[50];
   int	i;
 
-  if (data->network->graphic_fd < 2)
+  if (data->network->graphic_fd < 2 || data->team_list == NULL)
     return (0);
   i = -1;
   while (data->team_list[++i])
