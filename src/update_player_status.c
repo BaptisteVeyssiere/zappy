@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 20:24:46 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 22:08:21 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 16:29:35 2017 Mathis Guilbon
 */
 
 #include <sys/time.h>
@@ -70,7 +70,7 @@ int	update_player_status(t_data *data)
 {
   struct timeval	tv;
   t_player		*tmp;
-  unsigned int		current_time;
+  unsigned long int	current_time;
 
   tmp = data->players_root;
   gettimeofday(&tv, NULL);

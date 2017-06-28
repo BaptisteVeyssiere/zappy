@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 16:38:50 2017 Mathis Guilbon
-** Last update Wed Jun 28 15:36:56 2017 Mathis Guilbon
+** Last update Wed Jun 28 17:09:29 2017 Mathis Guilbon
 */
 
 #include <stdio.h>
@@ -68,15 +68,14 @@ static bool	eject(t_data *data, t_player *player, t_position *off, char *buff)
   return (true);
 }
 
-bool		action_eject(t_data *data, t_player *player, char *prm)
+bool		action_eject(t_data *data, t_player *player, UNUSED char *prm)
 {
   enum dir	dir;
   char		buff[32];
   t_position	off;
 
-  (void)prm;
   if (data->map[player->pos->y][player->pos->x].players < 2)
-    return (socket_write(player->fd, "ko\n"));
+    return (socket_write(player->fd, "ko\n") != -1);
   dir = player->direction;
   snprintf(buff, 32, "eject: %d\n", dir);
   off.x = player->pos->x + ((dir == RIGHT) ? 1 : (dir == LEFT) ? -1 : 0);
