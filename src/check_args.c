@@ -5,7 +5,7 @@
 ** Login   <nathalie.cai@epitech.eu>
 ** 
 ** Started on  Wed Jun 28 12:54:55 2017 Nathalie CAI
-** Last update Wed Jun 28 13:43:35 2017 Nathalie CAI
+** Last update Wed Jun 28 15:35:41 2017 Nathalie CAI
 */
 
 #include <string.h>
@@ -20,7 +20,6 @@ static int	is_there_spaces(int ac, char **av, int i)
     }
   return (0);
 }
-
 
 static int	check_team_names(int ac, char **av)
 {
@@ -40,11 +39,13 @@ int	check_args(int ac, char **av)
   unsigned int	height;
   unsigned int	freq;
   unsigned int	player_limit;
+  unsigned int	port;
 
   width = get_uint(ac, av, "-x");
   height = get_uint(ac, av, "-y");
   freq = get_uint(ac, av, "-f");
   player_limit = get_uint(ac, av, "-c");
+  port = get_uint(ac, av, "-p");
   if ((width != 0 && width < 10) || width > 30)
     return (print_error_param("-x should be between 10 and 30.\n"));
   if ((height != 0 && height < 10) || height > 30)
@@ -53,6 +54,8 @@ int	check_args(int ac, char **av)
     return (print_error_param("-f should be between 2 and 1000.\n"));
   if ((player_limit != 0 && player_limit < 2) || player_limit > 1000)
     return (print_error_param("-c should be between 1 and 50.\n"));
+  if (port < 1025 || port > 65535)
+    return (print_error_param("-p should be between 1025 and 65535.\n"));
   return (check_team_names(ac, av));
   return (0);
 }
