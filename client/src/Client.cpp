@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:12 2017 Nathan Scutari
-// Last update Tue Jun 27 18:59:18 2017 Nathan Scutari
+// Last update Wed Jun 28 16:44:46 2017 vigner_g
 //
 
 #include <unistd.h>
@@ -51,8 +51,10 @@ void	zappy::Client::launch()
 	  if (mCmdMgr.isResponse(server_msg) && !choice)
 	    throw client_exception("Unexpected server msg", __LINE__, __FILE__);
 	  else if (choice)
-	    if (choice->getResponse(*player, server_msg))
-	    choice = NULL;
+	    {
+	      if (choice->getResponse(*player, server_msg))
+		choice = NULL;
+	    }
 	  else
 	    mCmdMgr.analyseData(server_msg, *player);
 	}

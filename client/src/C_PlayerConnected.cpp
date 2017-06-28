@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 17:00:51 2017 vigner_g
-// Last update Wed Jun 28 16:33:28 2017 vigner_g
+// Last update Wed Jun 28 16:43:58 2017 vigner_g
 //
 
 #include <string>
@@ -36,7 +36,7 @@ void		zappy::C_PlayerConnected::addArg(UNUSED std::string arg)
 
 bool		zappy::C_PlayerConnected::IsNbr(std::string arg)
 {
-  for(int i = 0; i < (arg.size() - 1); i++)
+  for(unsigned int i = 0; i < (arg.size() - 1); i++)
     {
       if(static_cast<int>(arg[i]) > 9)
 	return (false);
