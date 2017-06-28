@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Wed Jun 28 15:34:57 2017 vigner_g
+// Last update Wed Jun 28 16:05:38 2017 vigner_g
 //
 
 #ifndef __PLAYER_HPP__
@@ -58,7 +58,7 @@ namespace	zappy
     t_position	&getFacing();
     t_position	&getPosition();
     Map		&getMap();
-    int		&getlvl();
+    int		&getLvl();
   };
 }
 

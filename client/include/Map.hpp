@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Mon Jun 26 15:59:52 2017 vigner_g
-// Last update Tue Jun 27 19:00:27 2017 vigner_g
+// Last update Wed Jun 28 15:52:52 2017 vigner_g
 //
 
 #ifndef	__MAP_HPP__
@@ -34,6 +34,7 @@ namespace zappy
   public:
     std::vector<std::vector<Inventory> >	&getGrid();
     void					setSize(int width, int height);
+    Inventory					&access(int y, int x);
   };
 }
 

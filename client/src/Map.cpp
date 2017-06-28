@@ -5,8 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Wed Jun 28 15:30:30 2017 vigner_g
-//
+// Last update Wed Jun 28 15:52:22 2017 vigner_g
 
 #include "Inventory.hpp"
 #include "Network.hpp"
@@ -42,4 +41,11 @@ void		zappy::Map::setSize(int width, int height)
     {
       this->grid.push_back(row);
     }
+}
+
+zappy::Inventory	&zappy::Map::access(int y, int x)
+{
+  y = (y < 0) ? grid.size() + y : y;
+  x = (x < 0) ? grid[0].size() + x : x;
+  return (grid[y % grid.size()][x % grid[0].size()]);
 }

@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Wed Jun 28 15:35:55 2017 vigner_g
+// Last update Wed Jun 28 16:10:35 2017 vigner_g
 //
 
 #include "Inventory.hpp"
@@ -69,7 +69,7 @@ zappy::Map	&zappy::Player::getMap()
   return (this->map);
 }
 
-int		&zappy::player::getLvl()
+int		&zappy::Player::getLvl()
 {
   return (this->lvl);
 }
