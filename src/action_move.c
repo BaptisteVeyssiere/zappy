@@ -1,20 +1,19 @@
 /*
 ** action_move.c for zappy in /home/guilbo_m/rendu/PSU/PSU_2016_zappy
-** 
+**
 ** Made by Mathis Guilbon
 ** Login   <guilbo_m@epitech.net>
-** 
+**
 ** Started on  Mon Jun 19 16:38:50 2017 Mathis Guilbon
-** Last update Wed Jun 28 14:28:40 2017 Mathis Guilbon
+** Last update Wed Jun 28 14:29:34 2017 Mathis Guilbon
 */
 
 #include "server.h"
 
-bool		action_forward(t_data *data, t_player *player, char *prm)
+bool		action_forward(t_data *data, t_player *player, UNUSED char *prm)
 {
   enum dir	dir;
 
-  (void)prm;
   print_map(data);
   --data->map[player->pos->y][player->pos->x].players;
   dir = player->direction;
@@ -22,24 +21,26 @@ bool		action_forward(t_data *data, t_player *player, char *prm)
   player->pos->y += (dir == DOWN) ? 1 : (dir == UP) ? -1 : 0;
   get_real_pos_from(data, player->pos);
   ++data->map[player->pos->y][player->pos->x].players;
+  if (ppo(player, data) == -1)
+    return (false);
   return (socket_write(player->fd, "ok\n") != -1);
 }
 
-bool		action_right(t_data *data, t_player *player, char *prm)
+bool		action_right(UNUSED t_data *data, t_player *player, UNUSED char *prm)
 {
-  (void)data;
-  (void)prm;
   if ((++player->direction) == UNKNOWN)
     player->direction = 0;
+  if (ppo(player, data) == -1)
+    return (false);
   return (socket_write(player->fd, "ok\n") != -1);
 }
 
-bool		action_left(t_data *data, t_player *player, char *prm)
+bool		action_left(UNUSED t_data *data, t_player *player, UNUSED char *prm)
 {
-  (void)data;
-  (void)prm;
   if ((--player->direction) <= 0)
     player->direction = LEFT;
+  if (ppo(player, data) == -1)
+    return (false);
   return (socket_write(player->fd, "ok\n") != -1);
 }
 
