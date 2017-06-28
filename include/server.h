@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 13:27:19 2017 Mathis Guilbon
+** Last update Wed Jun 28 13:59:19 2017 Mathis Guilbon
 */
 
 #ifndef SERVER_H_
@@ -163,18 +163,18 @@ bool		action_eject(t_data *, t_player *, char *);
 
 void		upgrade_player(t_data *, t_player *);
 bool		enough_people(t_data *, t_player *, unsigned int);
-bool		upgrade_to_lvl2(t_data *, t_player *, bool);
-bool		upgrade_to_lvl3(t_data *, t_player *, bool);
-bool		upgrade_to_lvl4(t_data *, t_player *, bool);
+bool		upgrade_to_lvl2(t_data *, t_player *);
+bool		upgrade_to_lvl3(t_data *, t_player *);
+bool		upgrade_to_lvl4(t_data *, t_player *);
 
 /*
 **	incantation2.c
 */
 
-bool		upgrade_to_lvl5(t_data *, t_player *, bool);
-bool		upgrade_to_lvl6(t_data *, t_player *, bool);
-bool		upgrade_to_lvl7(t_data *, t_player *, bool);
-bool		upgrade_to_lvl8(t_data *, t_player *, bool);
+bool		upgrade_to_lvl5(t_data *, t_player *);
+bool		upgrade_to_lvl6(t_data *, t_player *);
+bool		upgrade_to_lvl7(t_data *, t_player *);
+bool		upgrade_to_lvl8(t_data *, t_player *);
 
 /*
 **	action_look.c

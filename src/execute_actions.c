@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 14:40:30 2017 Baptiste Veyssiere
-** Last update Tue Jun 27 16:22:22 2017 Mathis Guilbon
+** Last update Wed Jun 28 13:59:57 2017 Mathis Guilbon
 */
 
 #include "action.h"
@@ -65,7 +65,7 @@ static bool	execute_player_action(t_player *tmp, t_data *data)
 	return (false);
     }
   else if (strncmp(tmp->action->action, "Incantation", 11) == 0 &&
-	   !(incant[tmp->level - 1])(data, tmp, true) &&
+	   !(incant[tmp->level - 1])(data, tmp) &&
 	   socket_write(tmp->fd, "ko\n") == -1)
     return (false);
   return (true);

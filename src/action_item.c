@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Tue Jun 27 16:49:17 2017 Mathis Guilbon
+** Last update Wed Jun 28 13:59:39 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -70,7 +70,7 @@ bool		action_incantation(t_data *data, t_player *player, char *prm)
   char		buff[64];
 
   (void)prm;
-  if (!(incant[player->level - 1])(data, player, false))
+  if (!(incant[player->level - 1])(data, player))
     return (socket_write(player->fd, "ko\n"));
   upgrade_player(data, player);
   snprintf(buff, 64, "Elevation underway\nCurrent level: %d\n", player->level);

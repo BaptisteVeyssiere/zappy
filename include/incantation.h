@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Tue Jun 27 13:00:40 2017 Mathis Guilbon
-** Last update Wed Jun 28 13:09:33 2017 Mathis Guilbon
+** Last update Wed Jun 28 13:58:49 2017 Mathis Guilbon
 */
 
 #ifndef _INCANTATION_H_
@@ -13,7 +13,7 @@
 
 #  include "server.h"
 
-static	bool	(*incant[7])(t_data *, t_player *, bool) =
+static	bool	(*incant[7])(t_data *, t_player *) =
 {
   upgrade_to_lvl2,
   upgrade_to_lvl3,
