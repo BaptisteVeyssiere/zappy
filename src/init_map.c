@@ -5,7 +5,7 @@
 ** Login   <nathalie.cai@epitech.eu>
 **
 ** Started on  Mon Jun 26 16:47:55 2017 Nathalie CAI
-** Last update Tue Jun 27 18:48:32 2017 Nathalie CAI
+** Last update Tue Jun 27 19:08:48 2017 Nathalie CAI
 */
 
 #include <stdlib.h>
@@ -16,7 +16,7 @@
 static t_data	*filling_loop(t_data *data,
 			      unsigned int max_rocks[ITEMNBR], int i)
 {
-  int	j;
+  unsigned int	j;
   unsigned int	k;
 
   j = 0;
@@ -27,12 +27,12 @@ static t_data	*filling_loop(t_data *data,
 	{
 	  if (rand() % 2 == 0 && k == 0 && max_rocks[k] > 0)
 	    {
-	      data->map[i][j].item[k] = rand() % 5;
+	      data->map[i][j].item[k] = rand() % 6;
 	      max_rocks[k] = max_rocks[k] - data->map[i][j].item[k];
 	    }
 	  if (rand() % 2 == 0 && k > 0 && max_rocks[k] > 0)
 	    {
-	      data->map[i][j].item[k] = rand() % 2;
+	      data->map[i][j].item[k] = rand() % 3;
 	      max_rocks[k] = max_rocks[k] - data->map[i][j].item[k];
 	    }
 	  k++;
@@ -45,7 +45,7 @@ static t_data	*filling_loop(t_data *data,
 static t_data	*fill_tile(t_data *data)
 {
   unsigned int	max_rocks[ITEMNBR];
-  int	i;
+  unsigned int	i;
 
   i = 0;
   while (i < ITEMNBR)

@@ -1,0 +1,4 @@
+port = 4242;
+size = 10 10;
+team = NULL;
+clientNb = 3;

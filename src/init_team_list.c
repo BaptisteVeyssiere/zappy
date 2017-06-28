@@ -5,11 +5,12 @@
 ** Login   <nathalie.cai@epitech.eu>
 ** 
 ** Started on  Mon Jun 26 16:38:22 2017 Nathalie CAI
-** Last update Mon Jun 26 18:00:57 2017 Nathalie CAI
+** Last update Wed Jun 28 13:52:40 2017 Nathalie CAI
 */
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "server.h"
 
 static  t_data	*init_nbr_teams(t_data *data, char **tab)
@@ -40,7 +41,11 @@ t_data	*init_team_list(t_data *data, int ac, char **av)
   char          **tab;
 
   if ((tab = team_tab(ac, av)) == NULL)
-    return (NULL);
+    {
+      data->team_list = NULL;
+      data->nbr_teams = 0;
+      return (data);
+    }
   if ((data = init_nbr_teams(data, tab)) == NULL)
     return (NULL);
   if ((data->team_list =

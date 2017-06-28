@@ -25,6 +25,7 @@ SRC	= src/writes.c \
 	src/main.c \
 	src/prints.c \
 	src/get_args.c \
+	src/check_args.c \
 	src/signal_manager.c \
 	src/check_sockets.c \
 	src/free_data.c \

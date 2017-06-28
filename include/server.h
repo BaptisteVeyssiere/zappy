@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Tue Jun 27 16:49:12 2017 Nathalie CAI
+** Last update Wed Jun 28 13:10:29 2017 Nathalie CAI
 */
 
 #ifndef SERVER_H_
@@ -40,6 +40,12 @@ int	bind_port(const int port);
 unsigned int    get_uint(int, char **, char *);
 
 /*
+** get_args.c
+*/
+
+int     check_args(int ac, char **av);
+
+/*
 ** init_data.c
 */
 
@@ -67,7 +73,9 @@ t_data   *init_map(t_data *data);
 ** prints.c
 */
 
-int	 print_usage(void);
+int     print_error_param(char *msg);
+int	print_usage(void);
+int     print_param(void);
 void    print_map(t_data *data);
 void    print_data(t_data *data);
 
