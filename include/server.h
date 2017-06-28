@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 15:03:54 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 15:55:31 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -222,5 +222,11 @@ int	execute_actions(t_data *data);
 */
 
 int	get_command_duration(char *command, int fd);
+
+/*
+** respawn.c
+*/
+
+void	respawn(t_data *data, int type);
 
 #endif /* !SERVER_H_ */
