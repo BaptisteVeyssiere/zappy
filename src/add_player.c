@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 04:33:42 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 15:15:38 2017 Mathis Guilbon
+** Last update Wed Jun 28 18:27:53 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -31,7 +31,7 @@ static void		init_player(t_player *last, char *team,
   last->team = team;
   *(last->pos) = pos;
   last->fd = fd;
-  last->direction = rand() % 4;
+  last->direction = (rand() % 4) + 1;
   last->level = 1;
   last->life = 126;
   last->next = NULL;

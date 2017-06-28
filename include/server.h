@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 15:15:51 2017 Mathis Guilbon
+** Last update Wed Jun 28 17:53:37 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -237,6 +237,7 @@ int	msz(t_data *data);
 int	sgt(t_data *data);
 int	bct(t_data *data);
 int	tna(t_data *data);
+int	pdi(t_data *data, t_player *player);
 
 /*
 ** update_player_status.c

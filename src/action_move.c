@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 16:38:50 2017 Mathis Guilbon
-** Last update Wed Jun 28 15:12:48 2017 Mathis Guilbon
+** Last update Wed Jun 28 18:07:42 2017 Baptiste Veyssiere
 */
 
 #include "server.h"
@@ -20,8 +20,8 @@ bool		action_forward(t_data *data, t_player *player, UNUSED char *prm)
   player->pos->y += (dir == DOWN) ? 1 : (dir == UP) ? -1 : 0;
   get_real_pos_from(data, player->pos);
   ++data->map[player->pos->y][player->pos->x].players;
-  /*  if (ppo(player, data) == -1)
-      return (false);*/
+  if (ppo(player, data) == -1)
+    return (false);
   print_map(data);
   return (socket_write(player->fd, "ok\n") != -1);
 }
@@ -29,7 +29,7 @@ bool		action_forward(t_data *data, t_player *player, UNUSED char *prm)
 bool		action_right(UNUSED t_data *data, t_player *player, UNUSED char *prm)
 {
   if ((++player->direction) == UNKNOWN)
-    player->direction = 0;
+    player->direction = 1;
   if (ppo(player, data) == -1)
     return (false);
   return (socket_write(player->fd, "ok\n") != -1);

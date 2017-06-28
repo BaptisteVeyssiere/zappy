@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 20:24:46 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 17:27:44 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 17:52:39 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>
@@ -18,6 +18,8 @@ static int	free_player(t_player *player, t_data *data)
   t_action	*action;
   t_action	*tmp;
 
+  if (pdi(data, player) == -1)
+    return (-1);
   free(player->inventory);
   free(player->team);
   free(player->pos);
