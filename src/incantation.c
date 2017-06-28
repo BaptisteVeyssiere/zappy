@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Sun Jun 24 14:10:14 2017 Mathis Guilbon
-** Last update Wed Jun 28 13:05:51 2017 Mathis Guilbon
+** Last update Wed Jun 28 13:50:08 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -43,61 +43,35 @@ bool		enough_people(t_data *data, t_player *player, unsigned int needed)
   return (count == needed);
 }
 
-bool		upgrade_to_lvl2(t_data *data, t_player *player, bool check)
+bool		upgrade_to_lvl2(t_data *data, t_player *player)
 {
   t_items	*items;
 
   items = &data->map[player->pos->y][player->pos->y];
-  if (items->players == 1 && items->item[LINEMATE] == 1 &&
-      items->item[DERAUMERE] == 0 && items->item[SIBUR] == 0 &&
-      items->item[MENDIANE] == 0 && items->item[PHIRAS] == 0 &&
-      items->item[THYSTAME] == 0)
-  {
-    if (!check)
-      --items->item[LINEMATE];
-    return (true);
-  }
-  return (false);
+  return (items->players == 1 && items->item[LINEMATE] == 1 &&
+	  items->item[DERAUMERE] == 0 && items->item[SIBUR] == 0 &&
+	  items->item[MENDIANE] == 0 && items->item[PHIRAS] == 0 &&
+	  items->item[THYSTAME] == 0);
 }
 
-bool		upgrade_to_lvl3(t_data *data, t_player *player, bool check)
+bool		upgrade_to_lvl3(t_data *data, t_player *player)
 {
   t_items	*items;
 
   items = &data->map[player->pos->y][player->pos->y];
-  if (items->players == 2 && enough_people(data, player, 2) &&
-      items->item[LINEMATE] == 1 && items->item[DERAUMERE] == 1 &&
-      items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&
-      items->item[PHIRAS] == 0 && items->item[THYSTAME] == 0)
-    {
-      if (!check)
-	{
-	  --items->item[LINEMATE];
-	  --items->item[DERAUMERE];
-	  --items->item[SIBUR];
-	}
-      return (true);
-    }
-  return (false);
+  return (items->players == 2 && enough_people(data, player, 2) &&
+	  items->item[LINEMATE] == 1 && items->item[DERAUMERE] == 1 &&
+	  items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&
+	  items->item[PHIRAS] == 0 && items->item[THYSTAME] == 0);
 }
 
-bool		upgrade_to_lvl4(t_data *data, t_player *player, bool check)
+bool		upgrade_to_lvl4(t_data *data, t_player *player)
 {
   t_items	*items;
 
   items = &data->map[player->pos->y][player->pos->y];
-  if (items->players == 2 && enough_people(data, player, 2) &&
-      items->item[LINEMATE] == 2 && items->item[DERAUMERE] == 0 &&
-      items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&
-      items->item[PHIRAS] == 2 && items->item[THYSTAME] == 0)
-    {
-      if (!check)
-	{
-	  items->item[LINEMATE] -= 2;
-	  --items->item[SIBUR];
-	  items->item[PHIRAS] -= 2;
-	}
-      return (true);
-    }
-  return (false);
+  return (items->players == 2 && enough_people(data, player, 2) &&
+	  items->item[LINEMATE] == 2 && items->item[DERAUMERE] == 0 &&
+	  items->item[SIBUR] == 1 && items->item[MENDIANE] == 0 &&
+	  items->item[PHIRAS] == 2 && items->item[THYSTAME] == 0);
 }
