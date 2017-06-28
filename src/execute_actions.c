@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 14:40:30 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 19:07:07 2017 Mathis Guilbon
+** Last update Wed Jun 28 19:16:33 2017 Mathis Guilbon
 */
 
 #include "action.h"
@@ -49,6 +49,20 @@ static bool	get_next_valid_action(t_data *data, t_player *tmp)
   return (true);
 }
 
+static bool	check_incant(t_player *tmp)
+{
+  bool		ret;
+
+  tmp->action->incant_checked = 1;
+  if (strncmp(tmp->action->action, "Incantation", 11) == 0)
+    {
+      ret = (incant[tmp->level - 1])(data, tmp);
+      if (socket_write(tmp->fd, ret ? "Elevation underway\n" : "ko\n") == -1)
+	return (false);
+    }
+  return (true);
+}
+
 static bool	execute_player_action(t_player *tmp, t_data *data)
 {
   int		i;
@@ -68,17 +82,8 @@ static bool	execute_player_action(t_player *tmp, t_data *data)
 	return (false);
       print_map(data);
     }
-  else if (!tmp->action->incant_checked)
-    {
-      tmp->action->incant_checked = 1;
-      if (strncmp(tmp->action->action, "Incantation", 11) == 0)
-	{
-	  ret = (incant[tmp->level - 1])(data, tmp);
-	  if (socket_write(tmp->fd,
-			   ret ? "Elevation underway\n" : "ko\n") == -1)
-	    return (false);
-	}
-    }
+  else if (!tmp->action->incant_checked && !check_incant(tmp))
+    return (false);
   return (true);
 }
 
