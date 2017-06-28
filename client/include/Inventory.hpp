@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:19:58 2017 vigner_g
-// Last update Tue Jun 27 16:19:33 2017 Nathan Scutari
+// Last update Wed Jun 28 15:25:25 2017 Nathan Scutari
 //
 
 
@@ -19,6 +19,7 @@ namespace	zappy
   class Inventory
   {
   private:
+    int					look_time;
     std::map<std::string, int>		inv;
 
   public:
