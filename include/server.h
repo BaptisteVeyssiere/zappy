@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Tue Jun 27 16:27:01 2017 Mathis Guilbon
+** Last update Wed Jun 28 15:03:54 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -23,6 +23,7 @@
 # define QUEUE_SIZE 42
 # define GRAPHIC_PORT 50000
 # define READING_SIZE 256
+# define UNUSED __attribute__((unused))
 # define SIGNAL_CAUGHT "Signal caught, closing session...\n"
 
 /*

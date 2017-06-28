@@ -1,13 +1,17 @@
 /*
 ** action_connect.c for zappy in /home/guilbo_m/rendu/PSU/PSU_2016_zappy
-** 
+**
 ** Made by Mathis Guilbon
 ** Login   <guilbo_m@epitech.net>
-** 
+**
 ** Started on  Mon Jun 19 19:38:17 2017 Mathis Guilbon
-** Last update Tue Jun 27 16:48:03 2017 Mathis Guilbon
+** Last update Wed Jun 28 15:21:49 2017 Baptiste Veyssiere
 */
 
+#include <sys/time.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
 #include "server.h"
 
 void		getRealPosFrom(t_data *data, t_position *pos)
@@ -39,10 +43,43 @@ bool		action_connect_nbr(t_data *data, t_player *player, char *prm)
   return (false);
 }
 
-bool		action_fork(t_data *data, t_player *player, char *prm)
+static void	add_egg_to_list(t_data *data, t_egg *last)
 {
-  (void)prm;
-  (void)data;
-  (void)player;
+  t_egg		*tmp;
+
+  tmp = data->eggs;
+  while (tmp && tmp->next)
+    tmp = tmp->next;
+  if (!tmp)
+    data->eggs = last;
+  else
+    tmp->next = last;
+}
+
+bool			action_fork(t_data *data, t_player *player, UNUSED char *prm)
+{
+  t_egg			*last;
+  int			i;
+  struct timeval	tv;
+
+  if (socket_write(player->fd, "ok\n") == -1 ||
+      !(last = malloc(sizeof(t_egg))) ||
+      !(last->pos = malloc(sizeof(t_position))) ||
+      !(last->team = malloc(strlen(player->team) + 1)))
+    return (false);
+  last->id = data->eid;
+  ++data->eid;
+  last->player_id = player->id;
+  bzero(last->team, strlen(player->team) + 1);
+  i = -1;
+  while (++i < (int)strlen(player->team))
+    last->team[i] = player->team[i];
+  last->pos->x = player->pos->x;
+  last->pos->y = player->pos->y;
+  last->ready = 0;
+  last->next = NULL;
+  gettimeofday(&tv, NULL);
+  last->timer = (tv.tv_sec + (600 / data->freq)) * 1000 + tv.tv_usec / 1000;
+  add_egg_to_list(data, last);
   return (true);
 }
