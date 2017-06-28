@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Tue Jun 27 21:10:33 2017 Mathis Guilbon
+** Last update Wed Jun 28 15:24:34 2017 Baptiste Veyssiere
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -136,8 +136,4 @@ typedef struct		s_data
   int			eid;
 }			t_data;
 
-/*
-**	Ajout d'un buffer circulaire pour lire commande client ?
-**	ajout dans t_data d'une structure s_pollfd ou autre suivant utilisation poll ou select ? (poll plus facile a utilisé)
-*/
 #endif /* !ALL_STRUCTS_H_ */
