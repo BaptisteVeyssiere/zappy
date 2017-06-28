@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Wed Jun 28 13:38:33 2017 Mathis Guilbon
+** Last update Wed Jun 28 15:10:50 2017 Mathis Guilbon
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -52,7 +52,7 @@ typedef struct		s_position
 typedef struct		s_action
 {
   char			*action;
-  int			timer;
+  unsigned long int	timer;
   char			ready;
   struct s_action	*next;
 }			t_action;
@@ -73,7 +73,7 @@ typedef struct		s_waiting_queue
 
 typedef struct		s_egg
 {
-  int			timer;
+  unsigned long int	timer;
   int			id;
   int			player_id;
   char			*team;

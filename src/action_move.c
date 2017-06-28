@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 16:38:50 2017 Mathis Guilbon
-** Last update Wed Jun 28 14:29:34 2017 Mathis Guilbon
+** Last update Wed Jun 28 15:12:48 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -14,15 +14,15 @@ bool		action_forward(t_data *data, t_player *player, UNUSED char *prm)
 {
   enum dir	dir;
 
-  print_map(data);
   --data->map[player->pos->y][player->pos->x].players;
   dir = player->direction;
   player->pos->x += (dir == RIGHT) ? 1 : (dir == LEFT) ? -1 : 0;
   player->pos->y += (dir == DOWN) ? 1 : (dir == UP) ? -1 : 0;
   get_real_pos_from(data, player->pos);
   ++data->map[player->pos->y][player->pos->x].players;
-  if (ppo(player, data) == -1)
-    return (false);
+  /*  if (ppo(player, data) == -1)
+      return (false);*/
+  print_map(data);
   return (socket_write(player->fd, "ok\n") != -1);
 }
 
