@@ -40,7 +40,15 @@ SRC	= src/writes.c \
 	src/graphic_command.c \
 	src/update_player_status.c \
 	src/get_command_duration.c \
-	src/execute_actions.c
+	src/action_move.c \
+	src/action_look.c \
+	src/action_connect.c \
+	src/action_item.c \
+	src/incantation.c \
+	src/incantation2.c \
+	src/action_broadcast.c \
+	src/execute_actions.c \
+	src/respawn.c
 
 SRCDIR	= src
 
@@ -50,8 +58,10 @@ OBJ	= $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 CFLAGS	= -Iinclude -W -Wextra -Wall -Werror
 
+LDFLAGS = -lm
+
 $(SERVER): $(OBJ)
-	@$(CC) -o $(SERVER) $(OBJ)
+	@$(CC) -o $(SERVER) $(OBJ) $(LDFLAGS)
 	@echo "Linking complete!"
 
 $(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.c

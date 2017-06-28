@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Mon Jun 26 16:58:31 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 13:38:33 2017 Mathis Guilbon
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -17,23 +17,24 @@
 
 enum	dir
   {
-    UP = 0,
+    UP = 1,
     RIGHT,
     DOWN,
     LEFT,
     UNKNOWN
   };
 
-enum {
-  FOOD,
-  SIBUR,
-  PHIRAS,
-  LINEMATE,
-  MENDIANE,
-  THYSTAME,
-  DERAUMERE,
-  ITEMNBR
-};
+enum
+  {
+    FOOD = 0,
+    SIBUR,
+    PHIRAS,
+    LINEMATE,
+    MENDIANE,
+    THYSTAME,
+    DERAUMERE,
+    ITEMNBR
+  };
 
 typedef struct		s_team
 {
@@ -44,8 +45,8 @@ typedef struct		s_team
 
 typedef struct		s_position
 {
-  unsigned int		x;
-  unsigned int		y;
+  int			x;
+  int			y;
 }			t_position;
 
 typedef struct		s_action

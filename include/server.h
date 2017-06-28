@@ -5,18 +5,25 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 13:10:29 2017 Nathalie CAI
+** Last update Wed Jun 28 16:08:58 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
 # define SERVER_H_
 
 # include "all_structs.h"
+# include <string.h>
+# include <stdbool.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <sys/time.h>
 
 # define MSG_LEN 512
 # define QUEUE_SIZE 42
 # define GRAPHIC_PORT 50000
 # define READING_SIZE 256
+# define UNUSED __attribute__((unused))
 # define SIGNAL_CAUGHT "Signal caught, closing session...\n"
 
 /*
@@ -129,6 +136,7 @@ int	try_add_player(t_data *data, int fd, char *team, t_ringbuffer *ringbuffer);
 ** update_player_action.c
 */
 
+void	set_action_timer(t_action *action, int duration, unsigned int freq);
 int	update_player_action(t_data *data, fd_set *set);
 
 /*
@@ -149,6 +157,64 @@ void	update_action_status(t_data *data);
 */
 
 int	send_basic_info(int fd, int free_slot, int width, int height);
+
+/*
+**	action_connect.c
+*/
+
+void		get_real_pos_from(t_data *, t_position *);
+bool		action_connect_nbr(t_data *, t_player *, char *);
+bool		action_fork(t_data *, t_player *, char *);
+bool		action_broadcast(t_data *, t_player *, char *);
+
+/*
+**	action_item.c
+*/
+
+bool		action_take(t_data *, t_player *, char *);
+bool		action_set(t_data *, t_player *, char *);
+bool		action_inventory(t_data *, t_player *, char *);
+bool		action_incantation(t_data *, t_player *, char *);
+
+/*
+**	action_move.c
+*/
+
+bool		action_forward(t_data *, t_player *, char *);
+bool		action_right(t_data *, t_player *, char *);
+bool		action_left(t_data *, t_player *, char *);
+bool		action_eject(t_data *, t_player *, char *);
+
+/*
+**	incantation.c
+*/
+
+void		upgrade_player(t_data *, t_player *);
+bool		enough_people(t_data *, t_player *, unsigned int);
+bool		upgrade_to_lvl2(t_data *, t_player *);
+bool		upgrade_to_lvl3(t_data *, t_player *);
+bool		upgrade_to_lvl4(t_data *, t_player *);
+
+/*
+**	incantation2.c
+*/
+
+bool		upgrade_to_lvl5(t_data *, t_player *);
+bool		upgrade_to_lvl6(t_data *, t_player *);
+bool		upgrade_to_lvl7(t_data *, t_player *);
+bool		upgrade_to_lvl8(t_data *, t_player *);
+
+/*
+**	action_look.c
+*/
+
+bool		action_look(t_data *, t_player *, char *);
+
+/*
+**	action_broadcast.c
+*/
+
+bool		action_broadcast(t_data *, t_player *, char *);
 
 /*
 ** init_graphic.c
@@ -190,5 +256,11 @@ int	execute_actions(t_data *data);
 */
 
 int	get_command_duration(char *command, int fd);
+
+/*
+** respawn.c
+*/
+
+void	respawn(t_data *data, int type);
 
 #endif /* !SERVER_H_ */
