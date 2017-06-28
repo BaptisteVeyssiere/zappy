@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 20:24:46 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 22:08:21 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 17:27:44 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>
@@ -37,6 +37,23 @@ static int	free_player(t_player *player, t_data *data)
   return (0);
 }
 
+static void	add_slot_for_team(t_data *data, t_player *player)
+{
+  int		i;
+
+  i = -1;
+  if (player->eggborn)
+    return ;
+  while (data->team_list[++i])
+    {
+      if (strcmp(player->team, data->team_list[i]->name) == 0)
+	{
+	  ++(data->team_list[i]->free_slots);
+	  return ;
+	}
+    }
+}
+
 static int	player_death(t_player *player, t_data *data)
 {
   t_player	*elem;
@@ -47,6 +64,8 @@ static int	player_death(t_player *player, t_data *data)
   elem = data->players_root;
   if (socket_write(player->fd, "dead\n") == -1)
     return (-1);
+  --(data->map[player->pos->y][player->pos->x].players);
+  add_slot_for_team(data, player);
   while (elem)
     {
       tmp = elem->next;
