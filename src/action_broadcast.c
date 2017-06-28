@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Wed Jun 28 18:48:47 2017 Mathis Guilbon
+** Last update Wed Jun 28 20:46:55 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -51,23 +51,23 @@ static void	get_intersection(t_position *src, t_position *rec,
 {
   float		a;
   float		b;
-  float		A;
-  float		B;
-  float		C;
+  float		alpha;
+  float		beta;
+  float		c;
   float		delta;
   float		tmp;
 
   a = (float)(rec->y - src->y) / (rec->x - src->x);
   b = src->y - a * src->x;
-  A = 1 + a * a;
-  B = 2 * (a * (b - (src->y - 0.5)) - (src->x - 0.5));
-  C = (src->x - 0.5) * (src->x - 0.5) +
-    (b - (src->y - 0.5)) * (b - (src->y - 0.5)) - 1.5 * 1.5;
-  delta = B * B - 4 * A * C;
-  tmp = (-B - sqrt(delta) / (2 * A));
+  alpha = 1 + a * a;
+  beta = 2 * (a * (b - (src->y + 0.5)) - (src->x + 0.5));
+  c = (src->x + 0.5) * (src->x + 0.5) +
+    (b - (src->y + 0.5)) * (b - (src->y + 0.5)) - 1.5 * 1.5;
+  delta = beta * beta - 4 * alpha * c;
+  tmp = (-beta - sqrt(delta) / (2 * alpha));
   inter[0].x = (int)tmp;
   inter[0].y = (int)(a * tmp + b);
-  tmp = (-B + sqrt(delta) / (2 * A));
+  tmp = (-beta + sqrt(delta) / (2 * alpha));
   inter[1].x = (int)tmp;
   inter[1].y = (int)(a * tmp + b);
 }
@@ -82,15 +82,15 @@ static void	get_surrounding(t_player *src, char *dir, t_position *ward)
     dir[0] += 2;
   i = 0;
   while (++i < CASENBR - 1)
-    dir[i] = dir[i - 1] % CASENBR;
-  ward[0] = (t_position){src->pos->y, src->pos->x - 1};
-  ward[1] = (t_position){src->pos->y - 1, src->pos->x};
-  ward[2] = (t_position){src->pos->y - 1, src->pos->x + 1};
-  ward[3] = (t_position){src->pos->y, src->pos->x + 2};
-  ward[4] = (t_position){src->pos->y + 1, src->pos->x + 2};
-  ward[5] = (t_position){src->pos->y + 2, src->pos->x + 1};
-  ward[6] = (t_position){src->pos->y + 2, src->pos->x};
-  ward[7] = (t_position){src->pos->y - 1, src->pos->x - 1};
+    dir[i] = (dir[i - 1] + 1) % CASENBR;
+  ward[0] = (t_position){src->pos->x - 1, src->pos->y - 1};
+  ward[1] = (t_position){src->pos->x, src->pos->y - 2};
+  ward[2] = (t_position){src->pos->x + 1, src->pos->y - 2};
+  ward[3] = (t_position){src->pos->x + 2, src->pos->y - 1};
+  ward[4] = (t_position){src->pos->x + 2, src->pos->y};
+  ward[5] = (t_position){src->pos->x + 1, src->pos->y + 1};
+  ward[6] = (t_position){src->pos->x, src->pos->y + 1};
+  ward[7] = (t_position){src->pos->x - 1, src->pos->y};
 }
 
 static void	get_message_dir(t_data *data, t_position *src,
@@ -105,6 +105,7 @@ static void	get_message_dir(t_data *data, t_position *src,
   get_surrounding(rec, &dir[0], &ward[0]);
   get_intersection(src, rec->pos, &inter[0]);
   shorter = get_shorter(data, rec->pos, &inter[0]);
+  print_surrounding_case(rec, &dir[0], &ward[0], &inter[0]);
   i = -1;
   while (++i < CASENBR - 1)
     {
@@ -112,6 +113,7 @@ static void	get_message_dir(t_data *data, t_position *src,
 	  inter[shorter].y == ward[i].y)
 	{
 	  *k = dir[i] + '0';
+	  fprintf(stderr, "Signal came from %d\n", dir[i]);
 	  i = CASENBR;
 	}
     }

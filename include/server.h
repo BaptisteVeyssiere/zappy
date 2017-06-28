@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 19:13:40 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 20:40:56 2017 Mathis Guilbon
 */
 
 #ifndef SERVER_H_
@@ -85,6 +85,7 @@ int	print_usage(void);
 void    print_map(t_data *data);
 void    print_map_ressources(t_data *data);
 void    print_data(t_data *data);
+void	print_surrounding_case(t_player *, char *, t_position *, t_position *);
 
 /*
 ** signal_manager.c
