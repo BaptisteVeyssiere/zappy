@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 17:00:51 2017 vigner_g
-// Last update Tue Jun 27 16:17:09 2017 Nathan Scutari
+// Last update Wed Jun 28 16:22:16 2017 vigner_g
 //
 
 #include <string>
@@ -49,6 +49,6 @@ bool		zappy::C_PlayerConnected::getResponse(Player &player, std::string &respons
   if (IsNbr(response) == false)
     throw client_exception("Server drunk", __LINE__, __FILE__);
   else
-    player.SetTeamNbPlayer(std::stoi(response));
+    player.getSlot() = std::stoi(response);
   return (true);
 }
