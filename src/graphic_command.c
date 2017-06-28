@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 17:12:34 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 17:51:59 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 16:19:58 2017 Baptiste Veyssiere
 */
 
 #include <strings.h>
@@ -17,6 +17,8 @@ int	tna(t_data *data)
   char	buff[50];
   int	i;
 
+  if (data->network->graphic_fd < 2)
+    return (0);
   i = -1;
   while (data->team_list[++i])
     {
@@ -34,6 +36,8 @@ int		bct(t_data *data)
   unsigned int	x;
   unsigned int	y;
 
+  if (data->network->graphic_fd < 2)
+    return (0);
   y = -1;
   while (++y < data->height)
     {
@@ -60,6 +64,8 @@ int	sgt(t_data *data)
 {
   char	buff[50];
 
+  if (data->network->graphic_fd < 2)
+    return (0);
   bzero(buff, 50);
   if (snprintf(buff, 50, "sgt %d\n", data->freq) < 0 ||
       socket_write(data->network->graphic_fd, buff) == -1)
@@ -71,6 +77,8 @@ int	msz(t_data *data)
 {
   char	buff[50];
 
+  if (data->network->graphic_fd < 2)
+    return (0);
   bzero(buff, 50);
   if (snprintf(buff, 50, "msz %d %d\n", data->width, data->height) < 0 ||
       socket_write(data->network->graphic_fd, buff) == -1)
