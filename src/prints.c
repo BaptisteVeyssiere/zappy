@@ -5,7 +5,7 @@
 ** Login   <nathalie.cai@epitech.eu>
 **
 ** Started on  Wed Jun 21 15:44:39 2017 Nathalie CAI
-** Last update Wed Jun 28 15:58:58 2017 Nathalie CAI
+** Last update Wed Jun 28 17:34:59 2017 Nathalie CAI
 */
 
 #include <stdio.h>
@@ -28,13 +28,6 @@ int	print_usage(void)
   printf("\tclientsNb\tis the number of authorized clients per team\n");
   printf("\tfreq\t\tis the reciprocal of time unit for execution of actions\n");
   return (0);
-}
-
-int	print_param(void)
-{
-  fprintf(stderr, "Some parameters are missing or wrong, please check them.\n");
-  print_usage();
-  return (-1);
 }
 
 void	print_map(t_data *data)
@@ -64,6 +57,27 @@ void	print_map(t_data *data)
   while (++i < data->width * 2 + 1)
     printf("-");
   printf("\n");
+}
+
+void	print_map_ressources(t_data *data)
+{
+  unsigned int	i;
+  unsigned int	j;
+  int	k;
+
+  i = -1;
+  while (++i < data->height)
+    {
+      j = -1;
+      while (++j < data->width)
+	{
+	  printf("[%d:%d]", i, j);
+	  k = -1;
+	  while (++k < ITEMNBR)
+	    printf(" %d", data->map[i][j].item[k]);
+	  printf("\n");
+	}
+    }
 }
 
 void	print_data(t_data *data)

@@ -5,9 +5,10 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 16:38:50 2017 Mathis Guilbon
-** Last update Wed Jun 28 15:25:08 2017 Mathis Guilbon
+** Last update Wed Jun 28 15:36:56 2017 Mathis Guilbon
 */
 
+#include <stdio.h>
 #include "server.h"
 
 bool		action_forward(t_data *data, t_player *player, UNUSED char *prm)

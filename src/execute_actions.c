@@ -5,11 +5,12 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 14:40:30 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 14:45:26 2017 Mathis Guilbon
+** Last update Wed Jun 28 15:36:35 2017 Mathis Guilbon
 */
 
 #include "action.h"
 #include "incantation.h"
+#include <stdio.h>
 
 void		set_action_timer(t_action *action, int duration, unsigned int freq)
 {
@@ -54,6 +55,7 @@ static bool	execute_player_action(t_player *tmp, t_data *data)
   ret = true;
   if (tmp->action->ready)
     {
+      printf("toto\n");
       i = -1;
       while (++i < ACTION_NBR &&
 	     strncmp(tmp->action->action, actions[i].name,

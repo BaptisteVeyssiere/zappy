@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 15:15:51 2017 Mathis Guilbon
+** Last update Wed Jun 28 15:37:33 2017 Mathis Guilbon
 */
 
 #ifndef SERVER_H_
@@ -82,8 +82,8 @@ t_data   *init_map(t_data *data);
 
 int     print_error_param(char *msg);
 int	print_usage(void);
-int     print_param(void);
 void    print_map(t_data *data);
+void    print_map_ressources(t_data *data);
 void    print_data(t_data *data);
 
 /*
