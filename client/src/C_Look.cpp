@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:25:31 2017 vigner_g
-// Last update Wed Jun 28 15:58:12 2017 vigner_g
+// Last update Wed Jun 28 16:29:49 2017 vigner_g
 //
 
 #include "C_Look.hpp"
@@ -28,13 +28,13 @@ std::string	&zappy::C_Look::getStr()
   return (command);
 }
 
-void		zappy::C_Look::addArg(std::string arg)
+void		zappy::C_Look::addArg(UNUSED std::string arg)
 {
   throw client_exception("Look does not take any argument",
 			 __LINE__, __FILE__);
 }
 
-std::string	getSubString(std::string &phrase, std::string delimiter)
+std::string	zappy::C_Look::getSubString(std::string &phrase, std::string delimiter)
 {
   std::string	ret;
   size_t	pos;

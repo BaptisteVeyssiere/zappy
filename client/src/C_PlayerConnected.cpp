@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 17:00:51 2017 vigner_g
-// Last update Wed Jun 28 16:22:16 2017 vigner_g
+// Last update Wed Jun 28 16:33:28 2017 vigner_g
 //
 
 #include <string>
@@ -28,7 +28,7 @@ std::string	&zappy::C_PlayerConnected::getStr()
   return (command);
 }
 
-void		zappy::C_PlayerConnected::addArg(std::string arg)
+void		zappy::C_PlayerConnected::addArg(UNUSED std::string arg)
 {
   throw client_exception("PlayerConnected does not take any argument",
 			 __LINE__, __FILE__);

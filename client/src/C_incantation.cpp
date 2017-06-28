@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 18:10:48 2017 Nathan Scutari
-// Last update Tue Jun 27 17:48:04 2017 Nathan Scutari
+// Last update Wed Jun 28 16:35:44 2017 vigner_g
 //
 
 #include "C_incantation.hpp"
@@ -27,7 +27,7 @@ std::string	&zappy::C_incantation::getStr()
   return (command);
 }
 
-void		zappy::C_incantation::addArg(std::string arg)
+void		zappy::C_incantation::addArg(UNUSED std::string arg)
 {
   throw client_exception("Incantation does not take any argument",
 			 __LINE__, __FILE__);

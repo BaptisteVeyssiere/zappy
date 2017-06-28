@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 17:08:43 2017 Nathan Scutari
-// Last update Mon Jun 26 14:19:50 2017 vigner_g
+// Last update Wed Jun 28 16:32:59 2017 vigner_g
 //
 
 #include <iostream> //debug
@@ -26,14 +26,14 @@ std::string	&zappy::C_broadcast::getStr()
   return (command);
 }
 
-void	zappy::C_broadcast::addArg(std::string arg)
+void	zappy::C_broadcast::addArg(UNUSED std::string arg)
 {
   command += " " + arg;
 }
 
-bool	zappy::C_broadcast::getResponse(Player &player, std::string &response)
+bool	zappy::C_broadcast::getResponse(UNUSED Player &player, std::string &response)
 {
-  if (response != "ok") //peut renvoyer que ok pour cette commande
+  if (response != "ok")
     throw client_exception("Server drunk", __LINE__, __FILE__);
   return (true);
 }

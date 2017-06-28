@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:25:31 2017 vigner_g
-// Last update Tue Jun 27 15:17:43 2017 vigner_g
+// Last update Wed Jun 28 16:28:46 2017 vigner_g
 //
 
 #include "C_TurnLeft.hpp"
@@ -27,7 +27,7 @@ std::string	&zappy::C_TurnLeft::getStr()
   return (command);
 }
 
-void		zappy::C_TurnLeft::addArg(std::string arg)
+void		zappy::C_TurnLeft::addArg(UNUSED std::string arg)
 {
   throw client_exception("Left does not take any argument",
 			 __LINE__, __FILE__);
@@ -35,7 +35,7 @@ void		zappy::C_TurnLeft::addArg(std::string arg)
 
 bool		zappy::C_TurnLeft::getResponse(Player &player, std::string &response)
 {
-  if (response != "ok") //peut renvoyer que ok pour cette commande
+  if (response != "ok")
     throw client_exception("Server drunk", __LINE__, __FILE__);
   player.getPosition().x =
     (player.getPosition().x < -1) ? 1 : (player.getPosition().x - 1);
