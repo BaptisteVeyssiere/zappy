@@ -5,16 +5,17 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 19 16:38:50 2017 Mathis Guilbon
-** Last update Wed Jun 28 13:13:23 2017 Mathis Guilbon
+** Last update Wed Jun 28 16:38:57 2017 Nathalie CAI
 */
 
+#include <stdio.h>
 #include "server.h"
 
 bool		action_forward(t_data *data, t_player *player, char *prm)
 {
   enum dir	dir;
 
-  (void)prm;
+  (void)prm;;
   --data->map[player->pos->y][player->pos->x].players;
   dir = player->direction;
   player->pos->x += (dir == RIGHT) ? 1 : (dir == LEFT) ? -1 : 0;
