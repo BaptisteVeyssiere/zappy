@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 15:33:39 2017 Baptiste Veyssiere
-** Last update Tue Jun 27 16:52:21 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 14:51:30 2017 Mathis Guilbon
 */
 
 #include <unistd.h>
@@ -66,6 +66,7 @@ int	main_loop(t_data *data)
 	  return (84);
 	}
       update_egg_status(data);
+      update_action_status(data);
       usleep(100);
     }
   return (free_data(data));

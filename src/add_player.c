@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 04:33:42 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 16:38:08 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 15:15:38 2017 Mathis Guilbon
 */
 
 #include <unistd.h>
@@ -55,6 +55,7 @@ static void	add_player_to_list(t_data *data, t_player *last,
     data->players_root = last;
   else
     root->next = last;
+  ++data->map[last->pos->y][last->pos->x].players;
 }
 
 static void	free_egg(t_data	*data, t_egg *elem)

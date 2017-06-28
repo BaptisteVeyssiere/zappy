@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 19:38:17 2017 Mathis Guilbon
-** Last update Wed Jun 28 13:26:45 2017 Mathis Guilbon
+** Last update Wed Jun 28 15:18:56 2017 Mathis Guilbon
 */
 
 #include <sys/time.h>
@@ -16,14 +16,14 @@
 
 void		get_real_pos_from(t_data *data, t_position *pos)
 {
-  if (pos->y >= (int)data->height - 1)
-    pos->y -= data->height - 1;
+  if (pos->y >= (int)data->height)
+    pos->y -= data->height;
   else if (pos->y < 0)
-    pos->y += data->height - 1;
-  if (pos->x >= (int)data->width - 1)
-    pos->x -= data->width - 1;
+    pos->y += data->height;
+  if (pos->x >= (int)data->width)
+    pos->x -= data->width;
   else if (pos->x < 0)
-    pos->x += data->width - 1;
+    pos->x += data->width;
 }
 
 bool		action_connect_nbr(t_data *data, t_player *player, char *prm)

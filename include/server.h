@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 16:36:49 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 15:15:51 2017 Mathis Guilbon
 */
 
 #ifndef SERVER_H_
@@ -136,7 +136,6 @@ int	try_add_player(t_data *data, int fd, char *team, t_ringbuffer *ringbuffer);
 ** update_player_action.c
 */
 
-void	set_action_timer(t_action *action, int duration, unsigned int freq);
 int	update_player_action(t_data *data, fd_set *set);
 
 /*
@@ -249,6 +248,7 @@ int	update_player_status(t_data *data);
 ** execute_actions.c
 */
 
+void	set_action_timer(t_action *action, int duration, unsigned int freq);
 int	execute_actions(t_data *data);
 
 /*

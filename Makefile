@@ -57,7 +57,7 @@ OBJDIR	= obj
 
 OBJ	= $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
-CFLAGS	= -Iinclude -W -Wextra -Wall -Werror
+CFLAGS	= -Iinclude -W -Wextra -Wall -Werror -g
 
 LDFLAGS = -lm
 

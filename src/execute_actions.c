@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 14:40:30 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 13:59:57 2017 Mathis Guilbon
+** Last update Wed Jun 28 14:45:26 2017 Mathis Guilbon
 */
 
 #include "action.h"
@@ -63,6 +63,7 @@ static bool	execute_player_action(t_player *tmp, t_data *data)
 				tmp->action->action + strlen(actions[i].name));
       if (!ret || !get_next_valid_action(data, tmp))
 	return (false);
+      print_map(data);
     }
   else if (strncmp(tmp->action->action, "Incantation", 11) == 0 &&
 	   !(incant[tmp->level - 1])(data, tmp) &&
