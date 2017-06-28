@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 14:00:56 2017 Mathis Guilbon
+** Last update Wed Jun 28 16:06:32 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -53,9 +53,29 @@ unsigned int    get_uint(int, char **, char *);
 t_data  *init_data(t_data *data, int ac, char **av);
 
 /*
-** init_data.c
+** make_team_tab.c
 */
 
+char     **team_tab(int ac, char **av);
+
+/*
+** init_team_list.c
+*/
+
+t_data  *init_team_list(t_data *data, int ac, char **av);
+
+/*
+** init_map.c
+*/
+
+t_data   *init_map(t_data *data);
+
+/*
+** prints.c
+*/
+
+int	 print_usage(void);
+void    print_map(t_data *data);
 void    print_data(t_data *data);
 
 /*

@@ -11,7 +11,7 @@ SERVER	= zappy_server
 
 RM	= rm -rf
 
-CC	= gcc -g
+CC	= gcc
 
 MKDIR	= mkdir -p
 
@@ -19,6 +19,9 @@ SRC	= src/writes.c \
 	src/init_server.c \
 	src/main_loop.c \
 	src/init_data.c \
+	src/init_team_list.c \
+	src/init_map.c \
+	src/make_team_tab.c \
 	src/main.c \
 	src/prints.c \
 	src/get_args.c \
