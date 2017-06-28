@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Wed Jun 28 15:52:22 2017 vigner_g
+// Last update Wed Jun 28 16:58:21 2017 vigner_g
 
 #include "Inventory.hpp"
 #include "Network.hpp"
@@ -14,7 +14,7 @@
 
 #include <iostream>
 
-zappy::Map::Map()
+zappy::Map::Map() : grid()
 {
 }
 

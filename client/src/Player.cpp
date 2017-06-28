@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Wed Jun 28 16:20:51 2017 vigner_g
+// Last update Wed Jun 28 17:01:07 2017 vigner_g
 //
 
 #include "Inventory.hpp"
@@ -13,7 +13,8 @@
 #include "Player.hpp"
 
 zappy::Player::Player(World &world)
-  : id(0), lvl(1), food(10), teamNbPlayer(1), nbOfEgg(0), slot(0)
+  : id(0), lvl(1), pos(), facing(0, 1), food(10), OwnInventory(),
+    CommonInventory(), map(), teamNbPlayer(1), nbOfEgg(0), slot(0)
 {
   map.setSize(world.width, world.height);
   slot = world.client_num;

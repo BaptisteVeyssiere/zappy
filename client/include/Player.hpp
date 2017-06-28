@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Wed Jun 28 16:20:09 2017 vigner_g
+// Last update Wed Jun 28 17:01:13 2017 vigner_g
 //
 
 #ifndef __PLAYER_HPP__
@@ -32,7 +32,6 @@ namespace	zappy
     int					food;
     Inventory				OwnInventory;
     Inventory				CommonInventory;
-    //std::vector<std::vector<t_tile>>	GameMap;
     Map					map;
     int					teamNbPlayer;
     int					nbOfEgg;

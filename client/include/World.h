@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Mon Jun 19 22:57:24 2017 Nathan Scutari
-** Last update Tue Jun 27 17:10:35 2017 Nathan Scutari
+** Last update Wed Jun 28 16:55:54 2017 vigner_g
 */
 
 #ifndef __WORLD_H__
@@ -20,6 +20,9 @@ namespace	zappy
     int		height;
     int		width;
     int		client_num;
+  Word()
+  : height(10), width(10), client_num(1)
+    {}
   };
 }
 
@@ -32,12 +35,4 @@ typedef struct	s_position
   : x(0), y(0)
   {}
 }		t_position;
-
-typedef struct			s_tile
-{
-  int				time;
-  t_position			pos;
-  std::map<std::string, int>	items;
-}				t_tile;
-
 #endif // !__WORLD_H__
