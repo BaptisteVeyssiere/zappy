@@ -43,7 +43,8 @@ SRC	= src/writes.c \
 	src/incantation.c \
 	src/incantation2.c \
 	src/action_broadcast.c \
-	src/execute_actions.c
+	src/execute_actions.c \
+	src/respawn.c
 
 SRCDIR	= src
 

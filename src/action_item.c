@@ -1,11 +1,11 @@
 /*
 ** action_item.c for zappy in /home/guilbo_m/rendu/PSU/PSU_2016_zappy
-** 
+**
 ** Made by Mathis Guilbon
 ** Login   <guilbo_m@epitech.net>
-** 
+**
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Wed Jun 28 13:59:39 2017 Mathis Guilbon
+** Last update Wed Jun 28 14:00:43 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -23,7 +23,10 @@ bool		action_take(t_data *data, t_player *player, char *prm)
     {
       ++player->inventory->item[i];
       if (data->map[player->pos->y][player->pos->x].item[i] > 0)
-	--data->map[player->pos->y][player->pos->x].item[i];
+	{
+	  --data->map[player->pos->y][player->pos->x].item[i];
+	  respawn(data, i);
+	}
       return (socket_write(player->fd, "ok\n") != -1);
     }
   return (socket_write(player->fd, "ko\n") != -1);
