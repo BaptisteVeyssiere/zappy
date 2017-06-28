@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 16:02:11 2017 Baptiste Veyssiere
-** Last update Tue Jun 27 19:04:33 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 17:06:35 2017 Baptiste Veyssiere
 */
 
 #include <sys/socket.h>
@@ -74,6 +74,8 @@ int	get_graphic_info(t_data *data)
 	  free(command);
 	  return (send_graphic_info(data));
 	}
+      else if (socket_write(data->network->graphic_fd, "ko\n") == -1)
+	return (0);
       free(command);
       is_cmd = 0;
     }

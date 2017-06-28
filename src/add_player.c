@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 04:33:42 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 14:24:38 2017 Mathis Guilbon
+** Last update Wed Jun 28 15:15:38 2017 Mathis Guilbon
 */
 
 #include <unistd.h>
@@ -110,7 +110,7 @@ static int	add_player(t_data *data, int fd,
     return (write_error(__FILE__, __func__, __LINE__, -1));
   init_player(last, team, pos, fd);
   add_player_to_list(data, last, is_egg, ringbuffer);
-  return (0);
+  return (pnw(last, data));
 }
 
 int	try_add_player(t_data *data, int fd, char *team, t_ringbuffer *ringbuffer)
