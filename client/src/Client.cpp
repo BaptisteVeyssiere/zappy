@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:12 2017 Nathan Scutari
-// Last update Tue Jun 27 18:59:18 2017 Nathan Scutari
+// Last update Wed Jun 28 16:04:51 2017 Nathan Scutari
 //
 
 #include <unistd.h>
@@ -52,7 +52,7 @@ void	zappy::Client::launch()
 	    throw client_exception("Unexpected server msg", __LINE__, __FILE__);
 	  else if (choice)
 	    if (choice->getResponse(*player, server_msg))
-	    choice = NULL;
+	      choice = NULL;
 	  else
 	    mCmdMgr.analyseData(server_msg, *player);
 	}
@@ -63,4 +63,13 @@ void	zappy::Client::launch()
 	}
       usleep(100);
       }
+}
+
+zappy::t_position	&zappy::Player::getAbsolutePos(t_position &relative_pos)
+{
+  int	x;
+  int	y;
+
+  x = relative_pos.x;
+  y = relative_pos.y;
 }

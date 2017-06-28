@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Tue Jun 27 17:51:12 2017 Nathan Scutari
+// Last update Wed Jun 28 16:44:04 2017 Nathan Scutari
 //
 
 #ifndef __PLAYER_HPP__
@@ -46,6 +46,9 @@ namespace	zappy
     Player(World &);
     ~Player();
 
+  private:
+    int		facingToAngle();
+
   public:
     void	SetTeamNbPlayer(int nb);
     void	SetId(int id);
@@ -57,6 +60,7 @@ namespace	zappy
     Inventory	&getSharedInventory();
     t_position	&getFacing();
     t_position	&getPosition();
+    t_position	getAbsolutePos(t_position &relative_pos);
   };
 }
 

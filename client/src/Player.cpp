@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Tue Jun 27 17:51:30 2017 Nathan Scutari
+// Last update Wed Jun 28 16:44:05 2017 Nathan Scutari
 //
 
 #include "Inventory.hpp"
@@ -63,6 +63,39 @@ t_position	&zappy::Player::getPosition()
 {
   return (this->pos);
 }
+
+int		zappy::Player::facingToAngle()
+{
+  static int		angle[] = {0, 90, 180, 270};
+  static t_position	facing[] =
+    {
+      {-1, 0},
+      {0, 1},
+      {1, 0},
+      {0, -1}
+    };
+
+  for (int i = 0 ; i < 4 ; ++i)
+    {
+      if (getFacing().x == facing[i].x &&
+	  getFacing().y == facing[i].y)
+	return (angle[i]);
+    }
+  throw client_exception("Unexpected facing values", __LINE__, __FILE__);
+  return (0);
+}
+
+t_position	zappy::Player::getAbsolutePos(t_position &relative_pos)
+{
+  t_position	new_pos;
+  int		angle;
+
+  angle = facingToAngle();
+  new_pos.x = relative_pos.x * cos(angle * PI / 180);
+  new_pos.y = relative_pos.y * sin(angle * PI / 180);
+  return (new_pos);
+}
+
 
 // void	zappy::Player::TurnLeft()
 // {
