@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 19 22:50:21 2017 Nathan Scutari
-// Last update Tue Jun 27 16:53:17 2017 Nathan Scutari
+// Last update Tue Jun 27 18:56:09 2017 Nathan Scutari
 //
 
 #ifndef __CLIENT_HPP__
@@ -16,6 +16,7 @@
 #include "ICommand.hpp"
 #include "CommandManager.hpp"
 #include "Player.hpp"
+#include "IA.hpp"
 #include <memory>
 
 namespace zappy
@@ -28,7 +29,7 @@ namespace zappy
     ICommand			*choice;
     CommandManager		mCmdMgr;
     std::unique_ptr<Player>	player;
-    //AI
+    IA				ia;
 
   private:
     Client();

@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 18:10:48 2017 Nathan Scutari
-// Last update Sat Jun 24 15:11:15 2017 Nathan Scutari
+// Last update Tue Jun 27 17:54:15 2017 Nathan Scutari
 //
 
 #include "C_inventory.hpp"
@@ -37,8 +37,9 @@ bool		zappy::C_inventory::getResponse(Player &player, std::string &response)
 {
   int		food;
 
-  food = std::stoi(response); //inventory sert à voir combien de vie il reste,
-			      //le reste est déjà stocké
-  //player life = food
+  while (!isdigit(response.front()))
+    response.erase(0, 1);
+  food = std::stoi(response);
+  player.setFood(food);
   return (true);
 }

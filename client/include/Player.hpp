@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Tue Jun 27 18:39:01 2017 vigner_g
+// Last update Wed Jun 28 15:34:57 2017 vigner_g
 //
 
 #ifndef __PLAYER_HPP__
@@ -50,6 +50,7 @@ namespace	zappy
     void	SetTeamNbPlayer(int nb);
     void	SetId(int id);
     void	AddALvl();
+    void	setFood(int nbr);
 
   public:
     Inventory	&getOwnInventory();
@@ -57,6 +58,7 @@ namespace	zappy
     t_position	&getFacing();
     t_position	&getPosition();
     Map		&getMap();
+    int		&getlvl();
   };
 }
 

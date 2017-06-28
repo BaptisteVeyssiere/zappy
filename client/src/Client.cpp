@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:12 2017 Nathan Scutari
-// Last update Tue Jun 27 16:56:52 2017 Nathan Scutari
+// Last update Tue Jun 27 18:59:18 2017 Nathan Scutari
 //
 
 #include <unistd.h>
@@ -58,8 +58,8 @@ void	zappy::Client::launch()
 	}
       if (!choice)
 	{
-	  //choice = IA.makeAChoice;
-	  //mNet.sendMsg(choice->getStr());
+	  choice = ia.makeAChoice(*player);
+	  mNet.sendMsg(choice->getStr());
 	}
       usleep(100);
       }

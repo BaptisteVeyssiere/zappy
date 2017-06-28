@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Tue Jun 27 18:40:42 2017 vigner_g
+// Last update Wed Jun 28 15:35:55 2017 vigner_g
 //
 
 #include "Inventory.hpp"
@@ -22,6 +22,11 @@ zappy::Player::Player(World &world)
 zappy::Player::~Player()
 {
 
+}
+
+void	zappy::Player::setFood(int nbr)
+{
+  food = nbr;
 }
 
 void	zappy::Player::SetTeamNbPlayer(int nb)
@@ -62,6 +67,11 @@ t_position	&zappy::Player::getPosition()
 zappy::Map	&zappy::Player::getMap()
 {
   return (this->map);
+}
+
+int		&zappy::player::getLvl()
+{
+  return (this->lvl);
 }
 
 // void	zappy::Player::TurnLeft()

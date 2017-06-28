@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 18:10:48 2017 Nathan Scutari
-// Last update Mon Jun 26 11:54:01 2017 Nathan Scutari
+// Last update Tue Jun 27 17:48:04 2017 Nathan Scutari
 //
 
 #include "C_incantation.hpp"
@@ -43,7 +43,7 @@ bool		zappy::C_incantation::getResponse(Player &player,
     }
   if (response.find("Current level") != std::string::npos)
     {
-      //player ++lvl
+      player.AddALvl();
     }
   return (true);
 }

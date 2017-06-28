@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:25:31 2017 vigner_g
-// Last update Tue Jun 27 18:50:26 2017 vigner_g
+// Last update Wed Jun 28 15:49:32 2017 vigner_g
 //
 
 #include "C_Look.hpp"
@@ -54,17 +54,29 @@ bool		zappy::C_Look::getResponse(Player &player, std::string &response)
 {
   std::string	sub;
   std::string	sub2;
-  // int		a;
+  int		j;
+  int		size;
+  int		k;
 
+  j = 1;
+  size = 1;
   response.erase(0, 1);
   response.erase(response.size() - 1 , response.size());
-  while ((sub = getSubString(response, ",")) != "*end*" && response.size() > 0)
+  while ((sub = getSubString(response, ",")) != "*end*" && response.size() > 0 && j < player.getLvl())
     {
-      while ((sub2 = getSubString(sub, " ")) != "*end*" && sub2.size() > 0)
+      k = (-size / 2);
+      while (k <= (size / 2))
 	{
-	  player.getMap().getGrid()[0][0].addItem("tomate");
-	  player.getMap().getGrid()[0][0].broadcast();
+	  while ((sub2 = getSubString(sub, " ")) != "*end*" && sub2.size() > 0)
+	    {
+	      player.getMap().access
+		((j * player.getFacing().y) + (player.getFacing().x * k),
+		 (j * player.getFacing().x) + (player.getFacing().y * k)).addItem(sub2);
+	    }
+	  k += 1;
 	}
+      j += 1;
+      size += 2;
     }
-  //remplir la map perso du client
+  return (true);
 }
