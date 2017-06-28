@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 19 16:38:50 2017 Mathis Guilbon
-** Last update Tue Jun 27 16:28:30 2017 Mathis Guilbon
+** Last update Wed Jun 28 13:13:23 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -19,7 +19,7 @@ bool		action_forward(t_data *data, t_player *player, char *prm)
   dir = player->direction;
   player->pos->x += (dir == RIGHT) ? 1 : (dir == LEFT) ? -1 : 0;
   player->pos->y += (dir == DOWN) ? 1 : (dir == UP) ? -1 : 0;
-  getRealPosFrom(data, player->pos);
+  get_real_pos_from(data, player->pos);
   ++data->map[player->pos->y][player->pos->x].players;
   return (socket_write(player->fd, "ok\n") != -1);
 }
@@ -78,6 +78,6 @@ bool		action_eject(t_data *data, t_player *player, char *prm)
   snprintf(buff, 32, "eject: %d\n", dir);
   off.x = player->pos->x + ((dir == RIGHT) ? 1 : (dir == LEFT) ? -1 : 0);
   off.y = player->pos->y + ((dir == DOWN) ? 1 : (dir == UP) ? -1 : 0);
-  getRealPosFrom(data, &off);
+  get_real_pos_from(data, &off);
   return (eject(data, player, &off, buff));
 }

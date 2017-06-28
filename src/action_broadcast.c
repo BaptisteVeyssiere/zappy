@@ -5,16 +5,40 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Tue Jun 27 22:44:03 2017 Mathis Guilbon
+** Last update Wed Jun 28 13:44:15 2017 Mathis Guilbon
 */
 
 #include "server.h"
 #include "broadcast.h"
+#include <math.h>
 
 static int	get_shorter(t_data *data, t_position *rec, t_position *inter)
 {
+  unsigned int	dist[4];
+  unsigned int	min;
+  int		i;
+  int		save;
 
-  return (0);
+  i = -1;
+  dist[0] = (rec->x - inter[0].x) * (rec->x - inter[0].x) +
+    (rec->y - inter[0].y) * (rec->y - inter[0].y);
+  dist[1] = (data->width - rec->x - inter[0].x) *
+    (data->width - rec->x - inter[0].x) +
+    (data->height - rec->y - inter[0].y) * (data->height - rec->y - inter[0].y);
+  dist[2] = (rec->x - inter[1].x) * (rec->x - inter[1].x) +
+    (rec->y - inter[1].y) * (rec->y - inter[1].y);
+  dist[3] = (data->width - rec->x - inter[0].x) *
+    (data->width - rec->x - inter[0].x) +
+    (data->height - rec->y - inter[0].y) * (data->height - rec->y - inter[0].y);
+  min = dist[0];
+  save = 0;
+  while (++i < 4)
+    if (dist[i] < min)
+      {
+	min = dist[i];
+	save = i;
+      }
+  return (save < 2 ? 0 : 1);
 }
 
 /*

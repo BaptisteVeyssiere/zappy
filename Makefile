@@ -54,8 +54,10 @@ OBJ	= $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 CFLAGS	= -Iinclude -W -Wextra -Wall -Werror
 
+LDFLAGS = -lm
+
 $(SERVER): $(OBJ)
-	@$(CC) -o $(SERVER) $(OBJ)
+	@$(CC) -o $(SERVER) $(OBJ) $(LDFLAGS)
 	@echo "Linking complete!"
 
 $(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.c

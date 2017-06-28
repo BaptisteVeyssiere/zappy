@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Tue Jun 27 16:25:34 2017 Mathis Guilbon
+** Last update Wed Jun 28 13:15:42 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -25,7 +25,7 @@ static int	power(int nb, int p)
   return (nb);
 }
 
-static bool	checkOverflow(int *written, char *buff, int fd)
+static bool	check_overflow(int *written, char *buff, int fd)
 {
   if (*written >= MSG_LEN - 32)
     {
@@ -36,7 +36,7 @@ static bool	checkOverflow(int *written, char *buff, int fd)
   return (true);
 }
 
-static bool	lookOneCase(t_items *item, int *written, char *buff, int fd)
+static bool	look_one_case(t_items *item, int *written, char *buff, int fd)
 {
   int		i;
   int		j;
@@ -45,7 +45,7 @@ static bool	lookOneCase(t_items *item, int *written, char *buff, int fd)
   while (++i < (int)item->players)
     {
       *written += snprintf(buff + *written, MSG_LEN - *written, " player");
-      if (!checkOverflow(written, buff, fd))
+      if (!check_overflow(written, buff, fd))
 	return (false);
     }
   j = -1;
@@ -56,14 +56,14 @@ static bool	lookOneCase(t_items *item, int *written, char *buff, int fd)
 	{
 	  *written += snprintf(buff + *written, MSG_LEN - *written,
 			       " %s", item_name[j]);
-	  if (!checkOverflow(written, buff, fd))
+	  if (!check_overflow(written, buff, fd))
 	    return (false);
 	}
     }
   return (true);
 }
 
-static void	changeOffset(enum dir dir, t_position *off, int *line, int saw)
+static void	change_offset(enum dir dir, t_position *off, int *line, int saw)
 {
   if (saw + 1 == *line)
     {
@@ -105,12 +105,12 @@ bool		action_look(t_data *data, t_player *player, char *prm)
   off.y = player->pos->y;
   while (++saw < toSee)
     {
-      getRealPosFrom(data, &off);
-      if (!lookOneCase(&data->map[off.y][off.x], &written, buff, player->fd))
+      get_real_pos_from(data, &off);
+      if (!look_one_case(&data->map[off.y][off.x], &written, buff, player->fd))
 	return (false);
       written += snprintf(buff + written, MSG_LEN - written,
 			  (saw + 1 == toSee) ? " ]" : ",");
-      changeOffset(player->direction, &off, &line, saw);
+      change_offset(player->direction, &off, &line, saw);
     }
   return (socket_write(player->fd, buff) != -1);
 }

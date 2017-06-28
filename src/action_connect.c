@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 19:38:17 2017 Mathis Guilbon
-** Last update Wed Jun 28 15:21:49 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 13:26:45 2017 Mathis Guilbon
 */
 
 #include <sys/time.h>
@@ -14,7 +14,7 @@
 #include <strings.h>
 #include "server.h"
 
-void		getRealPosFrom(t_data *data, t_position *pos)
+void		get_real_pos_from(t_data *data, t_position *pos)
 {
   if (pos->y >= (int)data->height - 1)
     pos->y -= data->height - 1;

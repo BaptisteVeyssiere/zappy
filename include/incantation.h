@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Tue Jun 27 13:00:40 2017 Mathis Guilbon
-** Last update Tue Jun 27 13:28:47 2017 Mathis Guilbon
+** Last update Wed Jun 28 13:09:33 2017 Mathis Guilbon
 */
 
 #ifndef _INCANTATION_H_
@@ -15,13 +15,13 @@
 
 static	bool	(*incant[7])(t_data *, t_player *, bool) =
 {
-  upgradeToLvl2,
-  upgradeToLvl3,
-  upgradeToLvl4,
-  upgradeToLvl5,
-  upgradeToLvl6,
-  upgradeToLvl7,
-  upgradeToLvl8
+  upgrade_to_lvl2,
+  upgrade_to_lvl3,
+  upgrade_to_lvl4,
+  upgrade_to_lvl5,
+  upgrade_to_lvl6,
+  upgrade_to_lvl7,
+  upgrade_to_lvl8
 };
 
 #endif /* !_INCANTATION_H_ */
