@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 17:12:34 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 16:45:55 2017 Baptiste Veyssiere
+** Last update Wed Jun 28 17:51:11 2017 Baptiste Veyssiere
 */
 
 #include <strings.h>
@@ -81,6 +81,19 @@ int	msz(t_data *data)
     return (0);
   bzero(buff, 50);
   if (snprintf(buff, 50, "msz %d %d\n", data->width, data->height) < 0 ||
+      socket_write(data->network->graphic_fd, buff) == -1)
+    return (-1);
+  return (0);
+}
+
+int	pdi(t_data *data, t_player *player)
+{
+  char	buff[50];
+
+  if (data->network->graphic_fd < 2)
+    return (0);
+  bzero(buff, 50);
+  if (snprintf(buff, 50, "pdi %d\n", player->id) < 0 ||
       socket_write(data->network->graphic_fd, buff) == -1)
     return (-1);
   return (0);
