@@ -5,15 +5,17 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Wed Jun 28 16:44:05 2017 Nathan Scutari
+// Last update Wed Jun 28 16:49:53 2017 Nathan Scutari
 //
 
+#include <math.h>
 #include "Inventory.hpp"
 #include "Network.hpp"
 #include "Player.hpp"
+#include "Exception.hpp"
 
 zappy::Player::Player(World &world)
-  : id(0), lvl(1), food(10), teamNbPlayer(1)
+  : id(0), lvl(1), food(10), teamNbPlayer(1), nbOfEgg(0), slot(0)
 {
   map.setSize(world.width, world.height);
   slot = world.client_num;
@@ -75,6 +77,7 @@ int		zappy::Player::facingToAngle()
       {0, -1}
     };
 
+
   for (int i = 0 ; i < 4 ; ++i)
     {
       if (getFacing().x == facing[i].x &&
@@ -91,11 +94,25 @@ t_position	zappy::Player::getAbsolutePos(t_position &relative_pos)
   int		angle;
 
   angle = facingToAngle();
-  new_pos.x = relative_pos.x * cos(angle * PI / 180);
-  new_pos.y = relative_pos.y * sin(angle * PI / 180);
+  new_pos.x = relative_pos.x * cos(angle * M_PI / 180);
+  new_pos.y = relative_pos.y * sin(angle * M_PI / 180);
   return (new_pos);
 }
 
+zappy::Map	&zappy::Player::getMap()
+{
+  return (this->map);
+}
+
+int		&zappy::Player::getLvl()
+{
+  return (this->lvl);
+}
+
+int		&zappy::Player::getSlot()
+{
+  return (this->slot);
+}
 
 // void	zappy::Player::TurnLeft()
 // {

@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Mon Jun 19 22:57:24 2017 Nathan Scutari
-** Last update Tue Jun 27 17:10:35 2017 Nathan Scutari
+** Last update Wed Jun 28 16:48:07 2017 Nathan Scutari
 */
 
 #ifndef __WORLD_H__
@@ -28,8 +28,8 @@ typedef struct	s_position
   int		x;
   int		y;
 
-  s_position()
-  : x(0), y(0)
+s_position(int a = 0, int b = 0)
+  : x(a), y(b)
   {}
 }		t_position;
 

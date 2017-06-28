@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:25:31 2017 vigner_g
-// Last update Tue Jun 27 16:00:48 2017 Nathan Scutari
+// Last update Wed Jun 28 16:27:33 2017 vigner_g
 //
 
 #include "C_Forward.hpp"
@@ -27,7 +27,7 @@ std::string	&zappy::C_Forward::getStr()
   return (command);
 }
 
-void		zappy::C_Forward::addArg(std::string arg)
+void		zappy::C_Forward::addArg(UNUSED std::string arg)
 {
   throw client_exception("Forward does not take any argument",
 			 __LINE__, __FILE__);

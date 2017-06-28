@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 16:58:22 2017 vigner_g
-// Last update Sat Jun 24 16:58:48 2017 vigner_g
+// Last update Wed Jun 28 16:34:28 2017 vigner_g
 //
 
 #include "C_Eject.hpp"
@@ -27,15 +27,15 @@ std::string	&zappy::C_Eject::getStr()
   return (command);
 }
 
-void		zappy::C_Eject::addArg(std::string arg)
+void		zappy::C_Eject::addArg(UNUSED std::string arg)
 {
   throw client_exception("Eject does not take any argument",
 			 __LINE__, __FILE__);
 }
 
-bool		zappy::C_Eject::getResponse(Player &player, std::string &response)
+bool		zappy::C_Eject::getResponse(UNUSED Player &player, std::string &response)
 {
-  if (response != "ok" && response != "ko") //peut renvoyer que ok pour cette commande
+  if (response != "ok" && response != "ko")
     throw client_exception("Server drunk", __LINE__, __FILE__);
   return (true);
 }

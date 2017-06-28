@@ -5,12 +5,14 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Wed Jun 28 15:37:43 2017 Nathan Scutari
-//
+// Last update Wed Jun 28 15:52:22 2017 vigner_g
 
 #include "Inventory.hpp"
 #include "Network.hpp"
 #include "Map.hpp"
+
+
+#include <iostream>
 
 zappy::Map::Map()
 {
@@ -27,9 +29,18 @@ std::vector<std::vector<zappy::Inventory> >	&zappy::Map::getGrid()
 
 void		zappy::Map::setSize(int width, int height)
 {
-  this->grid.resize(height);
+
+  std::vector<Inventory>	row;
+  Inventory			tile;
+
+  for(int y = 0; y < width; ++y)
+    {
+      row.push_back(tile);
+    }
   for (int i = 0; i < height; ++i)
-    this->grid[i].resize(width);
+    {
+      this->grid.push_back(row);
+    }
 }
 
 zappy::Inventory	&zappy::Map::access(int y, int x)

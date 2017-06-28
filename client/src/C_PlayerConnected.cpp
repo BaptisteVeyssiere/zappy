@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 17:00:51 2017 vigner_g
-// Last update Tue Jun 27 16:17:09 2017 Nathan Scutari
+// Last update Wed Jun 28 16:33:28 2017 vigner_g
 //
 
 #include <string>
@@ -28,7 +28,7 @@ std::string	&zappy::C_PlayerConnected::getStr()
   return (command);
 }
 
-void		zappy::C_PlayerConnected::addArg(std::string arg)
+void		zappy::C_PlayerConnected::addArg(UNUSED std::string arg)
 {
   throw client_exception("PlayerConnected does not take any argument",
 			 __LINE__, __FILE__);
@@ -49,6 +49,6 @@ bool		zappy::C_PlayerConnected::getResponse(Player &player, std::string &respons
   if (IsNbr(response) == false)
     throw client_exception("Server drunk", __LINE__, __FILE__);
   else
-    player.SetTeamNbPlayer(std::stoi(response));
+    player.getSlot() = std::stoi(response);
   return (true);
 }

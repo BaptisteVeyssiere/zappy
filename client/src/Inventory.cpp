@@ -5,11 +5,12 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Thu Jun 22 22:02:54 2017 vigner_g
-// Last update Tue Jun 27 16:19:24 2017 Nathan Scutari
+// Last update Tue Jun 27 18:51:26 2017 vigner_g
 //
 
 #include "Network.hpp"
 #include "Inventory.hpp"
+#include <iostream>
 
 zappy::Inventory::Inventory()
 {
@@ -54,6 +55,8 @@ zappy::Inventory	zappy::Inventory::operator+(Inventory &other)
 
 void		zappy::Inventory::broadcast()
 {
+  for(auto it = inv.begin(); it != inv.end(); ++it)
+    std::cout << it->first << " => " << it->second << std::endl;
 }
 
 int		zappy::Inventory::delItem(std::string item)

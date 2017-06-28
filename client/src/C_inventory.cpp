@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 18:10:48 2017 Nathan Scutari
-// Last update Tue Jun 27 17:54:15 2017 Nathan Scutari
+// Last update Wed Jun 28 16:32:21 2017 vigner_g
 //
 
 #include "C_inventory.hpp"
@@ -27,7 +27,7 @@ std::string	&zappy::C_inventory::getStr()
   return (command);
 }
 
-void		zappy::C_inventory::addArg(std::string arg)
+void		zappy::C_inventory::addArg(UNUSED std::string arg)
 {
   throw client_exception("Inventory does not take any argument",
 			 __LINE__, __FILE__);
