@@ -4,43 +4,28 @@
 // Made by Nathan Scutari
 // Login   <scutar_n@epitech.net>
 //
-// Started on  Tue Jun 20 18:05:47 2017 Nathan Scutari
-// Last update Mon Jun 26 11:35:55 2017 Nathan Scutari
+// Started on  Wed Jun 28 16:52:34 2017 Nathan Scutari
+// Last update Wed Jun 28 16:59:18 2017 Nathan Scutari
 //
 
 #include <iostream>
-#include <unistd.h>
-#include "C_broadcast.hpp"
-#include "Network.hpp"
+#include "Player.hpp"
 
 int	main(int ac, char **av)
 {
-  zappy::Network	net;
-  std::string		msg("Ayyy");
-  zappy::ICommand		*comm;
+  zappy::World		data;
+  zappy::Player	*player;
+  t_position	pos;
 
-
-  comm = new zappy::C_broadcast();
-  comm->addArg("arg1 arg2 arg3");
-  std::cout << comm->getStr() << std::endl;
-  try
-    {
-      net.connectToServer("localhost", av[1], "TeamJPP");
-      net.sendMsg(msg);
-      while (1)
-	{
-	  if (net.isReadable())
-	    {
-	      net.readMsg();
-	      while (net.isCmdReady())
-		std::cout << net.getNextCmd() << std::endl;
-	    }
-	  usleep(100);
-	}
-    }
-  catch (std::exception &e)
-    {
-      std::cerr << e.what() << std::endl;
-    }
+  data.width = 10;
+  data.height = 10;
+  data.client_num = 2;
+  player = new zappy::Player(data);
+  pos.x = -5;
+  pos.y = -8;
+  std::cout << player->getFacing().x << " - " << player->getFacing().y
+	    << std::endl;
+  std::cout << player->getAbsolutePos(pos).x << " - "
+	    << player->getAbsolutePos(pos).y << std::endl;
   return (0);
 }

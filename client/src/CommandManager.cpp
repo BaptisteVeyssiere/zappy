@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 26 10:11:32 2017 Nathan Scutari
-// Last update Wed Jun 28 15:21:12 2017 Nathan Scutari
+// Last update Wed Jun 28 16:46:34 2017 vigner_g
 //
 
 #include <iostream>
@@ -33,7 +33,7 @@ bool	zappy::CommandManager::isResponse(std::string &msg)
   size_t	pos;
 
   cleanString(msg);
-  for (int i = 0 ; i < refs.size() ; ++i)
+  for (unsigned int i = 0 ; i < refs.size() ; ++i)
     {
       if ((pos = msg.find(refs[i])) == 0)
 	{
@@ -44,7 +44,7 @@ bool	zappy::CommandManager::isResponse(std::string &msg)
   return (true);
 }
 
-void	zappy::CommandManager::analyseData(std::string &msg, Player &player)
+void	zappy::CommandManager::analyseData( std::string &msg, Player &player)
 {
   //mlkjhgfd
 }

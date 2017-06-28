@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Thu Jun 22 22:02:54 2017 vigner_g
-// Last update Tue Jun 27 18:51:26 2017 vigner_g
+// Last update Wed Jun 28 16:47:23 2017 vigner_g
 //
 
 #include "Network.hpp"
@@ -66,4 +66,5 @@ int		zappy::Inventory::delItem(std::string item)
     this->inv[it->first] -= 1;
   else
     return (-1);
+  return (0);
 }
