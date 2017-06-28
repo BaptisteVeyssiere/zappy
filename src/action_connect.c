@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 19:38:17 2017 Mathis Guilbon
-** Last update Wed Jun 28 15:18:56 2017 Mathis Guilbon
+** Last update Wed Jun 28 18:51:13 2017 Mathis Guilbon
 */
 
 #include <sys/time.h>
@@ -26,12 +26,11 @@ void		get_real_pos_from(t_data *data, t_position *pos)
     pos->x += data->width;
 }
 
-bool		action_connect_nbr(t_data *data, t_player *player, char *prm)
+bool		action_connect_nbr(t_data *data, t_player *player, UNUSED char *prm)
 {
   char 		buff[8];
   int		i;
 
-  (void)prm;
   i = -1;
   while (++i < (int)data->nbr_teams &&
 	 strcmp(data->team_list[i]->name, player->team) != 0);

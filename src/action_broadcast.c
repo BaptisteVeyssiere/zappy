@@ -5,11 +5,10 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Wed Jun 28 13:44:15 2017 Mathis Guilbon
+** Last update Wed Jun 28 18:48:47 2017 Mathis Guilbon
 */
 
 #include "server.h"
-#include "broadcast.h"
 #include <math.h>
 
 static int	get_shorter(t_data *data, t_position *rec, t_position *inter)

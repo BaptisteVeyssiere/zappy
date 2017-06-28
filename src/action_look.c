@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Wed Jun 28 15:30:52 2017 Mathis Guilbon
+** Last update Wed Jun 28 18:52:19 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -86,7 +86,7 @@ static void	change_offset(enum dir dir, t_position *off, int *line, int saw)
     }
 }
 
-bool		action_look(t_data *data, t_player *player, char *prm)
+bool		action_look(t_data *data, t_player *player, UNUSED char *prm)
 {
   char		buff[MSG_LEN];
   int		toSee;
@@ -95,7 +95,6 @@ bool		action_look(t_data *data, t_player *player, char *prm)
   int		written;
   int		line;
 
-  (void)prm;
   line = 1;
   saw = -1;
   written = 1;

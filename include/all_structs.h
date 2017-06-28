@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Wed Jun 28 16:01:59 2017 Mathis Guilbon
+** Last update Wed Jun 28 18:48:28 2017 Mathis Guilbon
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -34,6 +34,19 @@ enum
     THYSTAME,
     DERAUMERE,
     ITEMNBR
+  };
+
+enum
+  {
+    TOP_LEFT = 1,
+    TOP_MIDDLE,
+    TOP_RIGHT,
+    MIDDLE_RIGHT,
+    BOTTOM_RIGHT,
+    BOTTOM_MIDDLE,
+    BOTTOM_LEFT,
+    MIDDLE_LEFT,
+    CASENBR
   };
 
 typedef struct		s_team
