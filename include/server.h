@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 20:40:56 2017 Mathis Guilbon
+** Last update Thu Jun 29 12:06:07 2017 Mathis Guilbon
 */
 
 #ifndef SERVER_H_
@@ -245,6 +245,7 @@ int	pdi(t_data *data, t_player *player);
 */
 
 int	update_player_status(t_data *data);
+void	add_slot_for_team(t_data *data, t_player *player);
 
 /*
 ** execute_actions.c
@@ -257,7 +258,7 @@ int	execute_actions(t_data *data);
 ** get_command_duration.c
 */
 
-int	get_command_duration(char *command, int fd);
+int	get_command_duration(char *command);
 
 /*
 ** respawn.c
