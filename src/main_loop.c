@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 15:33:39 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 15:36:25 2017 Mathis Guilbon
+** Last update Thu Jun 29 14:10:01 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -57,15 +57,14 @@ int	main_loop(t_data *data)
     }
   while (1)
     {
-
       if (execute_actions(data) == -1 ||
 	  update_player_status(data) == -1 ||
-	  check_sockets(data) == -1)
+	  check_sockets(data) == -1 ||
+	  update_egg_status(data) == -1)
 	{
 	  free_data(data);
 	  return (84);
 	}
-      update_egg_status(data);
       update_action_status(data);
       usleep(100);
     }

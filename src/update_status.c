@@ -5,14 +5,14 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 15:45:08 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 15:36:10 2017 Mathis Guilbon
+** Last update Thu Jun 29 14:08:52 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>
 #include <unistd.h>
 #include "server.h"
 
-void			update_egg_status(t_data *data)
+int			update_egg_status(t_data *data)
 {
   struct timeval	tv;
   t_egg			*tmp;
@@ -24,9 +24,14 @@ void			update_egg_status(t_data *data)
   while (tmp)
     {
       if (tmp->ready == 0 && current_time > tmp->timer)
-	tmp->ready = 1;
+	{
+	  if (eht(data, tmp) == -1)
+	    return (-1);
+	  tmp->ready = 1;
+	}
       tmp = tmp->next;
     }
+  return (0);
 }
 
 void			update_action_status(t_data *data)
