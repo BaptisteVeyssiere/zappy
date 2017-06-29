@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 21:12:34 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 21:08:09 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 14:39:45 2017 Baptiste Veyssiere
 */
 
 #include "server.h"
@@ -51,6 +51,15 @@ static int		try_add_action(t_player *player, t_data *data, char *command)
   tmp = player->action;
   while (tmp && tmp->next)
     tmp = tmp->next;
+  if (!tmp && duration == -2)
+    {
+      if (socket_write(player->fd, "ko\n") == -1)
+	return (-1);
+      free(command);
+      return (0);
+    }
+  else if (duration == -2)
+    duration = 0;
   if (!(action = malloc(sizeof(t_action))))
     return (write_error(__FILE__, __func__, __LINE__, -1));
   init_action(command, duration, data->freq, action);

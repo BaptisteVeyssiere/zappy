@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 14:40:30 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 12:17:04 2017 Mathis Guilbon
+** Last update Thu Jun 29 12:47:40 2017 Mathis Guilbon
 */
 
 #include "action.h"
@@ -37,7 +37,7 @@ static bool	get_next_valid_action(t_data *data, t_player *tmp)
       if (tmp->action != NULL)
 	{
 	  duration = get_command_duration(tmp->action->action);
-	  if (duration == 0)
+	  if (duration == -2)
 	    {
 	      ++cont;
 	      if (socket_write(tmp->fd, "ko\n") == -1)
