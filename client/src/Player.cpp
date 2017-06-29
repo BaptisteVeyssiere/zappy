@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Wed Jun 28 18:39:34 2017 Nathan Scutari
+// Last update Thu Jun 29 15:35:30 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -121,4 +121,9 @@ int		&zappy::Player::getLvl()
 int		&zappy::Player::getSlot()
 {
   return (this->slot);
+}
+
+int		&zappy::Player::getFood()
+{
+  return (food);
 }

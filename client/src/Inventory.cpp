@@ -5,14 +5,14 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Thu Jun 22 22:02:54 2017 vigner_g
-// Last update Thu Jun 29 14:17:44 2017 Nathan Scutari
+// Last update Thu Jun 29 14:22:58 2017 Nathan Scutari
 //
 
 #include "Network.hpp"
 #include "Inventory.hpp"
 #include <iostream>
 
-zappy::Inventory::Inventory() : look_time(0), inv()
+zappy::Inventory::Inventory() : look_time(-1), inv()
 {
 }
 
@@ -82,4 +82,9 @@ int		zappy::Inventory::delItem(std::string item)
 bool	zappy::Inventory::isEmpty()
 {
   return (inv.empty());
+}
+
+std::map<std::string, int>	&zappy::Inventory::getInv()
+{
+  return (inv);
 }

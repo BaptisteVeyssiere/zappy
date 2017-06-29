@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Wed Jun 28 17:04:21 2017 vigner_g
+// Last update Thu Jun 29 16:13:41 2017 Nathan Scutari
 //
 
 #ifndef __PLAYER_HPP__
@@ -45,14 +45,12 @@ namespace	zappy
     Player(World &);
     ~Player();
 
-  private:
-    int		facingToAngle();
-
   public:
     void	SetTeamNbPlayer(int nb);
     void	SetId(int id);
     void	AddALvl();
     void	setFood(int nbr);
+    int		facingToAngle();
 
   public:
     Inventory	&getOwnInventory();
@@ -63,6 +61,7 @@ namespace	zappy
     Map		&getMap();
     int		&getLvl();
     int		&getSlot();
+    int		&getFood();
   };
 }
 

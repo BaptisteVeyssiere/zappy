@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Wed Jun 28 16:52:34 2017 Nathan Scutari
-// Last update Thu Jun 29 12:16:17 2017 Nathan Scutari
+// Last update Thu Jun 29 19:06:55 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -13,10 +13,19 @@
 #include "World.h"
 #include "Player.hpp"
 #include "Exploration.hpp"
+#include "C_Forward.hpp"
+#include "ICommand.hpp"
 
 int	main(int ac, char **av)
 {
-  zappy::World		data;
+  std::list<zappy::ICommand *>	*list = new std::list<zappy::ICommand *>;
+  std::list<zappy::ICommand *>	listb;
+
+  list->push_back(new zappy::C_Forward);
+  listb = *list;
+  delete list;
+  std::cout << listb.front()->getStr() << std::endl;
+  /*  zappy::World		data;
   zappy::Player	*player;
   t_position	pos;
   zappy::Exploration	explore;
@@ -34,6 +43,6 @@ int	main(int ac, char **av)
 	 it != list->end() ; ++it)
     {
       std::cout << (*it).y << " - " << (*it).x << std::endl;
-    }
+      }*/
   return (0);
 }

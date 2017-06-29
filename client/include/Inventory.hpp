@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:19:58 2017 vigner_g
-// Last update Thu Jun 29 14:17:17 2017 Nathan Scutari
+// Last update Thu Jun 29 14:22:39 2017 Nathan Scutari
 //
 
 
@@ -35,6 +35,7 @@ namespace	zappy
     bool	isEmpty();
     int		delItem(std::string item);
     Inventory	operator+(Inventory &other);
+    std::map<std::string, int>	&getInv();
   };
 }
 
