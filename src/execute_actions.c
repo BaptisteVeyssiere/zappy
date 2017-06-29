@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 14:40:30 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 15:00:20 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 15:36:03 2017 Nathalie CAI
 */
 
 #include "action.h"
@@ -84,7 +84,6 @@ static bool	execute_player_action(t_player *tmp, t_data *data)
 				tmp->action->action + strlen(actions[i].name));
       if (!ret || !get_next_valid_action(data, tmp))
 	return (false);
-      print_map(data);
     }
   else if (!check_incant(tmp, data))
     return (false);
