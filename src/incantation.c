@@ -1,13 +1,14 @@
 /*
 ** incantation.c for zappy in /home/guilbo_m/rendu/PSU/PSU_2016_zappy
-** 
+**
 ** Made by Mathis Guilbon
 ** Login   <guilbo_m@epitech.net>
-** 
+**
 ** Started on  Sun Jun 24 14:10:14 2017 Mathis Guilbon
-** Last update Wed Jun 28 18:55:51 2017 Mathis Guilbon
+** Last update Thu Jun 29 17:20:36 2017 Baptiste Veyssiere
 */
 
+#include <unistd.h>
 #include "server.h"
 
 void		upgrade_player(t_data *data, t_player *player)

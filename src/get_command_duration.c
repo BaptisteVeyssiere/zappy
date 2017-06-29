@@ -5,17 +5,31 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 15:46:29 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 14:39:04 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 17:17:19 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
 #include "server.h"
-#include "action.h"
 
 int		get_command_duration(char *command)
 {
   int		duration;
   int		i;
+  static  t_act actions[] =
+    {
+      {"Forward", action_forward, 7},
+      {"Right", action_right, 7},
+      {"Left", action_left, 7},
+      {"Look", action_look, 7},
+      {"Inventory", action_inventory, 1},
+      {"Broadcast ", action_broadcast, 7},
+      {"Connect_nbr", action_connect_nbr, 0},
+      {"Fork", action_fork, 42},
+      {"Eject", action_eject, 7},
+      {"Take ", action_take, 7},
+      {"Set ", action_set, 7},
+      {"Incantation", action_incantation, 300}
+    };
 
   i = -1;
   duration = -2;

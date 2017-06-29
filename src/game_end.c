@@ -5,9 +5,12 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Thu Jun 29 15:09:56 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 16:05:47 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 17:22:37 2017 Baptiste Veyssiere
 */
 
+#include <stdio.h>
+#include <strings.h>
+#include <string.h>
 #include "server.h"
 
 static int	seg(t_data *data, char *team)

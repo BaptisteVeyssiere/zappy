@@ -5,16 +5,26 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Thu Jun 29 15:57:55 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 17:20:16 2017 Baptiste Veyssiere
 */
 
+#include <string.h>
+#include <stdio.h>
 #include "server.h"
-#include "incantation.h"
-#include "item_name.h"
 
 bool		action_take(t_data *data, t_player *player, char *prm)
 {
   int		i;
+  static const    char *item_name[] =
+    {
+      "food",
+      "sibur",
+      "phiras",
+      "linemate",
+      "mendiane",
+      "thystame",
+      "deraumere"
+    };
 
   i = -1;
   while (++i < ITEMNBR && strcmp(item_name[i], prm) != 0);
@@ -36,6 +46,16 @@ bool		action_take(t_data *data, t_player *player, char *prm)
 bool		action_set(t_data *data, t_player *player, char *prm)
 {
   int		i;
+  static const    char *item_name[] =
+    {
+      "food",
+      "sibur",
+      "phiras",
+      "linemate",
+      "mendiane",
+      "thystame",
+      "deraumere"
+    };
 
   i = -1;
   while (++i < ITEMNBR && strcmp(item_name[i], prm) != 0);
@@ -70,6 +90,16 @@ bool		action_inventory(UNUSED t_data *data, t_player *player, UNUSED char *prm)
 bool		action_incantation(t_data *data, t_player *player, UNUSED char *prm)
 {
   char		buff[32];
+  static  bool    (*incant[7])(t_data *, t_player *) =
+    {
+      upgrade_to_lvl2,
+      upgrade_to_lvl3,
+      upgrade_to_lvl4,
+      upgrade_to_lvl5,
+      upgrade_to_lvl6,
+      upgrade_to_lvl7,
+      upgrade_to_lvl8
+    };
 
   if (!(incant[player->level - 1])(data, player))
     return (socket_write(player->fd, "ko\n"));

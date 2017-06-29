@@ -1,15 +1,17 @@
 /*
 ** action_broadcast.c for zappy in /home/guilbo_m/rendu/PSU/PSU_2016_zappy
-** 
+**
 ** Made by Mathis Guilbon
 ** Login   <guilbo_m@epitech.net>
-** 
+**
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Thu Jun 29 12:42:42 2017 Mathis Guilbon
+** Last update Thu Jun 29 17:21:01 2017 Baptiste Veyssiere
 */
 
-#include "server.h"
 #include <math.h>
+#include <stdio.h>
+#include "server.h"
+
 
 static int	get_shorter(t_data *data, t_position *rec, t_position *inter)
 {

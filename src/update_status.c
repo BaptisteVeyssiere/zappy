@@ -5,11 +5,12 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 15:45:08 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 16:40:33 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 17:18:42 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>
 #include <unistd.h>
+#include <string.h>
 #include "server.h"
 
 int			update_egg_status(t_data *data)

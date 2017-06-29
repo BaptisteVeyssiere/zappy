@@ -5,13 +5,14 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Thu Jun 29 15:37:40 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 17:17:05 2017 Baptiste Veyssiere
 */
 
 #ifndef ALL_STRUCTS_H_
 # define ALL_STRUCTS_H_
 
 # include <sys/select.h>
+# include <stdbool.h>
 
 # define RINGLENGTH 4096
 
@@ -146,5 +147,12 @@ typedef struct		s_data
   int			pid;
   int			eid;
 }			t_data;
+
+typedef struct  s_act
+{
+  char          *name;
+  bool          (*func)(t_data *, t_player *, char *);
+  unsigned int  duration;
+}               t_act;
 
 #endif /* !ALL_STRUCTS_H_ */
