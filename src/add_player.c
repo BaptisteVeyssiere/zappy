@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 04:33:42 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 18:27:53 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 15:07:52 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -119,7 +119,7 @@ int	try_add_player(t_data *data, int fd, char *team, t_ringbuffer *ringbuffer)
   int	slot;
 
   i = -1;
-  while (data->team_list[++i])
+  while (data->team_list && data->team_list[++i])
     if (strcmp(data->team_list[i]->name, team) == 0)
       {
         if ((slot = data->team_list[i]->free_slots) < 1)
