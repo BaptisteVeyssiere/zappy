@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 14:40:30 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 12:05:36 2017 Mathis Guilbon
+** Last update Thu Jun 29 12:17:04 2017 Mathis Guilbon
 */
 
 #include "action.h"
@@ -23,6 +23,7 @@ void		set_action_timer(t_action *action, int duration, unsigned int freq)
 
 static bool	get_next_valid_action(t_data *data, t_player *tmp)
 {
+  int		duration;
   int		cont;
   t_action	*act;
 
@@ -35,15 +36,15 @@ static bool	get_next_valid_action(t_data *data, t_player *tmp)
       free(act);
       if (tmp->action != NULL)
 	{
-	  if (tmp->action->action == NULL)
+	  duration = get_command_duration(tmp->action->action);
+	  if (duration == 0)
 	    {
 	      ++cont;
 	      if (socket_write(tmp->fd, "ko\n") == -1)
 		return (false);
 	    }
 	  else
-	    set_action_timer(tmp->action, get_command_duration(tmp->action->action),
-			     data->freq);
+	    set_action_timer(tmp->action, duration, data->freq);
 	}
     }
   return (true);

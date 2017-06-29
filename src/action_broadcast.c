@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Wed Jun 28 21:52:40 2017 Mathis Guilbon
+** Last update Thu Jun 29 12:13:41 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -72,10 +72,12 @@ static void	get_intersection(t_position *src, t_position *rec,
     (b - center[1]) * (b - center[1]) - 2.25;
   delta = beta * beta - 4 * alpha * c;
   fprintf(stderr, "%f = %f - 4 * %f * %f\n", delta, beta * beta, alpha, c);
-  tmp = (-beta - sqrt(delta) / (2 * alpha));
+  tmp = (-beta - sqrt(delta)) / (2 * alpha);
+  tmp = (tmp > center[0]) ? ceil(tmp): floor(tmp);
   inter[0].x = (int)tmp;
   inter[0].y = (int)(a * tmp + b);
-  tmp = (-beta + sqrt(delta) / (2 * alpha));
+  tmp = (-beta + sqrt(delta)) / (2 * alpha);
+  tmp = (tmp > center[0]) ? ceil(tmp): floor(tmp);
   inter[1].x = (int)tmp;
   inter[1].y = (int)(a * tmp + b);
 }
