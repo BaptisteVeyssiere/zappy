@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Thu Jun 29 16:44:28 2017 Mathis Guilbon
+** Last update Thu Jun 29 17:15:55 2017 Mathis Guilbon
 */
 
 #include <math.h>
@@ -64,25 +64,26 @@ static void	calc_intersection(t_position *src, t_position *rec,
   get_inter(center[0], center[1], inter, ward);
 }
 
-static void	get_surrounding(t_player *src, char *dir, t_position *ward)
+static void	get_surrounding(t_player *rec, char *dir, t_position *ward)
 {
   int		i;
 
   dir[0] = TOP_LEFT;
   i = 0;
-  while (++i < UNKNOWN && i != (int)src->direction)
+  while (++i < UNKNOWN && i != (int)rec->direction)
     dir[0] += 2;
+  fprintf(stderr, "orientation receveur %d coin-gauche %d\n", rec->direction, dir[0]);
   i = 0;
   while (++i < CASENBR - 1)
     dir[i] = dir[i - 1] % (CASENBR - 1) + 1;
-  ward[0] = (t_position){src->pos->x - 1, src->pos->y - 1};
-  ward[1] = (t_position){src->pos->x, src->pos->y - 2};
-  ward[2] = (t_position){src->pos->x + 1, src->pos->y - 2};
-  ward[3] = (t_position){src->pos->x + 2, src->pos->y - 1};
-  ward[4] = (t_position){src->pos->x + 2, src->pos->y};
-  ward[5] = (t_position){src->pos->x + 1, src->pos->y + 1};
-  ward[6] = (t_position){src->pos->x, src->pos->y + 1};
-  ward[7] = (t_position){src->pos->x - 1, src->pos->y};
+  ward[0] = (t_position){rec->pos->x - 1, rec->pos->y - 1};
+  ward[1] = (t_position){rec->pos->x, rec->pos->y - 2};
+  ward[2] = (t_position){rec->pos->x + 1, rec->pos->y - 2};
+  ward[3] = (t_position){rec->pos->x + 2, rec->pos->y - 1};
+  ward[4] = (t_position){rec->pos->x + 2, rec->pos->y};
+  ward[5] = (t_position){rec->pos->x + 1, rec->pos->y + 1};
+  ward[6] = (t_position){rec->pos->x, rec->pos->y + 1};
+  ward[7] = (t_position){rec->pos->x - 1, rec->pos->y};
 }
 
 static void	get_message_dir(t_data *data, t_position *src,

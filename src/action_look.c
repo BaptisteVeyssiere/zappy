@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Thu Jun 29 17:19:39 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 17:26:40 2017 Mathis Guilbon
 */
 
 #include <stdio.h>
@@ -43,12 +43,12 @@ static bool	look_one_case(t_items *item, int *written, char *buff, int fd)
   static const    char *item_name[] =
     {
       "food",
-      "sibur",
-      "phiras",
       "linemate",
+      "deraumere",
+      "sibur",
       "mendiane",
-      "thystame",
-      "deraumere"
+      "phiras",
+      "thystame"
     };
 
   i = -1;

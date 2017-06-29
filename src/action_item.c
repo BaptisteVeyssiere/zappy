@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Thu Jun 29 17:20:16 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 17:26:21 2017 Mathis Guilbon
 */
 
 #include <string.h>
@@ -18,12 +18,12 @@ bool		action_take(t_data *data, t_player *player, char *prm)
   static const    char *item_name[] =
     {
       "food",
-      "sibur",
-      "phiras",
       "linemate",
+      "deraumere",
+      "sibur",
       "mendiane",
-      "thystame",
-      "deraumere"
+      "phiras",
+      "thystame"
     };
 
   i = -1;
@@ -49,12 +49,12 @@ bool		action_set(t_data *data, t_player *player, char *prm)
   static const    char *item_name[] =
     {
       "food",
-      "sibur",
-      "phiras",
       "linemate",
+      "deraumere",
+      "sibur",
       "mendiane",
-      "thystame",
-      "deraumere"
+      "phiras",
+      "thystame"
     };
 
   i = -1;
