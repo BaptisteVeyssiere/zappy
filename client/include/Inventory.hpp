@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:19:58 2017 vigner_g
-// Last update Wed Jun 28 15:25:25 2017 Nathan Scutari
+// Last update Thu Jun 29 14:17:17 2017 Nathan Scutari
 //
 
 
@@ -25,11 +25,14 @@ namespace	zappy
   public:
     Inventory();
     ~Inventory();
+    void	refreshLook();
+    int		getLook();
     void	reset();
     void	reset(Inventory &other);
     void	broadcast();
     void	addToInventory(Inventory &other);
     void	addItem(std::string item);
+    bool	isEmpty();
     int		delItem(std::string item);
     Inventory	operator+(Inventory &other);
   };

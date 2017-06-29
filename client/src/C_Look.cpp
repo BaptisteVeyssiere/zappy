@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:25:31 2017 vigner_g
-// Last update Wed Jun 28 16:29:49 2017 vigner_g
+// Last update Thu Jun 29 11:34:17 2017 Nathan Scutari
 //
 
 #include "C_Look.hpp"
@@ -73,7 +73,11 @@ bool		zappy::C_Look::getResponse(Player &player, std::string &response)
 		(player.getPosition().x + (j * player.getFacing().y) + (player.getFacing().x * k),
 		 player.getPosition().y + (j * player.getFacing().x) + (player.getFacing().y * k))
 		.addItem(sub2);
-	    }
+	      player.getMap().access
+		(player.getPosition().x + (j * player.getFacing().y) + (player.getFacing().x * k),
+		 player.getPosition().y + (j * player.getFacing().x) + (player.getFacing().y * k))
+		.refreshLook();
+		}
 	  k += 1;
 	}
       j += 1;

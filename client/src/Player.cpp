@@ -5,14 +5,16 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Wed Jun 28 17:03:27 2017 vigner_g
+// Last update Wed Jun 28 18:39:34 2017 Nathan Scutari
 //
 
+#include <iostream>
 #include <math.h>
 #include "Inventory.hpp"
 #include "Network.hpp"
 #include "Player.hpp"
 #include "Exception.hpp"
+
 
 zappy::Player::Player(World &world)
   : id(0), lvl(1), pos(), facing(0, 1), food(10), OwnInventory(),
@@ -93,10 +95,16 @@ t_position	zappy::Player::getAbsolutePos(t_position &relative_pos)
 {
   t_position	new_pos;
   int		angle;
+  double	cosa;
+  double	sina;
 
   angle = facingToAngle();
-  new_pos.x = relative_pos.x * cos(angle * M_PI / 180);
-  new_pos.y = relative_pos.y * sin(angle * M_PI / 180);
+  cosa = cos(angle * M_PI / 180);
+  sina = sin(angle * M_PI / 180);
+  new_pos.x = round(relative_pos.x * cosa - relative_pos.y * sina);
+  new_pos.y = round(relative_pos.x * sina + relative_pos.y * cosa);
+  new_pos.x += getPosition().x;
+  new_pos.y += getPosition().y;
   return (new_pos);
 }
 

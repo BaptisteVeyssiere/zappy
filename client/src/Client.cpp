@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:12 2017 Nathan Scutari
-// Last update Wed Jun 28 16:50:39 2017 Nathan Scutari
+// Last update Thu Jun 29 11:31:22 2017 Nathan Scutari
 //
 
 #include <unistd.h>
@@ -40,6 +40,7 @@ void	zappy::Client::launch()
 {
   std::string	server_msg;
 
+  ia.init(&(*player));
   std::cout << "Starting game loop" << std::endl;
   while (1)
     {
@@ -60,7 +61,7 @@ void	zappy::Client::launch()
 	}
       if (!choice)
 	{
-	  choice = ia.makeAChoice(*player);
+	  choice = ia.makeAChoice();
 	  mNet.sendMsg(choice->getStr());
 	}
       usleep(100);

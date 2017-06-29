@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 18:50:41 2017 Nathan Scutari
-// Last update Tue Jun 27 18:55:20 2017 Nathan Scutari
+// Last update Thu Jun 29 11:24:41 2017 Nathan Scutari
 //
 
 #include "IA.hpp"
@@ -20,7 +20,16 @@ zappy::IA::~IA()
 
 }
 
-zappy::ICommand	*zappy::IA::makeAChoice(Player &player)
+void	zappy::IA::init(Player *player)
 {
-  return (new C_Forward);
+  mPlayer = player;
+  mExploration.init(player);
+}
+
+zappy::ICommand	*zappy::IA::makeAChoice()
+{
+  ICommand	*choice;
+
+  choice = mExploration.explore();
+  return (choice);
 }

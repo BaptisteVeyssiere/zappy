@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Thu Jun 22 22:02:54 2017 vigner_g
-// Last update Wed Jun 28 16:57:38 2017 vigner_g
+// Last update Thu Jun 29 14:17:44 2017 Nathan Scutari
 //
 
 #include "Network.hpp"
@@ -59,6 +59,16 @@ void		zappy::Inventory::broadcast()
     std::cout << it->first << " => " << it->second << std::endl;
 }
 
+void	zappy::Inventory::refreshLook()
+{
+  look_time = 0;
+}
+
+int		zappy::Inventory::getLook()
+{
+  return (look_time);
+}
+
 int		zappy::Inventory::delItem(std::string item)
 {
   auto it = this->inv.find(item);
@@ -67,4 +77,9 @@ int		zappy::Inventory::delItem(std::string item)
   else
     return (-1);
   return (0);
+}
+
+bool	zappy::Inventory::isEmpty()
+{
+  return (inv.empty());
 }
