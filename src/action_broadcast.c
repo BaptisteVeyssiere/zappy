@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Thu Jun 29 12:13:41 2017 Mathis Guilbon
+** Last update Thu Jun 29 12:42:42 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -18,7 +18,6 @@ static int	get_shorter(t_data *data, t_position *rec, t_position *inter)
   int		i;
   int		save;
 
-  i = -1;
   dist[0] = (rec->x - inter[0].x) * (rec->x - inter[0].x) +
     (rec->y - inter[0].y) * (rec->y - inter[0].y);
   dist[1] = (data->width - rec->x - inter[0].x) *
@@ -26,17 +25,21 @@ static int	get_shorter(t_data *data, t_position *rec, t_position *inter)
     (data->height - rec->y - inter[0].y) * (data->height - rec->y - inter[0].y);
   dist[2] = (rec->x - inter[1].x) * (rec->x - inter[1].x) +
     (rec->y - inter[1].y) * (rec->y - inter[1].y);
-  dist[3] = (data->width - rec->x - inter[0].x) *
-    (data->width - rec->x - inter[0].x) +
-    (data->height - rec->y - inter[0].y) * (data->height - rec->y - inter[0].y);
+  dist[3] = (data->width - rec->x - inter[1].x) *
+    (data->width - rec->x - inter[1].x) +
+    (data->height - rec->y - inter[1].y) * (data->height - rec->y - inter[1].y);
   min = dist[0];
   save = 0;
+  i = -1;
   while (++i < 4)
-    if (dist[i] < min)
-      {
-	min = dist[i];
-	save = i;
-      }
+    {
+      fprintf(stderr, "dist[%d]:%u\n", i, dist[i]);
+      if (dist[i] < min)
+	{
+	  min = dist[i];
+	  save = i;
+	}
+    }
   return (save < 2 ? 0 : 1);
 }
 
