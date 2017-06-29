@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Wed Jun 28 18:48:28 2017 Mathis Guilbon
+** Last update Thu Jun 29 15:37:40 2017 Baptiste Veyssiere
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -27,12 +27,12 @@ enum	dir
 enum
   {
     FOOD = 0,
-    SIBUR,
-    PHIRAS,
     LINEMATE,
-    MENDIANE,
-    THYSTAME,
     DERAUMERE,
+    SIBUR,
+    MENDIANE,
+    PHIRAS,
+    THYSTAME,
     ITEMNBR
   };
 

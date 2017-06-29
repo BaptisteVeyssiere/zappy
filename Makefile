@@ -50,7 +50,9 @@ SRC	= src/writes.c \
 	src/execute_actions.c \
 	src/respawn.c \
 	src/graphic_moves.c \
-	src/graphic_egg.c
+	src/graphic_egg.c \
+	src/game_end.c \
+	src/graphic_actions.c
 
 SRCDIR	= src
 

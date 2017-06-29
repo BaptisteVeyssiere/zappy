@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 14:19:33 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 15:55:13 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -279,5 +279,19 @@ int	pnw(t_player *player, t_data *data);
 
 int	eht(t_data *data, t_egg *egg);
 int	enw(t_data *data, t_egg *egg);
+int	ebo(t_data *data, t_egg *egg);
+
+/*
+** game_end.c
+*/
+
+int	game_end(t_data *data);
+
+/*
+** graphic_actions.c
+*/
+
+int	graphic_take(t_data *data, t_player *player, int type);
+int	graphic_put(t_data *data, t_player *player, int type);
 
 #endif /* !SERVER_H_ */

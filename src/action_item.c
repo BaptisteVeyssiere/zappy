@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Thu Jun 29 12:31:10 2017 Mathis Guilbon
+** Last update Thu Jun 29 15:57:55 2017 Baptiste Veyssiere
 */
 
 #include "server.h"
@@ -26,6 +26,8 @@ bool		action_take(t_data *data, t_player *player, char *prm)
 	  --data->map[player->pos->y][player->pos->x].item[i];
 	  respawn(data, i);
 	}
+      if (graphic_take(data, player, i) == -1)
+	return (false);
       return (socket_write(player->fd, "ok\n") != -1);
     }
   return (socket_write(player->fd, "ko\n") != -1);
@@ -41,6 +43,8 @@ bool		action_set(t_data *data, t_player *player, char *prm)
     {
       --player->inventory->item[i];
       ++data->map[player->pos->y][player->pos->x].item[i];
+      if (graphic_put(data, player, i) == -1)
+	return (false);
       return (socket_write(player->fd, "ok\n") != -1);
     }
   return (socket_write(player->fd, "ko\n") != -1);
