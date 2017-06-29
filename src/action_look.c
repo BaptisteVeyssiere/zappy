@@ -1,15 +1,15 @@
 /*
 ** action_look.c for zappy in /home/guilbo_m/rendu/PSU/PSU_2016_zappy
-** 
+**
 ** Made by Mathis Guilbon
 ** Login   <guilbo_m@epitech.net>
-** 
+**
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Thu Jun 29 12:50:19 2017 Mathis Guilbon
+** Last update Thu Jun 29 17:19:39 2017 Baptiste Veyssiere
 */
 
+#include <stdio.h>
 #include "server.h"
-#include "item_name.h"
 
 static int	power(int nb, int p)
 {
@@ -40,6 +40,16 @@ static bool	look_one_case(t_items *item, int *written, char *buff, int fd)
 {
   int		i;
   int		j;
+  static const    char *item_name[] =
+    {
+      "food",
+      "sibur",
+      "phiras",
+      "linemate",
+      "mendiane",
+      "thystame",
+      "deraumere"
+    };
 
   i = -1;
   while (++i < (int)item->players)

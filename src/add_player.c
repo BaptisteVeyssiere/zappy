@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 04:33:42 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 18:27:53 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 16:31:57 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -58,10 +58,10 @@ static void	add_player_to_list(t_data *data, t_player *last,
   ++data->map[last->pos->y][last->pos->x].players;
 }
 
-static void	free_egg(t_data	*data, t_egg *elem)
+static void	remove_egg(t_data *data, t_egg *elem)
 {
-  t_egg	*tmp;
-  t_egg	*prev;
+  t_egg		*tmp;
+  t_egg		*prev;
 
   tmp = data->eggs;
   prev = NULL;
@@ -99,7 +99,9 @@ static int	add_player(t_data *data, int fd,
     if (strcmp(tmp->team, team) == 0 && tmp->ready && (is_egg = 1) == 1)
       {
 	pos = *(tmp->pos);
-	free_egg(data, tmp);
+	if (ebo(data, tmp) == -1)
+	  return (-1);
+	remove_egg(data, tmp);
 	tmp = NULL;
       }
     else
@@ -119,7 +121,7 @@ int	try_add_player(t_data *data, int fd, char *team, t_ringbuffer *ringbuffer)
   int	slot;
 
   i = -1;
-  while (data->team_list[++i])
+  while (data->team_list && data->team_list[++i])
     if (strcmp(data->team_list[i]->name, team) == 0)
       {
         if ((slot = data->team_list[i]->free_slots) < 1)

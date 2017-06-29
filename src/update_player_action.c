@@ -5,9 +5,11 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 21:12:34 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 14:39:45 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 17:18:29 2017 Baptiste Veyssiere
 */
 
+#include <unistd.h>
+#include <stdlib.h>
 #include "server.h"
 
 static int	get_action_nbr(t_player *player)

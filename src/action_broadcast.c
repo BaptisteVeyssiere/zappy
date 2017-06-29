@@ -1,15 +1,17 @@
 /*
 ** action_broadcast.c for zappy in /home/guilbo_m/rendu/PSU/PSU_2016_zappy
-** 
+**
 ** Made by Mathis Guilbon
 ** Login   <guilbo_m@epitech.net>
-** 
+**
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Thu Jun 29 16:42:18 2017 Mathis Guilbon
+** Last update Thu Jun 29 16:44:28 2017 Mathis Guilbon
 */
 
-#include "server.h"
 #include <math.h>
+#include <stdio.h>
+#include "server.h"
+
 
 static void	get_inter(float x, float y, t_position *inter, t_position *ward)
 {

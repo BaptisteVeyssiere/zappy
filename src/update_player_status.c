@@ -5,12 +5,13 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 20:24:46 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 21:03:03 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 17:19:02 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 #include "server.h"
 
 static int	free_player(t_player *player, t_data *data)

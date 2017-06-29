@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sat Jun 24 15:17:39 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 20:37:23 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 15:26:57 2017 Baptiste Veyssiere
 */
 
 #include <stdlib.h>
@@ -95,7 +95,7 @@ int		free_data(t_data *data)
 
   if (free_players(data->players_root) == -1 ||
       free_network(data->network) == -1)
-    return (-1);
+    return (84);
   y = -1;
   while (++y < data->height)
     free(data->map[y]);
@@ -109,7 +109,7 @@ int		free_data(t_data *data)
   free(data->team_list);
   free_eggs(data->eggs);
   if (free_queue(data->queue) == -1)
-    return (-1);
+    return (84);
   free(data);
   return (0);
 }

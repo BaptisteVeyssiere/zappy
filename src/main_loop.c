@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 15:33:39 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 14:10:01 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 15:26:25 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -50,17 +50,21 @@ static int	init_network(t_data *data)
 
 int	main_loop(t_data *data)
 {
+  int	ret;
+
   if (init_network(data) == -1)
     {
       free_data(data);
       return (84);
     }
-  while (1)
+  ret = 0;
+  while (ret == 0)
     {
       if (execute_actions(data) == -1 ||
 	  update_player_status(data) == -1 ||
 	  check_sockets(data) == -1 ||
-	  update_egg_status(data) == -1)
+	  update_egg_status(data) == -1 ||
+	  (ret = game_end(data)) == -1)
 	{
 	  free_data(data);
 	  return (84);

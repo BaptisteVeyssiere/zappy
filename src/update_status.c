@@ -5,11 +5,12 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 15:45:08 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 14:08:52 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 17:18:42 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>
 #include <unistd.h>
+#include <string.h>
 #include "server.h"
 
 int			update_egg_status(t_data *data)
@@ -17,6 +18,7 @@ int			update_egg_status(t_data *data)
   struct timeval	tv;
   t_egg			*tmp;
   unsigned long int	current_time;
+  int			i;
 
   tmp = data->eggs;
   gettimeofday(&tv, NULL);
@@ -28,6 +30,10 @@ int			update_egg_status(t_data *data)
 	  if (eht(data, tmp) == -1)
 	    return (-1);
 	  tmp->ready = 1;
+	  i = -1;
+	  while(data->team_list && data->team_list[++i])
+	    if (strcmp(data->team_list[i]->name, tmp->team) == 0)
+	      ++(data->team_list[i]->free_slots);
 	}
       tmp = tmp->next;
     }

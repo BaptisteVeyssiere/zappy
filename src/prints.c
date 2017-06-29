@@ -5,7 +5,7 @@
 ** Login   <nathalie.cai@epitech.eu>
 **
 ** Started on  Wed Jun 21 15:44:39 2017 Nathalie CAI
-** Last update Wed Jun 28 20:49:42 2017 Mathis Guilbon
+** Last update Thu Jun 29 14:50:05 2017 Nathalie CAI
 */
 
 #include <stdio.h>
@@ -13,7 +13,8 @@
 
 int	print_error_param(char *msg)
 {
-  fprintf(stderr, "%s", msg);
+  fprintf(stderr, "%s\n", msg);
+  print_usage();
   return (-1);
 }
 

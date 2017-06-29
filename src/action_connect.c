@@ -5,13 +5,14 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 19:38:17 2017 Mathis Guilbon
-** Last update Thu Jun 29 14:30:36 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 17:19:53 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
+#include <stdio.h>
 #include "server.h"
 
 void		get_real_pos_from(t_data *data, t_position *pos)
