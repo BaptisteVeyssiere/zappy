@@ -5,14 +5,14 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Thu Jun 22 22:02:54 2017 vigner_g
-// Last update Wed Jun 28 16:57:38 2017 vigner_g
+// Last update Thu Jun 29 14:01:16 2017 vigner_g
 //
 
 #include "Network.hpp"
 #include "Inventory.hpp"
 #include <iostream>
 
-zappy::Inventory::Inventory() : look_time(0), inv()
+zappy::Inventory::Inventory() : look_time(-1), inv()
 {
 }
 
