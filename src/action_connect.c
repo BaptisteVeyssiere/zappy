@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 19:38:17 2017 Mathis Guilbon
-** Last update Wed Jun 28 18:51:13 2017 Mathis Guilbon
+** Last update Thu Jun 29 14:30:36 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>
@@ -42,7 +42,7 @@ bool		action_connect_nbr(t_data *data, t_player *player, UNUSED char *prm)
   return (false);
 }
 
-static void	add_egg_to_list(t_data *data, t_egg *last)
+static int	add_egg_to_list(t_data *data, t_egg *last)
 {
   t_egg		*tmp;
 
@@ -53,6 +53,9 @@ static void	add_egg_to_list(t_data *data, t_egg *last)
     data->eggs = last;
   else
     tmp->next = last;
+  if (enw(data, last) == -1)
+    return (-1);
+  return (0);
 }
 
 bool			action_fork(t_data *data, t_player *player, UNUSED char *prm)
@@ -79,6 +82,7 @@ bool			action_fork(t_data *data, t_player *player, UNUSED char *prm)
   last->next = NULL;
   gettimeofday(&tv, NULL);
   last->timer = (tv.tv_sec + (600 / data->freq)) * 1000 + tv.tv_usec / 1000;
-  add_egg_to_list(data, last);
+  if (add_egg_to_list(data, last) == -1)
+    return (false);
   return (true);
 }

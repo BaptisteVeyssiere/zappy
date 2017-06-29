@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 15:46:29 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 21:07:56 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 14:39:04 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -18,7 +18,7 @@ int		get_command_duration(char *command)
   int		i;
 
   i = -1;
-  duration = 0;
+  duration = -2;
   while (++i < ACTION_NBR)
     if (strncmp(actions[i].name, command, strlen(actions[i].name)) == 0)
       {
