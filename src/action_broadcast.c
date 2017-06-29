@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 ** 
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Wed Jun 28 20:46:55 2017 Mathis Guilbon
+** Last update Wed Jun 28 21:52:40 2017 Mathis Guilbon
 */
 
 #include "server.h"
@@ -44,6 +44,9 @@ static int	get_shorter(t_data *data, t_position *rec, t_position *inter)
 **	cercle : (xc, yc), R ==> (x - xc)² + (y - yc)² = R²
 **	droite : y = ax + b
 **	x²(1 + a²) + x(-2xc + 2ab - 2ayc) + (xc² + yc² + b² - 2byc - R²) = 0
+**	X²(1 + a²) + x(2 * (-xc + a * (b - yc))) + (xc² + -R² + (yc - b)(yc - b)) = 0
+**
+**	if (x >) ceil() else floor();
 */
 
 static void	get_intersection(t_position *src, t_position *rec,
@@ -56,14 +59,19 @@ static void	get_intersection(t_position *src, t_position *rec,
   float		c;
   float		delta;
   float		tmp;
+  float		center[2];
 
-  a = (float)(rec->y - src->y) / (rec->x - src->x);
-  b = src->y - a * src->x;
+  center[0] = rec->x + 0.5;
+  center[1] = rec->y + 0.5;
+  a = (src->y - center[1]) / (src->x - center[0]);
+  b = center[1] - a * center[0];
+  fprintf(stderr, "y=%f x + %f\n", a, b);
   alpha = 1 + a * a;
-  beta = 2 * (a * (b - (src->y + 0.5)) - (src->x + 0.5));
-  c = (src->x + 0.5) * (src->x + 0.5) +
-    (b - (src->y + 0.5)) * (b - (src->y + 0.5)) - 1.5 * 1.5;
+  beta = 2 * (a * (b - center[1]) - center[0]);
+  c = center[0] * center[0] +
+    (b - center[1]) * (b - center[1]) - 2.25;
   delta = beta * beta - 4 * alpha * c;
+  fprintf(stderr, "%f = %f - 4 * %f * %f\n", delta, beta * beta, alpha, c);
   tmp = (-beta - sqrt(delta) / (2 * alpha));
   inter[0].x = (int)tmp;
   inter[0].y = (int)(a * tmp + b);
