@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 21:07:54 2017 Baptiste Veyssiere
+** Last update Thu Jun 29 14:16:15 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -148,7 +148,7 @@ void	free_actions(t_action *action);
 ** update_status.c
 */
 
-void	update_egg_status(t_data *data);
+int	update_egg_status(t_data *data);
 void	update_action_status(t_data *data);
 
 /*
@@ -271,5 +271,12 @@ void	respawn(t_data *data, int type);
 
 int	ppo(t_player *player, t_data *data);
 int	pnw(t_player *player, t_data *data);
+
+/*
+** graphic_egg.c
+*/
+
+int	eht(t_data *data, t_egg *egg);
+int	enw(t_data *data, t_egg *egg);
 
 #endif /* !SERVER_H_ */
