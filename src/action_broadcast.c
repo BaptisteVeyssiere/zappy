@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Fri Jun 30 18:38:11 2017 Mathis Guilbon
+** Last update Sat Jul  1 00:56:32 2017 Mathis Guilbon
 */
 
 #include <math.h>
@@ -16,53 +16,57 @@
 static void	get_inter(float x, float y, t_position *inter, t_position *ward)
 {
   int		i;
-  int		k;
 
-  k = 0;
-  i = -1;
   fprintf(stderr, "float inter[1]:(%f,%f)\n", x, y);
-  while (++i < CASENBR - 3)
-    if (x >= (float)ward[i].x && x <= (float)ward[i + 1].x &&
-	y >= (float)ward[i].y && y <= (float)ward[i + 1].y)
-      {
-	k = i;
-	i = CASENBR;
-      }
-  k = (i == CASENBR) ? k : CASENBR - 2;
-  inter[0] = (t_position){ward[k].x, ward[k].y};
-  k = (k + (CASENBR - 1) / 2) % (CASENBR - 1);
-  inter[1] = (t_position){ward[k].x, ward[k].y};
+  if (y > (float)ward[0].y && x < (float)ward[4].x)
+    x = ceilf(x);
+  if (y < (float)ward[6].y && x < (float)ward[2].x)
+    y = ceilf(y);
+  fprintf(stderr, "int inter[1]:(%d,%d)\n", (int)x, (int)y);
+  i = -1;
+  while (++i < CASENBR - 2 && !((int)x == ward[i].x && (int)y == ward[i].y));
+  inter[0] = (t_position){ward[i].x, ward[i].y};
+  i = (i + (CASENBR - 1) / 2) % (CASENBR - 1);
+  inter[1] = (t_position){ward[i].x, ward[i].y};
 }
+
+/*
+**	(x - Cx)² + (y - Cy)² = R²
+**	(x - Cx)² + (ax + b - Cy)² - R² = 0
+**	x² - 2xCx + Cx² + a²x² + bax - Cyax + bax + b² - Cyb - Cyax - Cyb + Cy² - R² = 0
+**	x² - 2xCx + Cx² + a²x² + 2bax - 2Cyax + b² - 2Cyb + Cy² - R² = 0
+**	x²(1 + a²) + x (-2Cx + 2ba - 2Cya) + (Cx² + b² - 2Cyb + Cy² - R²) = 0
+**	x²(1 + a²) + x 2(-Cx + a(b - Cy)) + (Cx² + (b - Cy)(b - Cy) - R²) = 0
+*/
 
 static void	calc_intersection(t_position *src, t_position *rec,
 				  t_position *inter, t_position *ward)
 {
   float		a;
   float		b;
+  float		c;
   float		alpha;
   float		beta;
-  float		c;
   float		delta;
   float		center[2];
 
   center[0] = rec->x + 0.5;
   center[1] = rec->y + 0.5;
   if (src->x + 0.5 - center[0] == 0)
-    {
-      if (src->y + 0.5 > center[1])
-	get_inter(center[0] + 1.5, center[1] + 1.5, inter, ward);
-      else
-	get_inter(center[0] - 1.5, center[1] - 1.5, inter, ward);
-    }
+    get_inter(center[0] - 0.5, center[1] - 1.5, inter, ward);
   else
     {
       a = (src->y + 0.5 - center[1]) / (src->x + 0.5 - center[0]);
       b = center[1] - a * center[0];
+      fprintf(stderr, "y = %f * x + %f\n", a, b);
+      /*      alpha = atanf((a * center[0] + b) / center[0]);
+      get_inter(1.5 * cosf(alpha) + center[0],
+		1.5 * sinf(alpha) + center[1], inter, ward);*/
       alpha = 1 + a * a;
       beta = 2 * (a * (b - center[1]) - center[0]);
       c = center[0] * center[0] + (b - center[1]) * (b - center[1]) - 2.25;
       delta = beta * beta - 4 * alpha * c;
-      center[0] = (-beta - sqrt(delta)) / (2 * alpha);
+      center[0] = (-beta - sqrtf(delta)) / (2 * alpha);
       get_inter(center[0], a * center[0] + b, inter, ward);
     }
 }
@@ -75,18 +79,40 @@ static void	get_surrounding(t_player *rec, char *dir, t_position *ward)
   i = 0;
   while (++i < UNKNOWN && i != (int)rec->direction)
     dir[0] += 2;
-  fprintf(stderr, "orientation receveur %d coin-gauche %d\n", rec->direction, dir[0]);
   i = 0;
   while (++i < CASENBR - 1)
     dir[i] = (dir[i - 1] - 1 > 0) ? dir[i - 1] - 1 : CASENBR - 1;
-  ward[TOP_LEFT - 1] = (t_position){rec->pos->x - 1, rec->pos->y - 1};
-  ward[TOP_MIDDLE - 1] = (t_position){rec->pos->x, rec->pos->y - 2};
-  ward[TOP_RIGHT - 1] = (t_position){rec->pos->x + 1, rec->pos->y - 2};
-  ward[MIDDLE_RIGHT - 1] = (t_position){rec->pos->x + 2, rec->pos->y - 1};
-  ward[BOTTOM_RIGHT - 1] = (t_position){rec->pos->x + 2, rec->pos->y};
-  ward[BOTTOM_MIDDLE - 1] = (t_position){rec->pos->x + 1, rec->pos->y + 1};
-  ward[BOTTOM_LEFT - 1] = (t_position){rec->pos->x, rec->pos->y + 1};
-  ward[MIDDLE_LEFT - 1] = (t_position){rec->pos->x - 1, rec->pos->y};
+  ward[0] = (t_position){rec->pos->x - 1, rec->pos->y};
+  ward[1] = (t_position){rec->pos->x, rec->pos->y - 1};
+  ward[2] = (t_position){rec->pos->x + 1, rec->pos->y - 1};
+  ward[3] = (t_position){rec->pos->x + 2, rec->pos->y};
+  ward[4] = (t_position){rec->pos->x + 2, rec->pos->y + 1};
+  ward[5] = (t_position){rec->pos->x + 1, rec->pos->y + 2};
+  ward[6] = (t_position){rec->pos->x, rec->pos->y + 2};
+  ward[7] = (t_position){rec->pos->x - 1, rec->pos->y + 1};
+}
+
+static int	get_shorter(t_data *data, t_position *src, t_position *rec, t_position *inter)
+{
+  unsigned int	dist[4];
+  int		shorter;
+  
+  dist[0] = (rec->x - src->x) * (rec->x - src->x) +
+    (rec->y - src->y) * (rec->y - src->y);
+  dist[1] = ((src->x - rec->x) % data->width) * ((src->x - rec->x) % data->width) +
+    ((src->y - rec->y) % data->height) * ((src->y - rec->y) % data->height);
+  fprintf(stderr, "dist[1]:%u\n", dist[0]);
+  fprintf(stderr, "dist[2]:%u\n", dist[1]);
+  dist[2] = (src->x - inter[0].x) * (src->x - inter[0].x) +
+    (src->y - inter[0].y) * (src->y - inter[0].y);
+  dist[3] = (src->x - inter[1].x) * (src->x - inter[1].x) +
+    (src->y - inter[1].y) * (src->y - inter[1].y);
+  shorter = (dist[2] < dist[3]) ? 0 : 1;
+  if (dist[1] < dist[0])
+    shorter = (shorter + 1) % 2; 
+  fprintf(stderr, "dist[3]:%u\n", dist[2]);
+  fprintf(stderr, "dist[4]:%u\n", dist[3]);
+  return (shorter);
 }
 
 static void	get_message_dir(t_data *data, t_position *src,
@@ -95,23 +121,13 @@ static void	get_message_dir(t_data *data, t_position *src,
   char		dir[CASENBR - 1];
   t_position	ward[CASENBR - 1];
   t_position	inter[2];
-  unsigned int	dist[2];
   int		shorter;
   int		i;
 
   get_surrounding(rec, &dir[0], &ward[0]);
   calc_intersection(src, rec->pos, &inter[0], &ward[0]);
-  dist[0] = (rec->pos->x - src->x) * (rec->pos->x - src->x) +
-    (rec->pos->y - src->y) * (rec->pos->y - src->y);
-  dist[1] = (data->width - rec->pos->x - src->x) *
-    (data->width - rec->pos->x - src->x) +
-    (data->height - rec->pos->y - src->y) *
-    (data->height - rec->pos->y - src->y);
-  shorter = (dist[1] < dist[0]) ? 1 : 0;
-  shorter = (src->x > rec->pos->x) ? (shorter + 1) % 2 : shorter;
-  fprintf(stderr, "dist[%d]:%u\n", 0, dist[0]);
-  fprintf(stderr, "dist[%d]:%u\n", 1, dist[1]);
   print_surrounding_case(rec, &dir[0], &ward[0], &inter[0]);
+  shorter = get_shorter(data, src, rec->pos, &inter[0]);
   i = -1;
   while (++i < CASENBR - 1)
     if (inter[shorter].x == ward[i].x &&
