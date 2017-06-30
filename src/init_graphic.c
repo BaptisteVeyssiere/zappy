@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 16:02:11 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 15:02:29 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 23:37:10 2017 Baptiste Veyssiere
 */
 
 #include <sys/socket.h>
@@ -28,6 +28,15 @@ int	init_graphic(t_data *data)
        accept(data->network->socket_fd[1],
 	      (struct sockaddr *)&s_in, &s_in_size)) == -1)
     return (write_error(__FILE__, __func__, __LINE__, -1));
+  if (data->freq > 200)
+    {
+      if (socket_write(data->network->graphic_fd,
+		       "Frequence to high for graphic view\n") == -1 ||
+	  close(data->network->graphic_fd) == -1)
+	return (write_error(__FILE__, __func__, __LINE__, -1));
+      data->network->graphic_fd = -1;
+      return (0);
+    }
   if (!(data->network->graphic_buffer = init_ringbuffer()) ||
       socket_write(data->network->graphic_fd, "BIENVENUE\n") == -1)
     return (-1);
