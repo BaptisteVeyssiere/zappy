@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Thu Jun 29 17:15:55 2017 Mathis Guilbon
+** Last update Fri Jun 30 18:38:11 2017 Mathis Guilbon
 */
 
 #include <math.h>
@@ -47,21 +47,24 @@ static void	calc_intersection(t_position *src, t_position *rec,
 
   center[0] = rec->x + 0.5;
   center[1] = rec->y + 0.5;
-  if (src->x + 0.5 - center[0])
-    a = (src->y + 0.5 - center[1]) / (src->x + 0.5 - center[0]);
+  if (src->x + 0.5 - center[0] == 0)
+    {
+      if (src->y + 0.5 > center[1])
+	get_inter(center[0] + 1.5, center[1] + 1.5, inter, ward);
+      else
+	get_inter(center[0] - 1.5, center[1] - 1.5, inter, ward);
+    }
   else
-    a = 0.0;
-  b = center[1] - a * center[0];
-  fprintf(stderr, "y=%f x + %f\n", a, b);
-  alpha = 1 + a * a;
-  beta = 2 * (a * (b - center[1]) - center[0]);
-  c = center[0] * center[0] +
-    (b - center[1]) * (b - center[1]) - 2.25;
-  delta = beta * beta - 4 * alpha * c;
-  fprintf(stderr, "%f = %f - 4 * %f * %f\n", delta, beta * beta, alpha, c);
-  center[0] = (-beta - sqrt(delta)) / (2 * alpha);
-  center[1] = a * center[0] + b;
-  get_inter(center[0], center[1], inter, ward);
+    {
+      a = (src->y + 0.5 - center[1]) / (src->x + 0.5 - center[0]);
+      b = center[1] - a * center[0];
+      alpha = 1 + a * a;
+      beta = 2 * (a * (b - center[1]) - center[0]);
+      c = center[0] * center[0] + (b - center[1]) * (b - center[1]) - 2.25;
+      delta = beta * beta - 4 * alpha * c;
+      center[0] = (-beta - sqrt(delta)) / (2 * alpha);
+      get_inter(center[0], a * center[0] + b, inter, ward);
+    }
 }
 
 static void	get_surrounding(t_player *rec, char *dir, t_position *ward)
@@ -75,15 +78,15 @@ static void	get_surrounding(t_player *rec, char *dir, t_position *ward)
   fprintf(stderr, "orientation receveur %d coin-gauche %d\n", rec->direction, dir[0]);
   i = 0;
   while (++i < CASENBR - 1)
-    dir[i] = dir[i - 1] % (CASENBR - 1) + 1;
-  ward[0] = (t_position){rec->pos->x - 1, rec->pos->y - 1};
-  ward[1] = (t_position){rec->pos->x, rec->pos->y - 2};
-  ward[2] = (t_position){rec->pos->x + 1, rec->pos->y - 2};
-  ward[3] = (t_position){rec->pos->x + 2, rec->pos->y - 1};
-  ward[4] = (t_position){rec->pos->x + 2, rec->pos->y};
-  ward[5] = (t_position){rec->pos->x + 1, rec->pos->y + 1};
-  ward[6] = (t_position){rec->pos->x, rec->pos->y + 1};
-  ward[7] = (t_position){rec->pos->x - 1, rec->pos->y};
+    dir[i] = (dir[i - 1] - 1 > 0) ? dir[i - 1] - 1 : CASENBR - 1;
+  ward[TOP_LEFT - 1] = (t_position){rec->pos->x - 1, rec->pos->y - 1};
+  ward[TOP_MIDDLE - 1] = (t_position){rec->pos->x, rec->pos->y - 2};
+  ward[TOP_RIGHT - 1] = (t_position){rec->pos->x + 1, rec->pos->y - 2};
+  ward[MIDDLE_RIGHT - 1] = (t_position){rec->pos->x + 2, rec->pos->y - 1};
+  ward[BOTTOM_RIGHT - 1] = (t_position){rec->pos->x + 2, rec->pos->y};
+  ward[BOTTOM_MIDDLE - 1] = (t_position){rec->pos->x + 1, rec->pos->y + 1};
+  ward[BOTTOM_LEFT - 1] = (t_position){rec->pos->x, rec->pos->y + 1};
+  ward[MIDDLE_LEFT - 1] = (t_position){rec->pos->x - 1, rec->pos->y};
 }
 
 static void	get_message_dir(t_data *data, t_position *src,

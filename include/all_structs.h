@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Thu Jun 29 17:17:05 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 17:29:11 2017 Mathis Guilbon
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -39,14 +39,14 @@ enum
 
 enum
   {
-    TOP_LEFT = 1,
-    TOP_MIDDLE,
-    TOP_RIGHT,
-    MIDDLE_RIGHT,
-    BOTTOM_RIGHT,
-    BOTTOM_MIDDLE,
-    BOTTOM_LEFT,
+    TOP_MIDDLE = 1,
+    TOP_LEFT,
     MIDDLE_LEFT,
+    BOTTOM_LEFT,
+    BOTTOM_MIDDLE,
+    BOTTOM_RIGHT,
+    MIDDLE_RIGHT,
+    TOP_RIGHT,
     CASENBR
   };
 
