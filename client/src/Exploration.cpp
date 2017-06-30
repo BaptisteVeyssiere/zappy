@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Thu Jun 29 11:25:53 2017 Nathan Scutari
-// Last update Fri Jun 30 18:23:06 2017 Nathan Scutari
+// Last update Fri Jun 30 18:38:00 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -89,6 +89,7 @@ zappy::ICommand	*zappy::Exploration::needToLook(std::list<t_position> *list)
   int	look;
   int	nbr = 0;
 
+  std::cout << "-------------" << std::endl;
   for (std::list<t_position>::iterator it = list->begin() ;
        it != list->end() ; ++it)
     {

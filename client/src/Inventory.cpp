@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Thu Jun 22 22:02:54 2017 vigner_g
-// Last update Fri Jun 30 18:13:39 2017 Nathan Scutari
+// Last update Fri Jun 30 18:40:57 2017 Nathan Scutari
 //
 
 #include "Network.hpp"
@@ -91,5 +91,6 @@ std::map<std::string, int>	&zappy::Inventory::getInv()
 
 void	zappy::Inventory::addLook()
 {
-  ++look_time;
+  if (look_time >= 0)
+    ++look_time;
 }

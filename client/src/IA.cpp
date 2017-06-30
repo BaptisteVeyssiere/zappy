@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 18:50:41 2017 Nathan Scutari
-// Last update Fri Jun 30 18:21:33 2017 Nathan Scutari
+// Last update Fri Jun 30 18:37:56 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -37,11 +37,18 @@ zappy::ICommand	*zappy::IA::tryUp()
 
 zappy::ICommand *zappy::IA::refreshTile()
 {
-  for (auto it : mPlayer->getMap().getGrid())
-    for (auto itb : it)
-      {
-	itb.addLook();
-      }
+  int	width;
+  int	height;
+
+  height = mPlayer->getMap().getGrid().size();
+  width = mPlayer->getMap().getGrid()[0].size();
+  for (int y = 0 ; y < height ; ++y)
+    {
+      for (int x = 0 ; x < width ; ++x)
+	{
+	  mPlayer->getMap().access(y, x).addLook();
+	}
+    }
 }
 
 zappy::ICommand	*zappy::IA::makeAChoice()
