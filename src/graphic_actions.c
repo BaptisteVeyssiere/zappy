@@ -5,16 +5,16 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Thu Jun 29 15:39:06 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 15:55:55 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 17:15:01 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
 #include <strings.h>
 #include "server.h"
 
-static int	pin(t_data *data, t_player *player)
+int	pin(t_data *data, t_player *player)
 {
-  char		buff[50];
+  char	buff[50];
 
   if (data->network->graphic_fd == -1)
     return (0);

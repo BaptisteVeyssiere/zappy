@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Fri Jun 30 15:27:21 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 17:14:51 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -288,6 +288,7 @@ int	game_end(t_data *data);
 
 int	graphic_take(t_data *data, t_player *player, int type);
 int	graphic_put(t_data *data, t_player *player, int type);
+int	pin(t_data *data, t_player *player);
 
 /*
 ** graphic_cmd.c

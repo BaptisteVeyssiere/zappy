@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 21:12:34 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 17:18:29 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 16:37:01 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -88,6 +88,8 @@ static int	update_actions(t_player *player, t_data *data)
       free(player->pos);
       free(player->ringbuffer);
       free_actions(player->action);
+      if (pdi(data, player) == -1)
+	return (-1);
       free(player);
       return (1);
     }

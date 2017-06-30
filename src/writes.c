@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sat Jun 24 16:22:07 2017 Baptiste Veyssiere
-** Last update Sat Jun 24 16:27:11 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 16:20:35 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -31,6 +31,7 @@ int	socket_write(int fd, char *str)
   int	size;
   int	ret;
 
+  printf("%s\n", str);
   size = strlen(str);
   while (size > 0)
     {
