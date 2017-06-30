@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 17:17:59 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 15:27:21 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -288,5 +288,22 @@ int	game_end(t_data *data);
 
 int	graphic_take(t_data *data, t_player *player, int type);
 int	graphic_put(t_data *data, t_player *player, int type);
+
+/*
+** graphic_cmd.c
+*/
+
+int	pex(t_data *data, t_player *player);
+int	pie(t_data *data, unsigned int x, unsigned int y, int result);
+int	plv(t_data *data, t_player *player);
+int	pbc(t_data *data, t_player *player, char *message);
+
+/*
+** graphic_incantation.c
+*/
+
+int	pic_init(t_data *data, t_player *player);
+int	pic(t_data *data, t_player *player);
+int	pic_end(t_data *data);
 
 #endif /* !SERVER_H_ */

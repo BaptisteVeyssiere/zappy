@@ -52,7 +52,9 @@ SRC	= src/writes.c \
 	src/graphic_moves.c \
 	src/graphic_egg.c \
 	src/game_end.c \
-	src/graphic_actions.c
+	src/graphic_actions.c \
+	src/graphic_cmd.c \
+	src/graphic_incantation.c
 
 SRCDIR	= src
 

@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 16:38:50 2017 Mathis Guilbon
-** Last update Wed Jun 28 19:13:04 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 14:54:50 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -50,6 +50,8 @@ static bool	eject(t_data *data, t_player *player, t_position *off, char *buff)
   t_player	*tmp;
 
   tmp = data->players_root;
+  if (pex(data, player) == -1)
+    return (false);
   while (tmp != NULL)
     {
       if (tmp->pos->x == player->pos->x &&
@@ -62,6 +64,8 @@ static bool	eject(t_data *data, t_player *player, t_position *off, char *buff)
 	  ++data->map[off->y][off->x].players;
 	  tmp->pos->x = off->x;
 	  tmp->pos->y = off->y;
+	  if (ppo(tmp, data) == -1)
+	    return (false);
 	}
       tmp = tmp->next;
     }

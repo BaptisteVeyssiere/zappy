@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 15:45:08 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 17:18:42 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 14:55:50 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>
@@ -31,7 +31,7 @@ int			update_egg_status(t_data *data)
 	    return (-1);
 	  tmp->ready = 1;
 	  i = -1;
-	  while(data->team_list && data->team_list[++i])
+	  while (data->team_list && data->team_list[++i])
 	    if (strcmp(data->team_list[i]->name, tmp->team) == 0)
 	      ++(data->team_list[i]->free_slots);
 	}

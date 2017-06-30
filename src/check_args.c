@@ -1,11 +1,11 @@
 /*
 ** check_args.c for Project-Master in nathalie/rendu/network/PSU_2016_zappy/src
-** 
+**
 ** Made by Nathalie CAI
 ** Login   <nathalie.cai@epitech.eu>
-** 
+**
 ** Started on  Wed Jun 28 12:54:55 2017 Nathalie CAI
-** Last update Thu Jun 29 14:49:42 2017 Nathalie CAI
+** Last update Fri Jun 30 14:57:08 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -39,7 +39,10 @@ static char	*check_options(int ac, char **av)
   int	i;
   int	j;
   int	a;
-  char	*options[] = { "-p", "-x", "-y", "-n", "-c", "-f" };
+  char	*options[] =
+    {
+      "-p", "-x", "-y", "-n", "-c", "-f"
+    };
 
   i = 0;
   while (i < ac)
