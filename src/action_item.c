@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Thu Jun 29 17:26:21 2017 Mathis Guilbon
+** Last update Fri Jun 30 23:01:25 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -34,7 +34,8 @@ bool		action_take(t_data *data, t_player *player, char *prm)
       if (data->map[player->pos->y][player->pos->x].item[i] > 0)
 	{
 	  --data->map[player->pos->y][player->pos->x].item[i];
-	  respawn(data, i);
+	  if (respawn(data, i) == -1)
+	    return (-1);
 	}
       if (graphic_take(data, player, i) == -1)
 	return (false);

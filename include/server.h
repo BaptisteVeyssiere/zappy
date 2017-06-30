@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Fri Jun 30 17:14:51 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 22:54:03 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -259,7 +259,7 @@ int	get_command_duration(char *command);
 ** respawn.c
 */
 
-void	respawn(t_data *data, int type);
+int	respawn(t_data *data, int type);
 
 /*
 ** graphic_moves.c

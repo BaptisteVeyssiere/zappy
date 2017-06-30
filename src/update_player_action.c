@@ -5,9 +5,10 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 21:12:34 2017 Baptiste Veyssiere
-** Last update Fri Jun 30 16:37:01 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 18:48:22 2017 Baptiste Veyssiere
 */
 
+#include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include "server.h"
@@ -95,11 +96,14 @@ static int	update_actions(t_player *player, t_data *data)
     }
   while ((is_cmd = 0) == 0 &&
 	 (command = check_ring(player->ringbuffer, 0, &is_cmd)))
-    if (try_add_action(player, data, command) == -1)
-      {
-	free(command);
-	return (-1);
-      }
+    {
+      printf("<%s>\n", command);
+      if (try_add_action(player, data, command) == -1)
+	{
+	  free(command);
+	  return (-1);
+	}
+    }
   return (is_cmd != 0 ? -1 : 0);
 }
 
