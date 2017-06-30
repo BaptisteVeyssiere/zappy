@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Thu Jun 29 17:26:21 2017 Mathis Guilbon
+** Last update Fri Jun 30 16:45:55 2017 Mathis Guilbon
 */
 
 #include <string.h>
@@ -87,9 +87,34 @@ bool		action_inventory(UNUSED t_data *data, t_player *player, UNUSED char *prm)
   return (socket_write(player->fd, buff) != -1);
 }
 
+static bool	upgrade_player(t_data *data, t_player *player, bool success)
+{
+  t_player	*tmp;
+  char		buff[32];
+  
+  tmp = data->players_root;
+  snprintf(buff, 32, "ko\n");
+  if (success)
+    snprintf(buff, 32, "Current level: %d\n", player->level + 1);
+  while (tmp != NULL)
+    {
+      if (tmp->pos->x == player->pos->x &&
+	  tmp->pos->y == player->pos->y &&
+	  tmp->level == player->level)
+	{
+	  if (success)
+	    ++tmp->level;
+	  if (socket_write(tmp->fd, buff) == -1)
+	    return (false);
+	}
+      tmp = tmp->next;
+    }
+  return (true);
+}
+
 bool		action_incantation(t_data *data, t_player *player, UNUSED char *prm)
 {
-  char		buff[32];
+  bool		ret;
   static  bool    (*incant[7])(t_data *, t_player *) =
     {
       upgrade_to_lvl2,
@@ -101,9 +126,6 @@ bool		action_incantation(t_data *data, t_player *player, UNUSED char *prm)
       upgrade_to_lvl8
     };
 
-  if (!(incant[player->level - 1])(data, player))
-    return (socket_write(player->fd, "ko\n"));
-  upgrade_player(data, player);
-  snprintf(buff, 32, "Current level: %d\n", player->level);
-  return (socket_write(player->fd, buff) != -1);
+  ret = (incant[player->level - 1])(data, player);
+  return (upgrade_player(data, player, ret));
 }

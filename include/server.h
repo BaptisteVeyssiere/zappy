@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Fri Jun 30 15:27:21 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 16:30:14 2017 Mathis Guilbon
 */
 
 #ifndef SERVER_H_
@@ -184,7 +184,7 @@ bool		action_eject(t_data *, t_player *, char *);
 **	incantation.c
 */
 
-void		upgrade_player(t_data *, t_player *);
+bool		incant_underway(t_data *, t_player *);
 bool		enough_people(t_data *, t_player *, unsigned int);
 bool		upgrade_to_lvl2(t_data *, t_player *);
 bool		upgrade_to_lvl3(t_data *, t_player *);

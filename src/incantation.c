@@ -5,13 +5,13 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Sun Jun 24 14:10:14 2017 Mathis Guilbon
-** Last update Thu Jun 29 17:20:36 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 16:30:20 2017 Mathis Guilbon
 */
 
 #include <unistd.h>
 #include "server.h"
 
-void		upgrade_player(t_data *data, t_player *player)
+bool		incant_underway(t_data *data, t_player *player)
 {
   t_player	*tmp;
 
@@ -20,10 +20,12 @@ void		upgrade_player(t_data *data, t_player *player)
     {
       if (tmp->pos->x == player->pos->x &&
 	  tmp->pos->y == player->pos->y &&
-	  tmp->level == player->level)
-	++tmp->level;
+	  tmp->level == player->level &&
+	  socket_write(tmp->fd, "Elevation underway\n") == -1)
+	return (false);
       tmp = tmp->next;
     }
+  return (true);
 }
 
 bool		enough_people(t_data *data, t_player *player, unsigned int needed)

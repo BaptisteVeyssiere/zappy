@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 14:40:30 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 17:21:44 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 16:32:04 2017 Mathis Guilbon
 */
 
 #include <stdio.h>
@@ -54,7 +54,6 @@ static bool	get_next_valid_action(t_data *data, t_player *tmp)
 
 static bool	check_incant(t_player *tmp, t_data *data)
 {
-  bool		ret;
   static  bool    (*incant[7])(t_data *, t_player *) =
     {
       upgrade_to_lvl2,
@@ -71,9 +70,10 @@ static bool	check_incant(t_player *tmp, t_data *data)
       tmp->action->incant_checked = 1;
       if (strncmp(tmp->action->action, "Incantation", 11) == 0)
 	{
-	  ret = (incant[tmp->level - 1])(data, tmp);
-	  if (socket_write(tmp->fd, ret ? "Elevation underway\n" : "ko\n") == -1)
-	    return (false);
+	  if (!(incant[tmp->level - 1])(data, tmp))
+	    return (socket_write(tmp->fd, "ko\n") != -1);
+	  else
+	    return (incant_underway(data, tmp));
 	}
     }
   return (true);
