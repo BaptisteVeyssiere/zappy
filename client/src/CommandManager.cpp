@@ -5,11 +5,39 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 26 10:11:32 2017 Nathan Scutari
-// Last update Wed Jun 28 16:46:34 2017 vigner_g
+// Last update Fri Jun 30 18:11:08 2017 vigner_g
 //
 
 #include <iostream>
+#include <functional>
 #include "CommandManager.hpp"
+#include "fptr.hpp"
+#include "Player.hpp"
+
+void	getMyId(std::string &msg, zappy::Player &player)
+{
+  std::cout << "getMyId: " << msg << std::endl;
+}
+void	elevation(std::string &msg, zappy::Player &player)
+{
+  std::cout << "elevation: " << msg << std::endl;
+}
+void	broadcastInventory(std::string &msg, zappy::Player &player)
+{
+  std::cout << "broadcastInventory: " << msg << std::endl;
+}
+void	playerConnecting(std::string &msg, zappy::Player &player)
+{
+  std::cout << "PlayerIsFree: " << msg << std::endl;
+}
+void	playerIsFree(std::string &msg, zappy::Player &player)
+{
+  std::cout << "PlayerIsFree: " << msg << std::endl;
+}
+void	comeMyFriend(std::string &msg, zappy::Player &player)
+{
+  std::cout << "comeMyFriend: " << msg << std::endl;
+}
 
 zappy::CommandManager::CommandManager()
   :refs({"message", "eject", "dead"})
@@ -44,7 +72,21 @@ bool	zappy::CommandManager::isResponse(std::string &msg)
   return (true);
 }
 
-void	zappy::CommandManager::analyseData( std::string &msg, Player &player)
+void	zappy::CommandManager::analyseData(std::string &msg, Player &player)
 {
-  //mlkjhgfd
+  std::map<std::string, std::function<void(std::string &, Player &)>>        fptr;
+
+  fptr["YourId"] = getMyId;
+  fptr["Elevation"] = elevation;
+  fptr["Inventory"] = broadcastInventory;
+  fptr["Hello"] = playerConnecting;
+  fptr["Free"] = playerIsFree;
+  fptr["Come"] = comeMyFriend;
+  for (auto it = fptr.begin(); it != fptr.end(); it ++)
+    {
+      auto fi = msg.find(it->first);
+      if (fi != std::string::npos)
+  	it->second(msg, player);
+    }
+
 }

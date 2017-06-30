@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Wed Jun 28 17:03:27 2017 vigner_g
+// Last update Thu Jun 29 16:20:53 2017 vigner_g
 //
 
 #include <math.h>
@@ -16,7 +16,7 @@
 
 zappy::Player::Player(World &world)
   : id(0), lvl(1), pos(), facing(0, 1), food(10), OwnInventory(),
-    CommonInventory(), map(), teamNbPlayer(1), nbOfEgg(0), slot(0)
+    commonInventory(), map(), teamNbPlayer(1), nbOfEgg(0), slot(0)
 {
   map.setSize(world.width, world.height);
   slot = world.client_num;
@@ -52,9 +52,22 @@ zappy::Inventory &zappy::Player::getOwnInventory()
   return (this->OwnInventory);
 }
 
-zappy::Inventory &zappy::Player::getSharedInventory()
+std::map<int, zappy::Inventory>	 &zappy::Player::getCommonInventory()
 {
-  return (this->CommonInventory);
+  return (this->commonInventory);
+}
+
+void		zappy::Player::addToCommonInventory(int lvl, std::string item, int nbr)
+{
+  this->commonInventory[lvl].addItem(item, nbr);
+}
+
+void		zappy::Player::resetCommonInventory()
+{
+  for (auto it = this->commonInventory.begin(); it != this->commonInventory.end(); it++)
+    commonInventory[it->first].reset();
+  for (auto it2 = this->OwnInventory.getInv().begin(); it2 != this->OwnInventory.getInv().end(); it2++)
+    addToCommonInventory(this->lvl, it2->first, it2->second);
 }
 
 t_position	&zappy::Player::getFacing()
