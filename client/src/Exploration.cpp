@@ -5,9 +5,10 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Thu Jun 29 11:25:53 2017 Nathan Scutari
-// Last update Thu Jun 29 19:15:32 2017 Nathan Scutari
+// Last update Fri Jun 30 15:46:09 2017 Nathan Scutari
 //
 
+#include <iostream>
 #include "Exploration.hpp"
 #include "C_Look.hpp"
 #include "C_Forward.hpp"
@@ -29,6 +30,32 @@ zappy::Exploration::~Exploration()
 void	zappy::Exploration::init(Player *player)
 {
   mPlayer = player;
+}
+
+std::list<t_position>	*zappy::Exploration::getVision(Player &player)
+{
+  int			x = 0;
+  int			y = 0;
+  t_position		relat;
+  t_position		tmp;
+  std::list<t_position>	*list = new std::list<t_position>;
+
+  tmp.x = player.getPosition().x;
+  tmp.y = player.getPosition().y;
+  list->push_back(tmp);
+  for (int i = 0 ; i < player.getLvl() ; ++i)
+    {
+      y -= 1;
+      x -= 1;
+      for (int n = x ; n < 1 + (i + 1) ; ++n)
+	{
+	  relat.x = n;
+	  relat.y = y;
+	  tmp = player.getAbsolutePos(relat);
+	  list->push_back(tmp);
+	}
+    }
+  return (list);
 }
 
 std::list<t_position>	*zappy::Exploration::getVision()
@@ -69,15 +96,22 @@ zappy::ICommand	*zappy::Exploration::needToLook(std::list<t_position> *list)
 	  look == -1)
 	++nbr;
     }
-  return ((nbr >= 4 + mPlayer->getLvl()) ? new C_Look : NULL);
+  return ((nbr >= 3 + mPlayer->getLvl()) ? new C_Look : NULL);
 }
 
 bool	zappy::Exploration::objectOnSelf() const
 {
-  if (mPlayer->getMap().access(mPlayer->getPosition().y,
-			       mPlayer->getPosition().x).isEmpty())
-    return (false);
-  return (true);
+  bool	empty = false;
+
+  std::cout << "Object on self:" << std::endl;
+  for (auto it : mPlayer->getMap().access(mPlayer->getPosition().y,
+					  mPlayer->getPosition().x).getInv())
+    {
+      std::cout << it.first << " - " << it.second << std::endl;
+      if (it.second > 0)
+	empty = true;
+    }
+  return (empty);
 }
 
 zappy::ICommand	*zappy::Exploration::takeObject()
@@ -85,8 +119,10 @@ zappy::ICommand	*zappy::Exploration::takeObject()
   ICommand	*choice = new C_Take;
   Inventory	&tile = mPlayer->getMap().access(mPlayer->getPosition().y,
 					       mPlayer->getPosition().x);
+  std::map<std::string, int>::iterator it;
 
-  if (tile.getInv().find("food") != tile.getInv().end())
+  if ((it = tile.getInv().find("food")) != tile.getInv().end() &&
+      it->second > 0)
     {
       choice->addArg("food");
       return (choice);
@@ -100,7 +136,6 @@ zappy::ICommand	*zappy::Exploration::takeObject()
 	  return (choice);
 	}
     }
-
   delete choice;
   return (NULL);
 }
@@ -139,18 +174,14 @@ void			zappy::Exploration::fillOrientations(t_position &pos,
 							     t_position &dest,
 							     bool orient[4])
 {
-  orient[0] = true;
-  if (dest.y > pos.y)
-    {
-      orient[2] = true;
-      orient[0] = false;
-    }
-  orient[3] = true;
-  if (dest.x > pos.x)
-    {
-      orient[1] = true;
-      orient[3] = false;
-    }
+  if (dest.y < pos.y)
+    orient[0] = true;
+  else if (dest.y > pos.y)
+    orient[2] = true;
+  if (dest.x < pos.x)
+    orient[3] = true;
+  else if (dest.x > pos.x)
+    orient[1] = true;
 }
 
 int			zappy::Exploration::getRightOrientation(zappy::tileValue &tile,
@@ -162,11 +193,13 @@ int			zappy::Exploration::getRightOrientation(zappy::tileValue &tile,
   int	playerAngle = mPlayer->facingToAngle();
 
   fillOrientations(pos, dest, orientations);
+  std::cout << "Dest: " << dest.x << " - " << dest.y << std::endl;
   if (orientations[playerAngle / 90] == true)
     return (playerAngle);
-  if (orientations[angle = playerAngle + 90 % 360] == true)
+  std::cout << "Ah" << std::endl;
+  if (orientations[(angle = (playerAngle + 90) % 360) / 90] == true)
     tile.path.push(new C_TurnRight);
-  else if (orientations[angle = (playerAngle - 90) < 0 ? 270 : playerAngle - 90]
+  else if (orientations[(angle = (playerAngle - 90) < 0 ? 270 : playerAngle - 90) / 90]
 	   == true)
     tile.path.push(new C_TurnLeft);
   else
@@ -243,6 +276,28 @@ void			zappy::Exploration::moveToPos(zappy::tileValue &tile)
     return ;
   new_angle = getRightOrientation(tile, pos, dest);
   tmp = pos;
+  if (tmp.x == dest.x && tmp.y != dest.y)
+    {
+      while (tmp.y != dest.y)
+	{
+	  if (tmp.y > dest.y)
+	    --tmp.y;
+	  else
+	    ++tmp.y;
+	tile.path.push(new C_Forward);
+	}
+    }
+  else if (tmp.y == dest.y && tmp.x != dest.x)
+    {
+      while (tmp.x != dest.x)
+	{
+	  if (tmp.x > dest.x)
+	    --tmp.x;
+	  else
+	    ++tmp.x;
+	  tile.path.push(new C_Forward);
+	}
+    }
   while (tmp.x != dest.x && tmp.y != dest.y)
     {
       if (new_angle == 270)
@@ -265,14 +320,16 @@ std::list<zappy::tileValue>	*zappy::Exploration::fillValues(std::list<t_position
   std::map<std::string, int>	tile;
   Inventory			inv;
   tileValue			tmp;
-  std::list<tileValue>	*tiles = new std::list<tileValue>(list->size());
+  std::list<tileValue>	*tiles = new std::list<tileValue>();
 
   for (std::list<t_position>::iterator it = list->begin() ; it != list->end() ;
        ++it)
     {
       inv = mPlayer->getMap().access((*it).y, (*it).x);
       tile = inv.getInv();
-      tmp.value = (inv.getLook() > 0) ? inv.getLook() / 4 : 300;
+      tmp.value = (inv.getLook() >= 0) ? inv.getLook() / 4 : 300;
+      while (!tmp.path.empty())
+	tmp.path.pop();
       for (std::map<std::string, int>::iterator it = tile.begin() ;
 	   it != tile.end() ; ++it)
 	{
@@ -280,10 +337,11 @@ std::list<zappy::tileValue>	*zappy::Exploration::fillValues(std::list<t_position
 	    tmp.value -= it->second * foodValue();
 	  else
 	    tmp.value -= it->second;
-	  moveToPos(tmp);
-	  tmp.value += tmp.path.size();
-	  tiles->push_back(tmp);
 	}
+      tmp.pos = *it;
+      moveToPos(tmp);
+      tmp.value += tmp.path.size();
+      tiles->push_back(tmp);
     }
   return (tiles);
 }
@@ -294,6 +352,7 @@ void		zappy::Exploration::createPath()
   std::list<tileValue>	*values;
   tileValue	        tile;
 
+  std::cout << "Creating path" << std::endl;
   list = getNearbyPos();
   values = fillValues(list);
   tile = values->front();
@@ -303,6 +362,7 @@ void		zappy::Exploration::createPath()
       if (it->value < tile.value)
 	tile = *it;
     }
+  std::cout << tile.pos.x << " - " << tile.pos.y << std::endl;
   path = tile.path;
   values->clear();
 }
@@ -311,7 +371,9 @@ zappy::ICommand	*zappy::Exploration::explore()
 {
   ICommand		*choice = NULL;
 
-  if (!path.empty() && objectOnSelf())
+  std::cout << "My pos:" << mPlayer->getPosition().x << " - " <<
+    mPlayer->getPosition().y << std::endl;
+  if (path.empty() && objectOnSelf())
     return (takeObject());
   else if (!path.empty())
     {
@@ -321,6 +383,7 @@ zappy::ICommand	*zappy::Exploration::explore()
     }
   if ((choice = needToLook(getVision())))
     return (choice);
+  std::cout << "Looking for a new position" << std::endl;
   createPath();
   if (path.empty())
     return (takeObject());

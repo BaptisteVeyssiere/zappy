@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Wed Jun 28 16:58:21 2017 vigner_g
+// Last update Thu Jun 29 21:07:26 2017 Nathan Scutari
 
 #include "Inventory.hpp"
 #include "Network.hpp"

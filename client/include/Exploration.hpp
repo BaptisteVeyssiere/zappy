@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Thu Jun 29 11:18:57 2017 Nathan Scutari
-// Last update Thu Jun 29 17:18:59 2017 Nathan Scutari
+// Last update Fri Jun 30 15:32:06 2017 Nathan Scutari
 //
 
 #ifndef __EXPLORATION_HPP__
@@ -45,13 +45,12 @@ namespace zappy
     ~Exploration();
 
   private:
-    ICommand			*needToLook(std::list<t_position> *);
     std::list<t_position>	*getVision();
+    ICommand			*needToLook(std::list<t_position> *);
     bool			objectOnSelf() const;
     ICommand			*takeObject();
     void			createPath();
     std::list<tileValue>	*fillValues(std::list<t_position> *);
-    void			moveToPos(tileValue &);
     void			moveToDest(tileValue &, t_position &,
 					   t_position &, t_position &);
     void			getOrientation(tileValue &, t_position &,
@@ -65,8 +64,10 @@ namespace zappy
     std::list<t_position>	*getNearbyPos();
 
   public:
+    static std::list<t_position>	*getVision(Player&);
     void			init(Player *);
     ICommand			*explore();
+    void			moveToPos(tileValue &);
   };
 }
 

@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Thu Jun 22 22:02:54 2017 vigner_g
-// Last update Thu Jun 29 14:22:58 2017 Nathan Scutari
+// Last update Thu Jun 29 19:39:44 2017 Nathan Scutari
 //
 
 #include "Network.hpp"
@@ -26,7 +26,7 @@ void	zappy::Inventory::addItem(std::string item)
   if (it != this->inv.end())
     this->inv[it->first] += 1;
   else
-    this->inv[it->first] = 1;
+    this->inv[item] = 1;
 }
 
 void	zappy::Inventory::reset()

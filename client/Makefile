@@ -5,7 +5,7 @@
 ## Login   <vigner_g@epitech.net>
 ##
 ## Started on  Tue Jun 27 17:24:20 2017 vigner_g
-## Last update Thu Jun 29 19:16:36 2017 Nathan Scutari
+## Last update Thu Jun 29 19:22:13 2017 Nathan Scutari
 ##
 
 NAME		= zappy_ai
@@ -14,7 +14,7 @@ RM		= rm -f
 
 CXX		= g++
 
-CXXFLAGS	= -W -Wall -Wextra -std=c++14 -I./include/ -Weffc++
+CXXFLAGS	= -W -Wall -Wextra -std=c++14 -I./include/ -Weffc++ -g
 
 MKDIR		= mkdir -p
 

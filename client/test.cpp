@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Wed Jun 28 16:52:34 2017 Nathan Scutari
-// Last update Thu Jun 29 19:06:55 2017 Nathan Scutari
+// Last update Fri Jun 30 15:43:30 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -18,31 +18,28 @@
 
 int	main(int ac, char **av)
 {
-  std::list<zappy::ICommand *>	*list = new std::list<zappy::ICommand *>;
-  std::list<zappy::ICommand *>	listb;
-
-  list->push_back(new zappy::C_Forward);
-  listb = *list;
-  delete list;
-  std::cout << listb.front()->getStr() << std::endl;
-  /*  zappy::World		data;
+  zappy::tileValue	tile;
+  zappy::World	info;
   zappy::Player	*player;
-  t_position	pos;
-  zappy::Exploration	explore;
-  std::list<t_position>	*list;
+  zappy::Exploration	exploration;
 
-  data.width = 10;
-  data.height = 10;
-  data.client_num = 2;
-  player = new zappy::Player(data);
-  explore.init(player);
-  for (int x = 1 ; x < 8 ; ++x)
-    player->AddALvl();
-  list = explore.getVision();
-  for (std::list<t_position>::iterator it = list->begin() ;
-	 it != list->end() ; ++it)
+  info.width = 10;
+  info.height = 10;
+  info.client_num = 2;
+  player = new zappy::Player(info);
+  exploration.init(player);
+  tile.pos.x = 0;
+  tile.pos.y = 3;
+  exploration.moveToPos(tile);
+  while (!tile.path.empty())
     {
-      std::cout << (*it).y << " - " << (*it).x << std::endl;
-      }*/
+      if (tile.path.front()->getStr() == "Forward")
+	std::cout << "Forward" << std::endl;
+      else if (tile.path.front()->getStr() == "Right")
+	std::cout << "Right"  << std::endl;
+      else
+	std::cout << "Left" << std::endl;
+      tile.path.pop();
+    }
   return (0);
 }
