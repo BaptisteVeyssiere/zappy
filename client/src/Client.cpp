@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:12 2017 Nathan Scutari
-// Last update Thu Jun 29 21:41:43 2017 Nathan Scutari
+// Last update Fri Jun 30 17:22:01 2017 Nathan Scutari
 //
 
 #include <unistd.h>
@@ -63,9 +63,8 @@ void	zappy::Client::launch()
 	}
       if (!choice)
 	{
-	  choice = ia.makeAChoice();
-	  std::cout << "Sending: " << choice->getStr() << std::endl;
-	  mNet.sendMsg(choice->getStr());
+	  if ((choice = ia.makeAChoice()))
+	    mNet.sendMsg(choice->getStr());
 	}
       usleep(100);
       }

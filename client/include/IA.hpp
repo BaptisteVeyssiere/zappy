@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 17:58:03 2017 Nathan Scutari
-// Last update Thu Jun 29 11:32:32 2017 Nathan Scutari
+// Last update Fri Jun 30 18:12:23 2017 Nathan Scutari
 //
 
 #ifndef __IA_HPP__
@@ -31,6 +31,10 @@ namespace zappy
   public:
     IA();
     ~IA();
+
+  private:
+    ICommand	*refreshTile();
+    ICommand	*tryUp();
 
   public:
     void	init(Player *);

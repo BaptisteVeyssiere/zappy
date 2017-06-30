@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:19:58 2017 vigner_g
-// Last update Thu Jun 29 14:22:39 2017 Nathan Scutari
+// Last update Fri Jun 30 18:13:09 2017 Nathan Scutari
 //
 
 
@@ -26,6 +26,7 @@ namespace	zappy
     Inventory();
     ~Inventory();
     void	refreshLook();
+    void	addLook();
     int		getLook();
     void	reset();
     void	reset(Inventory &other);

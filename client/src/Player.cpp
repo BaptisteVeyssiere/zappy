@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Thu Jun 29 15:35:30 2017 Nathan Scutari
+// Last update Fri Jun 30 16:29:52 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -74,10 +74,10 @@ int		zappy::Player::facingToAngle()
   static int		angle[] = {0, 90, 180, 270};
   static t_position	facing[] =
     {
-      {-1, 0},
-      {0, 1},
+      {0, -1},
       {1, 0},
-      {0, -1}
+      {0, 1},
+      {-1, 0}
     };
 
 

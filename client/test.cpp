@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Wed Jun 28 16:52:34 2017 Nathan Scutari
-// Last update Fri Jun 30 15:43:30 2017 Nathan Scutari
+// Last update Fri Jun 30 16:00:18 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -28,8 +28,8 @@ int	main(int ac, char **av)
   info.client_num = 2;
   player = new zappy::Player(info);
   exploration.init(player);
-  tile.pos.x = 0;
-  tile.pos.y = 3;
+  tile.pos.x = -1;
+  tile.pos.y = 1;
   exploration.moveToPos(tile);
   while (!tile.path.empty())
     {
