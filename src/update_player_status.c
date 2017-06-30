@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 20:24:46 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 17:19:02 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 17:18:49 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>
@@ -104,6 +104,8 @@ int	update_player_status(t_data *data)
 	  if (tmp->inventory->item[FOOD] == 0)
 	    return (player_death(tmp, data));
 	  tmp->inventory->item[FOOD] -= 1;
+	  if (pin(data, tmp) == -1)
+	    return (-1);
 	  tmp->life = current_time + (126.0 / data->freq) * 1000;
 	}
       tmp = tmp->next;

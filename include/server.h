@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Fri Jun 30 16:30:14 2017 Mathis Guilbon
+** Last update Fri Jun 30 23:56:07 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -259,7 +259,7 @@ int	get_command_duration(char *command);
 ** respawn.c
 */
 
-void	respawn(t_data *data, int type);
+int	respawn(t_data *data, int type);
 
 /*
 ** graphic_moves.c
@@ -288,6 +288,7 @@ int	game_end(t_data *data);
 
 int	graphic_take(t_data *data, t_player *player, int type);
 int	graphic_put(t_data *data, t_player *player, int type);
+int	pin(t_data *data, t_player *player);
 
 /*
 ** graphic_cmd.c

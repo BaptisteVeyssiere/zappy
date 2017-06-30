@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Fri Jun 30 16:45:55 2017 Mathis Guilbon
+** Last update Fri Jun 30 23:55:26 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -34,7 +34,8 @@ bool		action_take(t_data *data, t_player *player, char *prm)
       if (data->map[player->pos->y][player->pos->x].item[i] > 0)
 	{
 	  --data->map[player->pos->y][player->pos->x].item[i];
-	  respawn(data, i);
+	  if (respawn(data, i) == -1)
+	    return (-1);
 	}
       if (graphic_take(data, player, i) == -1)
 	return (false);
@@ -91,7 +92,7 @@ static bool	upgrade_player(t_data *data, t_player *player, bool success)
 {
   t_player	*tmp;
   char		buff[32];
-  
+
   tmp = data->players_root;
   snprintf(buff, 32, "ko\n");
   if (success)

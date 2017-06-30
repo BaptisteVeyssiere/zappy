@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 02:09:52 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 21:47:57 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 22:42:54 2017 Baptiste Veyssiere
 */
 
 #include <strings.h>
@@ -49,8 +49,12 @@ static int	ring_in_buff(char *buff, char *str, int pos)
 	}
       buff[++i] = str[pos];
       str[pos] = 0;
-      if (++pos == RINGLENGTH)
-	pos = 0;
+      if (++pos >= RINGLENGTH)
+	{
+	  if (pos > RINGLENGTH)
+	    printf("ERROR1\n");
+	  pos = 0;
+	}
     }
   buff[++i] = 0;
   buff[++i] = 0;
@@ -77,13 +81,17 @@ char		*check_ring(t_ringbuffer *ringbuffer, char first, int *is_cmd)
   int		tmp;
 
   bzero(buff, RINGLENGTH + 1);
-  tmp = ringbuffer->read_ptr;
+  tmp = ringbuffer->read_ptr == RINGLENGTH ? 0 : ringbuffer->read_ptr;
   while ((first == 0 || (ringbuffer->read_ptr != tmp)) &&
 	 ringbuffer->data[ringbuffer->read_ptr] != 0)
     {
       first = 1;
-      if (ringbuffer->read_ptr == RINGLENGTH)
-	ringbuffer->read_ptr = 0;
+      if (ringbuffer->read_ptr >= RINGLENGTH)
+	{
+	  if (ringbuffer->read_ptr > RINGLENGTH)
+	    printf("ERROR2\n");
+	  ringbuffer->read_ptr = 0;
+	}
       if (ringbuffer->data[ringbuffer->read_ptr] == '\n')
 	{
 	  ++ringbuffer->read_ptr;
