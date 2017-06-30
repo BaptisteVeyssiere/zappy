@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Fri Jun 30 23:55:26 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 00:20:10 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -95,6 +95,8 @@ static bool	upgrade_player(t_data *data, t_player *player, bool success)
 
   tmp = data->players_root;
   snprintf(buff, 32, "ko\n");
+  if (pie(data, player->pos->x, player->pos->y, success == false ? 0 : 1) == -1)
+    return (false);
   if (success)
     snprintf(buff, 32, "Current level: %d\n", player->level + 1);
   while (tmp != NULL)
@@ -105,12 +107,13 @@ static bool	upgrade_player(t_data *data, t_player *player, bool success)
 	{
 	  if (success)
 	    ++tmp->level;
-	  if (socket_write(tmp->fd, buff) == -1)
+	  if (socket_write(tmp->fd, buff) == -1 ||
+	      plv(data, tmp) == -1)
 	    return (false);
 	}
       tmp = tmp->next;
     }
-  return (true);
+  return (bct(data) == -1 ? false : true);
 }
 
 bool		action_incantation(t_data *data, t_player *player, UNUSED char *prm)

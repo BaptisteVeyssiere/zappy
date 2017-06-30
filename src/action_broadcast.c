@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Fri Jun 30 18:38:11 2017 Mathis Guilbon
+** Last update Sat Jul  1 00:36:48 2017 Baptiste Veyssiere
 */
 
 #include <math.h>
@@ -129,6 +129,8 @@ bool		action_broadcast(t_data *data, t_player *player, char *prm)
 
   tmp = data->players_root;
   snprintf(buff, MSG_LEN, "message 0, %s\n", prm);
+  if (pbc(data, player, prm) == -1)
+    return (false);
   while (tmp != NULL)
     {
       if (tmp != player)
