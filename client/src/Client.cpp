@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:12 2017 Nathan Scutari
-// Last update Wed Jun 28 16:50:39 2017 Nathan Scutari
+// Last update Fri Jun 30 17:22:01 2017 Nathan Scutari
 //
 
 #include <unistd.h>
@@ -40,6 +40,7 @@ void	zappy::Client::launch()
 {
   std::string	server_msg;
 
+  ia.init(&(*player));
   std::cout << "Starting game loop" << std::endl;
   while (1)
     {
@@ -52,16 +53,18 @@ void	zappy::Client::launch()
 	    throw client_exception("Unexpected server msg", __LINE__, __FILE__);
 	  else if (choice)
 	    {
+	      std::cout << "Received: " << server_msg << std::endl;
 	      if (choice->getResponse(*player, server_msg))
 		choice = NULL;
+	      std::cout << "\n" << std::endl;
 	    }
 	  else
 	    mCmdMgr.analyseData(server_msg, *player);
 	}
       if (!choice)
 	{
-	  choice = ia.makeAChoice(*player);
-	  mNet.sendMsg(choice->getStr());
+	  if ((choice = ia.makeAChoice()))
+	    mNet.sendMsg(choice->getStr());
 	}
       usleep(100);
       }

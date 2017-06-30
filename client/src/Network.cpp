@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:35 2017 Nathan Scutari
-// Last update Tue Jun 27 22:02:32 2017 Nathan Scutari
+// Last update Fri Jun 30 17:22:25 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -64,6 +64,7 @@ void	zappy::Network::sendMsg(std::string &msg) const
   ssize_t	ret;
   int		size;
 
+  std::cout << "Sending: " << msg << std::endl;
   msg += '\n';
   if (server_fd == -1)
     throw client_exception("Connection to server lost", __LINE__, __FILE__);

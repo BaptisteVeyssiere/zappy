@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Thu Jun 29 16:10:47 2017 vigner_g
+// Last update Fri Jun 30 19:01:09 2017 vigner_g
 //
 
 #ifndef __PLAYER_HPP__
@@ -17,8 +17,6 @@
 #include "Network.hpp"
 #include "Inventory.hpp"
 #include "Map.hpp"
-
-//direction north 0 west 1 south 2 east 3
 
 namespace	zappy
 {
@@ -45,14 +43,12 @@ namespace	zappy
     Player(World &);
     ~Player();
 
-  private:
-    int		facingToAngle();
-
   public:
     void	SetTeamNbPlayer(int nb);
     void	SetId(int id);
     void	AddALvl();
     void	setFood(int nbr);
+    int		facingToAngle();
 
   public:
     Inventory	&getOwnInventory();
@@ -65,6 +61,7 @@ namespace	zappy
     Map		&getMap();
     int		&getLvl();
     int		&getSlot();
+    int		&getFood();
   };
 }
 

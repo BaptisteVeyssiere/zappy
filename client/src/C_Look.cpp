@@ -5,11 +5,13 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:25:31 2017 vigner_g
-// Last update Wed Jun 28 16:29:49 2017 vigner_g
+// Last update Fri Jun 30 22:30:19 2017 vigner_g
 //
 
+#include <iostream>
 #include "C_Look.hpp"
 #include "Exception.hpp"
+#include "Exploration.hpp"
 #include <string>
 
 zappy::C_Look::C_Look()
@@ -54,30 +56,39 @@ bool		zappy::C_Look::getResponse(Player &player, std::string &response)
 {
   std::string	sub;
   std::string	sub2;
-  int		j;
-  int		size;
-  int		k;
+  std::list<t_position> *p;
 
-  j = 1;
-  size = 1;
   response.erase(0, 1);
   response.erase(response.size() - 1 , response.size());
-  while ((sub = getSubString(response, ",")) != "*end*" && response.size() > 0 && j < player.getLvl())
+  std::cout << "Look response" << std::endl;
+  p = Exploration::getVision(player);
+  std::list<t_position>::iterator it = p->begin();
+  while ((sub = getSubString(response, ",")) != "*end*" && response.size() > 0)
     {
-      k = (-size / 2);
-      while (k <= (size / 2))
+      player.getMap().access(it->y, it->x).refreshLook();
+      while ((sub2 = getSubString(sub, " ")) != "*end*" && sub.size() > 0)
 	{
-	  while ((sub2 = getSubString(sub, " ")) != "*end*" && sub2.size() > 0)
+	  if (sub2 != "player" && sub2 != " " && !(sub2.empty()))
 	    {
-	      player.getMap().access
-		(player.getPosition().x + (j * player.getFacing().y) + (player.getFacing().x * k),
-		 player.getPosition().y + (j * player.getFacing().x) + (player.getFacing().y * k))
-		.addItem(sub2);
+	      player.getMap().access(it->y, it->x).addItem(sub2);
 	    }
-	  k += 1;
 	}
-      j += 1;
-      size += 2;
+      if (sub2 != "player" && sub2 != " " && !(sub2.empty()))
+	{
+	  player.getMap().access(it->y, it->x).addItem(sub2);
+	}
+      it++;
+    }
+  while ((sub2 = getSubString(sub, " ")) != "*end*" && sub.size() > 0)
+    {
+      if (sub2 != "player" && sub2 != " " && !(sub2.empty()))
+	{
+	  player.getMap().access(it->y, it->x).addItem(sub2);
+	}
+    }
+  if (sub2 != "player" && sub2 != " " && !(sub2.empty()))
+    {
+      player.getMap().access(it->y, it->x).addItem(sub2);
     }
   return (true);
 }

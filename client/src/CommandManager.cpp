@@ -5,13 +5,12 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 26 10:11:32 2017 Nathan Scutari
-// Last update Fri Jun 30 18:11:08 2017 vigner_g
+// Last update Fri Jun 30 19:03:29 2017 vigner_g
 //
 
 #include <iostream>
 #include <functional>
 #include "CommandManager.hpp"
-#include "fptr.hpp"
 #include "Player.hpp"
 
 void	getMyId(std::string &msg, zappy::Player &player)

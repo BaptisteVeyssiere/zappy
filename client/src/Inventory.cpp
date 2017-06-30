@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Thu Jun 22 22:02:54 2017 vigner_g
-// Last update Fri Jun 30 15:10:40 2017 vigner_g
+// Last update Fri Jun 30 23:04:57 2017 vigner_g
 //
 
 #include "Network.hpp"
@@ -67,6 +67,16 @@ void		zappy::Inventory::broadcast()
     std::cout << it->first << " => " << it->second << std::endl;
 }
 
+void	zappy::Inventory::refreshLook()
+{
+  look_time = 0;
+}
+
+int		zappy::Inventory::getLook()
+{
+  return (look_time);
+}
+
 int		zappy::Inventory::delItem(std::string item)
 {
   auto it = this->inv.find(item);
@@ -77,7 +87,33 @@ int		zappy::Inventory::delItem(std::string item)
   return (0);
 }
 
+int		zappy::Inventory::zeroItem(std::string item)
+{
+  auto it = this->inv.find(item);
+  if (it != this->inv.end())
+    this->inv[it->first] = 0;
+  else
+    return (-1);
+  return (0);
+}
+
 std::map<std::string, int>	&zappy::Inventory::getInv()
 {
   return (this->inv);
+}
+
+bool	zappy::Inventory::isEmpty()
+{
+  return (inv.empty());
+}
+
+// std::map<std::string, int>	&zappy::Inventory::getInv()
+// {
+//   return (inv);
+// }
+
+void	zappy::Inventory::addLook()
+{
+  if (look_time >= 0)
+    ++look_time;
 }

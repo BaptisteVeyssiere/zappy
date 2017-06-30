@@ -5,27 +5,41 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Wed Jun 28 16:52:34 2017 Nathan Scutari
-// Last update Wed Jun 28 16:59:18 2017 Nathan Scutari
+// Last update Fri Jun 30 16:00:18 2017 Nathan Scutari
 //
 
 #include <iostream>
+#include <list>
+#include "World.h"
 #include "Player.hpp"
+#include "Exploration.hpp"
+#include "C_Forward.hpp"
+#include "ICommand.hpp"
 
 int	main(int ac, char **av)
 {
-  zappy::World		data;
+  zappy::tileValue	tile;
+  zappy::World	info;
   zappy::Player	*player;
-  t_position	pos;
+  zappy::Exploration	exploration;
 
-  data.width = 10;
-  data.height = 10;
-  data.client_num = 2;
-  player = new zappy::Player(data);
-  pos.x = -5;
-  pos.y = -8;
-  std::cout << player->getFacing().x << " - " << player->getFacing().y
-	    << std::endl;
-  std::cout << player->getAbsolutePos(pos).x << " - "
-	    << player->getAbsolutePos(pos).y << std::endl;
+  info.width = 10;
+  info.height = 10;
+  info.client_num = 2;
+  player = new zappy::Player(info);
+  exploration.init(player);
+  tile.pos.x = -1;
+  tile.pos.y = 1;
+  exploration.moveToPos(tile);
+  while (!tile.path.empty())
+    {
+      if (tile.path.front()->getStr() == "Forward")
+	std::cout << "Forward" << std::endl;
+      else if (tile.path.front()->getStr() == "Right")
+	std::cout << "Right"  << std::endl;
+      else
+	std::cout << "Left" << std::endl;
+      tile.path.pop();
+    }
   return (0);
 }

@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 17:58:03 2017 Nathan Scutari
-// Last update Tue Jun 27 18:54:21 2017 Nathan Scutari
+// Last update Fri Jun 30 18:12:23 2017 Nathan Scutari
 //
 
 #ifndef __IA_HPP__
@@ -14,11 +14,16 @@
 #include "ICommand.hpp"
 #include "C_Forward.hpp"
 #include "Player.hpp"
+#include "Exploration.hpp"
 
 namespace zappy
 {
   class IA
   {
+  private:
+    Player	*mPlayer;
+    Exploration	mExploration;
+
   private:
     IA(IA &other);
     IA	&operator=(IA &other);
@@ -27,8 +32,13 @@ namespace zappy
     IA();
     ~IA();
 
+  private:
+    ICommand	*refreshTile();
+    ICommand	*tryUp();
+
   public:
-    ICommand	*makeAChoice(Player &);
+    void	init(Player *);
+    ICommand	*makeAChoice();
   };
 }
 

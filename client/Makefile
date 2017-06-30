@@ -1,11 +1,11 @@
 ##
 ## Makefile for client_ia in /home/vigner_g/rendu/PSU_2016_zappy/client
-## 
+##
 ## Made by vigner_g
 ## Login   <vigner_g@epitech.net>
-## 
+##
 ## Started on  Tue Jun 27 17:24:20 2017 vigner_g
-## Last update Fri Jun 30 16:58:55 2017 vigner_g
+## Last update Fri Jun 30 19:02:21 2017 vigner_g
 ##
 
 NAME		= zappy_ai
@@ -14,7 +14,7 @@ RM		= rm -f
 
 CXX		= g++
 
-CXXFLAGS	= -W -Wall -Wextra -std=c++14 -I./include/ -Weffc++
+CXXFLAGS	= -W -Wall -Wextra -std=c++14 -I./include/ -Weffc++ -g
 
 MKDIR		= mkdir -p
 
@@ -40,7 +40,8 @@ SRC		= src/C_broadcast.cpp \
 		  src/Parser.cpp \
 		  src/Player.cpp \
 		  src/SignalManager.cpp \
-		  src/IA.cpp 
+		  src/IA.cpp \
+		  src/Exploration.cpp
 
 SRCDIR		= src
 

@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Mon Jun 26 15:08:46 2017 vigner_g
-// Last update Thu Jun 29 14:09:22 2017 vigner_g
+// Last update Fri Jun 30 23:07:01 2017 vigner_g
 //
 
 #include <iostream> //debug
@@ -34,12 +34,12 @@ void	zappy::C_Take::addArg(std::string arg)
 
 bool	zappy::C_Take::getResponse(Player &player, std::string &response)
 {
-  if (response != "ok" || response != "ko")
+  if (response != "ok" && response != "ko")
     throw client_exception("Server drunk", __LINE__, __FILE__);
   else if (response == "ok")
     {
       player.getOwnInventory().addItem(this->item);
     }
-  player.getMap().access(player.getPosition().x ,player.getPosition().y).delItem(this->item);
+  player.getMap().access(player.getPosition().y ,player.getPosition().x).zeroItem(this->item);
   return (true);
 }
