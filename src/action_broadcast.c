@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Sat Jul  1 15:47:26 2017 Mathis Guilbon
+** Last update Sat Jul  1 16:39:45 2017 Mathis Guilbon
 */
 
 #include <math.h>
@@ -108,21 +108,21 @@ static int	get_shorter(t_data *data, t_position *src, t_position *rec, t_positio
   if (-v.y * data->width + v.x * rec->y + c == 0)
     r_inter[++i] = (t_position){data->width, (float)(v.y * data->width - c) / v.x};
   if (-v.y * rec->x + c == 0)
-    r_inter[++i] = (t_position){(float)-c / v.x, 0};
-  if (-v.y * rec->x + v.x * rec->y + c == 0)
-    r_inter[++i] = (t_position){0, (float)-c / v.x};
-  (void)r_inter;
+    r_inter[++i] = (t_position){(float)-c / -v.y, 0};
+  if (-v.y * rec->x + v.x * data->height + c == 0)
+    r_inter[++i] = (t_position){(float)(-v.x * data->height - c) / -v.y, data->height};
   // changer le calcul de dist[1] qui correspond a la distance en "passant a travers les limites"
-  dist[1] = (data->width - src->x - rec->x) * (data->width - src->x - rec->x) +
-    (data->height - src->y - rec->y) * (data->height - src->y - rec->y);
-  fprintf(stderr, "dist[1]:%u\n", dist[0]);
-  fprintf(stderr, "dist[2]:%u\n", dist[1]);
+  dist[1] = (r_inter[1].x - r_inter[0].x) * (r_inter[1].x - r_inter[0].x) +
+    (r_inter[1].y - r_inter[0].y) * (r_inter[1].y - r_inter[0].y);
+  fprintf(stderr, "dist[1]:%f\n", sqrt(dist[0]));
+  fprintf(stderr, "dist[2]:%f\n", sqrt(dist[1]));
   dist[2] = (src->x - inter[0].x) * (src->x - inter[0].x) +
     (src->y - inter[0].y) * (src->y - inter[0].y);
   dist[3] = (src->x - inter[1].x) * (src->x - inter[1].x) +
     (src->y - inter[1].y) * (src->y - inter[1].y);
   shorter = (dist[2] < dist[3]) ? 0 : 1;
-  if (dist[1] < dist[0])
+  /*  if (dist[1] < dist[0])*/
+  if (sqrt(dist[0]) > sqrt(dist[1]) / 2)
     shorter = (shorter + 1) % 2; 
   fprintf(stderr, "dist[3]:%u\n", dist[2]);
   fprintf(stderr, "dist[4]:%u\n", dist[3]);
