@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Thu Jun 29 15:39:06 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 15:08:19 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 19:22:54 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -15,6 +15,7 @@
 int	pin(t_data *data, t_player *player)
 {
   char	buff[50];
+  int	ret;
 
   if (data->network->graphic_fd == -1)
     return (0);
@@ -28,40 +29,49 @@ int	pin(t_data *data, t_player *player)
 	       data->map[player->pos->y][player->pos->x].item[MENDIANE],
 	       data->map[player->pos->y][player->pos->x].item[PHIRAS],
 	       data->map[player->pos->y][player->pos->x].item[THYSTAME]) < 0 ||
-      socket_write(data->network->graphic_fd, buff) == -1)
+      (ret = socket_write(data->network->graphic_fd, buff)) == -1)
     return (-1);
+  if (ret == -2)
+    return (init_graphic_fd(data));
   return (0);
 }
 
 static int	pgt(t_data *data, t_player *player, int type)
 {
   char		buff[50];
+  int		ret;
 
   if (data->network->graphic_fd == -1)
     return (0);
   bzero(buff, 50);
   if (snprintf(buff, 50, "pgt %d %d\n", player->id, type) < 0 ||
-      socket_write(data->network->graphic_fd, buff) == -1)
+      (ret = socket_write(data->network->graphic_fd, buff)) == -1)
     return (-1);
+  if (ret == -2)
+    return (init_graphic_fd(data));
   return (0);
 }
 
 static int	pdr(t_data *data, t_player *player, int type)
 {
   char		buff[50];
+  int		ret;
 
   if (data->network->graphic_fd == -1)
     return (0);
   bzero(buff, 50);
   if (snprintf(buff, 50, "pdr %d %d\n", player->id, type) < 0 ||
-      socket_write(data->network->graphic_fd, buff) == -1)
+      (ret = socket_write(data->network->graphic_fd, buff)) == -1)
     return (-1);
+  if (ret == -2)
+    return (init_graphic_fd(data));
   return (0);
 }
 
 int	graphic_take(t_data *data, t_player *player, int type)
 {
   char	buff[50];
+  int	ret;
 
   if (data->network->graphic_fd == -1)
     return (0);
@@ -78,14 +88,17 @@ int	graphic_take(t_data *data, t_player *player, int type)
 	       data->map[player->pos->y][player->pos->x].item[MENDIANE],
 	       data->map[player->pos->y][player->pos->x].item[PHIRAS],
 	       data->map[player->pos->y][player->pos->x].item[THYSTAME]) < 0 ||
-      socket_write(data->network->graphic_fd, buff) == -1)
+      (ret = socket_write(data->network->graphic_fd, buff)) == -1)
     return (-1);
+  if (ret == -2)
+    return (init_graphic_fd(data));
   return (0);
 }
 
 int	graphic_put(t_data *data, t_player *player, int type)
 {
   char	buff[50];
+  int	ret;
 
   if (data->network->graphic_fd == -1)
     return (0);
@@ -102,7 +115,9 @@ int	graphic_put(t_data *data, t_player *player, int type)
 	       data->map[player->pos->y][player->pos->x].item[MENDIANE],
 	       data->map[player->pos->y][player->pos->x].item[PHIRAS],
 	       data->map[player->pos->y][player->pos->x].item[THYSTAME]) < 0 ||
-      socket_write(data->network->graphic_fd, buff) == -1)
+      (ret = socket_write(data->network->graphic_fd, buff)) == -1)
     return (-1);
+  if (ret == -2)
+    return (init_graphic_fd(data));
   return (0);
 }

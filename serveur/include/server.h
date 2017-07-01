@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 15:01:01 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 19:33:58 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -217,6 +217,7 @@ bool		action_broadcast(t_data *, t_player *, char *);
 
 int	init_graphic(t_data *data);
 int	get_graphic_info(t_data *data);
+int	init_graphic_fd(t_data *data);
 
 /*
 ** graphic_init_cmd.c
