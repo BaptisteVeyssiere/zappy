@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 18:50:41 2017 Nathan Scutari
-// Last update Fri Jun 30 18:37:56 2017 Nathan Scutari
+// Last update Sat Jul  1 00:22:27 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -28,13 +28,6 @@ void	zappy::IA::init(Player *player)
   mExploration.init(player);
 }
 
-zappy::ICommand	*zappy::IA::tryUp()
-{
-  Inventory	inv;
-
-  inv = mPlayer->getOwnInventory();
-}
-
 zappy::ICommand *zappy::IA::refreshTile()
 {
   int	width;
@@ -53,17 +46,10 @@ zappy::ICommand *zappy::IA::refreshTile()
 
 zappy::ICommand	*zappy::IA::makeAChoice()
 {
-  static int	turn = 0;
   ICommand	*choice;
 
   refreshTile();
-  if (++turn == 10)
-    {
-      turn = 0;
-      return (new C_inventory);
-    }
-  else if (turn == 0 && (choice = tryUp()))
-    return (choice);
-  choice = mExploration.explore();
+  if (!(choice = mElevation.check()))
+    choice = mExploration.explore();
   return (choice);
 }
