@@ -5,25 +5,12 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Sat Jul  1 17:07:55 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 18:35:14 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
 #include "server.h"
-
-static int	power(int nb, int p)
-{
-  int		i;
-  int		mul;
-
-  if (p == 0)
-    return (1);
-  i = 0;
-  mul = nb;
-  while (++i < p)
-    nb *= mul;
-  return (nb);
-}
+#include <math.h>
 
 static bool	check_overflow(int *written, char *buff, int fd)
 {
@@ -65,33 +52,36 @@ static bool		look_one_case(t_items *item, int *written,
   return (true);
 }
 
-static void	change_offset(enum dir dir, t_position *off, int *line, int saw)
+static int	change_offset(enum dir dir, t_position *off, int *line, int saw)
 {
   if (saw + 1 == *line)
     {
       if (dir == UP || dir == DOWN)
 	{
-	  off->x += (dir == UP) ? -*line : *line;
+	  off->x += (dir == UP) ? -(*line / 2 + 1) : *line / 2 + 1;
 	  off->y += (dir == UP) ? -1 : 1;
 	}
       else if (dir == RIGHT || dir == LEFT)
 	{
 	  off->x += (dir == RIGHT) ? 1 : -1;
-	  off->y += (dir == RIGHT) ? -*line : *line;
+	  off->y += (dir == RIGHT) ? -(*line / 2 + 1) : *line / 2 + 1;
 	}
-      *line += *line + 2;
+      *line = pow(sqrt(*line) + 1, 2);
+      return (1);
     }
   else
     {
       off->x += (dir == UP) ? 1 : (dir == DOWN) ? -1 : 0;
       off->y += (dir == RIGHT) ? 1 : (dir == LEFT) ? -1 : 0;
     }
+  return (0);
 }
 
 bool		action_look(t_data *data, t_player *player, UNUSED char *prm)
 {
   char		buff[MSG_LEN];
-  int		tosee;
+  unsigned int	up;
+>>>>>>> 62897df3576b9717e3757067e05f9cd10e9d7008:src/action_look.c
   int	      	saw;
   t_position	off;
   int		written;
@@ -101,18 +91,18 @@ bool		action_look(t_data *data, t_player *player, UNUSED char *prm)
   saw = -1;
   written = 1;
   buff[0] = '[';
-  tosee = power(2, player->level + 1);
+  up = 0;
   off.x = player->pos->x;
   off.y = player->pos->y;
-  while (++saw < tosee)
+  while (up <= player->level && ++saw < line)
     {
       get_real_pos_from(data, &off);
-      fprintf(stderr, "see case [%d][%d]\n", off.y, off.x);
+      fprintf(stderr, "see case [%d][%d] saw %d line %d\n", off.y, off.x, saw, line);
       if (!look_one_case(&data->map[off.y][off.x], &written, buff, player->fd))
 	return (false);
-      written += snprintf(buff + written, MSG_LEN - written,
-			  (saw + 1 == tosee) ? " ]\n" : ",");
-      change_offset(player->direction, &off, &line, saw);
+      written += snprintf(buff + written, MSG_LEN - written, ",");
+      up += change_offset(player->direction, &off, &line, saw);
     }
+  snprintf(buff + written - 1, MSG_LEN - written, " ]\n");
   return (socket_write(player->fd, buff) != -1);
 }
