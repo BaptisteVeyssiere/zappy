@@ -7,84 +7,33 @@
 ## Started on  Wed May 18 21:26:30 2016 Baptiste veyssiere
 ##
 
-NAME	= zappy_server
+NAME	= zappy
 
-RM	= rm -rf
+SERVEUR	= zappy_server
 
-CC	= gcc
+CLIENT	= zappy_ai
 
-MKDIR	= mkdir -p
+CDIR	= client/
 
-SRC	= src/writes.c \
-	src/init_server.c \
-	src/main_loop.c \
-	src/init_data.c \
-	src/init_team_list.c \
-	src/init_map.c \
-	src/make_team_tab.c \
-	src/main.c \
-	src/prints.c \
-	src/get_args.c \
-	src/check_args.c \
-	src/signal_manager.c \
-	src/check_sockets.c \
-	src/free_data.c \
-	src/check_team_wish.c \
-	src/add_player.c \
-	src/update_player_action.c \
-	src/free_tools.c \
-	src/update_status.c \
-	src/send_basic_info.c \
-	src/init_graphic.c \
-	src/graphic_init_cmd.c \
-	src/graphic_command.c \
-	src/update_player_status.c \
-	src/get_command_duration.c \
-	src/action_move.c \
-	src/action_look.c \
-	src/action_connect.c \
-	src/action_item.c \
-	src/incantation.c \
-	src/incantation2.c \
-	src/action_broadcast.c \
-	src/execute_actions.c \
-	src/respawn.c \
-	src/graphic_moves.c \
-	src/graphic_egg.c \
-	src/game_end.c \
-	src/graphic_actions.c \
-	src/graphic_cmd.c \
-	src/graphic_incantation.c \
-	src/actions.c
+SDIR	= serveur/
 
-SRCDIR	= src
+$(NAME): $(SERVEUR) $(CLIENT)
 
-OBJDIR	= obj
+$(SERVEUR):
+	$(MAKE) -C serveur/
 
-OBJ	= $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
-
-CFLAGS	= -Iinclude -W -Wextra -Wall -Werror
-
-LDFLAGS = -lm
-
-$(NAME): $(OBJ)
-	@$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
-	@echo "Linking complete!"
-
-$(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.c
-	@$(MKDIR) $(OBJDIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "Compiled "$<" successfully!"
+$(CLIENT):
+	$(MAKE) -C client/
 
 all: $(NAME)
 
 clean:
-	@$(RM) $(OBJ)
-	@$(RM) $(OBJDIR)
-	@echo "Cleanup complete!"
+	$(MAKE) -C $(SDIR) clean
+	$(MAKE) -C $(CDIR) clean
 
-fclean: clean
-	@$(RM) $(NAME)
+fclean:
+	$(MAKE) -C $(SDIR) fclean
+	$(MAKE) -C $(CDIR) fclean
 
 re: fclean all
 
