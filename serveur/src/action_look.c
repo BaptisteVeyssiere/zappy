@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Sat Jul  1 14:56:25 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 17:07:55 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -91,7 +91,7 @@ static void	change_offset(enum dir dir, t_position *off, int *line, int saw)
 bool		action_look(t_data *data, t_player *player, UNUSED char *prm)
 {
   char		buff[MSG_LEN];
-  int		toSee;
+  int		tosee;
   int	      	saw;
   t_position	off;
   int		written;
@@ -101,17 +101,17 @@ bool		action_look(t_data *data, t_player *player, UNUSED char *prm)
   saw = -1;
   written = 1;
   buff[0] = '[';
-  toSee = power(2, player->level + 1);
+  tosee = power(2, player->level + 1);
   off.x = player->pos->x;
   off.y = player->pos->y;
-  while (++saw < toSee)
+  while (++saw < tosee)
     {
       get_real_pos_from(data, &off);
       fprintf(stderr, "see case [%d][%d]\n", off.y, off.x);
       if (!look_one_case(&data->map[off.y][off.x], &written, buff, player->fd))
 	return (false);
       written += snprintf(buff + written, MSG_LEN - written,
-			  (saw + 1 == toSee) ? " ]\n" : ",");
+			  (saw + 1 == tosee) ? " ]\n" : ",");
       change_offset(player->direction, &off, &line, saw);
     }
   return (socket_write(player->fd, buff) != -1);

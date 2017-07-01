@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Sat Jul  1 15:02:36 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 16:55:36 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -15,7 +15,7 @@
 bool			action_take(t_data *data, t_player *player, char *prm)
 {
   int			i;
-  static const char	*item_name[] =
+  static const char	*item_name[7] =
     {
       "food", "linemate", "deraumere", "sibur",
       "mendiane", "phiras", "thystame"
@@ -23,7 +23,7 @@ bool			action_take(t_data *data, t_player *player, char *prm)
 
   i = -1;
   while (++i < ITEMNBR && strcmp(item_name[i], prm) != 0);
-  if (i < ITEMNBR)
+  if (i < ITEMNBR && data->map[player->pos->y][player->pos->x].item[i] > 0)
     {
       ++player->inventory->item[i];
       if (data->map[player->pos->y][player->pos->x].item[i] > 0)

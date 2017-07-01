@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 21:12:34 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 15:13:29 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 16:43:48 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -81,11 +81,14 @@ static int	update_actions(t_player *player, t_data *data)
     }
   while ((is_cmd = 0) == 0 &&
 	 (command = check_ring(player->ringbuffer, 0, &is_cmd)))
-    if (try_add_action(player, data, command) == -1)
-      {
-	free(command);
-	return (-1);
-      }
+    {
+      printf("<%s>\n", command);
+      if (try_add_action(player, data, command) == -1)
+	{
+	  free(command);
+	  return (-1);
+	}
+    }
   return (is_cmd != 0 ? -1 : 0);
 }
 

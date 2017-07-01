@@ -7,7 +7,7 @@
 ## Started on  Wed May 18 21:26:30 2016 Baptiste veyssiere
 ##
 
-NAME	= zappy_server
+NAME	= ../zappy_server
 
 RM	= rm -rf
 
