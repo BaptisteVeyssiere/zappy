@@ -1,11 +1,11 @@
 /*
 ** make_team_tab.c for Project-Master in /home/nathalie/rendu/network/PSU_2016_zappy/src
-** 
+**
 ** Made by Nathalie CAI
 ** Login   <nathalie.cai@epitech.eu>
-** 
+**
 ** Started on  Mon Jun 26 17:52:26 2017 Nathalie CAI
-** Last update Wed Jun 28 13:34:05 2017 Nathalie CAI
+** Last update Fri Jun 30 18:09:02 2017 Baptiste Veyssiere
 */
 
 #include <stdlib.h>
@@ -24,6 +24,20 @@ static int	is_in_tab(char **tab, char *target)
       i++;
     }
   return (0);
+}
+
+static char	**default_team(void)
+{
+  char		**tab;
+
+  if (!(tab = malloc(sizeof(char*) * 5)))
+    return (NULL);
+  tab[0] = "team1";
+  tab[1] = "team2";
+  tab[2] = "team3";
+  tab[3] = "team4";
+  tab[4] = NULL;
+  return (tab);
 }
 
 char	**team_tab(int ac, char **av)
@@ -48,5 +62,9 @@ char	**team_tab(int ac, char **av)
 	}
       j++;
     }
+  i = -1;
+  while (tab && tab[++i]);
+  if (i < 1)
+    return (default_team());
   return (tab);
 }

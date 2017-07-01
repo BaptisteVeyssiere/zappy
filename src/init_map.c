@@ -5,7 +5,7 @@
 ** Login   <nathalie.cai@epitech.eu>
 **
 ** Started on  Mon Jun 26 16:47:55 2017 Nathalie CAI
-** Last update Wed Jun 28 14:13:03 2017 Nathalie CAI
+** Last update Fri Jun 30 17:22:22 2017 Baptiste Veyssiere
 */
 
 #include <stdlib.h>
@@ -25,7 +25,7 @@ static t_data	*filling_loop(t_data *data,
       k = 0;
       while (k < ITEMNBR)
 	{
-	  if (rand() % 2 == 0 && k == 0 && max_rocks[k] > 0)
+	  if ((rand() % 2 == 0 || k == FOOD) && k == 0 && max_rocks[k] > 0)
 	    {
 	      data->map[i][j].item[k] = rand() % 6;
 	      max_rocks[k] = max_rocks[k] - data->map[i][j].item[k];

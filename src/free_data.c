@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sat Jun 24 15:17:39 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 15:26:57 2017 Baptiste Veyssiere
+** Last update Fri Jun 30 18:55:52 2017 Baptiste Veyssiere
 */
 
 #include <stdlib.h>
@@ -82,6 +82,7 @@ static int		free_queue(t_waiting_queue *queue)
       tmp = queue->next;
       if (queue->fd > 2 && close(queue->fd) == -1)
 	return (write_error(__FILE__, __func__, __LINE__, -1));
+      free(queue->ringbuffer);
       free(queue);
       queue = tmp;
     }

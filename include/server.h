@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Fri Jun 30 16:30:14 2017 Mathis Guilbon
+** Last update Sat Jul  1 13:24:08 2017 Mathis Guilbon
 */
 
 #ifndef SERVER_H_
@@ -241,6 +241,7 @@ int	pdi(t_data *data, t_player *player);
 
 int	update_player_status(t_data *data);
 void	add_slot_for_team(t_data *data, t_player *player);
+int	free_player(t_player *player, t_data *data);
 
 /*
 ** execute_actions.c
@@ -259,7 +260,7 @@ int	get_command_duration(char *command);
 ** respawn.c
 */
 
-void	respawn(t_data *data, int type);
+int	respawn(t_data *data, int type);
 
 /*
 ** graphic_moves.c
@@ -288,6 +289,7 @@ int	game_end(t_data *data);
 
 int	graphic_take(t_data *data, t_player *player, int type);
 int	graphic_put(t_data *data, t_player *player, int type);
+int	pin(t_data *data, t_player *player);
 
 /*
 ** graphic_cmd.c
@@ -305,5 +307,12 @@ int	pbc(t_data *data, t_player *player, char *message);
 int	pic_init(t_data *data, t_player *player);
 int	pic(t_data *data, t_player *player);
 int	pic_end(t_data *data);
+
+/*
+** actions.c
+*/
+
+int	stop_command(t_player *player, char *command);
+int	executer(t_act *actions, t_player *tmp, t_data *data);
 
 #endif /* !SERVER_H_ */

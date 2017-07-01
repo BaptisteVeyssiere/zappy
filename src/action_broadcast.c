@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Sat Jul  1 01:07:57 2017 Mathis Guilbon
+** Last update Sat Jul  1 15:47:26 2017 Mathis Guilbon
 */
 
 #include <math.h>
@@ -90,11 +90,28 @@ static void	get_surrounding(t_player *rec, char *dir, t_position *ward)
 
 static int	get_shorter(t_data *data, t_position *src, t_position *rec, t_position *inter)
 {
+  int		c;
+  int		i;
+  t_position	r_inter[2];
+  t_position	v;
   unsigned int	dist[4];
   int		shorter;
-  
-  dist[0] = (rec->x - src->x) * (rec->x - src->x) +
-    (rec->y - src->y) * (rec->y - src->y);
+
+  i = -1;
+  v = (t_position){rec->x - src->x, rec->y - src->y};
+  dist[0] = v.x * v.x + v.y * v.y;
+  c = -(-v.y * rec->x + v.x * rec->y);
+  // y = ax + b   ax + by + c = 0
+  // -v.y * x + v.x * y + c = 0;
+  if (rec->y + c == 0)
+    r_inter[++i] = (t_position){0, (float)-c / v.x};
+  if (-v.y * data->width + v.x * rec->y + c == 0)
+    r_inter[++i] = (t_position){data->width, (float)(v.y * data->width - c) / v.x};
+  if (-v.y * rec->x + c == 0)
+    r_inter[++i] = (t_position){(float)-c / v.x, 0};
+  if (-v.y * rec->x + v.x * rec->y + c == 0)
+    r_inter[++i] = (t_position){0, (float)-c / v.x};
+  (void)r_inter;
   // changer le calcul de dist[1] qui correspond a la distance en "passant a travers les limites"
   dist[1] = (data->width - src->x - rec->x) * (data->width - src->x - rec->x) +
     (data->height - src->y - rec->y) * (data->height - src->y - rec->y);
@@ -142,6 +159,8 @@ bool		action_broadcast(t_data *data, t_player *player, char *prm)
 
   tmp = data->players_root;
   snprintf(buff, MSG_LEN, "message 0, %s\n", prm);
+  if (pbc(data, player, prm) == -1)
+    return (false);
   while (tmp != NULL)
     {
       if (tmp != player)

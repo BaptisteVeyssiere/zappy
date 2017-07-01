@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 17:12:34 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 17:51:11 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 01:24:24 2017 Baptiste Veyssiere
 */
 
 #include <strings.h>
@@ -33,30 +33,27 @@ int	tna(t_data *data)
 int		bct(t_data *data)
 {
   char		buff[100];
-  unsigned int	x;
+  int		x;
   unsigned int	y;
 
   if (data->network->graphic_fd < 2)
     return (0);
   y = -1;
-  while (++y < data->height)
-    {
-      x = -1;
-      while (++x < data->width)
-	{
-	  bzero(buff, 100);
-	  if (snprintf(buff, 100, "bct %d %d %d %d %d %d %d %d %d\n",
-		       x, y, data->map[y][x].item[FOOD],
-		       data->map[y][x].item[LINEMATE],
-		       data->map[y][x].item[DERAUMERE],
-		       data->map[y][x].item[SIBUR],
-		       data->map[y][x].item[MENDIANE],
-		       data->map[y][x].item[PHIRAS],
-		       data->map[y][x].item[THYSTAME]) < 0 ||
-	      socket_write(data->network->graphic_fd, buff) == -1)
-	    return (-1);
-	}
-    }
+  while (++y < data->height && (x = -1) == -1)
+    while (++x < (int)data->width)
+      {
+	bzero(buff, 100);
+	if (snprintf(buff, 100, "bct %d %d %d %d %d %d %d %d %d\n",
+		     x, y, data->map[y][x].item[FOOD],
+		     data->map[y][x].item[LINEMATE],
+		     data->map[y][x].item[DERAUMERE],
+		     data->map[y][x].item[SIBUR],
+		     data->map[y][x].item[MENDIANE],
+		     data->map[y][x].item[PHIRAS],
+		     data->map[y][x].item[THYSTAME]) < 0 ||
+	    socket_write(data->network->graphic_fd, buff) == -1)
+	  return (-1);
+      }
   return (0);
 }
 

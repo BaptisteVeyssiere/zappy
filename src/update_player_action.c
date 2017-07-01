@@ -5,9 +5,10 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 21:12:34 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 17:18:29 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 01:51:50 2017 Baptiste Veyssiere
 */
 
+#include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include "server.h"
@@ -37,7 +38,8 @@ static void		init_action(char *command, int duration,
   set_action_timer(action, duration, freq);
 }
 
-static int		try_add_action(t_player *player, t_data *data, char *command)
+static int		try_add_action(t_player *player,
+				       t_data *data, char *command)
 {
   t_action		*action;
   int			duration;
@@ -53,15 +55,8 @@ static int		try_add_action(t_player *player, t_data *data, char *command)
   tmp = player->action;
   while (tmp && tmp->next)
     tmp = tmp->next;
-  if (!tmp && duration == -2)
-    {
-      if (socket_write(player->fd, "ko\n") == -1)
-	return (-1);
-      free(command);
-      return (0);
-    }
-  else if (duration == -2)
-    duration = 0;
+  if (duration == -2 && (duration = 0) == 0 && !tmp)
+    return (stop_command(player, command));
   if (!(action = malloc(sizeof(t_action))))
     return (write_error(__FILE__, __func__, __LINE__, -1));
   init_action(command, duration, data->freq, action);
@@ -80,15 +75,8 @@ static int	update_actions(t_player *player, t_data *data)
 
   if ((ret = read_socket(player->fd, player->ringbuffer)) == -1)
     {
-      FD_CLR(player->fd, data->network->set);
-      --(data->map[player->pos->y][player->pos->x].players);
-      add_slot_for_team(data, player);
-      free(player->inventory);
-      free(player->team);
-      free(player->pos);
-      free(player->ringbuffer);
-      free_actions(player->action);
-      free(player);
+      if (free_player(player, data) == -1)
+	return (-1);
       return (1);
     }
   while ((is_cmd = 0) == 0 &&

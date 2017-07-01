@@ -5,7 +5,7 @@
 ** Login   <nathalie.cai@epitech.eu>
 **
 ** Started on  Wed Jun 21 15:44:39 2017 Nathalie CAI
-** Last update Thu Jun 29 14:50:05 2017 Nathalie CAI
+** Last update Sat Jul  1 13:22:56 2017 Mathis Guilbon
 */
 
 #include <stdio.h>
@@ -100,23 +100,24 @@ void	print_data(t_data *data)
   printf("seed for randomization of the ressources: %d\n", data->seed);
 }
 
-void	print_surrounding_case(t_player *rec, char *dir, t_position *ward, t_position *inter)
-{
-  fprintf(stderr, "[%d]:(%d,%d)\t[%d]:(%d,%d)\t[%d]:(%d,%d)\n"
-	  "[%d]:(%d,%d)\t{%d,%d}\t\t[%d]:(%d,%d)\n"
-	  "[%d]:(%d,%d)\t[%d]:(%d,%d)\t[%d]:(%d,%d)\n",
-	  dir[0], ward[0].x, ward[0].y,
-	  dir[1], ward[1].x, ward[1].y,
-	  dir[2], ward[2].x, ward[2].y,
-	  dir[7], ward[7].x, ward[7].y,
-	  rec->pos->x, rec->pos->y,
-	  dir[3], ward[3].x, ward[3].y,
-	  dir[6], ward[6].x, ward[6].y,
-	  dir[5], ward[5].x, ward[5].y,
-	  dir[4], ward[4].x, ward[4].y);
-  fprintf(stderr, "intersection:\n"
-	  "\t1:[%d,%d]\n"
-	  "\t2:[%d,%d]\n",
-	  inter[0].x, inter[0].y,
-	  inter[1].x, inter[1].y);
+
+void  print_surrounding_case(t_player *rec, char *dir, t_position *ward, t_position *inter) 
+{ 
+  fprintf(stderr, "[%d]:(%d,%d)\t[%d]:(%d,%d)\t[%d]:(%d,%d)\n" 
+    "[%d]:(%d,%d)\t{%d,%d}\t\t[%d]:(%d,%d)\n" 
+    "[%d]:(%d,%d)\t[%d]:(%d,%d)\t[%d]:(%d,%d)\n", 
+    dir[0], ward[0].x, ward[0].y, 
+    dir[1], ward[1].x, ward[1].y, 
+    dir[2], ward[2].x, ward[2].y, 
+    dir[7], ward[7].x, ward[7].y, 
+    rec->pos->x, rec->pos->y, 
+    dir[3], ward[3].x, ward[3].y, 
+    dir[6], ward[6].x, ward[6].y, 
+    dir[5], ward[5].x, ward[5].y, 
+    dir[4], ward[4].x, ward[4].y); 
+  fprintf(stderr, "intersection:\n" 
+    "\t1:[%d,%d]\n" 
+    "\t2:[%d,%d]\n", 
+    inter[0].x, inter[0].y, 
+    inter[1].x, inter[1].y); 
 }

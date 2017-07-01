@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 20:24:46 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 17:19:02 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 01:42:22 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>
@@ -14,7 +14,7 @@
 #include <string.h>
 #include "server.h"
 
-static int	free_player(t_player *player, t_data *data)
+int		free_player(t_player *player, t_data *data)
 {
   t_action	*action;
   t_action	*tmp;
@@ -57,6 +57,14 @@ void	add_slot_for_team(t_data *data, t_player *player)
     }
 }
 
+static void	remove_dead_player(t_data *data, t_player *prev, t_player *tmp)
+{
+  if (prev == NULL)
+    data->players_root = tmp;
+  else
+    prev->next = tmp;
+}
+
 static int	player_death(t_player *player, t_data *data)
 {
   t_player	*elem;
@@ -76,10 +84,7 @@ static int	player_death(t_player *player, t_data *data)
 	{
 	  if (free_player(elem, data) == -1)
 	    return (-1);
-	  if (prev == NULL)
-	    data->players_root = tmp;
-	  else
-	    prev->next = tmp;
+	  remove_dead_player(data, prev, tmp);
 	  return (0);
 	}
       prev = elem;
@@ -104,6 +109,8 @@ int	update_player_status(t_data *data)
 	  if (tmp->inventory->item[FOOD] == 0)
 	    return (player_death(tmp, data));
 	  tmp->inventory->item[FOOD] -= 1;
+	  if (pin(data, tmp) == -1)
+	    return (-1);
 	  tmp->life = current_time + (126.0 / data->freq) * 1000;
 	}
       tmp = tmp->next;

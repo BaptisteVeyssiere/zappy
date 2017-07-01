@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Fri Jun 30 16:45:55 2017 Mathis Guilbon
+** Last update Sat Jul  1 01:03:58 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -17,13 +17,8 @@ bool		action_take(t_data *data, t_player *player, char *prm)
   int		i;
   static const    char *item_name[] =
     {
-      "food",
-      "linemate",
-      "deraumere",
-      "sibur",
-      "mendiane",
-      "phiras",
-      "thystame"
+      "food", "linemate", "deraumere", "sibur",
+      "mendiane", "phiras", "thystame"
     };
 
   i = -1;
@@ -34,7 +29,8 @@ bool		action_take(t_data *data, t_player *player, char *prm)
       if (data->map[player->pos->y][player->pos->x].item[i] > 0)
 	{
 	  --data->map[player->pos->y][player->pos->x].item[i];
-	  respawn(data, i);
+	  if (respawn(data, i) == -1)
+	    return (-1);
 	}
       if (graphic_take(data, player, i) == -1)
 	return (false);
@@ -91,9 +87,11 @@ static bool	upgrade_player(t_data *data, t_player *player, bool success)
 {
   t_player	*tmp;
   char		buff[32];
-  
+
   tmp = data->players_root;
   snprintf(buff, 32, "ko\n");
+  if (pie(data, player->pos->x, player->pos->y, success == false ? 0 : 1) == -1)
+    return (false);
   if (success)
     snprintf(buff, 32, "Current level: %d\n", player->level + 1);
   while (tmp != NULL)
@@ -104,12 +102,13 @@ static bool	upgrade_player(t_data *data, t_player *player, bool success)
 	{
 	  if (success)
 	    ++tmp->level;
-	  if (socket_write(tmp->fd, buff) == -1)
+	  if (socket_write(tmp->fd, buff) == -1 ||
+	      plv(data, tmp) == -1)
 	    return (false);
 	}
       tmp = tmp->next;
     }
-  return (true);
+  return (bct(data) == -1 ? false : true);
 }
 
 bool		action_incantation(t_data *data, t_player *player, UNUSED char *prm)
