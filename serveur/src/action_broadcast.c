@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Sat Jul  1 17:17:42 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 17:20:28 2017 Baptiste Veyssiere
 */
 
 #include <math.h>
@@ -114,7 +114,6 @@ static void	get_message_dir(t_data *data, t_position *src,
 
   get_surrounding(rec, &dir[0], &ward[0]);
   calc_intersection(src, rec->pos, &inter[0], &ward[0]);
-  print_surrounding_case(rec, &dir[0], &ward[0], &inter[0]);
   shorter = get_shorter(data, src, rec->pos, &inter[0]);
   i = -1;
   while (++i < CASENBR - 1)
