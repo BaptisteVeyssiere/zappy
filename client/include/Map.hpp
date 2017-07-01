@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Mon Jun 26 15:59:52 2017 vigner_g
-// Last update Wed Jun 28 16:45:48 2017 Nathan Scutari
+// Last update Sat Jul  1 15:16:14 2017 Nathan Scutari
 //
 
 #ifndef	__MAP_HPP__

@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 30 23:47:49 2017 Nathan Scutari
-// Last update Sat Jul  1 01:51:23 2017 Nathan Scutari
+// Last update Sat Jul  1 16:21:44 2017 Nathan Scutari
 //
 
 #ifndef __ELEVATION_HPP__
@@ -22,6 +22,22 @@ namespace zappy
     bool	requirements;
     bool	elevating;
     Player	*mPlayer;
+    int		required[8][8] =
+      {
+	{0, 0, 0, 0, 0, 0, 0, 0},
+	{12, 1, 0, 0, 0, 0, 0, 1},
+	{25, 1, 1, 1, 0, 0, 0, 2},
+	{25, 2, 0, 1, 0, 2, 0, 2},
+	{25, 1, 1, 2, 0, 1, 0, 4},
+	{25, 1, 2, 1, 3, 0, 0, 4},
+	{25, 1, 2, 3, 0, 1, 0, 6},
+	{25, 2, 2, 2, 2, 2, 1, 6}
+      };
+    std::string	items[8] =
+    {
+      "food", "linemate", "deraumere", "sibur", "mendiane",
+      "phiras", "thystame", "player"
+    };
 
   private:
     Elevation(Elevation &other);
@@ -38,6 +54,7 @@ namespace zappy
   public:
     void	init(Player *);
     ICommand	*check();
+    ICommand	*elevate();
   };
 }
 

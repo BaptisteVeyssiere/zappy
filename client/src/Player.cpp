@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Fri Jun 30 18:58:07 2017 vigner_g
+// Last update Sat Jul  1 16:33:58 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -20,6 +20,7 @@ zappy::Player::Player(World &world)
   : id(0), lvl(1), pos(), facing(0, 1), food(10), OwnInventory(),
     commonInventory(), map(), teamNbPlayer(1), nbOfEgg(0), slot(0)
 {
+  OwnInventory.getInv()["food"] = 10;
   map.setSize(world.width, world.height);
   slot = world.client_num;
 }
@@ -32,6 +33,7 @@ zappy::Player::~Player()
 void	zappy::Player::setFood(int nbr)
 {
   food = nbr;
+  OwnInventory.getInv()["food"] = nbr;
 }
 
 void	zappy::Player::SetTeamNbPlayer(int nb)

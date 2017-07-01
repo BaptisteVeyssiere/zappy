@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:35 2017 Nathan Scutari
-// Last update Fri Jun 30 17:22:25 2017 Nathan Scutari
+// Last update Sat Jul  1 21:21:51 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -18,6 +18,7 @@
 #include "Exception.hpp"
 
 zappy::Network::Network()
+  :mSignalMgr(), cmdBuffer(), server_fd(-1)
 {
 
 }
@@ -132,8 +133,13 @@ void		zappy::Network::registerPlayer(World &data, const std::string &team)
 	{
 	  msg = getNextCmd();
 	  if (msg == "ko")
-	    throw client_exception("Could not connect, The team does not exist or is full", __LINE__, __FILE__);
-	  if (data.client_num == -1)
+	    {
+	      std::cout <<
+		"The team does not exist or is full, trying again in 1 sec"
+			<< std::endl;
+	      sleep(1);
+	    }
+	  else if (data.client_num == -1)
 	    data.client_num = std::stoi(msg);
 	  else
 	    {

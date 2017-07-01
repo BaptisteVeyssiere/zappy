@@ -5,14 +5,16 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 18:50:41 2017 Nathan Scutari
-// Last update Sat Jul  1 00:22:27 2017 Nathan Scutari
+// Last update Sat Jul  1 21:23:19 2017 Nathan Scutari
 //
 
 #include <iostream>
 #include "IA.hpp"
 #include "C_inventory.hpp"
+#include "C_Fork.hpp"
 
 zappy::IA::IA()
+  :egg(0), mPlayer(NULL), mExploration(), mElevation()
 {
 
 }
@@ -26,9 +28,10 @@ void	zappy::IA::init(Player *player)
 {
   mPlayer = player;
   mExploration.init(player);
+  mElevation.init(player);
 }
 
-zappy::ICommand *zappy::IA::refreshTile()
+void	zappy::IA::refreshTile()
 {
   int	width;
   int	height;
@@ -49,6 +52,11 @@ zappy::ICommand	*zappy::IA::makeAChoice()
   ICommand	*choice;
 
   refreshTile();
+  if (egg < 2)
+    {
+      ++egg;
+      return (new C_Fork);
+    }
   if (!(choice = mElevation.check()))
     choice = mExploration.explore();
   return (choice);

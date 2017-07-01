@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Mon Jun 26 15:08:46 2017 vigner_g
-// Last update Fri Jun 30 23:07:01 2017 vigner_g
+// Last update Sat Jul  1 16:16:33 2017 Nathan Scutari
 //
 
 #include <iostream> //debug
@@ -39,7 +39,11 @@ bool	zappy::C_Take::getResponse(Player &player, std::string &response)
   else if (response == "ok")
     {
       player.getOwnInventory().addItem(this->item);
+      player.getMap().access(player.getPosition().y ,player.getPosition().x).delItem(this->item);
     }
-  player.getMap().access(player.getPosition().y ,player.getPosition().x).zeroItem(this->item);
+  else
+    {
+      player.getMap().access(player.getPosition().y ,player.getPosition().x).zeroItem(this->item);
+    }
   return (true);
 }

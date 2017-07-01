@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 17:58:03 2017 Nathan Scutari
-// Last update Sat Jul  1 00:23:35 2017 Nathan Scutari
+// Last update Sat Jul  1 21:23:30 2017 Nathan Scutari
 //
 
 #ifndef __IA_HPP__
@@ -22,6 +22,7 @@ namespace zappy
   class IA
   {
   private:
+    int		egg;
     Player	*mPlayer;
     Exploration	mExploration;
     Elevation	mElevation;
@@ -35,7 +36,7 @@ namespace zappy
     ~IA();
 
   private:
-    ICommand	*refreshTile();
+    void	refreshTile();
 
   public:
     void	init(Player *);

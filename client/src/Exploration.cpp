@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Thu Jun 29 11:25:53 2017 Nathan Scutari
-// Last update Fri Jun 30 18:38:00 2017 Nathan Scutari
+// Last update Sat Jul  1 17:08:47 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -110,7 +110,7 @@ bool	zappy::Exploration::objectOnSelf() const
 					  mPlayer->getPosition().x).getInv())
     {
       std::cout << it.first << " - " << it.second << std::endl;
-      if (it.second > 0)
+      if (it.second > 0 && it.first != "player")
 	empty = true;
     }
   return (empty);
@@ -132,7 +132,7 @@ zappy::ICommand	*zappy::Exploration::takeObject()
   for (std::map<std::string, int>::iterator it = tile.getInv().begin() ;
        it != tile.getInv().end() ; ++it)
     {
-      if (it->second > 0)
+      if (it->second > 0 && it->first != "player")
 	{
 	  choice->addArg(it->first);
 	  return (choice);
@@ -380,8 +380,8 @@ void		zappy::Exploration::createPath()
       path.push(new C_TurnRight);
       path.push(new C_Forward);
     }
-  values->clear();
-  list->clear();
+  delete values;
+  delete list;
 }
 
 zappy::ICommand	*zappy::Exploration::explore()

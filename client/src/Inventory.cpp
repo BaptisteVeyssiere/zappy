@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Thu Jun 22 22:02:54 2017 vigner_g
-// Last update Fri Jun 30 23:04:57 2017 vigner_g
+// Last update Sat Jul  1 21:20:53 2017 Nathan Scutari
 //
 
 #include "Network.hpp"
@@ -39,11 +39,6 @@ void	zappy::Inventory::addItem(std::string item, int nbr)
 }
 
 void	zappy::Inventory::reset()
-{
-  this->inv.clear();
-}
-
-void	zappy::Inventory::reset(Inventory &other)
 {
   this->inv.clear();
 }

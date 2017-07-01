@@ -5,13 +5,14 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 18:14:03 2017 Nathan Scutari
-// Last update Tue Jun 27 15:49:45 2017 Nathan Scutari
+// Last update Sat Jul  1 21:19:31 2017 Nathan Scutari
 //
 
 #include "CommandBuffer.hpp"
 #include "Exception.hpp"
 
 zappy::CommandBuffer::CommandBuffer()
+  :buffer()
 {
   buffer.clear();
 }

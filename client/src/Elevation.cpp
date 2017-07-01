@@ -5,11 +5,16 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 30 23:55:55 2017 Nathan Scutari
-// Last update Sat Jul  1 01:55:57 2017 Nathan Scutari
+// Last update Sat Jul  1 21:26:06 2017 Nathan Scutari
 //
 
+#include <iostream>
 #include "C_inventory.hpp"
 #include "Elevation.hpp"
+#include "C_Look.hpp"
+#include "C_incantation.hpp"
+#include "C_Take.hpp"
+#include "C_Set.hpp"
 
 zappy::Elevation::Elevation()
   :requirements(false), elevating(false), mPlayer(NULL)
@@ -29,50 +34,67 @@ void	zappy::Elevation::init(Player *player)
 
 bool	zappy::Elevation::hasEnough(std::string item, int nbr)
 {
-  Inventory	inv;
-
-  inv = mPlayer->getOwnInventory();
-  if (inv.getInv()[item] >= nbr)
+  std::cout << item << " - " << nbr << std::endl;
+  if (item == "player")
+    {
+      if (mPlayer->getMap().access(mPlayer->getPosition().y,
+				   mPlayer->getPosition().x).getInv()[item] == nbr)
+	return (true);
+      else
+	return (false);
+    }
+  std::cout << mPlayer->getOwnInventory().getInv()[item] << std::endl;
+  if (mPlayer->getOwnInventory().getInv()[item] >= nbr)
     return (true);
   return (false);
 }
 
 bool	zappy::Elevation::tryUp()
 {
-  static std::string	items[] =
-    {
-      "food", "linemate", "deraumere", "sibur", "mendiane",
-      "phiras", "thystame", "player"
-    };
-  static int		required[][8] =
-    {
-      {0},
-      {20, 1, 0, 0, 0, 0, 0, 1},
-      {25, 1, 1, 1, 0, 0, 0, 2},
-      {25, 2, 0, 1, 0, 2, 0, 2},
-      {25, 1, 1, 2, 0, 1, 0, 4},
-      {25, 1, 2, 1, 3, 0, 0, 4},
-      {25, 1, 2, 3, 0, 1, 0, 6},
-      {25, 2, 2, 2, 2, 2, 1, 6}
-    };
-  Inventory	inv;
-
-  inv = mPlayer->getOwnInventory();
-  for (int i = 0 ; i < 9 ; ++i)
+  std::cout << "Checking up" << std::endl;
+  for (int i = 0 ; i < 8 ; ++i)
     if (!hasEnough(items[i], required[mPlayer->getLvl()][i]))
       return (false);
   requirements = true;
+  std::cout << "I can lvl up ! :-)" << std::endl;
   return (true);
 }
 
 zappy::ICommand	*zappy::Elevation::elevate()
 {
+  ICommand	*choice;
 
+  if (mPlayer->getMap().access(mPlayer->getPosition().y, mPlayer->getPosition().x).
+      getLook() >= 10)
+    return (new C_Look);
+  for (int i = 1 ; i < 7 ; ++i)
+    {
+      if (mPlayer->getMap().access(mPlayer->getPosition().y,
+				   mPlayer->getPosition().x)
+	  .getInv()[items[i]] > required[mPlayer->getLvl()][i])
+	{
+	  std::cout << "Preparing incantation" << std::endl;
+	  choice = new C_Take;
+	  choice->addArg(items[i]);
+	  return (choice);
+	}
+      else if (mPlayer->getMap().access(mPlayer->getPosition().y,
+					mPlayer->getPosition().x)
+	       .getInv()[items[i]] < required[mPlayer->getLvl()][i])
+	{
+	  std::cout << "Preparing incantation" << std::endl;
+	  choice = new C_Set;
+	  choice->addArg(items[i]);
+	  return (choice);
+	}
+    }
+  std::cout << "I'm leveling up! :-)" << std::endl;
+  requirements = false;
+  return (new C_incantation);
 }
 
 zappy::ICommand	*zappy::Elevation::check()
 {
-  ICommand	*choice = NULL;
   static int	turn = 0;
 
   if (requirements)
@@ -82,7 +104,9 @@ zappy::ICommand	*zappy::Elevation::check()
       turn = 0;
       return (new C_inventory);
     }
-  else if (turn == 0 && (tryUp()))
+  else if (turn == 1)
+    return (new C_Look);
+  else if (turn == 2 && (tryUp()))
     return (elevate());
   return (NULL);
 }
