@@ -5,7 +5,7 @@
 ## Login   <vigner_g@epitech.net>
 ##
 ## Started on  Tue Jun 27 17:24:20 2017 vigner_g
-## Last update Fri Jun 30 19:02:21 2017 vigner_g
+## Last update Sat Jul  1 23:44:34 2017 vigner_g
 ##
 
 NAME		= zappy_ai
@@ -41,7 +41,8 @@ SRC		= src/C_broadcast.cpp \
 		  src/Player.cpp \
 		  src/SignalManager.cpp \
 		  src/IA.cpp \
-		  src/Exploration.cpp
+		  src/Exploration.cpp \
+		  src/Regroup.cpp
 
 SRCDIR		= src
 

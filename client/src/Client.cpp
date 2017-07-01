@@ -5,17 +5,20 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:12 2017 Nathan Scutari
-// Last update Fri Jun 30 17:22:01 2017 Nathan Scutari
+// Last update Sat Jul  1 23:39:20 2017 vigner_g
 //
 
 #include <unistd.h>
 #include <iostream>
 #include "Client.hpp"
 #include "Exception.hpp"
+#include <unistd.h>
+#include <ctime>
 
 zappy::Client::Client(std::string port, std::string team, std::string machine)
   :info(), mNet(), choice(NULL)
 {
+  std::srand(std::time(0) + getpid());
   info = mNet.connectToServer(machine, port, team);
   player = std::make_unique<Player>(info);
   std::cout << "Connected to zappy server !" << std::endl;

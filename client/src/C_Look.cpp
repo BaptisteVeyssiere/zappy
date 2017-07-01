@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:25:31 2017 vigner_g
-// Last update Fri Jun 30 22:30:19 2017 vigner_g
+// Last update Sat Jul  1 02:00:27 2017 vigner_g
 //
 
 #include <iostream>
@@ -65,6 +65,7 @@ bool		zappy::C_Look::getResponse(Player &player, std::string &response)
   std::list<t_position>::iterator it = p->begin();
   while ((sub = getSubString(response, ",")) != "*end*" && response.size() > 0)
     {
+      player.getMap().access(it->y, it->x).reset();
       player.getMap().access(it->y, it->x).refreshLook();
       while ((sub2 = getSubString(sub, " ")) != "*end*" && sub.size() > 0)
 	{
@@ -79,6 +80,7 @@ bool		zappy::C_Look::getResponse(Player &player, std::string &response)
 	}
       it++;
     }
+  player.getMap().access(it->y, it->x).reset();
   while ((sub2 = getSubString(sub, " ")) != "*end*" && sub.size() > 0)
     {
       if (sub2 != "player" && sub2 != " " && !(sub2.empty()))

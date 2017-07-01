@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Fri Jun 30 19:01:09 2017 vigner_g
+// Last update Sat Jul  1 22:46:50 2017 vigner_g
 //
 
 #ifndef __PLAYER_HPP__
@@ -17,6 +17,7 @@
 #include "Network.hpp"
 #include "Inventory.hpp"
 #include "Map.hpp"
+#include "Regroup.hpp"
 
 namespace	zappy
 {
@@ -29,11 +30,13 @@ namespace	zappy
     t_position		       		facing;
     int					food;
     Inventory				OwnInventory;
-    std::map<int, Inventory>		commonInventory;
     Map					map;
     int					teamNbPlayer;
     int					nbOfEgg;
     int					slot;
+    std::string				onGoingAction;
+    std::string				toBroadcast;
+    Regroup				regroup;
 
   private:
     Player(Player &other);
@@ -48,20 +51,21 @@ namespace	zappy
     void	SetId(int id);
     void	AddALvl();
     void	setFood(int nbr);
+    void	clearToBroadcast();
+    void	setToBroadcast(std::string msg);
     int		facingToAngle();
 
   public:
     Inventory	&getOwnInventory();
-    std::map<int, Inventory>	&getCommonInventory();
-    void	addToCommonInventory(int lvl, std::string item, int nbr);
-    void	resetCommonInventory();
     t_position	&getFacing();
     t_position	&getPosition();
     t_position	getAbsolutePos(t_position &relative_pos);
     Map		&getMap();
+    int		&getID();
     int		&getLvl();
     int		&getSlot();
     int		&getFood();
+    Regroup	&getRegroup();
   };
 }
 
