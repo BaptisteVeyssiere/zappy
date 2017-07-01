@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Fri Jun 23 14:19:02 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 15:13:18 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 18:22:19 2017 Baptiste Veyssiere
 */
 
 #include <signal.h>
@@ -38,6 +38,7 @@ int		create_signal_fd(void)
   if (sigemptyset(&mask) == -1 ||
       sigaddset(&mask, SIGINT) == -1 ||
       sigaddset(&mask, SIGTERM) == -1 ||
+      sigaddset(&mask, SIGPIPE) == -1 ||
       sigprocmask(SIG_BLOCK, &mask, NULL) < 0 ||
       (fd = signalfd(-1, &mask, 0)) < 0)
     return (write_error(__FILE__, __func__, __LINE__, -1));
