@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 16:02:11 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 15:11:28 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 19:33:26 2017 Baptiste Veyssiere
 */
 
 #include <sys/socket.h>
@@ -53,7 +53,7 @@ static int	send_graphic_info(t_data *data)
   return (0);
 }
 
-static int	init_graphic_fd(t_data *data)
+int	init_graphic_fd(t_data *data)
 {
   FD_CLR(data->network->graphic_fd, data->network->set);
   if (close(data->network->graphic_fd) == -1)

@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Thu Jun 29 15:09:56 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 15:07:46 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 19:20:19 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -16,13 +16,16 @@
 static int	seg(t_data *data, char *team)
 {
   char		buff[100];
+  int		ret;
 
   if (data->network->graphic_fd == -1)
     return (0);
   bzero(buff, 100);
   if (snprintf(buff, 100, "seg %s\n", team) < 0 ||
-      socket_write(data->network->graphic_fd, buff) == -1)
+      (ret = socket_write(data->network->graphic_fd, buff)) == -1)
     return (-1);
+  if (ret == -2)
+    return (init_graphic_fd(data));
   return (0);
 }
 

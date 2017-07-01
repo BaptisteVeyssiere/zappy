@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 28 15:49:51 2017 Baptiste Veyssiere
-** Last update Fri Jun 30 23:02:13 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 19:32:24 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -16,6 +16,7 @@
 static int	bct_tile(t_data *data, int x, int y)
 {
   char		buff[50];
+  int		ret;
 
   if (data->network->graphic_fd == -1)
     return (0);
@@ -28,8 +29,10 @@ static int	bct_tile(t_data *data, int x, int y)
                data->map[y][x].item[MENDIANE],
                data->map[y][x].item[PHIRAS],
                data->map[y][x].item[THYSTAME]) < 0 ||
-      socket_write(data->network->graphic_fd, buff) == -1)
+      (ret = socket_write(data->network->graphic_fd, buff)) == -1)
     return (-1);
+  if (ret == -2)
+    return (init_graphic_fd(data));
   return (0);
 }
 
