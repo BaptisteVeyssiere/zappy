@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Sun Jun 24 14:10:14 2017 Mathis Guilbon
-** Last update Sat Jul  1 00:12:29 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:10:52 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -33,7 +33,8 @@ bool		incant_underway(t_data *data, t_player *player)
   return (true);
 }
 
-bool		enough_people(t_data *data, t_player *player, unsigned int needed)
+bool		enough_people(t_data *data, t_player *player,
+			      unsigned int needed)
 {
   t_player	*tmp;
   unsigned int	count;

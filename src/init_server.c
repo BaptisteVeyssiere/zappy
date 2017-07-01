@@ -1,11 +1,11 @@
 /*
-** init_server.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2016_zappy
+** init_server.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2016_
 **
 ** Made by Baptiste Veyssiere
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:52:57 2017 Baptiste Veyssiere
-** Last update Wed Jun 28 18:21:22 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:11:54 2017 Baptiste Veyssiere
 */
 
 #include <sys/socket.h>

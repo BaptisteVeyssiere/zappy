@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Sat Jul  1 01:13:25 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 14:56:25 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -36,11 +36,12 @@ static bool	check_overflow(int *written, char *buff, int fd)
   return (true);
 }
 
-static bool	look_one_case(t_items *item, int *written, char *buff, int fd)
+static bool		look_one_case(t_items *item, int *written,
+				      char *buff, int fd)
 {
-  int		i;
-  int		j;
-  static const    char *item_name[] =
+  int			i;
+  int			j;
+  static const char	*item_name[7] =
     {
       "food", "linemate", "deraumere", "sibur", "mendiane", "phiras", "thystame"
     };

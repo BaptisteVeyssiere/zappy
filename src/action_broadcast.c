@@ -5,13 +5,12 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Sat Jul  1 01:28:14 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 14:50:00 2017 Baptiste Veyssiere
 */
 
 #include <math.h>
 #include <stdio.h>
 #include "server.h"
-
 
 static void	get_inter(float x, float y, t_position *inter, t_position *ward)
 {
@@ -75,7 +74,8 @@ static void	get_surrounding(t_player *rec, char *dir, t_position *ward)
   i = 0;
   while (++i < UNKNOWN && i != (int)rec->direction)
     dir[0] += 2;
-  fprintf(stderr, "orientation receveur %d coin-gauche %d\n", rec->direction, dir[0]);
+  fprintf(stderr, "orientation receveur %d coin-gauche %d\n",
+	  rec->direction, dir[0]);
   i = 0;
   while (++i < CASENBR - 1)
     dir[i] = (dir[i - 1] - 1 > 0) ? dir[i - 1] - 1 : CASENBR - 1;

@@ -7,7 +7,7 @@
 ## Started on  Wed May 18 21:26:30 2016 Baptiste veyssiere
 ##
 
-SERVER	= zappy_server
+NAME	= zappy_server
 
 RM	= rm -rf
 
@@ -67,8 +67,8 @@ CFLAGS	= -Iinclude -W -Wextra -Wall -Werror -g
 
 LDFLAGS = -lm
 
-$(SERVER): $(OBJ)
-	@$(CC) -o $(SERVER) $(OBJ) $(LDFLAGS)
+$(NAME): $(OBJ)
+	@$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
 	@echo "Linking complete!"
 
 $(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.c
@@ -76,7 +76,7 @@ $(OBJ): $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "Compiled "$<" successfully!"
 
-all: $(SERVER)
+all: $(NAME)
 
 clean:
 	@$(RM) $(OBJ)
@@ -84,7 +84,7 @@ clean:
 	@echo "Cleanup complete!"
 
 fclean: clean
-	@$(RM) $(SERVER)
+	@$(RM) $(NAME)
 
 re: fclean all
 

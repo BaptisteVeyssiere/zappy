@@ -1,11 +1,11 @@
 /*
-** make_team_tab.c for Project-Master in /home/nathalie/rendu/network/PSU_2016_zappy/src
+** make_team_tab.c for Project-Master in /home/nathalie/rendu/network/PSU_2016_
 **
 ** Made by Nathalie CAI
 ** Login   <nathalie.cai@epitech.eu>
 **
 ** Started on  Mon Jun 26 17:52:26 2017 Nathalie CAI
-** Last update Fri Jun 30 18:09:02 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:12:36 2017 Baptiste Veyssiere
 */
 
 #include <stdlib.h>

@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 02:11:25 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:01:01 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -125,7 +125,8 @@ int	read_socket(int fd, t_ringbuffer *ringbuffer);
 ** add_player.c
 */
 
-int	try_add_player(t_data *data, int fd, char *team, t_ringbuffer *ringbuffer);
+int	try_add_player(t_data *data, int fd, char *team,
+		       t_ringbuffer *ringbuffer);
 
 /*
 ** update_player_action.c

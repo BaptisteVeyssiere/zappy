@@ -1,11 +1,11 @@
 /*
-** init_data.c for Project-Master in /home/nathalie/rendu/network/PSU_2016_zappy/src
+** init_data.c for Project-Master in /home/nathalie/rendu/network/PSU_2016_zapp
 **
 ** Made by Nathalie CAI
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 12:12:58 2017 Nathalie CAI
-** Last update Wed Jun 28 13:27:46 2017 Nathalie CAI
+** Last update Sat Jul  1 15:11:16 2017 Baptiste Veyssiere
 */
 
 #include <string.h>

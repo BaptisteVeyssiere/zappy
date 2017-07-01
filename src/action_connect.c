@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 19:38:17 2017 Mathis Guilbon
-** Last update Thu Jun 29 17:19:53 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:02:10 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>
@@ -27,7 +27,8 @@ void		get_real_pos_from(t_data *data, t_position *pos)
     pos->x += data->width;
 }
 
-bool		action_connect_nbr(t_data *data, t_player *player, UNUSED char *prm)
+bool		action_connect_nbr(t_data *data,
+				   t_player *player, UNUSED char *prm)
 {
   char 		buff[8];
   int		i;
@@ -59,7 +60,8 @@ static int	add_egg_to_list(t_data *data, t_egg *last)
   return (0);
 }
 
-bool			action_fork(t_data *data, t_player *player, UNUSED char *prm)
+bool			action_fork(t_data *data,
+				    t_player *player, UNUSED char *prm)
 {
   t_egg			*last;
   int			i;
@@ -68,7 +70,7 @@ bool			action_fork(t_data *data, t_player *player, UNUSED char *prm)
   if (socket_write(player->fd, "ok\n") == -1 ||
       !(last = malloc(sizeof(t_egg))) ||
       !(last->pos = malloc(sizeof(t_position))) ||
-      !(last->team = malloc(strlen(player->team) + 1)))
+      (last->team = malloc(strlen(player->team) + 1)) == NULL)
     return (false);
   last->id = data->eid;
   ++data->eid;

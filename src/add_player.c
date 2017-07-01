@@ -1,11 +1,11 @@
 /*
-** add_player.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2016_zappy
+** add_player.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2016_za
 **
 ** Made by Baptiste Veyssiere
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 04:33:42 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 01:11:54 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:05:08 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -118,7 +118,8 @@ static int	add_player(t_data *data, int fd,
   return (pnw(last, data));
 }
 
-int	try_add_player(t_data *data, int fd, char *team, t_ringbuffer *ringbuffer)
+int	try_add_player(t_data *data, int fd, char *team,
+		       t_ringbuffer *ringbuffer)
 {
   int	i;
   int	slot;

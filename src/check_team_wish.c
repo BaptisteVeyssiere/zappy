@@ -1,11 +1,11 @@
 /*
-** check_team_wish.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2016_zappy
+** check_team_wish.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2
 **
 ** Made by Baptiste Veyssiere
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 02:09:52 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 01:16:38 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:06:37 2017 Baptiste Veyssiere
 */
 
 #include <strings.h>

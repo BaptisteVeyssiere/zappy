@@ -1,11 +1,11 @@
 /*
-** signal_manager.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2016_zappy
+** signal_manager.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2
 **
 ** Made by Baptiste Veyssiere
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Fri Jun 23 14:19:02 2017 Baptiste Veyssiere
-** Last update Fri Jun 23 18:31:14 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:13:18 2017 Baptiste Veyssiere
 */
 
 #include <signal.h>

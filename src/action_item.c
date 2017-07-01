@@ -5,17 +5,17 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Sat Jul  1 01:03:58 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:02:36 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
 #include <stdio.h>
 #include "server.h"
 
-bool		action_take(t_data *data, t_player *player, char *prm)
+bool			action_take(t_data *data, t_player *player, char *prm)
 {
-  int		i;
-  static const    char *item_name[] =
+  int			i;
+  static const char	*item_name[] =
     {
       "food", "linemate", "deraumere", "sibur",
       "mendiane", "phiras", "thystame"
@@ -39,10 +39,10 @@ bool		action_take(t_data *data, t_player *player, char *prm)
   return (socket_write(player->fd, "ko\n") != -1);
 }
 
-bool		action_set(t_data *data, t_player *player, char *prm)
+bool			action_set(t_data *data, t_player *player, char *prm)
 {
-  int		i;
-  static const    char *item_name[] =
+  int			i;
+  static const char	*item_name[] =
     {
       "food",
       "linemate",
@@ -66,7 +66,8 @@ bool		action_set(t_data *data, t_player *player, char *prm)
   return (socket_write(player->fd, "ko\n") != -1);
 }
 
-bool		action_inventory(UNUSED t_data *data, t_player *player, UNUSED char *prm)
+bool		action_inventory(UNUSED t_data *data, t_player *player,
+				 UNUSED char *prm)
 {
   char 		buff[MSG_LEN];
 
@@ -111,10 +112,11 @@ static bool	upgrade_player(t_data *data, t_player *player, bool success)
   return (bct(data) == -1 ? false : true);
 }
 
-bool		action_incantation(t_data *data, t_player *player, UNUSED char *prm)
+bool		action_incantation(t_data *data,
+				   t_player *player, UNUSED char *prm)
 {
   bool		ret;
-  static  bool    (*incant[7])(t_data *, t_player *) =
+  static bool	(*incant[7])(t_data *, t_player *) =
     {
       upgrade_to_lvl2,
       upgrade_to_lvl3,

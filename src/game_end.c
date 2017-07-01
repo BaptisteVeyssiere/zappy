@@ -1,11 +1,11 @@
 /*
-** game_end.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2016_zappy
+** game_end.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2016_zap
 **
 ** Made by Baptiste Veyssiere
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Thu Jun 29 15:09:56 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 17:22:37 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:07:46 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>

@@ -1,11 +1,11 @@
 /*
-** init_map.c for Project-Master in /home/nathalie/rendu/network/PSU_2016_zappy/src
+** init_map.c for Project-Master in /home/nathalie/rendu/network/PSU_2016_zap
 **
 ** Made by Nathalie CAI
 ** Login   <nathalie.cai@epitech.eu>
 **
 ** Started on  Mon Jun 26 16:47:55 2017 Nathalie CAI
-** Last update Fri Jun 30 17:22:22 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:11:43 2017 Baptiste Veyssiere
 */
 
 #include <stdlib.h>

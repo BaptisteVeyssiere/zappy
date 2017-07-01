@@ -1,11 +1,11 @@
 /*
-** send_basic_info.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2016_zappy
+** send_basic_info.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_20
 **
 ** Made by Baptiste Veyssiere
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 14:53:31 2017 Baptiste Veyssiere
-** Last update Mon Jun 26 14:58:21 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:13:07 2017 Baptiste Veyssiere
 */
 
 #include <strings.h>

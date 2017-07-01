@@ -5,7 +5,7 @@
 ** Login   <nathalie.cai@epitech.eu>
 **
 ** Started on  Wed Jun 28 12:54:55 2017 Nathalie CAI
-** Last update Fri Jun 30 15:48:24 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 14:53:53 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -34,12 +34,12 @@ static int	check_team_names(int ac, char **av)
   return (0);
 }
 
-static char	*check_options(int ac, char **av)
+static char		*check_options(int ac, char **av)
 {
-  int	i;
-  int	j;
-  int	a;
-  char	*options[] =
+  int			i;
+  int			j;
+  int			a;
+  static const char	*options[6] =
     {
       "-p", "-x", "-y", "-n", "-c", "-f"
     };

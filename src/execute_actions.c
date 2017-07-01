@@ -1,11 +1,11 @@
 /*
-** execute_actions.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2016_zappy
+** execute_actions.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_20
 **
 ** Made by Baptiste Veyssiere
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 14:40:30 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 02:13:04 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:06:51 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -14,7 +14,8 @@
 #include <sys/time.h>
 #include "server.h"
 
-void		set_action_timer(t_action *action, int duration, unsigned int freq)
+void		set_action_timer(t_action *action, int duration,
+				 unsigned int freq)
 {
   struct timeval	tv;
 

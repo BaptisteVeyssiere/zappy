@@ -1,11 +1,11 @@
 /*
-** check_sockets.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2016_zappy
+** check_sockets.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2016
 **
 ** Made by Baptiste Veyssiere
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Fri Jun 23 17:55:38 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 01:14:42 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:06:13 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>

@@ -1,11 +1,11 @@
 /*
-** update_player_status.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2016_zappy
+** update_player_status.c for Project-Master in /home/veyssi_b/rendu/tek2/P
 **
 ** Made by Baptiste Veyssiere
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 20:24:46 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 01:42:22 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:13:43 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>

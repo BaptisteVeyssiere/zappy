@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 16:38:50 2017 Mathis Guilbon
-** Last update Fri Jun 30 14:54:50 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:03:43 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -27,7 +27,8 @@ bool		action_forward(t_data *data, t_player *player, UNUSED char *prm)
   return (socket_write(player->fd, "ok\n") != -1);
 }
 
-bool		action_right(UNUSED t_data *data, t_player *player, UNUSED char *prm)
+bool		action_right(UNUSED t_data *data, t_player *player,
+			     UNUSED char *prm)
 {
   if ((++player->direction) == UNKNOWN)
     player->direction = 1;
@@ -36,7 +37,8 @@ bool		action_right(UNUSED t_data *data, t_player *player, UNUSED char *prm)
   return (socket_write(player->fd, "ok\n") != -1);
 }
 
-bool		action_left(UNUSED t_data *data, t_player *player, UNUSED char *prm)
+bool		action_left(UNUSED t_data *data, t_player *player,
+			    UNUSED char *prm)
 {
   if ((--player->direction) <= 0)
     player->direction = LEFT;
@@ -45,7 +47,8 @@ bool		action_left(UNUSED t_data *data, t_player *player, UNUSED char *prm)
   return (socket_write(player->fd, "ok\n") != -1);
 }
 
-static bool	eject(t_data *data, t_player *player, t_position *off, char *buff)
+static bool	eject(t_data *data, t_player *player,
+		      t_position *off, char *buff)
 {
   t_player	*tmp;
 

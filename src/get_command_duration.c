@@ -1,21 +1,21 @@
 /*
-** get_command_duration.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU/PSU_2016_zappy
+** get_command_duration.c for Project-Master in /home/veyssi_b/rendu/tek2/PSU
 **
 ** Made by Baptiste Veyssiere
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 15:46:29 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 01:24:45 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 15:08:09 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
 #include "server.h"
 
-int		get_command_duration(char *command)
+int			get_command_duration(char *command)
 {
-  int		duration;
-  int		i;
-  static  t_act actions[] =
+  int			duration;
+  int			i;
+  static const t_act	actions[] =
     {
       {"Forward", action_forward, 7},
       {"Right", action_right, 7},
