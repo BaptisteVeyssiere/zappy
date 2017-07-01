@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Thu Jun 29 11:25:53 2017 Nathan Scutari
-// Last update Sat Jul  1 17:08:47 2017 Nathan Scutari
+// Last update Sat Jul  1 21:48:11 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -380,8 +380,21 @@ void		zappy::Exploration::createPath()
       path.push(new C_TurnRight);
       path.push(new C_Forward);
     }
-  delete values;
   delete list;
+  while (!values->empty())
+    {
+      if (values->front().pos.x != tile.pos.x && values->front().pos.y !=
+	  tile.pos.x)
+	{
+	  while (!values->front().path.empty())
+	    {
+	      delete values->front().path.front();
+	      values->front().path.pop();
+	    }
+	}
+      values->pop_front();
+    }
+  delete values;
 }
 
 zappy::ICommand	*zappy::Exploration::explore()

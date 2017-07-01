@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Sat Jul  1 16:33:58 2017 Nathan Scutari
+// Last update Sat Jul  1 22:33:36 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -18,7 +18,8 @@
 
 zappy::Player::Player(World &world)
   : id(0), lvl(1), pos(), facing(0, 1), food(10), OwnInventory(),
-    commonInventory(), map(), teamNbPlayer(1), nbOfEgg(0), slot(0)
+    commonInventory(), map(), teamNbPlayer(1), nbOfEgg(0), slot(0),
+    leveling(false)
 {
   OwnInventory.getInv()["food"] = 10;
   map.setSize(world.width, world.height);
@@ -141,4 +142,14 @@ int		&zappy::Player::getSlot()
 int		&zappy::Player::getFood()
 {
   return (food);
+}
+
+void		zappy::Player::setLeveling(bool val)
+{
+  leveling = val;
+}
+
+bool		&zappy::Player::getLeveling()
+{
+  return (leveling);
 }

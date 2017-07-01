@@ -5,13 +5,15 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 26 10:11:32 2017 Nathan Scutari
-// Last update Fri Jun 30 19:03:29 2017 vigner_g
+// Last update Sat Jul  1 23:35:14 2017 Nathan Scutari
 //
 
 #include <iostream>
 #include <functional>
 #include "CommandManager.hpp"
 #include "Player.hpp"
+#include "ICommand.hpp"
+#include "C_incantation.hpp"
 
 void	getMyId(std::string &msg, zappy::Player &player)
 {
@@ -39,7 +41,7 @@ void	comeMyFriend(std::string &msg, zappy::Player &player)
 }
 
 zappy::CommandManager::CommandManager()
-  :refs({"message", "eject", "dead"})
+  :refs({"message", "eject", "dead", "Elevation underway"})
 {
 
 }
@@ -55,7 +57,8 @@ void	zappy::CommandManager::cleanString(std::string &msg) const
     msg.erase(0, 1);
 }
 
-bool	zappy::CommandManager::isResponse(std::string &msg)
+bool	zappy::CommandManager::isResponse(std::string &msg, ICommand **stock,
+					  bool ele)
 {
   size_t	pos;
 
@@ -64,6 +67,13 @@ bool	zappy::CommandManager::isResponse(std::string &msg)
     {
       if ((pos = msg.find(refs[i])) == 0)
 	{
+	  if (refs[i] == "Elevation underway" && ele == false)
+	    {
+	      *stock = new C_incantation(false);
+	      return (true);
+	    }
+	  else if (refs[i] == "Elevation underway" && ele == true)
+	    return (true);
 	  std::cout << "Received data: " << refs[i] << std::endl;
 	  return (false);
 	}

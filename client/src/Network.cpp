@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:35 2017 Nathan Scutari
-// Last update Sat Jul  1 21:21:51 2017 Nathan Scutari
+// Last update Sat Jul  1 23:23:10 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -59,12 +59,14 @@ std::string	zappy::Network::getNextCmd()
   return (cmdBuffer.getAndRemoveCmd());
 }
 
-void	zappy::Network::sendMsg(std::string &msg) const
+void	zappy::Network::sendMsg(std::string &copy) const
 {
+  std::string	msg;
   ssize_t	sent;
   ssize_t	ret;
   int		size;
 
+  msg = copy;
   std::cout << "Sending: " << msg << std::endl;
   msg += '\n';
   if (server_fd == -1)
@@ -138,6 +140,8 @@ void		zappy::Network::registerPlayer(World &data, const std::string &team)
 		"The team does not exist or is full, trying again in 1 sec"
 			<< std::endl;
 	      sleep(1);
+	      copy = team;
+	      sendMsg(copy);
 	    }
 	  else if (data.client_num == -1)
 	    data.client_num = std::stoi(msg);
@@ -190,6 +194,7 @@ void	zappy::Network::readMsg()
 			   __LINE__, __FILE__);
   else if (ret == 0)
     disconnect();
+  std::cout << "----- " << buffer << " -----" << std::endl;
   cmdBuffer.addInBuff(buffer);
 }
 

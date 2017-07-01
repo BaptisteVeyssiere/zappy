@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Fri Jun 30 19:01:09 2017 vigner_g
+// Last update Sat Jul  1 22:32:59 2017 Nathan Scutari
 //
 
 #ifndef __PLAYER_HPP__
@@ -34,6 +34,7 @@ namespace	zappy
     int					teamNbPlayer;
     int					nbOfEgg;
     int					slot;
+    bool				leveling;
 
   private:
     Player(Player &other);
@@ -45,6 +46,7 @@ namespace	zappy
 
   public:
     void	SetTeamNbPlayer(int nb);
+    void	setLeveling(bool);
     void	SetId(int id);
     void	AddALvl();
     void	setFood(int nbr);
@@ -62,6 +64,7 @@ namespace	zappy
     int		&getLvl();
     int		&getSlot();
     int		&getFood();
+    bool	&getLeveling();
   };
 }
 

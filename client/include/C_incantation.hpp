@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 18:07:33 2017 Nathan Scutari
-// Last update Sat Jun 24 15:08:58 2017 Nathan Scutari
+// Last update Sat Jul  1 22:15:27 2017 Nathan Scutari
 //
 
 #ifndef __INCANTATION_HPP__
@@ -20,7 +20,7 @@ namespace zappy
   class C_incantation : public ICommand
   {
   private:
-    int		waiting;
+    bool	waiting;
     std::string	command;
 
   private:
@@ -28,7 +28,7 @@ namespace zappy
     C_incantation	&operator=(C_incantation &other);
 
   public:
-    C_incantation();
+    C_incantation(bool);
     ~C_incantation();
 
   public:

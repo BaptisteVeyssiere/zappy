@@ -5,16 +5,15 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 18:10:48 2017 Nathan Scutari
-// Last update Wed Jun 28 16:35:44 2017 vigner_g
+// Last update Sat Jul  1 22:39:35 2017 Nathan Scutari
 //
 
 #include "C_incantation.hpp"
 #include "Exception.hpp"
 
-zappy::C_incantation::C_incantation()
-  :ICommand(), waiting(0), command("Incantation")
+zappy::C_incantation::C_incantation(bool state)
+  :ICommand(), waiting(state), command("Incantation")
 {
-
 }
 
 zappy::C_incantation::~C_incantation()
@@ -36,9 +35,10 @@ void		zappy::C_incantation::addArg(UNUSED std::string arg)
 bool		zappy::C_incantation::getResponse(Player &player,
 						  std::string &response)
 {
-  if (waiting == 0)
+  if (waiting == false)
     {
-      waiting = 1;
+      player.setLeveling(false);
+      waiting = true;
       return (false);
     }
   if (response.find("Current level") != std::string::npos)

@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 30 23:55:55 2017 Nathan Scutari
-// Last update Sat Jul  1 21:26:06 2017 Nathan Scutari
+// Last update Sat Jul  1 22:33:54 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -90,7 +90,8 @@ zappy::ICommand	*zappy::Elevation::elevate()
     }
   std::cout << "I'm leveling up! :-)" << std::endl;
   requirements = false;
-  return (new C_incantation);
+  mPlayer->setLeveling(true);
+  return (new C_incantation(false));
 }
 
 zappy::ICommand	*zappy::Elevation::check()
