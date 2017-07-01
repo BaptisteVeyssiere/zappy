@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Thu Jun 29 16:13:41 2017 Nathan Scutari
+// Last update Fri Jun 30 19:01:09 2017 vigner_g
 //
 
 #ifndef __PLAYER_HPP__
@@ -18,8 +18,6 @@
 #include "Inventory.hpp"
 #include "Map.hpp"
 
-//direction north 0 west 1 south 2 east 3
-
 namespace	zappy
 {
   class Player
@@ -31,7 +29,7 @@ namespace	zappy
     t_position		       		facing;
     int					food;
     Inventory				OwnInventory;
-    Inventory				CommonInventory;
+    std::map<int, Inventory>		commonInventory;
     Map					map;
     int					teamNbPlayer;
     int					nbOfEgg;
@@ -54,7 +52,9 @@ namespace	zappy
 
   public:
     Inventory	&getOwnInventory();
-    Inventory	&getSharedInventory();
+    std::map<int, Inventory>	&getCommonInventory();
+    void	addToCommonInventory(int lvl, std::string item, int nbr);
+    void	resetCommonInventory();
     t_position	&getFacing();
     t_position	&getPosition();
     t_position	getAbsolutePos(t_position &relative_pos);

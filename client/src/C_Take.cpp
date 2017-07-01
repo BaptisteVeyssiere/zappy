@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Mon Jun 26 15:08:46 2017 vigner_g
-// Last update Thu Jun 29 21:37:45 2017 Nathan Scutari
+// Last update Fri Jun 30 23:07:01 2017 vigner_g
 //
 
 #include <iostream> //debug
@@ -40,6 +40,6 @@ bool	zappy::C_Take::getResponse(Player &player, std::string &response)
     {
       player.getOwnInventory().addItem(this->item);
     }
-  player.getMap().access(player.getPosition().y ,player.getPosition().x).delItem(this->item);
+  player.getMap().access(player.getPosition().y ,player.getPosition().x).zeroItem(this->item);
   return (true);
 }

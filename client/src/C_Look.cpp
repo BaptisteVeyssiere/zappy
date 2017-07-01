@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:25:31 2017 vigner_g
-// Last update Sat Jul  1 01:56:28 2017 Nathan Scutari
+// Last update Sat Jul  1 10:31:36 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -73,7 +73,22 @@ bool		zappy::C_Look::getResponse(Player &player, std::string &response)
 	      player.getMap().access(it->y, it->x).addItem(sub2);
 	    }
 	}
+      if (sub2 != "player" && sub2 != " " && !(sub2.empty()))
+	{
+	  player.getMap().access(it->y, it->x).addItem(sub2);
+	}
       it++;
+    }
+  while ((sub2 = getSubString(sub, " ")) != "*end*" && sub.size() > 0)
+    {
+      if (sub2 != "player" && sub2 != " " && !(sub2.empty()))
+	{
+	  player.getMap().access(it->y, it->x).addItem(sub2);
+	}
+    }
+  if (sub2 != "player" && sub2 != " " && !(sub2.empty()))
+    {
+      player.getMap().access(it->y, it->x).addItem(sub2);
     }
   return (true);
 }
