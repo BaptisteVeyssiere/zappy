@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Sat Jul  1 14:59:44 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 17:15:24 2017 Mathis Guilbon
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -62,6 +62,12 @@ typedef struct		s_position
   int			x;
   int			y;
 }			t_position;
+
+typedef struct		s_point
+{
+  float			x;
+  float			y;
+}			t_point;
 
 typedef struct		s_action
 {

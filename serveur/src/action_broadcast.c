@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Sat Jul  1 16:45:55 2017 Mathis Guilbon
+** Last update Sat Jul  1 18:04:55 2017 Mathis Guilbon
 */
 
 #include <math.h>
@@ -84,7 +84,7 @@ static int	get_shorter(t_data *data, t_position *src, t_position *rec, t_positio
 {
   int		c;
   int		i;
-  t_position	r_inter[2];
+  t_point	r_inter[2];
   t_position	v;
   unsigned int	dist[4];
   int		shorter;
@@ -95,18 +95,22 @@ static int	get_shorter(t_data *data, t_position *src, t_position *rec, t_positio
   c = -(-v.y * rec->x + v.x * rec->y);
   // y = ax + b   ax + by + c = 0
   // -v.y * x + v.x * y + c = 0;
-  if (rec->y + c == 0)
-    r_inter[++i] = (t_position){0, (float)-c / v.x};
-  if (-v.y * data->width + v.x * rec->y + c == 0)
-    r_inter[++i] = (t_position){data->width, (float)(v.y * data->width - c) / v.x};
-  if (-v.y * rec->x + c == 0)
-    r_inter[++i] = (t_position){(float)-c / -v.y, 0};
-  if (-v.y * rec->x + v.x * data->height + c == 0)
-    r_inter[++i] = (t_position){(float)(-v.x * data->height - c) / -v.y, data->height};
-  // changer le calcul de dist[1] qui correspond a la distance en "passant a travers les limites"
+  fprintf(stderr, "ax+by+c=0||%d * x + %d * y + %d = 0\n", -v.y, v.x, c);
+  // x = 0 && x = 10
+  if (v.x && (float)-c / v.x >= 0 && (float)-c / v.x <= data->height - 1)
+    {
+      r_inter[++i] = (t_point){0, (float)-c / v.x};
+      r_inter[++i] = (t_point){data->width, (float)(v.y * data->width - 1 - c) / v.x};
+    }
+  else if (v.y && (float)c / v.y >= 0 && (float)c / v.y <= data->width - 1)
+    {
+      // y = 0 && y = 10
+      r_inter[++i] = (t_point){(float)c / v.y, 0};
+      r_inter[++i] = (t_point){(float)(-v.x * data->height - 1 - c) / -v.y, data->height};
+    }
   dist[1] = (r_inter[1].x - r_inter[0].x) * (r_inter[1].x - r_inter[0].x) +
     (r_inter[1].y - r_inter[0].y) * (r_inter[1].y - r_inter[0].y);
-  fprintf(stderr, "dist[1]:%f\n", sqrt(dist[0]));
+  fprintf(stderr, "dist[1]:%f\nnb inter %d\n", sqrt(dist[0]), i);
   fprintf(stderr, "dist[2]:%f\n", sqrt(dist[1]));
   dist[2] = (src->x - inter[0].x) * (src->x - inter[0].x) +
     (src->y - inter[0].y) * (src->y - inter[0].y);
