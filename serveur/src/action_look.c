@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Sat Jul  1 18:35:14 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 18:35:53 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -81,7 +81,6 @@ bool		action_look(t_data *data, t_player *player, UNUSED char *prm)
 {
   char		buff[MSG_LEN];
   unsigned int	up;
->>>>>>> 62897df3576b9717e3757067e05f9cd10e9d7008:src/action_look.c
   int	      	saw;
   t_position	off;
   int		written;
