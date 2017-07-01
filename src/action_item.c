@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Sat Jul  1 00:20:10 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 01:03:58 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -17,13 +17,8 @@ bool		action_take(t_data *data, t_player *player, char *prm)
   int		i;
   static const    char *item_name[] =
     {
-      "food",
-      "linemate",
-      "deraumere",
-      "sibur",
-      "mendiane",
-      "phiras",
-      "thystame"
+      "food", "linemate", "deraumere", "sibur",
+      "mendiane", "phiras", "thystame"
     };
 
   i = -1;

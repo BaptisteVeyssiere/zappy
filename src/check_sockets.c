@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Fri Jun 23 17:55:38 2017 Baptiste Veyssiere
-** Last update Fri Jun 30 18:58:48 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 01:14:42 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -45,10 +45,7 @@ static int		extend_queue(t_data *data, int fd)
   last->fd = fd;
   last->next = NULL;
   if (!(last->ringbuffer = init_ringbuffer()))
-    {
-      free(last);
-      return (-1);
-    }
+    return (-1);
   if (!(data->queue))
     data->queue = last;
   else

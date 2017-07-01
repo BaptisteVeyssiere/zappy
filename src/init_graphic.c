@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 16:02:11 2017 Baptiste Veyssiere
-** Last update Fri Jun 30 23:37:10 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 01:36:19 2017 Baptiste Veyssiere
 */
 
 #include <sys/socket.h>
@@ -53,6 +53,18 @@ static int	send_graphic_info(t_data *data)
   return (0);
 }
 
+static int	init_graphic_fd(t_data *data)
+{
+  FD_CLR(data->network->graphic_fd, data->network->set);
+  if (close(data->network->graphic_fd) == -1)
+    return (write_error(__FILE__, __func__, __LINE__, -1));
+  data->network->graphic_fd = -1;
+  free(data->network->graphic_buffer);
+  data->network->graphic_buffer = NULL;
+  data->network->graphic_ready = -1;
+  return (0);
+}
+
 int	get_graphic_info(t_data *data)
 {
   int	ret;
@@ -61,16 +73,7 @@ int	get_graphic_info(t_data *data)
 
   if ((ret = read_socket(data->network->graphic_fd,
 			 data->network->graphic_buffer)) == -1)
-    {
-      FD_CLR(data->network->graphic_fd, data->network->set);
-      if (close(data->network->graphic_fd) == -1)
-	return (write_error(__FILE__, __func__, __LINE__, -1));
-      data->network->graphic_fd = -1;
-      free(data->network->graphic_buffer);
-      data->network->graphic_buffer = NULL;
-      data->network->graphic_ready = -1;
-      return (0);
-    }
+    return (init_graphic_fd(data));
   if (data->network->graphic_ready != 0)
     return (0);
   is_cmd = 0;

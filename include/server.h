@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Fri Jun 30 23:56:07 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 02:11:25 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -80,7 +80,6 @@ int	print_usage(void);
 void    print_map(t_data *data);
 void    print_map_ressources(t_data *data);
 void    print_data(t_data *data);
-void	print_surrounding_case(t_player *, char *, t_position *, t_position *);
 
 /*
 ** signal_manager.c
@@ -241,6 +240,7 @@ int	pdi(t_data *data, t_player *player);
 
 int	update_player_status(t_data *data);
 void	add_slot_for_team(t_data *data, t_player *player);
+int	free_player(t_player *player, t_data *data);
 
 /*
 ** execute_actions.c
@@ -306,5 +306,12 @@ int	pbc(t_data *data, t_player *player, char *message);
 int	pic_init(t_data *data, t_player *player);
 int	pic(t_data *data, t_player *player);
 int	pic_end(t_data *data);
+
+/*
+** actions.c
+*/
+
+int	stop_command(t_player *player, char *command);
+int	executer(t_act *actions, t_player *tmp, t_data *data);
 
 #endif /* !SERVER_H_ */

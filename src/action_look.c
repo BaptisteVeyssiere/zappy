@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Thu Jun 29 17:26:40 2017 Mathis Guilbon
+** Last update Sat Jul  1 01:13:25 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -42,13 +42,7 @@ static bool	look_one_case(t_items *item, int *written, char *buff, int fd)
   int		j;
   static const    char *item_name[] =
     {
-      "food",
-      "linemate",
-      "deraumere",
-      "sibur",
-      "mendiane",
-      "phiras",
-      "thystame"
+      "food", "linemate", "deraumere", "sibur", "mendiane", "phiras", "thystame"
     };
 
   i = -1;
@@ -59,17 +53,14 @@ static bool	look_one_case(t_items *item, int *written, char *buff, int fd)
 	return (false);
     }
   j = -1;
-  while (++j < ITEMNBR)
-    {
-      i = -1;
-      while (++i < (int)item->item[j])
-	{
-	  *written += snprintf(buff + *written, MSG_LEN - *written,
-			       " %s", item_name[j]);
-	  if (!check_overflow(written, buff, fd))
-	    return (false);
-	}
-    }
+  while (++j < ITEMNBR && (i = -1) == -1)
+    while (++i < (int)item->item[j])
+      {
+	*written += snprintf(buff + *written, MSG_LEN - *written,
+			     " %s", item_name[j]);
+	if (!check_overflow(written, buff, fd))
+	  return (false);
+      }
   return (true);
 }
 

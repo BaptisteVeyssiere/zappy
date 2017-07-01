@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Sat Jul  1 00:36:48 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 01:28:14 2017 Baptiste Veyssiere
 */
 
 #include <math.h>
@@ -111,7 +111,6 @@ static void	get_message_dir(t_data *data, t_position *src,
   shorter = (src->x > rec->pos->x) ? (shorter + 1) % 2 : shorter;
   fprintf(stderr, "dist[%d]:%u\n", 0, dist[0]);
   fprintf(stderr, "dist[%d]:%u\n", 1, dist[1]);
-  print_surrounding_case(rec, &dir[0], &ward[0], &inter[0]);
   i = -1;
   while (++i < CASENBR - 1)
     if (inter[shorter].x == ward[i].x &&

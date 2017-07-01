@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 04:33:42 2017 Baptiste Veyssiere
-** Last update Thu Jun 29 16:31:57 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 01:11:54 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -14,12 +14,16 @@
 #include <sys/time.h>
 #include "server.h"
 
-static void		init_player(t_player *last, char *team,
+static t_player		*init_player(t_player *last, char *team,
 				    t_position pos, int fd)
 {
   int			i;
   struct timeval	tv;
 
+  if (!(last = malloc(sizeof(t_player))) ||
+      (last->inventory = malloc(sizeof(t_items))) == NULL ||
+      (last->pos = malloc(sizeof(t_position))) == NULL)
+    return (NULL);
   i = -1;
   gettimeofday(&tv, NULL);
   while (++i < ITEMNBR)
@@ -37,6 +41,7 @@ static void		init_player(t_player *last, char *team,
   last->next = NULL;
   last->action = NULL;
   last->life = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+  return (last);
 }
 
 static void	add_player_to_list(t_data *data, t_player *last,
@@ -106,11 +111,9 @@ static int	add_player(t_data *data, int fd,
       }
     else
       tmp = tmp->next;
-  if (!(last = malloc(sizeof(t_player))) ||
-      (last->inventory = malloc(sizeof(t_items))) == NULL ||
-      (last->pos = malloc(sizeof(t_position))) == NULL)
-    return (write_error(__FILE__, __func__, __LINE__, -1));
-  init_player(last, team, pos, fd);
+  last = NULL;
+  if (!(last = init_player(last, team, pos, fd)))
+    return (-1);
   add_player_to_list(data, last, is_egg, ringbuffer);
   return (pnw(last, data));
 }
