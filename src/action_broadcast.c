@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Sat Jul  1 00:56:32 2017 Mathis Guilbon
+** Last update Sat Jul  1 01:07:57 2017 Mathis Guilbon
 */
 
 #include <math.h>
@@ -58,10 +58,6 @@ static void	calc_intersection(t_position *src, t_position *rec,
     {
       a = (src->y + 0.5 - center[1]) / (src->x + 0.5 - center[0]);
       b = center[1] - a * center[0];
-      fprintf(stderr, "y = %f * x + %f\n", a, b);
-      /*      alpha = atanf((a * center[0] + b) / center[0]);
-      get_inter(1.5 * cosf(alpha) + center[0],
-		1.5 * sinf(alpha) + center[1], inter, ward);*/
       alpha = 1 + a * a;
       beta = 2 * (a * (b - center[1]) - center[0]);
       c = center[0] * center[0] + (b - center[1]) * (b - center[1]) - 2.25;
@@ -99,8 +95,9 @@ static int	get_shorter(t_data *data, t_position *src, t_position *rec, t_positio
   
   dist[0] = (rec->x - src->x) * (rec->x - src->x) +
     (rec->y - src->y) * (rec->y - src->y);
-  dist[1] = ((src->x - rec->x) % data->width) * ((src->x - rec->x) % data->width) +
-    ((src->y - rec->y) % data->height) * ((src->y - rec->y) % data->height);
+  // changer le calcul de dist[1] qui correspond a la distance en "passant a travers les limites"
+  dist[1] = (data->width - src->x - rec->x) * (data->width - src->x - rec->x) +
+    (data->height - src->y - rec->y) * (data->height - src->y - rec->y);
   fprintf(stderr, "dist[1]:%u\n", dist[0]);
   fprintf(stderr, "dist[2]:%u\n", dist[1]);
   dist[2] = (src->x - inter[0].x) * (src->x - inter[0].x) +
