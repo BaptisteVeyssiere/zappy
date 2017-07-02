@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Sun Jul  2 18:34:24 2017 Nathan Scutari
+// Last update Sun Jul  2 19:07:17 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -180,6 +180,8 @@ zappy::ICommand	*zappy::Player::elevation()
   choice = new C_broadcast;
   choice->addArg("Elevation ");
   choice->addArg(std::to_string(this->id));
+  choice->addArg(" LVL ");
+  choice->addArg(std::to_string(this->lvl));
   getRegroup().startElevating();
   return (choice);
 }

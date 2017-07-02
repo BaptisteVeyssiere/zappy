@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 30 23:55:55 2017 Nathan Scutari
-// Last update Sun Jul  2 19:04:43 2017 Nathan Scutari
+// Last update Sun Jul  2 19:11:32 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -19,7 +19,7 @@
 #include "C_broadcast.hpp"
 
 zappy::Elevation::Elevation()
-  :requirements(false), elevating(false), mPlayer(NULL)
+  :requirements(false), elevating(false), mPlayer(NULL), canceled(false)
 {
 
 }
@@ -120,6 +120,7 @@ zappy::ICommand	*zappy::Elevation::playersRegrouped()
 	{
 	  init = true;
 	  free = false;
+	  canceled = true;
 	  return (mPlayer->cancel());
 	}
       fill = new C_broadcast;
@@ -155,6 +156,11 @@ zappy::ICommand	*zappy::Elevation::check()
   static int	turn = 0;
   ICommand	*choice;
 
+  if (canceled)
+    {
+      canceled = false;
+      return (new C_inventory);
+    }
   if (requirements)
     {
       if ((choice = playersRegrouped()))
