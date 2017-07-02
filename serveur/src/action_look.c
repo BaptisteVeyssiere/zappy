@@ -5,12 +5,12 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Sun Jul  2 02:58:43 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 15:45:49 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
-#include "server.h"
 #include <math.h>
+#include "server.h"
 
 static bool	check_overflow(int *written, char *buff, int fd)
 {
