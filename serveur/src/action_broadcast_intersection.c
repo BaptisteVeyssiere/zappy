@@ -5,9 +5,10 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Sun Jul  2 13:20:22 2017 Mathis Guilbon
-** Last update Sun Jul  2 15:38:18 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 20:12:59 2017 Mathis Guilbon
 */
 
+#include <string.h>
 #include <math.h>
 #include "server.h"
 
@@ -58,19 +59,26 @@ void		get_map_inter(t_data *data, t_position *v,
 			      t_point *r_inter, int c)
 {
   int		i;
+  float		res;
 
   i = -1;
-  if (v->x && (float)-c / v->x >= 0 && (float)-c / v->x <= data->height - 1)
+  memset(r_inter, 0, 2 * sizeof(*r_inter));
+  if (v->x)
     {
-      r_inter[++i] = (t_point){0, (float)-c / v->x};
-      r_inter[++i] = (t_point){data->width,
-			       (float)(v->y * data->width - 1 - c) / v->x};
+      res = (float)-c / v->x;
+      if (res >= 0 && res <= (float)(data->height - 1))
+	r_inter[++i] = (t_point){0, res};
+      res = (float)(v->y * (data->width - 1) - c) / v->x;
+      if (res >= 0 && res <= (float)(data->height - 1))
+	r_inter[++i] = (t_point){data->width - 1, res};
     }
-  else if (v->y && (float)c / v->y >= 0 && (float)c / v->y <= data->width - 1)
+  if (v->y)
     {
-      r_inter[++i] = (t_point){(float)c / v->y, 0};
-      r_inter[++i] = (t_point){(float)(-v->x * data->height - 1 - c) / -v->y,
-			       data->height};
+      res = (float)c / v->y;
+      if (v->y && res >= 0 && res <= (float)(data->width - 1))
+	r_inter[++i] = (t_point){(float)c / v->y, 0};
+      res = (float)(-v->x * (data->height - 1) - c) / -v->y;
+      if (v->y && res >= 0 && res <= (float)(data->width - 1))
+	r_inter[++i] = (t_point){res, data->height - 1};
     }
-
 }
