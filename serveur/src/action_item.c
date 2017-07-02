@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Sun Jul  2 20:03:37 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 22:10:47 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -84,7 +84,8 @@ bool		action_inventory(UNUSED t_data *data, t_player *player,
   return (socket_write(player->fd, buff) != -1);
 }
 
-static bool	upgrade_player(t_data *data, t_player *player, bool s)
+static bool	upgrade_player(t_data *data, t_player *player,
+			       bool s, unsigned int level)
 {
   t_player	*tmp;
   t_incantation	*_tmp;
@@ -100,9 +101,9 @@ static bool	upgrade_player(t_data *data, t_player *player, bool s)
       {
 	tmp = _tmp->player;
 	if (tmp->pos->x == player->pos->x && tmp->pos->y == player->pos->y &&
-	    tmp->level == player->level)
+	    tmp->level == level)
 	  {
-	    tmp->level = s != 0 ? (tmp->level + 1) : tmp->level;
+	    tmp->level = s == true ? (tmp->level + 1) : tmp->level;
 	    if (socket_write(tmp->fd, buff) == -1 || plv(data, tmp) == -1)
 	      return (false);
 	  }
@@ -129,5 +130,5 @@ bool		action_incantation(t_data *data,
     };
 
   ret = (incant[player->level - 1])(data, player);
-  return (upgrade_player(data, player, ret));
+  return (upgrade_player(data, player, ret, player->level));
 }
