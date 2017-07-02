@@ -5,10 +5,10 @@
 ## Login   <vigner_g@epitech.net>
 ##
 ## Started on  Tue Jun 27 17:24:20 2017 vigner_g
-## Last update Sun Jul  2 18:37:25 2017 Nathan Scutari
+## Last update Sun Jul  2 23:31:52 2017 Nathan Scutari
 ##
 
-NAME		= zappy_ai
+NAME		= ../zappy_ai
 
 RM		= rm -f
 
