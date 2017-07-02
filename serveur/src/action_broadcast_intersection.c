@@ -1,11 +1,11 @@
 /*
-** action_broadcast_intersection.c for zappy in /home/guilbo_m/rendu/PSU/PSU_2016_zappy
-** 
+** action_broadcast_intersection.c for zappy in /home/guilbo_m/rendu/PSU/
+**
 ** Made by Mathis Guilbon
 ** Login   <guilbo_m@epitech.net>
-** 
+**
 ** Started on  Sun Jul  2 13:20:22 2017 Mathis Guilbon
-** Last update Sun Jul  2 13:32:28 2017 Mathis Guilbon
+** Last update Sun Jul  2 15:38:18 2017 Baptiste Veyssiere
 */
 
 #include <math.h>
@@ -54,12 +54,8 @@ void		calc_intersection(t_position *src, t_position *rec,
     }
 }
 
-/*
-**	ax + by + c = 0
-**	intersects : (x = 0 && x = 10) || (y = 0 && y = 10)
-*/
-
-void		get_map_inter(t_data *data, t_position *v, t_point *r_inter, int c)
+void		get_map_inter(t_data *data, t_position *v,
+			      t_point *r_inter, int c)
 {
   int		i;
 
