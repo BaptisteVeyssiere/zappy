@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Sun Jul  2 20:35:21 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 19:12:19 2017 Mathis Guilbon
 */
 
 #include <math.h>
@@ -43,9 +43,12 @@ static int	get_shorter(t_data *data, t_position *src,
 
   v = (t_position){rec->x - src->x, rec->y - src->y};
   dist[0] = v.x * v.x + v.y * v.y;
+  fprintf(stderr, "ax+by+c=0||%d * x + %d * y + %d = 0\n", -v.y, v.x, -(-v.y * rec->x + v.x * rec->y));
   get_map_inter(data, &v, &r_inter[0], -(-v.y * rec->x + v.x * rec->y));
   dist[1] = (r_inter[1].x - r_inter[0].x) * (r_inter[1].x - r_inter[0].x) +
     (r_inter[1].y - r_inter[0].y) * (r_inter[1].y - r_inter[0].y);
+  fprintf(stderr, "dist[1]:%f\n", sqrt(dist[0]));
+  fprintf(stderr, "dist[2]:%f\n", sqrt(dist[1]));
   dist[2] = (src->x - inter[0].x) * (src->x - inter[0].x) +
     (src->y - inter[0].y) * (src->y - inter[0].y);
   dist[3] = (src->x - inter[1].x) * (src->x - inter[1].x) +
@@ -53,7 +56,30 @@ static int	get_shorter(t_data *data, t_position *src,
   shorter = (dist[2] < dist[3]) ? 0 : 1;
   if (sqrt(dist[0]) > sqrt(dist[1]) / 2)
     shorter = (shorter + 1) % 2;
+  fprintf(stderr, "dist[3]:%u\n", dist[2]);
+  fprintf(stderr, "dist[4]:%u\nshorter %d", dist[3], shorter + 1);
   return (shorter);
+}
+
+static void  print_surrounding_case(t_player *rec, char *dir, t_position *ward, t_position *inter) 
+{ 
+  fprintf(stderr, "[%d]:(%d,%d)\t[%d]:(%d,%d)\t[%d]:(%d,%d)\n" 
+    "[%d]:(%d,%d)\t{%d,%d}\t\t[%d]:(%d,%d)\n" 
+    "[%d]:(%d,%d)\t[%d]:(%d,%d)\t[%d]:(%d,%d)\n", 
+    dir[0], ward[0].x, ward[0].y, 
+    dir[1], ward[1].x, ward[1].y, 
+    dir[2], ward[2].x, ward[2].y, 
+    dir[7], ward[7].x, ward[7].y, 
+    rec->pos->x, rec->pos->y, 
+    dir[3], ward[3].x, ward[3].y, 
+    dir[6], ward[6].x, ward[6].y, 
+    dir[5], ward[5].x, ward[5].y, 
+    dir[4], ward[4].x, ward[4].y); 
+  fprintf(stderr, "intersection:\n" 
+    "\t1:[%d,%d]\n" 
+    "\t2:[%d,%d]\n", 
+    inter[0].x, inter[0].y, 
+    inter[1].x, inter[1].y); 
 }
 
 static void	get_message_dir(t_data *data, t_position *src,
@@ -67,6 +93,7 @@ static void	get_message_dir(t_data *data, t_position *src,
 
   get_surrounding(rec, &dir[0], &ward[0]);
   calc_intersection(src, rec->pos, &inter[0], &ward[0]);
+  print_surrounding_case(rec, &dir[0], &ward[0], &inter[0]);
   shorter = get_shorter(data, src, rec->pos, &inter[0]);
   i = -1;
   while (++i < CASENBR - 1)
