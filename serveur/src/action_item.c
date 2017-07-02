@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Sun Jul  2 18:25:25 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 18:32:42 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -106,7 +106,7 @@ static bool	upgrade_player(t_data *data, t_player *player, bool s)
 	    if (socket_write(tmp->fd, buff) == -1 || plv(data, tmp) == -1)
 	      return (false);
 	    }
-	else if (socket_write(tmp->fd, "ko\n") == -1)
+	else if (plv(data, tmp) == -1 || socket_write(tmp->fd, "ko\n") == -1)
 	  return (false);
 	_tmp = _tmp->next;
       }
