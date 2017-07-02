@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 26 10:11:32 2017 Nathan Scutari
-// Last update Sat Jul  1 23:35:14 2017 Nathan Scutari
+// Last update Sun Jul  2 00:57:58 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -69,8 +69,8 @@ bool	zappy::CommandManager::isResponse(std::string &msg, ICommand **stock,
 	{
 	  if (refs[i] == "Elevation underway" && ele == false)
 	    {
-	      *stock = new C_incantation(false);
-	      return (true);
+	      *stock = new C_incantation(true);
+	      return (false);
 	    }
 	  else if (refs[i] == "Elevation underway" && ele == true)
 	    return (true);
@@ -83,6 +83,8 @@ bool	zappy::CommandManager::isResponse(std::string &msg, ICommand **stock,
 
 void	zappy::CommandManager::analyseData(std::string &msg, Player &player)
 {
+  if (msg == "Elevation underway")
+    return ;
   std::map<std::string, std::function<void(std::string &, Player &)>>        fptr;
 
   fptr["YourId"] = getMyId;
