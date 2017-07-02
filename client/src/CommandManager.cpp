@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 26 10:11:32 2017 Nathan Scutari
-// Last update Sun Jul  2 18:01:59 2017 vigner_g
+// Last update Sun Jul  2 19:15:55 2017 vigner_g
 //
 
 #include <iostream>
@@ -49,6 +49,7 @@ void	zappy::CommandManager::elevation(std::string &msg, zappy::Player &player)
   int		idToJoin;
   std::string	tmpToBroadcast;
 
+  std::cout << "elevation: " << msg << std::endl;
   tmp = retNext(msg , "Elevation");
   if (!(isdigit(tmp[0])) || (idToJoin = std::stoi(tmp)) == 0)
     return;
@@ -62,7 +63,6 @@ void	zappy::CommandManager::elevation(std::string &msg, zappy::Player &player)
       tmpToBroadcast += " PlayerID ";
       tmpToBroadcast += std::to_string(player.getID());
     }
-  std::cout << "elevation: " << msg << std::endl;
 }
 
 void	zappy::CommandManager::playerIsFree(std::string &msg, zappy::Player &player)
@@ -71,6 +71,7 @@ void	zappy::CommandManager::playerIsFree(std::string &msg, zappy::Player &player
   int		elevatingID;
   int		distantID;
 
+  std::cout << "PlayerIsFree: " << msg << std::endl;
   tmp = retNext(msg , "Free");
   if (!(isdigit(tmp[0])) || (elevatingID = std::stoi(tmp)) == 0)
     return;
@@ -81,7 +82,6 @@ void	zappy::CommandManager::playerIsFree(std::string &msg, zappy::Player &player
 	return;
       player.getRegroup().addID(distantID);
     }
-  std::cout << "PlayerIsFree: " << msg << std::endl;
 }
 
 void	zappy::CommandManager::come(std::string &msg, zappy::Player &player)
@@ -92,6 +92,7 @@ void	zappy::CommandManager::come(std::string &msg, zappy::Player &player)
   int		direction;
   int		i;
 
+  std::cout << "comeMyFriend: " << msg << std::endl;
   i = 1;
   tmp = retNext(msg , "message");
   if (!(isdigit(tmp[0])) || (direction = std::stoi(tmp)) == 0)
@@ -110,7 +111,6 @@ void	zappy::CommandManager::come(std::string &msg, zappy::Player &player)
 	}
       i += 1;
     }
-  std::cout << "comeMyFriend: " << msg << std::endl;
 }
 
 void	zappy::CommandManager::cancel(std::string &msg, zappy::Player &player)
@@ -188,6 +188,7 @@ void	zappy::CommandManager::analyseData(std::string &msg, Player &player)
 {
   std::map<std::string, std::function<void(std::string &, Player &)>>        fptr;
 
+  std::cout << "analyseData " << msg << std::endl;
   fptr["Elevation"] = CommandManager::elevation;
   fptr["Free"] = CommandManager::playerIsFree;
   fptr["Come"] = CommandManager::come;
