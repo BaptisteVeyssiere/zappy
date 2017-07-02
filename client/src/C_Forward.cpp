@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:25:31 2017 vigner_g
-// Last update Sat Jul  1 17:35:40 2017 vigner_g
+// Last update Sun Jul  2 23:35:36 2017 Nathan Scutari
 //
 
 #include "C_Forward.hpp"
@@ -38,6 +38,6 @@ bool		zappy::C_Forward::getResponse(Player &player, std::string &response)
   if (response != "ok")
     throw client_exception("Server drunk", __LINE__, __FILE__);
   player.getPosition().x = (player.getPosition().x + player.getFacing().x);
-  player.getPosition().y = (player.getPosition().y + player.getFacing().y); //moyen qu'il faille faire un modulo
+  player.getPosition().y = (player.getPosition().y + player.getFacing().y);
   return (true);
 }

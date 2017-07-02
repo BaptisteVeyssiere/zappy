@@ -5,10 +5,10 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 17:08:43 2017 Nathan Scutari
-// Last update Wed Jun 28 16:32:59 2017 vigner_g
+// Last update Sun Jul  2 23:37:36 2017 Nathan Scutari
 //
 
-#include <iostream> //debug
+#include <iostream>
 #include "C_broadcast.hpp"
 #include "Exception.hpp"
 

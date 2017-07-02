@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 18:50:41 2017 Nathan Scutari
-// Last update Sun Jul  2 19:59:54 2017 Nathan Scutari
+// Last update Sun Jul  2 23:36:19 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -60,7 +60,7 @@ zappy::ICommand	*zappy::IA::makeAChoice()
       return (new C_Fork);
     }
   if (!(choice = mJoin.join()))
-    if (!(choice = mElevation.check())) // envoyer des messages et set
+    if (!(choice = mElevation.check()))
       choice = mExploration.explore();
   return (choice);
 }

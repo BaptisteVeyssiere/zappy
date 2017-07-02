@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 30 23:55:55 2017 Nathan Scutari
-// Last update Sun Jul  2 23:23:57 2017 Nathan Scutari
+// Last update Sun Jul  2 23:37:12 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -67,9 +67,6 @@ zappy::ICommand	*zappy::Elevation::elevate()
 {
   ICommand	*choice;
 
-  //if (mPlayer->getMap().access(mPlayer->getPosition().y, mPlayer->getPosition().x).
-  //  getLook() < 10)
-  //return (new C_Look);
   for (int i = 1 ; i < 7 ; ++i)
     {
       if (mPlayer->getMap().access(mPlayer->getPosition().y,

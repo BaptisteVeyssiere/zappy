@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jul  1 17:16:10 2017 vigner_g
-// Last update Sun Jul  2 22:18:30 2017 Nathan Scutari
+// Last update Sun Jul  2 23:33:43 2017 Nathan Scutari
 //
 
 #ifndef	__REGROUP_HPP__
@@ -27,11 +27,11 @@ namespace zappy
     Regroup	&operator=(Regroup &other);
 
   private:
-    bool		elevating; //appel les autres joueurs
-    int			elevTimeout; //timeout du elevating
-    int			joining; //id du joueur à joindre
-    int			direction;//direction du joueur à rejoindre
-    std::vector<int>	ids;//liste des ids à appeler
+    bool		elevating;
+    int			elevTimeout;
+    int			joining;
+    int			direction;
+    std::vector<int>	ids;
     int			playerNbr;
 
   public:

@@ -5,10 +5,10 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Mon Jun 26 15:08:46 2017 vigner_g
-// Last update Sat Jul  1 21:18:05 2017 Nathan Scutari
+// Last update Sun Jul  2 23:35:58 2017 Nathan Scutari
 //
 
-#include <iostream> //debug
+#include <iostream>
 #include "C_Set.hpp"
 #include "Exception.hpp"
 
