@@ -507,11 +507,18 @@ public class ConnectToServer : MonoBehaviour {
     {
         if (firstConnect)
         {
-            canvas.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            field.camState = 0;
-            firstConnect = false;
+            try
+            {
+                canvas.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                field.camState = 0;
+                firstConnect = false;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+            }
         }
     }
 
