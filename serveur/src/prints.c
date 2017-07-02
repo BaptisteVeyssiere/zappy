@@ -5,7 +5,7 @@
 ** Login   <nathalie.cai@epitech.eu>
 **
 ** Started on  Wed Jun 21 15:44:39 2017 Nathalie CAI
-** Last update Sun Jul  2 02:50:57 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 19:32:17 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -20,14 +20,16 @@ int	print_error_param(char *msg)
 
 int	print_usage(void)
 {
-  printf("USAGE: ./zappy_server -p port -x width -y height");
-  printf(" -n name1 name2 ... -c clientsNb -f freq\n");
-  printf("\tport\t\tis the port number\n");
-  printf("\twidth\t\tis the width of the world\n");
-  printf("\theight\t\tis the height of the world\n");
-  printf("\tnameX\t\tis the name of the team X\n");
-  printf("\tclientsNb\tis the number of authorized clients per team\n");
-  printf("\tfreq\t\tis the reciprocal of time unit for execution of actions\n");
+  if (printf("USAGE: ./zappy_server -p port -x width -y height") < 0 ||
+      printf(" -n name1 name2 ... -c clientsNb -f freq -g graphic_port\n") < 0
+      || printf("\tport\t\tis the port number\n") < 0 ||
+      printf("\tgraphic_port\t\tis the graphic port number\n") < 0 ||
+      printf("\twidth\t\tis the width of the world\n") < 0 ||
+      printf("\theight\t\tis the height of the world\n") < 0 ||
+      printf("\tnameX\t\tis the name of the team X\n") < 0 ||
+      printf("\tclientsNb\tis the number of authorized clients per team\n") < 0
+      || printf("\tfreq\t\tis the frequence for execution of actions\n") < 0)
+    return (84);
   return (0);
 }
 
