@@ -5,7 +5,7 @@
 ** Login   <nathalie.cai@epitech.eu>
 **
 ** Started on  Wed Jun 28 12:54:55 2017 Nathalie CAI
-** Last update Sat Jul  1 14:53:53 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 19:23:53 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -39,9 +39,9 @@ static char		*check_options(int ac, char **av)
   int			i;
   int			j;
   int			a;
-  static const char	*options[6] =
+  static const char	*options[7] =
     {
-      "-p", "-x", "-y", "-n", "-c", "-f"
+      "-p", "-x", "-y", "-n", "-c", "-f", "-g"
     };
 
   i = -1;
@@ -50,7 +50,7 @@ static char		*check_options(int ac, char **av)
       {
 	j = 0;
 	a = 0;
-	while (j < 6 && a == 0)
+	while (j < 7 && a == 0)
 	  if (strncmp(av[i], options[j], strlen(options[j])) != 0)
 	    j++;
 	  else

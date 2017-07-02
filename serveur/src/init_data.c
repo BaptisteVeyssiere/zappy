@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 12:12:58 2017 Nathalie CAI
-** Last update Sat Jul  1 15:11:16 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 19:24:58 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -36,6 +36,8 @@ t_data	*init_data(t_data *data, int ac, char **av)
     data->height = 10;
   if ((data->port = get_uint(ac, av, "-p")) == 0)
     data->port = 4242;
+  if ((data->graphic_port = get_uint(ac, av, "-g")) == 0)
+    data->graphic_port = 50000;
   if ((data->seed = get_uint(ac, av, "-s")) == 0)
     data->seed = time(NULL);
   if ((data = init_map(data)) == NULL)

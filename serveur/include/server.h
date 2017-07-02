@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Sun Jul  2 19:00:37 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 19:22:20 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -15,7 +15,6 @@
 
 # define MSG_LEN 512
 # define QUEUE_SIZE 42
-# define GRAPHIC_PORT 50000
 # define READING_SIZE 256
 # define ACTION_NBR 12
 # define UNUSED __attribute__((unused))

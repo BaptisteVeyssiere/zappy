@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Sun Jul  2 18:26:08 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 19:21:19 2017 Baptiste Veyssiere
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -158,6 +158,7 @@ typedef struct		s_data
   unsigned int		seed;
   t_waiting_queue	*queue;
   int			port;
+  int			graphic_port;
   int			pid;
   int			eid;
 }			t_data;
