@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 18:50:41 2017 Nathan Scutari
-// Last update Sun Jul  2 18:37:55 2017 Nathan Scutari
+// Last update Sun Jul  2 19:59:54 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -30,6 +30,7 @@ void	zappy::IA::init(Player *player)
   mPlayer = player;
   mExploration.init(player);
   mElevation.init(player);
+  mJoin.init(player);
 }
 
 void	zappy::IA::refreshTile()
@@ -58,14 +59,9 @@ zappy::ICommand	*zappy::IA::makeAChoice()
       ++egg;
       return (new C_Fork);
     }
-  else if (!(mPlayer->getToBroadcast().empty()))
-    {
-      choice = new C_broadcast;
-      choice->addArg(mPlayer->getToBroadcast());
-      mPlayer->clearToBroadcast();
-    }
-  else if (!(choice = mElevation.check())) // envoyer des messages et set
-    choice = mExploration.explore();
+  if (!(choice = mJoin.join()))
+    if (!(choice = mElevation.check())) // envoyer des messages et set
+      choice = mExploration.explore();
   return (choice);
 }
 

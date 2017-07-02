@@ -5,13 +5,14 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jul  1 22:08:06 2017 vigner_g
-// Last update Sun Jul  2 15:09:42 2017 vigner_g
+// Last update Sun Jul  2 22:18:41 2017 Nathan Scutari
 //
 
 #include "Regroup.hpp"
 
 zappy::Regroup::Regroup() : elevating(false), elevTimeout(0),
-			    joining(-1), direction(0), ids()
+			    joining(-1), direction(0), ids(),
+			    playerNbr()
 {
 }
 
@@ -92,4 +93,14 @@ void	zappy::Regroup::setElevTimeout(int nbr)
 void	zappy::Regroup::decElevTimeout(int nbr)
 {
   this->elevTimeout -= nbr;
+}
+
+void	zappy::Regroup::setPlayerNbr(int nbr)
+{
+  this->playerNbr = nbr;
+}
+
+int	zappy::Regroup::getPlayerNbr()
+{
+  return (this->playerNbr);
 }

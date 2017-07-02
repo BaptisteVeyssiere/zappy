@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 26 10:11:32 2017 Nathan Scutari
-// Last update Sun Jul  2 18:35:31 2017 Nathan Scutari
+// Last update Sun Jul  2 23:15:40 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -49,20 +49,24 @@ void	zappy::CommandManager::elevation(std::string &msg, zappy::Player &player)
   int		idToJoin;
   std::string	tmpToBroadcast;
 
+  std::cout << "elevation: " << msg << std::endl;
   tmp = retNext(msg , "Elevation");
+  std::cout << "tmp:" << tmp << std::endl;
   if (!(isdigit(tmp[0])) || (idToJoin = std::stoi(tmp)) == 0)
     return;
   tmp = retNext(msg , "LVL");
+  std::cout << "tmp:" << tmp << std::endl;
   if (!(isdigit(tmp[0])) || (tlvl = std::stoi(tmp)) == 0)
     return;
-  if (player.getLvl() == tlvl)
+  if (player.getLvl() == tlvl && player.getRegroup().isElevating() == false &&
+      player.getFood() >= 25)
     {
       tmpToBroadcast = "Free ";
       tmpToBroadcast += std::to_string(idToJoin);
       tmpToBroadcast += " PlayerID ";
       tmpToBroadcast += std::to_string(player.getID());
+      player.setToBroadcast(tmpToBroadcast);
     }
-  std::cout << "elevation: " << msg << std::endl;
 }
 
 void	zappy::CommandManager::playerIsFree(std::string &msg, zappy::Player &player)
@@ -71,6 +75,7 @@ void	zappy::CommandManager::playerIsFree(std::string &msg, zappy::Player &player
   int		elevatingID;
   int		distantID;
 
+  std::cout << "PlayerIsFree: " << msg << std::endl;
   tmp = retNext(msg , "Free");
   if (!(isdigit(tmp[0])) || (elevatingID = std::stoi(tmp)) == 0)
     return;
@@ -81,7 +86,6 @@ void	zappy::CommandManager::playerIsFree(std::string &msg, zappy::Player &player
 	return;
       player.getRegroup().addID(distantID);
     }
-  std::cout << "PlayerIsFree: " << msg << std::endl;
 }
 
 void	zappy::CommandManager::come(std::string &msg, zappy::Player &player)
@@ -92,10 +96,12 @@ void	zappy::CommandManager::come(std::string &msg, zappy::Player &player)
   int		direction;
   int		i;
 
+  std::cout << "comeMyFriend: " << msg << std::endl;
   i = 1;
   tmp = retNext(msg , "message");
-  if (!(isdigit(tmp[0])) || (direction = std::stoi(tmp)) == 0)
+  if (!(isdigit(tmp[0])))
     return;
+  direction = std::stoi(tmp);
   tmp = retNext(msg , "Come");
   if (!(isdigit(tmp[0])) || (elevatingID = std::stoi(tmp)) == 0)
     return;
@@ -110,7 +116,6 @@ void	zappy::CommandManager::come(std::string &msg, zappy::Player &player)
 	}
       i += 1;
     }
-  std::cout << "comeMyFriend: " << msg << std::endl;
 }
 
 void	zappy::CommandManager::cancel(std::string &msg, zappy::Player &player)
@@ -143,13 +148,17 @@ void	zappy::CommandManager::here(std::string &msg, zappy::Player &player)
     return;
   if (elevatingID == player.getID())
     {
-      for (auto it = player.getRegroup().getIDS().begin();
-	   it != player.getRegroup().getIDS().end(); it ++)
+      for (auto it = player.getRegroup().getIDS().begin() ;
+	   it != player.getRegroup().getIDS().end() ; ++it)
 	if (*it == distantID)
 	  {
-	    player.getRegroup().getIDS().erase(it);
+	    it = player.getRegroup().getIDS().erase(it);
+	    --it;
 	    player.getMap().access(player.getPosition().y,player.getPosition().x).
-	      addItem("Player", 1);
+	      addItem("player", 1);
+	    player.getRegroup().setPlayerNbr(player.getRegroup().getPlayerNbr() - 1);
+	    if (player.getRegroup().getPlayerNbr() == 0)
+	      player.startElev();
 	  }
     }
 }
@@ -190,6 +199,7 @@ void	zappy::CommandManager::analyseData(std::string &msg, Player &player)
     return ;
   std::map<std::string, std::function<void(std::string &, Player &)>>        fptr;
 
+  std::cout << "analyseData " << msg << std::endl;
   fptr["Elevation"] = CommandManager::elevation;
   fptr["Free"] = CommandManager::playerIsFree;
   fptr["Come"] = CommandManager::come;

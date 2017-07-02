@@ -5,14 +5,16 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Sun Jul  2 16:55:11 2017 Nathan Scutari
-// Last update Sun Jul  2 18:51:30 2017 Nathan Scutari
+// Last update Sun Jul  2 23:18:15 2017 Nathan Scutari
 //
 
+#include <unistd.h>
 #include "Join.hpp"
 #include "C_Forward.hpp"
 #include "C_TurnRight.hpp"
 #include "C_TurnLeft.hpp"
 #include "C_broadcast.hpp"
+#include <iostream>
 
 zappy::Join::Join()
   :mPlayer(NULL), waiting(false)
@@ -32,24 +34,54 @@ void	zappy::Join::init(Player *player)
 
 zappy::ICommand	*zappy::Join::getOrientation()
 {
+  std::string		arg = "void";
   static int	right_dirs[] = {7, 6, 5};
   static int	left_dirs[] = {3, 4};
+
 
   for (int i = 0 ; i < 3 ; ++i)
     {
       if (right_dirs[i] == mPlayer->getRegroup().getDirection())
-	return (new C_TurnRight);
+	{
+	  mPlayer->getRegroup().setDirection(9);
+	  return (new C_TurnRight);
+	}
       else if (i < 2 && left_dirs[i] == mPlayer->getRegroup().getDirection())
-	return (new C_TurnLeft);
+	{
+	  mPlayer->getRegroup().setDirection(9);
+	  return (new C_TurnLeft);
+	}
     }
+  mPlayer->getRegroup().setDirection(9);
   return (NULL);
 }
 
 zappy::ICommand	*zappy::Join::followBroadcast()
 {
+  static bool	split = false;
+  std::string	fill = "void";
   std::string	arg = "waiting incantation";
   ICommand	*choice;
 
+  if (mPlayer->getRegroup().getDirection() == 9)
+    {
+      if (mPlayer->getRegroup().getElevTimeout() <= 0)
+	mPlayer->getRegroup().setJoining(-1);
+      choice = new C_broadcast;
+      choice->addArg(fill);
+      return (choice);
+    }
+  mPlayer->getRegroup().setElevTimeout(30);
+  if (split)
+    {
+      mPlayer->getRegroup().setDirection(9);
+      split = false;
+      choice = new C_broadcast;
+      choice->addArg(fill);
+      return (choice);
+    }
+  split = true;
+  std::cout << "Direction: " << mPlayer->getRegroup().getDirection() << std::endl;
   if (mPlayer->getRegroup().getDirection() == 0 &&
       waiting == false)
     {

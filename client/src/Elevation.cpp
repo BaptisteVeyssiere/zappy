@@ -5,10 +5,11 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 30 23:55:55 2017 Nathan Scutari
-// Last update Sun Jul  2 19:11:32 2017 Nathan Scutari
+// Last update Sun Jul  2 23:23:57 2017 Nathan Scutari
 //
 
 #include <iostream>
+#include <math.h>
 #include "C_inventory.hpp"
 #include "Elevation.hpp"
 #include "C_Look.hpp"
@@ -94,22 +95,32 @@ zappy::ICommand	*zappy::Elevation::elevate()
   requirements = false;
   mPlayer->setLeveling(true);
   mPlayer->getRegroup().startElevating();
+  mPlayer->stopElev();
+  bool	fill = false;
+  playersRegrouped(true, fill);
   return (new C_incantation(false));
 }
 
-zappy::ICommand	*zappy::Elevation::playersRegrouped()
+zappy::ICommand	*zappy::Elevation::playersRegrouped(bool reset, bool &requirements)
 {
+  static bool	herep = false;
   ICommand	*fill;
   std::string	arg = "waiting confirmation";
   static bool	init = true;
   static bool	free = false;
 
-  if (mPlayer->getLvl() == 1)
+  if (reset)
+    {
+      elevating = false;
+      return (NULL);
+    }
+  if (mPlayer->getLvl() == 1 || herep || mPlayer->isElev())
     return (NULL);
   if (init)
     {
       init = false;
       mPlayer->getRegroup().setElevTimeout(ELEVATION_ASKING_TIMEOUT);
+      mPlayer->getRegroup().setPlayerNbr(required[mPlayer->getLvl()][7] - 1);
       return (mPlayer->elevation());
     }
   if (static_cast<int>(mPlayer->getRegroup().getIDS().size())
@@ -121,6 +132,7 @@ zappy::ICommand	*zappy::Elevation::playersRegrouped()
 	  init = true;
 	  free = false;
 	  canceled = true;
+	  requirements = false;
 	  return (mPlayer->cancel());
 	}
       fill = new C_broadcast;
@@ -142,12 +154,15 @@ zappy::ICommand	*zappy::Elevation::playersRegrouped()
 	{
 	  init = true;
 	  free = false;
+	  requirements = false;
 	  return (mPlayer->cancel());
 	}
       return (mPlayer->come());
     }
   init = true;
   free = false;
+  herep = true;
+  std::cout << "player here" << std::endl;
   return (NULL);
 }
 
@@ -159,11 +174,12 @@ zappy::ICommand	*zappy::Elevation::check()
   if (canceled)
     {
       canceled = false;
+      requirements = false;
       return (new C_inventory);
     }
   if (requirements)
     {
-      if ((choice = playersRegrouped()))
+      if ((choice = playersRegrouped(false, requirements)))
 	return (choice);
       return (elevate());
     }
@@ -174,7 +190,7 @@ zappy::ICommand	*zappy::Elevation::check()
     }
   else if (turn == 1)
     return (new C_Look);
-  else if (turn == 2 && mPlayer->getLvl() < 8 && (tryUp()))
+  else if (turn == 2 && mPlayer->getLvl() < 8 && rand() % static_cast<int>(pow(mPlayer->getLvl(), 2)) == 0 && (tryUp()))
     return (elevate());
   return (NULL);
 }

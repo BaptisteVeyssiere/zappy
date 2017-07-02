@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Sun Jul  2 19:07:17 2017 Nathan Scutari
+// Last update Sun Jul  2 22:39:53 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -19,7 +19,8 @@
 zappy::Player::Player(World &world)
   : id(0), lvl(1), pos(), facing(0, 1), food(10), OwnInventory(),
     map(), teamNbPlayer(1), nbOfEgg(0), slot(0), onGoingAction(),
-    toBroadcast(), regroup(), leveling(false), mElevation(NULL)
+    toBroadcast(""), regroup(), leveling(false), mElevation(NULL),
+    start_elev(false)
 {
   OwnInventory.getInv()["food"] = 10;
   id = (std::rand() % 9999);
@@ -55,11 +56,13 @@ void	zappy::Player::SetId(int nb)
 
 void	zappy::Player::clearToBroadcast()
 {
+  std::cout << "clear" << std::endl;
   this->toBroadcast.clear();
 }
 
 void	zappy::Player::setToBroadcast(std::string msg)
 {
+  std::cout << "set " << msg << std::endl;
   this->toBroadcast.clear();
   this->toBroadcast = msg;
 }
@@ -170,6 +173,7 @@ int		zappy::Player::getStoneValue(const std::string &stone) const
 
 std::string	&zappy::Player::getToBroadcast()
 {
+  std::cout << "get " << toBroadcast << std::endl;
   return (this->toBroadcast);
 }
 
@@ -178,9 +182,9 @@ zappy::ICommand	*zappy::Player::elevation()
   ICommand	*choice;
 
   choice = new C_broadcast;
-  choice->addArg("Elevation ");
+  choice->addArg("Elevation");
   choice->addArg(std::to_string(this->id));
-  choice->addArg(" LVL ");
+  choice->addArg("LVL");
   choice->addArg(std::to_string(this->lvl));
   getRegroup().startElevating();
   return (choice);
@@ -191,7 +195,7 @@ zappy::ICommand	*zappy::Player::cancel()
   ICommand	*choice;
 
   choice = new C_broadcast;
-  choice->addArg("Cancel ");
+  choice->addArg("Cancel");
   choice->addArg(std::to_string(this->id));
   getRegroup().resetIDS();
   getRegroup().stopElevating();
@@ -203,9 +207,9 @@ zappy::ICommand	*zappy::Player::here()
   ICommand	*choice;
 
   choice = new C_broadcast;
-  choice->addArg("Here ");
+  choice->addArg("Here");
   choice->addArg(std::to_string(getRegroup().getJoining()));
-  choice->addArg(" PlayerID ");
+  choice->addArg("PlayerID");
   choice->addArg(std::to_string(this->id));
   return (choice);
 }
@@ -215,13 +219,27 @@ zappy::ICommand	*zappy::Player::come()
   ICommand	*choice;
 
   choice = new C_broadcast;
-  choice->addArg("Come ");
-  for (unsigned int i = 0; i < getRegroup().getIDS().size() ; i ++)
+  choice->addArg("Come");
+  choice->addArg(std::to_string(this->id));
+  for (int i = 0; i < getRegroup().getPlayerNbr() ; i ++)
     {
-      choice->addArg(" PlayerID");
-      choice->addArg(std::to_string(this->id + 1));
-      choice->addArg(" ");
+      choice->addArg("PlayerID" + std::to_string(i + 1));
       choice->addArg(std::to_string(getRegroup().getIDS()[i]));
     }
   return (choice);
+}
+
+void	zappy::Player::startElev()
+{
+  start_elev = true;
+}
+
+void	zappy::Player::stopElev()
+{
+  start_elev = false;
+}
+
+bool	zappy::Player::isElev()
+{
+  return (start_elev);
 }

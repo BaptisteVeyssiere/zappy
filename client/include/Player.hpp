@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Sun Jul  2 18:36:41 2017 Nathan Scutari
+// Last update Sun Jul  2 22:39:43 2017 Nathan Scutari
 //
 
 #ifndef __PLAYER_HPP__
@@ -46,6 +46,7 @@ namespace	zappy
     Regroup				regroup;
     bool				leveling;
     Elevation				*mElevation;
+    bool				start_elev;
 
   private:
     Player(Player &other);
@@ -80,6 +81,9 @@ namespace	zappy
     bool	&getLeveling();
     int		getStoneValue(const std::string &) const;
     std::string	&getToBroadcast();
+    void	startElev();
+    void	stopElev();
+    bool	isElev();
 
   public:
     ICommand	*elevation();
