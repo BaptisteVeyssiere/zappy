@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 20:24:46 2017 Baptiste Veyssiere
-** Last update Sun Jul  2 18:52:07 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 19:13:27 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>
@@ -19,6 +19,7 @@ int		free_player(t_player *player, t_data *data)
   t_action	*action;
   t_action	*tmp;
 
+  remove_from_incantation(data, player);
   --(data->map[player->pos->y][player->pos->x].players);
   if (pdi(data, player) == -1)
     return (-1);
@@ -38,7 +39,6 @@ int		free_player(t_player *player, t_data *data)
   FD_CLR(player->fd, data->network->set);
   if (player->fd > 2 && close(player->fd) == -1)
     return (write_error(__FILE__, __func__, __LINE__, -1));
-  remove_from_incantation(data, player);
   free(player);
   return (0);
 }
