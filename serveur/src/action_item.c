@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Sun Jul  2 03:04:53 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 18:25:25 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -96,9 +96,9 @@ static bool	upgrade_player(t_data *data, t_player *player, bool s)
       (s && snprintf(buff, 32, "Current level: %d\n", player->level + 1) < 0))
       return (false);
   while (_tmp != NULL)
-    if (*(_tmp->player) != NULL)
+    if (_tmp->player != NULL)
       {
-	tmp = *(_tmp->player);
+	tmp = _tmp->player;
 	if (tmp->pos->x == player->pos->x && tmp->pos->y == player->pos->y &&
 	    tmp->level == player->level)
 	  {

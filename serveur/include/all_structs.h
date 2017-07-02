@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Sun Jul  2 15:22:56 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 18:26:08 2017 Baptiste Veyssiere
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -139,7 +139,7 @@ typedef struct		s_player
 
 typedef struct		s_incantation
 {
-  t_player		**player;
+  t_player		*player;
   struct s_incantation	*next;
 }			t_incantation;
 

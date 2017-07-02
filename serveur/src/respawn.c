@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 28 15:49:51 2017 Baptiste Veyssiere
-** Last update Sun Jul  2 02:36:21 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 18:25:48 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -72,7 +72,7 @@ int		add_to_ilist(t_player *player, t_player *link)
   if (!(last = malloc(sizeof(t_incantation))))
     return (-1);
   last->next = NULL;
-  last->player = &link;
+  last->player = link;
   tmp = player->action->list;
   while (tmp && tmp->next)
     tmp = tmp->next;
