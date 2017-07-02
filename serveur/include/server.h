@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Sun Jul  2 15:37:30 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 19:00:37 2017 Baptiste Veyssiere
 */
 
 #ifndef SERVER_H_
@@ -140,6 +140,7 @@ int	update_player_action(t_data *data, fd_set *set);
 
 void	free_actions(t_action *action);
 void	free_ilist(t_action *action);
+void	remove_from_incantation(t_data *data, t_player *player);
 
 /*
 ** update_status.c
