@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Sat Jul  1 22:32:59 2017 Nathan Scutari
+// Last update Sun Jul  2 17:12:35 2017 Nathan Scutari
 //
 
 #ifndef __PLAYER_HPP__
@@ -17,6 +17,7 @@
 #include "Network.hpp"
 #include "Inventory.hpp"
 #include "Map.hpp"
+#include "Elevation.hpp"
 
 namespace	zappy
 {
@@ -35,6 +36,7 @@ namespace	zappy
     int					nbOfEgg;
     int					slot;
     bool				leveling;
+    Elevation				*mElevation;
 
   private:
     Player(Player &other);
@@ -53,6 +55,7 @@ namespace	zappy
     int		facingToAngle();
 
   public:
+    void	init(Elevation *);
     Inventory	&getOwnInventory();
     std::map<int, Inventory>	&getCommonInventory();
     void	addToCommonInventory(int lvl, std::string item, int nbr);
@@ -65,6 +68,8 @@ namespace	zappy
     int		&getSlot();
     int		&getFood();
     bool	&getLeveling();
+    int		getStoneValue(const std::string &) const;
+    std::string	&getToBroadcast();
   };
 }
 

@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Thu Jun 29 11:18:57 2017 Nathan Scutari
-// Last update Sat Jul  1 21:25:33 2017 Nathan Scutari
+// Last update Sun Jul  2 14:47:32 2017 Nathan Scutari
 //
 
 #ifndef __EXPLORATION_HPP__
@@ -62,6 +62,7 @@ namespace zappy
 						 bool *);
     int				foodValue();
     std::list<t_position>	*getNearbyPos();
+    void			generateRandom();
 
   public:
     static std::list<t_position>	*getVision(Player&);

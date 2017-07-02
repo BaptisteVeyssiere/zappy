@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 30 23:55:55 2017 Nathan Scutari
-// Last update Sat Jul  1 22:33:54 2017 Nathan Scutari
+// Last update Sun Jul  2 16:21:43 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -15,6 +15,7 @@
 #include "C_incantation.hpp"
 #include "C_Take.hpp"
 #include "C_Set.hpp"
+#include "Exception.hpp"
 
 zappy::Elevation::Elevation()
   :requirements(false), elevating(false), mPlayer(NULL)
@@ -64,9 +65,9 @@ zappy::ICommand	*zappy::Elevation::elevate()
 {
   ICommand	*choice;
 
-  if (mPlayer->getMap().access(mPlayer->getPosition().y, mPlayer->getPosition().x).
-      getLook() >= 10)
-    return (new C_Look);
+  //if (mPlayer->getMap().access(mPlayer->getPosition().y, mPlayer->getPosition().x).
+  //  getLook() < 10)
+  //return (new C_Look);
   for (int i = 1 ; i < 7 ; ++i)
     {
       if (mPlayer->getMap().access(mPlayer->getPosition().y,
@@ -94,12 +95,61 @@ zappy::ICommand	*zappy::Elevation::elevate()
   return (new C_incantation(false));
 }
 
+zappy::ICommand	*zappy::playersRegrouped()
+{
+  ICommand	*fill;
+  std::string	arg = "waiting confirmation";
+  static bool	init = true;
+  static bool	free = false;
+
+  if (mPlayer->getLvl() == 1)
+    return (NULL);
+  if (init)
+    {
+      init = false;
+      mPlayer->getRegroup().setElevTimeout(ELEVATION_ASKING_TIMEOUT);
+      return (mPlayer->elevation());
+    }
+  if (mPlayer->getRegroup().getIDS().size() < required[mPlayer->getLvl()][7] - 1)
+    {
+      mPlayer->getRegroup().decElevTimeout();
+      if (mPlayer->getElevTimeout() <= 0)
+	return (mPlayer->cancel());
+      fill = new C_broadcast;
+      fill->addArg(arg);
+      return (fill);
+    }
+  if (free == false)
+    {
+      free = true;
+      mPlayer->getMap().access(mPlayer->getPosition().y, mPlayer->getPosition().x)
+	.getInv()["player"] = 1;
+      mPlayer->getRegroup().setElevTimeout(ELEVATION_COMING_TIMEOUT);
+    }
+  if (mPlayer->getMap().access(mPlayer->getPosition().y, mPlayer->getPosition().x)
+      .getInv()["player"] < required[mPlayer->getLvl()][7])
+    {
+      mPlayer->getRegroup().decElevTimeout();
+      if (mPlayer->getElevTimeout() <= 0)
+	return (mPlayer->cancel());
+      return (mPlayer->come());
+    }
+  init = true;
+  free = false;
+  return (NULL);
+}
+
 zappy::ICommand	*zappy::Elevation::check()
 {
   static int	turn = 0;
+  Icommand	*choice;
 
   if (requirements)
-    return (elevate());
+    {
+      if ((choice = playersRegrouped()))
+	return (choice);
+      return (elevate());
+    }
   if (++turn == 10)
     {
       turn = 0;
@@ -107,7 +157,31 @@ zappy::ICommand	*zappy::Elevation::check()
     }
   else if (turn == 1)
     return (new C_Look);
-  else if (turn == 2 && (tryUp()))
+  else if (turn == 2 && mPlayer->getLvl() < 8 && (tryUp()))
     return (elevate());
   return (NULL);
+}
+
+int		zappy::Elevation::getStoneValue(const std::string &stone) const
+{
+  if (mPlayer->getLvl() >= 8)
+    return (0);
+  for (int i = 1 ; i < 7 ; ++i)
+    {
+      if (items[i] == stone)
+	{
+	  if (mPlayer->getOwnInventory().getInv()[stone] <
+	      required[mPlayer->getLvl()][i])
+	    return (3);
+	  else
+	    return (1);
+	}
+    }
+  throw client_exception("This item does not exist: " + stone, __LINE__, __FILE__);
+  return (-1);
+}
+
+zappy::Elevation	*zappy::Elevation::getInstance()
+{
+  return (this);
 }

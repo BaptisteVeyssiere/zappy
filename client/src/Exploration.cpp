@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Thu Jun 29 11:25:53 2017 Nathan Scutari
-// Last update Sat Jul  1 21:48:11 2017 Nathan Scutari
+// Last update Sun Jul  2 15:25:16 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -344,7 +344,8 @@ std::list<zappy::tileValue>	*zappy::Exploration::fillValues(std::list<t_position
 	  if (it->first == "food")
 	    tmp.value -= it->second * foodValue();
 	  else
-	    tmp.value -= it->second;
+	    tmp.value -= it->second *
+	      mPlayer->getStoneValue(it->first);
 	}
       if (none)
 	tmp.value += 200;
@@ -354,6 +355,26 @@ std::list<zappy::tileValue>	*zappy::Exploration::fillValues(std::list<t_position
       tiles->push_back(tmp);
     }
   return (tiles);
+}
+
+void		zappy::Exploration::generateRandom()
+{
+  int	action;
+  int	size;
+  int	max = 5;
+  int	min = 1;
+
+  size = rand() % ((max + 1) - min) + min;
+  for (int i = 0 ; i < size ; ++i)
+    {
+      action = rand() % (2 + 1);
+      if (action == 0)
+	path.push(new C_Forward);
+      else if (action == 1)
+	path.push(new C_TurnRight);
+      else
+	path.push(new C_TurnLeft);
+    }
 }
 
 void		zappy::Exploration::createPath()
@@ -376,9 +397,7 @@ void		zappy::Exploration::createPath()
   path = tile.path;
   if (path.empty())
     {
-      path.push(new C_Forward);
-      path.push(new C_TurnRight);
-      path.push(new C_Forward);
+      generateRandom();
     }
   delete list;
   while (!values->empty())

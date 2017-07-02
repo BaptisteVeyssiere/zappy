@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 30 23:47:49 2017 Nathan Scutari
-// Last update Sat Jul  1 16:21:44 2017 Nathan Scutari
+// Last update Sun Jul  2 17:38:45 2017 Nathan Scutari
 //
 
 #ifndef __ELEVATION_HPP__
@@ -13,6 +13,15 @@
 
 #include "ICommand.hpp"
 #include "Player.hpp"
+
+#define ELEVATION_ASKING_TIMEOUT 10
+#define ELEVATION_COMING_TIMEOUT 40
+
+namespace zappy
+{
+  class Player;
+  class ICommand;
+}
 
 namespace zappy
 {
@@ -55,6 +64,8 @@ namespace zappy
     void	init(Player *);
     ICommand	*check();
     ICommand	*elevate();
+    Elevation	*getInstance();
+    int		getStoneValue(const std::string &) const;
   };
 }
 

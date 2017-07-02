@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 17:58:03 2017 Nathan Scutari
-// Last update Sat Jul  1 21:23:30 2017 Nathan Scutari
+// Last update Sun Jul  2 17:37:33 2017 Nathan Scutari
 //
 
 #ifndef __IA_HPP__
@@ -16,6 +16,7 @@
 #include "Player.hpp"
 #include "Exploration.hpp"
 #include "Elevation.hpp"
+#include "Join.hpp"
 
 namespace zappy
 {
@@ -26,6 +27,7 @@ namespace zappy
     Player	*mPlayer;
     Exploration	mExploration;
     Elevation	mElevation;
+    Join	mJoin;
 
   private:
     IA(IA &other);
@@ -41,6 +43,7 @@ namespace zappy
   public:
     void	init(Player *);
     ICommand	*makeAChoice();
+    Elevation	*getEleInstance();
   };
 }
 

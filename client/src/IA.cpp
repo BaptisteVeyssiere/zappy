@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 18:50:41 2017 Nathan Scutari
-// Last update Sat Jul  1 21:23:19 2017 Nathan Scutari
+// Last update Sun Jul  2 15:17:26 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -60,4 +60,9 @@ zappy::ICommand	*zappy::IA::makeAChoice()
   if (!(choice = mElevation.check()))
     choice = mExploration.explore();
   return (choice);
+}
+
+zappy::Elevation	*zappy::IA::getEleInstance()
+{
+  return (mElevation.getInstance());
 }

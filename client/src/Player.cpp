@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Sat Jul  1 22:33:36 2017 Nathan Scutari
+// Last update Sun Jul  2 17:13:19 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -19,7 +19,7 @@
 zappy::Player::Player(World &world)
   : id(0), lvl(1), pos(), facing(0, 1), food(10), OwnInventory(),
     commonInventory(), map(), teamNbPlayer(1), nbOfEgg(0), slot(0),
-    leveling(false)
+    leveling(false), mElevation(NULL)
 {
   OwnInventory.getInv()["food"] = 10;
   map.setSize(world.width, world.height);
@@ -29,6 +29,11 @@ zappy::Player::Player(World &world)
 zappy::Player::~Player()
 {
 
+}
+
+void	zappy::Player::init(Elevation *instance)
+{
+  mElevation = instance;
 }
 
 void	zappy::Player::setFood(int nbr)
@@ -152,4 +157,14 @@ void		zappy::Player::setLeveling(bool val)
 bool		&zappy::Player::getLeveling()
 {
   return (leveling);
+}
+
+int		zappy::Player::getStoneValue(const std::string &stone) const
+{
+  return (mElevation->getStoneValue(stone));
+}
+
+std::string	&zappy::Player::getToBroadcast()
+{
+  return (toBroadcast);
 }
