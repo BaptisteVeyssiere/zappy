@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Thu Jun 29 11:18:57 2017 Nathan Scutari
-// Last update Fri Jun 30 15:32:06 2017 Nathan Scutari
+// Last update Sat Jul  1 21:25:33 2017 Nathan Scutari
 //
 
 #ifndef __EXPLORATION_HPP__
@@ -25,9 +25,9 @@ namespace zappy
 
   struct	tileValue
   {
-    t_position	pos;
-    int		value;
-    std::queue<ICommand *> path;
+    t_position	pos = {0, 0};
+    int		value = 300;
+    std::queue<ICommand *> path = std::queue<ICommand *>();
   };
 
   class Exploration

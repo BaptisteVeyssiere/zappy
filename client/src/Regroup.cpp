@@ -5,12 +5,13 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jul  1 22:08:06 2017 vigner_g
-// Last update Sat Jul  1 23:48:33 2017 vigner_g
+// Last update Sun Jul  2 15:09:42 2017 vigner_g
 //
 
 #include "Regroup.hpp"
 
-zappy::Regroup::Regroup() : elevating(false), joining(-1), direction(0), ids()
+zappy::Regroup::Regroup() : elevating(false), elevTimeout(0),
+			    joining(-1), direction(0), ids()
 {
 }
 
@@ -76,4 +77,19 @@ void	zappy::Regroup::resetIDS()
 int	zappy::Regroup::howManyFree()
 {
   return (this->ids.size());
+}
+
+int	zappy::Regroup::getElevTimeout()
+{
+  return (this->elevTimeout);
+}
+
+void	zappy::Regroup::setElevTimeout(int nbr)
+{
+  this->elevTimeout = nbr;
+}
+
+void	zappy::Regroup::decElevTimeout(int nbr)
+{
+  this->elevTimeout -= nbr;
 }

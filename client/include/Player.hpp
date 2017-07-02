@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Sat Jul  1 22:46:50 2017 vigner_g
+// Last update Sun Jul  2 18:18:00 2017 vigner_g
 //
 
 #ifndef __PLAYER_HPP__
@@ -18,6 +18,12 @@
 #include "Inventory.hpp"
 #include "Map.hpp"
 #include "Regroup.hpp"
+#include "ICommand.hpp"
+
+namespace zappy
+{
+  class ICommand;
+}
 
 namespace	zappy
 {
@@ -37,6 +43,7 @@ namespace	zappy
     std::string				onGoingAction;
     std::string				toBroadcast;
     Regroup				regroup;
+    bool				leveling;
 
   private:
     Player(Player &other);
@@ -48,6 +55,7 @@ namespace	zappy
 
   public:
     void	SetTeamNbPlayer(int nb);
+    void	setLeveling(bool);
     void	SetId(int id);
     void	AddALvl();
     void	setFood(int nbr);
@@ -66,6 +74,14 @@ namespace	zappy
     int		&getSlot();
     int		&getFood();
     Regroup	&getRegroup();
+    bool	&getLeveling();
+    std::string	&getToBroadcast();
+
+  public:
+    ICommand	*elevation();
+    ICommand	*cancel();
+    ICommand	*here();
+    ICommand	*come();
   };
 }
 

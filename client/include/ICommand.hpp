@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 14:03:46 2017 Nathan Scutari
-// Last update Wed Jun 28 16:26:05 2017 vigner_g
+// Last update Sun Jul  2 17:36:28 2017 vigner_g
 //
 
 #ifndef __ICOMMAND_HPP__
@@ -14,6 +14,11 @@
 #include "Player.hpp"
 
 #define UNUSED __attribute__((unused))
+
+namespace zappy
+{
+  class Player;
+}
 
 namespace zappy
 {

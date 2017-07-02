@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 18:10:48 2017 Nathan Scutari
-// Last update Wed Jun 28 16:32:21 2017 vigner_g
+// Last update Fri Jun 30 19:11:38 2017 Nathan Scutari
 //
 
 #include "C_inventory.hpp"
@@ -37,8 +37,14 @@ bool		zappy::C_inventory::getResponse(Player &player, std::string &response)
 {
   int		food;
 
+  if (response == "ko")
+    throw client_exception("Server drunk", __LINE__, __FILE__);
   while (!isdigit(response.front()))
-    response.erase(0, 1);
+    {
+      if (response.empty())
+	throw client_exception("Server drunk", __LINE__, __FILE__);
+      response.erase(0, 1);
+    }
   food = std::stoi(response);
   player.setFood(food);
   return (true);

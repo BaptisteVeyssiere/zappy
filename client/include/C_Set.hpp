@@ -5,11 +5,11 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Mon Jun 26 15:01:57 2017 vigner_g
-// Last update Wed Jun 28 17:19:42 2017 vigner_g
+// Last update Sat Jul  1 16:06:19 2017 Nathan Scutari
 //
 
-#ifndef __TAKE_HPP__
-# define __TAKE_HPP__
+#ifndef __SET_HPP__
+# define __SET_HPP__
 
 #include <string>
 #include "ICommand.hpp"
@@ -37,4 +37,4 @@ namespace zappy
   };
 }
 
-#endif // !__TAKE_HPP__
+#endif // !__SET_HPP__

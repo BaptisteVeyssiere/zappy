@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:25:31 2017 vigner_g
-// Last update Sat Jul  1 02:00:27 2017 vigner_g
+// Last update Sat Jul  1 23:54:41 2017 vigner_g
 //
 
 #include <iostream>
@@ -69,7 +69,7 @@ bool		zappy::C_Look::getResponse(Player &player, std::string &response)
       player.getMap().access(it->y, it->x).refreshLook();
       while ((sub2 = getSubString(sub, " ")) != "*end*" && sub.size() > 0)
 	{
-	  if (sub2 != "player" && sub2 != " " && !(sub2.empty()))
+	  if (sub2 != " " && !(sub2.empty()))
 	    {
 	      player.getMap().access(it->y, it->x).addItem(sub2);
 	    }

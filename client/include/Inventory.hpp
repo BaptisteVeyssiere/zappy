@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jun 24 15:19:58 2017 vigner_g
-// Last update Fri Jun 30 23:07:23 2017 vigner_g
+// Last update Sat Jul  1 21:21:06 2017 Nathan Scutari
 //
 
 #ifndef	__INVENTORY_HPP_
@@ -28,7 +28,6 @@ namespace	zappy
     void	addLook();
     int		getLook();
     void	reset();
-    void	reset(Inventory &other);
     void	broadcast();
     void	addToInventory(Inventory &other);
     void	addItem(std::string item);
@@ -38,7 +37,6 @@ namespace	zappy
     int		zeroItem(std::string item);
     std::map<std::string, int>	&getInv();
     Inventory	operator+(Inventory &other);
-    // std::map<std::string, int>	&getInv();
   };
 }
 

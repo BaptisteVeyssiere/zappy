@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Sat Jul  1 17:16:10 2017 vigner_g
-// Last update Sat Jul  1 23:35:09 2017 vigner_g
+// Last update Sun Jul  2 15:08:04 2017 vigner_g
 //
 
 #ifndef	__REGROUP_HPP__
@@ -28,6 +28,7 @@ namespace zappy
 
   private:
     bool		elevating; //appel les autres joueurs
+    int			elevTimeout; //timeout du elevating
     int			joining; //id du joueur à joindre
     int			direction;//direction du joueur à rejoindre
     std::vector<int>	ids;//liste des ids à appeler
@@ -45,6 +46,9 @@ namespace zappy
     int			howManyFree();
     void		addID(int id);
     void		resetIDS();
+    int			getElevTimeout();
+    void		setElevTimeout(int nbr);
+    void		decElevTimeout(int nbr);
   };
 }
 

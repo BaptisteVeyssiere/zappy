@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 26 11:00:03 2017 Nathan Scutari
-// Last update Mon Jun 26 11:16:16 2017 Nathan Scutari
+// Last update Sat Jul  1 21:22:24 2017 Nathan Scutari
 //
 
 #include <unistd.h>
@@ -13,6 +13,7 @@
 #include "SignalManager.hpp"
 
 zappy::SignalManager::SignalManager()
+  :sfd(-1)
 {
   sigset_t	mask;
 

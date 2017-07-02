@@ -5,14 +5,17 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 18:50:41 2017 Nathan Scutari
-// Last update Fri Jun 30 18:37:56 2017 Nathan Scutari
+// Last update Sun Jul  2 18:26:09 2017 vigner_g
 //
 
 #include <iostream>
 #include "IA.hpp"
 #include "C_inventory.hpp"
+#include "C_Fork.hpp"
+#include "C_broadcast.hpp"
 
 zappy::IA::IA()
+  :egg(0), mPlayer(NULL), mExploration(), mElevation()
 {
 
 }
@@ -26,16 +29,10 @@ void	zappy::IA::init(Player *player)
 {
   mPlayer = player;
   mExploration.init(player);
+  mElevation.init(player);
 }
 
-zappy::ICommand	*zappy::IA::tryUp()
-{
-  Inventory	inv;
-
-  inv = mPlayer->getOwnInventory();
-}
-
-zappy::ICommand *zappy::IA::refreshTile()
+void	zappy::IA::refreshTile()
 {
   int	width;
   int	height;
@@ -53,17 +50,21 @@ zappy::ICommand *zappy::IA::refreshTile()
 
 zappy::ICommand	*zappy::IA::makeAChoice()
 {
-  static int	turn = 0;
   ICommand	*choice;
 
   refreshTile();
-  if (++turn == 10)
+  if (egg < 2)
     {
-      turn = 0;
-      return (new C_inventory);
+      ++egg;
+      return (new C_Fork);
     }
-  else if (turn == 0 && (choice = tryUp()))
-    return (choice);
-  choice = mExploration.explore();
+  else if (!(mPlayer->getToBroadcast().empty()))
+    {
+      choice = new C_broadcast;
+      choice->addArg(mPlayer->getToBroadcast());
+      mPlayer->clearToBroadcast();
+    }
+  else if (!(choice = mElevation.check())) // envoyer des messages et set
+    choice = mExploration.explore();
   return (choice);
 }

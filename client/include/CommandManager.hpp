@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 26 10:05:18 2017 Nathan Scutari
-// Last update Mon Jun 26 11:49:00 2017 Nathan Scutari
+// Last update Sun Jul  2 18:03:53 2017 vigner_g
 //
 
 #ifndef __COMMANDMANAGER_HPP__
@@ -13,6 +13,7 @@
 
 #include <string>
 #include "Player.hpp"
+#include "ICommand.hpp"
 
 namespace zappy
 {
@@ -33,7 +34,14 @@ namespace zappy
     void	cleanString(std::string &) const;
 
   public:
-    bool	isResponse(std::string &msg);
+    static std::string	retNext(std::string, std::string);
+    static void	elevation(std::string &, Player &);
+    static void	playerIsFree(std::string &, Player &);
+    static void	come(std::string &, Player &);
+    static void	cancel(std::string &, Player &);
+    static void	free(std::string &, Player &);
+    static void	here(std::string &, Player &);
+    bool	isResponse(std::string &msg, ICommand **, bool);
     void	analyseData(std::string &, Player &);
   };
 }

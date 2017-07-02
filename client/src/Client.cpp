@@ -5,8 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:12 2017 Nathan Scutari
-// Last update Sat Jul  1 23:39:20 2017 vigner_g
-//
+// Last update Sat Jul  1 23:54:27 2017 vigner_g
 
 #include <unistd.h>
 #include <iostream>
@@ -16,7 +15,7 @@
 #include <ctime>
 
 zappy::Client::Client(std::string port, std::string team, std::string machine)
-  :info(), mNet(), choice(NULL)
+  :info(), mNet(), choice(NULL), mCmdMgr(), player(), ia()
 {
   std::srand(std::time(0) + getpid());
   info = mNet.connectToServer(machine, port, team);
@@ -41,24 +40,39 @@ void	zappy::Client::usage()
 
 void	zappy::Client::launch()
 {
+  ICommand	*stock = NULL;
   std::string	server_msg;
 
   ia.init(&(*player));
   std::cout << "Starting game loop" << std::endl;
   while (1)
     {
+      if (stock && !choice)
+	{
+	  choice = stock;
+	  stock = NULL;
+	}
       if (mNet.isReadable())
 	mNet.readMsg();
       if (mNet.isCmdReady())
 	{
 	  server_msg = mNet.getNextCmd();
-	  if (mCmdMgr.isResponse(server_msg) && !choice)
+	  if (mCmdMgr.isResponse(server_msg, &stock, player->getLeveling()) && !choice)
 	    throw client_exception("Unexpected server msg", __LINE__, __FILE__);
 	  else if (choice)
 	    {
 	      std::cout << "Received: " << server_msg << std::endl;
 	      if (choice->getResponse(*player, server_msg))
-		choice = NULL;
+		{
+		  delete choice;
+		  if (stock)
+		    {
+		      choice = stock;
+		      stock = NULL;
+		    }
+		  else
+		    choice = NULL;
+		}
 	      std::cout << "\n" << std::endl;
 	    }
 	  else

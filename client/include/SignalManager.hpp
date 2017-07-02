@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 26 10:47:11 2017 Nathan Scutari
-// Last update Mon Jun 26 11:10:21 2017 Nathan Scutari
+// Last update Sat Jul  1 21:22:25 2017 Nathan Scutari
 //
 
 #ifndef __SIGNALMANAGER_HPP__

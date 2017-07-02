@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 19 21:11:43 2017 Nathan Scutari
-// Last update Tue Jun 27 15:35:48 2017 Nathan Scutari
+// Last update Sat Jul  1 21:21:42 2017 Nathan Scutari
 //
 
 #ifndef __NETWORK_HPP__
@@ -25,7 +25,7 @@ namespace	zappy
   private:
     SignalManager	mSignalMgr;
     CommandBuffer	cmdBuffer;
-    int			server_fd = -1;
+    int			server_fd;
 
   private:
     Network(Network &other);

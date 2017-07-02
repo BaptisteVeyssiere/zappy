@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Mon Jun 26 15:08:46 2017 vigner_g
-// Last update Thu Jun 29 20:16:08 2017 Nathan Scutari
+// Last update Sat Jul  1 21:18:05 2017 Nathan Scutari
 //
 
 #include <iostream> //debug
@@ -13,7 +13,7 @@
 #include "Exception.hpp"
 
 zappy::C_Set::C_Set()
-  :ICommand(), command("Set")
+  :ICommand(), command("Set"), item()
 {
 }
 
@@ -38,5 +38,7 @@ bool	zappy::C_Set::getResponse(Player &player, std::string &response)
     throw client_exception("Server drunk", __LINE__, __FILE__);
   if ((player.getOwnInventory().delItem(this->item)) == -1)
     throw client_exception("AI drunk, item is not in the inventory", __LINE__, __FILE__);
+  if (response == "ok")
+    player.getMap().access(player.getPosition().y ,player.getPosition().x).addItem(this->item);
   return (true);
 }
