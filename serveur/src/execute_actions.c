@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 14:40:30 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 15:06:51 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 02:55:37 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -37,17 +37,18 @@ static bool	check_incant(t_player *tmp, t_data *data)
       upgrade_to_lvl8
     };
 
-  if (!tmp->action->incant_checked)
-    {
-      tmp->action->incant_checked = 1;
-      if (strncmp(tmp->action->action, "Incantation", 11) == 0)
-	{
-	  if (!(incant[tmp->level - 1])(data, tmp))
+  if (!tmp->action->incant_checked && (tmp->action->incant_checked = 1) == 1)
+    if (strncmp(tmp->action->action, "Incantation", 11) == 0)
+      {
+	if (!(incant[tmp->level - 1])(data, tmp))
+	  {
+	    if (add_to_ilist(tmp, tmp) == -1)
+	      return (-1);
 	    return (socket_write(tmp->fd, "ko\n") != -1);
-	  else
-	    return (incant_underway(data, tmp));
-	}
-    }
+	  }
+	else
+	  return (incant_underway(data, tmp));
+      }
   return (true);
 }
 

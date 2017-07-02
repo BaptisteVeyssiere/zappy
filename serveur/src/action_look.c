@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Sat Jul  1 18:35:53 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 02:58:43 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -96,7 +96,6 @@ bool		action_look(t_data *data, t_player *player, UNUSED char *prm)
   while (up <= player->level && ++saw < line)
     {
       get_real_pos_from(data, &off);
-      fprintf(stderr, "see case [%d][%d] saw %d line %d\n", off.y, off.x, saw, line);
       if (!look_one_case(&data->map[off.y][off.x], &written, buff, player->fd))
 	return (false);
       written += snprintf(buff + written, MSG_LEN - written, ",");

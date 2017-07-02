@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 28 15:49:51 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 19:32:24 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 02:36:21 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -62,4 +62,23 @@ int	respawn(t_data *data, int type)
     }
   ++(data->map[y][x].item[type]);
   return (bct_tile(data, x, y));
+}
+
+int		add_to_ilist(t_player *player, t_player *link)
+{
+  t_incantation	*last;
+  t_incantation	*tmp;
+
+  if (!(last = malloc(sizeof(t_incantation))))
+    return (-1);
+  last->next = NULL;
+  last->player = &link;
+  tmp = player->action->list;
+  while (tmp && tmp->next)
+    tmp = tmp->next;
+  if (!tmp)
+    player->action->list = last;
+  else
+    tmp->next = last;
+  return (0);
 }

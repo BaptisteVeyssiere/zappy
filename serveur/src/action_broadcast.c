@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Tue Jun 27 16:46:38 2017 Mathis Guilbon
-** Last update Sat Jul  1 18:04:55 2017 Mathis Guilbon
+** Last update Sun Jul  2 02:52:41 2017 Baptiste Veyssiere
 */
 
 #include <math.h>
@@ -80,7 +80,8 @@ static void	get_surrounding(t_player *rec, char *dir, t_position *ward)
   ward[7] = (t_position){rec->pos->x - 1, rec->pos->y + 1};
 }
 
-static int	get_shorter(t_data *data, t_position *src, t_position *rec, t_position *inter)
+static int	get_shorter(t_data *data, t_position *src,
+			    t_position *rec, t_position *inter)
 {
   int		c;
   int		i;
@@ -93,20 +94,18 @@ static int	get_shorter(t_data *data, t_position *src, t_position *rec, t_positio
   v = (t_position){rec->x - src->x, rec->y - src->y};
   dist[0] = v.x * v.x + v.y * v.y;
   c = -(-v.y * rec->x + v.x * rec->y);
-  // y = ax + b   ax + by + c = 0
-  // -v.y * x + v.x * y + c = 0;
   fprintf(stderr, "ax+by+c=0||%d * x + %d * y + %d = 0\n", -v.y, v.x, c);
-  // x = 0 && x = 10
   if (v.x && (float)-c / v.x >= 0 && (float)-c / v.x <= data->height - 1)
     {
       r_inter[++i] = (t_point){0, (float)-c / v.x};
-      r_inter[++i] = (t_point){data->width, (float)(v.y * data->width - 1 - c) / v.x};
+      r_inter[++i] = (t_point){data->width,
+			       (float)(v.y * data->width - 1 - c) / v.x};
     }
   else if (v.y && (float)c / v.y >= 0 && (float)c / v.y <= data->width - 1)
     {
-      // y = 0 && y = 10
       r_inter[++i] = (t_point){(float)c / v.y, 0};
-      r_inter[++i] = (t_point){(float)(-v.x * data->height - 1 - c) / -v.y, data->height};
+      r_inter[++i] = (t_point){(float)(-v.x * data->height - 1 - c) /
+			       -v.y, data->height};
     }
   dist[1] = (r_inter[1].x - r_inter[0].x) * (r_inter[1].x - r_inter[0].x) +
     (r_inter[1].y - r_inter[0].y) * (r_inter[1].y - r_inter[0].y);
@@ -117,9 +116,8 @@ static int	get_shorter(t_data *data, t_position *src, t_position *rec, t_positio
   dist[3] = (src->x - inter[1].x) * (src->x - inter[1].x) +
     (src->y - inter[1].y) * (src->y - inter[1].y);
   shorter = (dist[2] < dist[3]) ? 0 : 1;
-  /*  if (dist[1] < dist[0])*/
   if (sqrt(dist[0]) > sqrt(dist[1]) / 2)
-    shorter = (shorter + 1) % 2; 
+    shorter = (shorter + 1) % 2;
   fprintf(stderr, "dist[3]:%u\n", dist[2]);
   fprintf(stderr, "dist[4]:%u\n", dist[3]);
   return (shorter);

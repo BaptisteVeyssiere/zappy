@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 17:12:34 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 19:27:06 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 03:04:27 2017 Baptiste Veyssiere
 */
 
 #include <strings.h>
@@ -37,13 +37,12 @@ int		bct(t_data *data)
 {
   char		buff[100];
   int		x;
-  unsigned int	y;
+  int		y;
   int		ret;
 
-  if (data->network->graphic_fd < 2)
+  if ((y = -1) == -1 && data->network->graphic_fd < 2)
     return (0);
-  y = -1;
-  while (++y < data->height && (x = -1) == -1)
+  while (++y < (int)data->height && (x = -1) == -1)
     while (++x < (int)data->width)
       {
 	bzero(buff, 100);

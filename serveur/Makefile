@@ -11,7 +11,7 @@ NAME	= ../zappy_server
 
 RM	= rm -rf
 
-CC	= gcc
+CC	= gcc -g
 
 MKDIR	= mkdir -p
 

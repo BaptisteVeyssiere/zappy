@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sat Jun 24 15:17:39 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 15:07:26 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 02:56:41 2017 Baptiste Veyssiere
 */
 
 #include <stdlib.h>
@@ -27,10 +27,10 @@ static int	free_players(t_player *player)
       free(player->pos);
       free(player->ringbuffer);
       action = player->action;
-      while (action)
+      while (action && (_tmp = action->next) == action->next)
 	{
-	  _tmp = action->next;
 	  free(action->action);
+	  free_ilist(action);
 	  free(action);
 	  action = _tmp;
 	}

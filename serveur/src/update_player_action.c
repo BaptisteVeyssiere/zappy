@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sun Jun 25 21:12:34 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 16:43:48 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 23:58:08 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -35,6 +35,7 @@ static void		init_action(char *command, int duration,
   action->ready = 0;
   action->action = command;
   action->incant_checked = 0;
+  action->list = NULL;
   set_action_timer(action, duration, freq);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Sun Jun 24 14:10:14 2017 Mathis Guilbon
-** Last update Sat Jul  1 15:10:52 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 00:06:59 2017 Baptiste Veyssiere
 */
 
 #include <unistd.h>
@@ -24,7 +24,8 @@ bool		incant_underway(t_data *data, t_player *player)
 	  tmp->pos->y == player->pos->y &&
 	  tmp->level == player->level &&
 	  (socket_write(tmp->fd, "Elevation underway\n") == -1 ||
-	   (tmp != player && pic(data, tmp) == -1)))
+	   (tmp != player && pic(data, tmp) == -1) ||
+	   add_to_ilist(player, tmp) == -1))
 	return (false);
       tmp = tmp->next;
     }

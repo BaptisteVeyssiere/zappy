@@ -5,9 +5,10 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Sat Jul  1 01:51:22 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 02:13:29 2017 Baptiste Veyssiere
+** Last update Sat Jul  1 22:24:04 2017 Baptiste Veyssiere
 */
 
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "server.h"
@@ -60,8 +61,11 @@ int	executer(t_act *actions, t_player *tmp, t_data *data)
 	 strncmp(tmp->action->action, actions[i].name,
 		 strlen(actions[i].name)) != 0);
   if (i < ACTION_NBR)
-    ret = (actions[i].func)(data, tmp,
-			    tmp->action->action + strlen(actions[i].name));
+    {
+      printf("Command by %d: %s\n", tmp->fd, actions[i].name);
+      ret = (actions[i].func)(data, tmp,
+			      tmp->action->action + strlen(actions[i].name));
+    }
   if (!ret || !get_next_valid_action(data, tmp))
     return (false);
   return (true);

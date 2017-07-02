@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 15:37:31 2017 Mathis Guilbon
-** Last update Sat Jul  1 16:55:36 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 03:04:53 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -84,31 +84,32 @@ bool		action_inventory(UNUSED t_data *data, t_player *player,
   return (socket_write(player->fd, buff) != -1);
 }
 
-static bool	upgrade_player(t_data *data, t_player *player, bool success)
+static bool	upgrade_player(t_data *data, t_player *player, bool s)
 {
   t_player	*tmp;
+  t_incantation	*_tmp;
   char		buff[32];
 
-  tmp = data->players_root;
-  snprintf(buff, 32, "ko\n");
-  if (pie(data, player->pos->x, player->pos->y, success == false ? 0 : 1) == -1)
-    return (false);
-  if (success)
-    snprintf(buff, 32, "Current level: %d\n", player->level + 1);
-  while (tmp != NULL)
-    {
-      if (tmp->pos->x == player->pos->x &&
-	  tmp->pos->y == player->pos->y &&
-	  tmp->level == player->level)
-	{
-	  if (success)
-	    ++tmp->level;
-	  if (socket_write(tmp->fd, buff) == -1 ||
-	      plv(data, tmp) == -1)
-	    return (false);
-	}
-      tmp = tmp->next;
-    }
+  _tmp = player->action->list;
+  if (snprintf(buff, 32, "ko\n") < 0 ||
+      pie(data, player->pos->x, player->pos->y, s == false ? 0 : 1) == -1 ||
+      (s && snprintf(buff, 32, "Current level: %d\n", player->level + 1) < 0))
+      return (false);
+  while (_tmp != NULL)
+    if (*(_tmp->player) != NULL)
+      {
+	tmp = *(_tmp->player);
+	if (tmp->pos->x == player->pos->x && tmp->pos->y == player->pos->y &&
+	    tmp->level == player->level)
+	  {
+	    tmp->level = s != 0 ? (tmp->level + 1) : tmp->level;
+	    if (socket_write(tmp->fd, buff) == -1 || plv(data, tmp) == -1)
+	      return (false);
+	    }
+	else if (socket_write(tmp->fd, "ko\n") == -1)
+	  return (false);
+	_tmp = _tmp->next;
+      }
   return (bct(data) == -1 ? false : true);
 }
 

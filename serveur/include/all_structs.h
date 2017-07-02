@@ -5,7 +5,7 @@
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Sat Jul  1 17:15:24 2017 Mathis Guilbon
+** Last update Sun Jul  2 02:36:08 2017 Baptiste Veyssiere
 */
 
 #ifndef ALL_STRUCTS_H_
@@ -69,15 +69,6 @@ typedef struct		s_point
   float			y;
 }			t_point;
 
-typedef struct		s_action
-{
-  char			*action;
-  unsigned long int	timer;
-  char			ready;
-  char			incant_checked;
-  struct s_action	*next;
-}			t_action;
-
 typedef struct		s_ringbuffer
 {
   char			data[RINGLENGTH];
@@ -109,6 +100,26 @@ typedef struct		s_items
   unsigned int		players;
 }			t_items;
 
+typedef struct		s_network
+{
+  int			socket_fd[2];
+  fd_set		*set;
+  int			graphic_fd;
+  int			signal_fd;
+  char			graphic_ready;
+  t_ringbuffer		*graphic_buffer;
+}			t_network;
+
+typedef struct		s_action
+{
+  char			*action;
+  unsigned long int	timer;
+  char			ready;
+  char			incant_checked;
+  struct s_action	*next;
+  struct s_incantation	*list;
+}			t_action;
+
 typedef struct		s_player
 {
   t_items		*inventory;
@@ -122,18 +133,15 @@ typedef struct		s_player
   int			id;
   t_action		*action;
   struct s_player	*next;
+  struct s_player	*inext;
   t_ringbuffer		*ringbuffer;
 }			t_player;
 
-typedef struct		s_network
+typedef struct		s_incantation
 {
-  int			socket_fd[2];
-  fd_set		*set;
-  int			graphic_fd;
-  int			signal_fd;
-  char			graphic_ready;
-  t_ringbuffer		*graphic_buffer;
-}			t_network;
+  t_player		**player;
+  struct s_incantation	*next;
+}			t_incantation;
 
 typedef struct		s_data
 {

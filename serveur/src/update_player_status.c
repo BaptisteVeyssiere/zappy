@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Mon Jun 26 20:24:46 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 16:31:25 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 02:38:59 2017 Baptiste Veyssiere
 */
 
 #include <sys/time.h>
@@ -31,6 +31,7 @@ int		free_player(t_player *player, t_data *data)
     {
       tmp = action->next;
       free(action->action);
+      free_ilist(action);
       free(action);
       action = tmp;
     }
