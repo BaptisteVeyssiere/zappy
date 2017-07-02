@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 15:46:29 2017 Baptiste Veyssiere
-** Last update Sat Jul  1 15:08:09 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 20:30:55 2017 Baptiste Veyssiere
 */
 
 #include <string.h>
@@ -22,7 +22,7 @@ int			get_command_duration(char *command)
       {"Left", action_left, 7},
       {"Look", action_look, 7},
       {"Inventory", action_inventory, 1},
-      {"Broadcast ", action_broadcast, 7},
+      {"Broadcast", action_broadcast, 7},
       {"Connect_nbr", action_connect_nbr, 0},
       {"Fork", action_fork, 42},
       {"Eject", action_eject, 7},

@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Tue Jun 27 14:40:30 2017 Baptiste Veyssiere
-** Last update Sun Jul  2 02:55:37 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 20:35:31 2017 Baptiste Veyssiere
 */
 
 #include <stdio.h>
@@ -61,7 +61,7 @@ static bool	execute_player_action(t_player *tmp, t_data *data)
       {"Left", action_left, 7},
       {"Look", action_look, 7},
       {"Inventory", action_inventory, 1},
-      {"Broadcast ", action_broadcast, 7},
+      {"Broadcast", action_broadcast, 7},
       {"Connect_nbr", action_connect_nbr, 0},
       {"Fork", action_fork, 42},
       {"Eject", action_eject, 7},
