@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Sun Jul  2 17:13:19 2017 Nathan Scutari
+// Last update Sun Jul  2 18:34:24 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -14,14 +14,15 @@
 #include "Network.hpp"
 #include "Player.hpp"
 #include "Exception.hpp"
-
+#include "C_broadcast.hpp"
 
 zappy::Player::Player(World &world)
   : id(0), lvl(1), pos(), facing(0, 1), food(10), OwnInventory(),
-    commonInventory(), map(), teamNbPlayer(1), nbOfEgg(0), slot(0),
-    leveling(false), mElevation(NULL)
+    map(), teamNbPlayer(1), nbOfEgg(0), slot(0), onGoingAction(),
+    toBroadcast(), regroup(), leveling(false), mElevation(NULL)
 {
   OwnInventory.getInv()["food"] = 10;
+  id = (std::rand() % 9999);
   map.setSize(world.width, world.height);
   slot = world.client_num;
 }
@@ -52,6 +53,17 @@ void	zappy::Player::SetId(int nb)
   this->id = nb;
 }
 
+void	zappy::Player::clearToBroadcast()
+{
+  this->toBroadcast.clear();
+}
+
+void	zappy::Player::setToBroadcast(std::string msg)
+{
+  this->toBroadcast.clear();
+  this->toBroadcast = msg;
+}
+
 void	zappy::Player::AddALvl()
 {
   this->lvl += 1;
@@ -62,24 +74,6 @@ zappy::Inventory &zappy::Player::getOwnInventory()
   return (this->OwnInventory);
 }
 
-std::map<int, zappy::Inventory>	 &zappy::Player::getCommonInventory()
-{
-  return (this->commonInventory);
-}
-
-void		zappy::Player::addToCommonInventory(int lvl, std::string item, int nbr)
-{
-  this->commonInventory[lvl].addItem(item, nbr);
-}
-
-void		zappy::Player::resetCommonInventory()
-{
-  for (auto it = this->commonInventory.begin(); it != this->commonInventory.end(); it++)
-    commonInventory[it->first].reset();
-  for (auto it2 = this->OwnInventory.getInv().begin(); it2 != this->OwnInventory.getInv().end(); it2++)
-    addToCommonInventory(this->lvl, it2->first, it2->second);
-}
-
 t_position	&zappy::Player::getFacing()
 {
   return (this->facing);
@@ -88,6 +82,11 @@ t_position	&zappy::Player::getFacing()
 t_position	&zappy::Player::getPosition()
 {
   return (this->pos);
+}
+
+int		&zappy::Player::getID()
+{
+  return (this->id);
 }
 
 int		zappy::Player::facingToAngle()
@@ -149,6 +148,11 @@ int		&zappy::Player::getFood()
   return (food);
 }
 
+zappy::Regroup		&zappy::Player::getRegroup()
+{
+  return (this->regroup);
+}
+
 void		zappy::Player::setLeveling(bool val)
 {
   leveling = val;
@@ -166,5 +170,56 @@ int		zappy::Player::getStoneValue(const std::string &stone) const
 
 std::string	&zappy::Player::getToBroadcast()
 {
-  return (toBroadcast);
+  return (this->toBroadcast);
+}
+
+zappy::ICommand	*zappy::Player::elevation()
+{
+  ICommand	*choice;
+
+  choice = new C_broadcast;
+  choice->addArg("Elevation ");
+  choice->addArg(std::to_string(this->id));
+  getRegroup().startElevating();
+  return (choice);
+}
+
+zappy::ICommand	*zappy::Player::cancel()
+{
+  ICommand	*choice;
+
+  choice = new C_broadcast;
+  choice->addArg("Cancel ");
+  choice->addArg(std::to_string(this->id));
+  getRegroup().resetIDS();
+  getRegroup().stopElevating();
+  return (choice);
+}
+
+zappy::ICommand	*zappy::Player::here()
+{
+  ICommand	*choice;
+
+  choice = new C_broadcast;
+  choice->addArg("Here ");
+  choice->addArg(std::to_string(getRegroup().getJoining()));
+  choice->addArg(" PlayerID ");
+  choice->addArg(std::to_string(this->id));
+  return (choice);
+}
+
+zappy::ICommand	*zappy::Player::come()
+{
+  ICommand	*choice;
+
+  choice = new C_broadcast;
+  choice->addArg("Come ");
+  for (unsigned int i = 0; i < getRegroup().getIDS().size() ; i ++)
+    {
+      choice->addArg(" PlayerID");
+      choice->addArg(std::to_string(this->id + 1));
+      choice->addArg(" ");
+      choice->addArg(std::to_string(getRegroup().getIDS()[i]));
+    }
+  return (choice);
 }

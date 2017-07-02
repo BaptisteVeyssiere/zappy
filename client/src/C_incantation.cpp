@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 18:10:48 2017 Nathan Scutari
-// Last update Sat Jul  1 22:39:35 2017 Nathan Scutari
+// Last update Sun Jul  2 16:48:50 2017 vigner_g
 //
 
 #include "C_incantation.hpp"
@@ -45,5 +45,6 @@ bool		zappy::C_incantation::getResponse(Player &player,
     {
       player.AddALvl();
     }
+  player.getRegroup().stopElevating();
   return (true);
 }

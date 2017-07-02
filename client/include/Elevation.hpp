@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 30 23:47:49 2017 Nathan Scutari
-// Last update Sun Jul  2 17:38:45 2017 Nathan Scutari
+// Last update Sun Jul  2 18:39:09 2017 Nathan Scutari
 //
 
 #ifndef __ELEVATION_HPP__
@@ -58,6 +58,7 @@ namespace zappy
 
   private:
     bool	hasEnough(std::string, int);
+    ICommand	*playersRegrouped();
     bool	tryUp();
 
   public:

@@ -5,16 +5,17 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 18:50:41 2017 Nathan Scutari
-// Last update Sun Jul  2 15:17:26 2017 Nathan Scutari
+// Last update Sun Jul  2 18:37:55 2017 Nathan Scutari
 //
 
 #include <iostream>
 #include "IA.hpp"
 #include "C_inventory.hpp"
 #include "C_Fork.hpp"
+#include "C_broadcast.hpp"
 
 zappy::IA::IA()
-  :egg(0), mPlayer(NULL), mExploration(), mElevation()
+  :egg(0), mPlayer(NULL), mExploration(), mElevation(), mJoin()
 {
 
 }
@@ -57,7 +58,13 @@ zappy::ICommand	*zappy::IA::makeAChoice()
       ++egg;
       return (new C_Fork);
     }
-  if (!(choice = mElevation.check()))
+  else if (!(mPlayer->getToBroadcast().empty()))
+    {
+      choice = new C_broadcast;
+      choice->addArg(mPlayer->getToBroadcast());
+      mPlayer->clearToBroadcast();
+    }
+  else if (!(choice = mElevation.check())) // envoyer des messages et set
     choice = mExploration.explore();
   return (choice);
 }

@@ -5,13 +5,13 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Sun Jul  2 16:52:01 2017 Nathan Scutari
-// Last update Sun Jul  2 16:56:31 2017 Nathan Scutari
+// Last update Sun Jul  2 18:50:11 2017 Nathan Scutari
 //
 
 #ifndef __JOIN_HPP__
 # define __JOIN_HPP__
 
-#include "Icommand.hpp"
+#include "ICommand.hpp"
 #include "Player.hpp"
 
 namespace zappy
@@ -19,12 +19,20 @@ namespace zappy
   class Join
   {
   private:
+    Player	*mPlayer;
+    bool	waiting;
+
+  private:
     Join(Join &other);
     Join	&operator=(Join &other);
 
   public:
     Join();
     ~Join();
+
+  private:
+    ICommand	*getOrientation();
+    ICommand	*followBroadcast();
 
   public:
     void	init(Player *);

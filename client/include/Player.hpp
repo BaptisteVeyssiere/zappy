@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Sun Jul  2 17:12:35 2017 Nathan Scutari
+// Last update Sun Jul  2 18:36:41 2017 Nathan Scutari
 //
 
 #ifndef __PLAYER_HPP__
@@ -18,6 +18,13 @@
 #include "Inventory.hpp"
 #include "Map.hpp"
 #include "Elevation.hpp"
+#include "Regroup.hpp"
+#include "ICommand.hpp"
+
+namespace zappy
+{
+  class ICommand;
+}
 
 namespace	zappy
 {
@@ -30,11 +37,13 @@ namespace	zappy
     t_position		       		facing;
     int					food;
     Inventory				OwnInventory;
-    std::map<int, Inventory>		commonInventory;
     Map					map;
     int					teamNbPlayer;
     int					nbOfEgg;
     int					slot;
+    std::string				onGoingAction;
+    std::string				toBroadcast;
+    Regroup				regroup;
     bool				leveling;
     Elevation				*mElevation;
 
@@ -52,24 +61,31 @@ namespace	zappy
     void	SetId(int id);
     void	AddALvl();
     void	setFood(int nbr);
+    void	clearToBroadcast();
+    void	setToBroadcast(std::string msg);
     int		facingToAngle();
 
   public:
     void	init(Elevation *);
     Inventory	&getOwnInventory();
-    std::map<int, Inventory>	&getCommonInventory();
-    void	addToCommonInventory(int lvl, std::string item, int nbr);
-    void	resetCommonInventory();
     t_position	&getFacing();
     t_position	&getPosition();
     t_position	getAbsolutePos(t_position &relative_pos);
     Map		&getMap();
+    int		&getID();
     int		&getLvl();
     int		&getSlot();
     int		&getFood();
+    Regroup	&getRegroup();
     bool	&getLeveling();
     int		getStoneValue(const std::string &) const;
     std::string	&getToBroadcast();
+
+  public:
+    ICommand	*elevation();
+    ICommand	*cancel();
+    ICommand	*here();
+    ICommand	*come();
   };
 }
 

@@ -5,13 +5,17 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Sun Jul  2 16:55:11 2017 Nathan Scutari
-// Last update Sun Jul  2 17:34:38 2017 Nathan Scutari
+// Last update Sun Jul  2 18:51:30 2017 Nathan Scutari
 //
 
 #include "Join.hpp"
+#include "C_Forward.hpp"
+#include "C_TurnRight.hpp"
+#include "C_TurnLeft.hpp"
+#include "C_broadcast.hpp"
 
 zappy::Join::Join()
-  :mPlayer(NULL)
+  :mPlayer(NULL), waiting(false)
 {
 
 }
@@ -28,8 +32,8 @@ void	zappy::Join::init(Player *player)
 
 zappy::ICommand	*zappy::Join::getOrientation()
 {
-  static int	right_dirs = {7, 6, 5};
-  static int	left_dirs = {3, 4};
+  static int	right_dirs[] = {7, 6, 5};
+  static int	left_dirs[] = {3, 4};
 
   for (int i = 0 ; i < 3 ; ++i)
     {
@@ -55,7 +59,7 @@ zappy::ICommand	*zappy::Join::followBroadcast()
   else if (waiting)
     {
       choice = new C_broadcast;
-      waiting->addArg(arg);
+      choice->addArg(arg);
       return (choice);
     }
   waiting = false;
@@ -77,4 +81,5 @@ zappy::ICommand	*zappy::Join::join()
     }
   if (mPlayer->getRegroup().getJoining() == -1)
     return (NULL);
+  return (followBroadcast());
 }

@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Thu Jun 29 11:25:53 2017 Nathan Scutari
-// Last update Sun Jul  2 15:25:16 2017 Nathan Scutari
+// Last update Sun Jul  2 18:54:02 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -343,6 +343,8 @@ std::list<zappy::tileValue>	*zappy::Exploration::fillValues(std::list<t_position
 	    none = false;
 	  if (it->first == "food")
 	    tmp.value -= it->second * foodValue();
+	  else if (it->first == "player")
+	    tmp.value += 200;
 	  else
 	    tmp.value -= it->second *
 	      mPlayer->getStoneValue(it->first);

@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 23 17:04:46 2017 Nathan Scutari
-// Last update Sat Jun 24 15:08:24 2017 Nathan Scutari
+// Last update Sun Jul  2 18:06:15 2017 vigner_g
 //
 
 #ifndef __BROADCAST_HPP__
@@ -13,6 +13,7 @@
 
 #include <string>
 #include "ICommand.hpp"
+#include "Player.hpp"
 
 namespace zappy
 {

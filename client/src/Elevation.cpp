@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 30 23:55:55 2017 Nathan Scutari
-// Last update Sun Jul  2 16:21:43 2017 Nathan Scutari
+// Last update Sun Jul  2 19:04:43 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -16,6 +16,7 @@
 #include "C_Take.hpp"
 #include "C_Set.hpp"
 #include "Exception.hpp"
+#include "C_broadcast.hpp"
 
 zappy::Elevation::Elevation()
   :requirements(false), elevating(false), mPlayer(NULL)
@@ -39,7 +40,7 @@ bool	zappy::Elevation::hasEnough(std::string item, int nbr)
   if (item == "player")
     {
       if (mPlayer->getMap().access(mPlayer->getPosition().y,
-				   mPlayer->getPosition().x).getInv()[item] == nbr)
+				   mPlayer->getPosition().x).getInv()[item] == 1)
 	return (true);
       else
 	return (false);
@@ -92,10 +93,11 @@ zappy::ICommand	*zappy::Elevation::elevate()
   std::cout << "I'm leveling up! :-)" << std::endl;
   requirements = false;
   mPlayer->setLeveling(true);
+  mPlayer->getRegroup().startElevating();
   return (new C_incantation(false));
 }
 
-zappy::ICommand	*zappy::playersRegrouped()
+zappy::ICommand	*zappy::Elevation::playersRegrouped()
 {
   ICommand	*fill;
   std::string	arg = "waiting confirmation";
@@ -110,11 +112,16 @@ zappy::ICommand	*zappy::playersRegrouped()
       mPlayer->getRegroup().setElevTimeout(ELEVATION_ASKING_TIMEOUT);
       return (mPlayer->elevation());
     }
-  if (mPlayer->getRegroup().getIDS().size() < required[mPlayer->getLvl()][7] - 1)
+  if (static_cast<int>(mPlayer->getRegroup().getIDS().size())
+      < required[mPlayer->getLvl()][7] - 1)
     {
       mPlayer->getRegroup().decElevTimeout();
-      if (mPlayer->getElevTimeout() <= 0)
-	return (mPlayer->cancel());
+      if (mPlayer->getRegroup().getElevTimeout() <= 0)
+	{
+	  init = true;
+	  free = false;
+	  return (mPlayer->cancel());
+	}
       fill = new C_broadcast;
       fill->addArg(arg);
       return (fill);
@@ -130,8 +137,12 @@ zappy::ICommand	*zappy::playersRegrouped()
       .getInv()["player"] < required[mPlayer->getLvl()][7])
     {
       mPlayer->getRegroup().decElevTimeout();
-      if (mPlayer->getElevTimeout() <= 0)
-	return (mPlayer->cancel());
+      if (mPlayer->getRegroup().getElevTimeout() <= 0)
+	{
+	  init = true;
+	  free = false;
+	  return (mPlayer->cancel());
+	}
       return (mPlayer->come());
     }
   init = true;
@@ -142,7 +153,7 @@ zappy::ICommand	*zappy::playersRegrouped()
 zappy::ICommand	*zappy::Elevation::check()
 {
   static int	turn = 0;
-  Icommand	*choice;
+  ICommand	*choice;
 
   if (requirements)
     {
