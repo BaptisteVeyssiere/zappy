@@ -1,11 +1,11 @@
 /*
-** all_structs.h for Project-Master in /home/nathalie/rendu/network/PSU_2016_zap
+** all_structs.h for Project-Master in /home/nathalie/rendu/network/PSU_2016_
 **
 ** Made by Nathalie CAI
 ** Login   <abel@epitech.eu>
 **
 ** Started on  Wed Jun 21 11:46:52 2017 Nathalie CAI
-** Last update Sun Jul  2 02:36:08 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 15:22:56 2017 Baptiste Veyssiere
 */
 
 #ifndef ALL_STRUCTS_H_
