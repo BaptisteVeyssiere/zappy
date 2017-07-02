@@ -5,7 +5,7 @@
 ** Login   <veyssi_b@epitech.net>
 **
 ** Started on  Wed Jun 21 00:50:35 2017 Baptiste Veyssiere
-** Last update Sun Jul  2 02:51:28 2017 Baptiste Veyssiere
+** Last update Sun Jul  2 13:31:17 2017 Mathis Guilbon
 */
 
 #ifndef SERVER_H_
@@ -211,6 +211,15 @@ bool		action_look(t_data *, t_player *, char *);
 */
 
 bool		action_broadcast(t_data *, t_player *, char *);
+
+/*
+**	action_broadcast_intersection.c
+*/
+
+void		calc_intersection(t_position *src, t_position *rec,
+				  t_position *inter, t_position *ward);
+void		get_inter(float x, float y, t_position *inter, t_position *ward);
+void		get_map_inter(t_data *data, t_position *v, t_point *r_inter, int c);
 
 /*
 ** init_graphic.c

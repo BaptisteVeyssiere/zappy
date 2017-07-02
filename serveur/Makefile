@@ -47,6 +47,7 @@ SRC	= src/writes.c \
 	src/incantation.c \
 	src/incantation2.c \
 	src/action_broadcast.c \
+	src/action_broadcast_intersection.c \
 	src/execute_actions.c \
 	src/respawn.c \
 	src/graphic_moves.c \
