@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Sun Jul  2 16:52:01 2017 Nathan Scutari
-// Last update Sun Jul  2 18:50:11 2017 Nathan Scutari
+// Last update Mon Jul  3 18:09:12 2017 Nathan Scutari
 //
 
 #ifndef __JOIN_HPP__
@@ -37,6 +37,8 @@ namespace zappy
   public:
     void	init(Player *);
     ICommand	*join();
+    void	setWaiting(bool);
+    Join	*getInstance();
   };
 }
 

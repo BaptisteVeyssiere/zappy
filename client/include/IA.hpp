@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 17:58:03 2017 Nathan Scutari
-// Last update Sun Jul  2 17:37:33 2017 Nathan Scutari
+// Last update Mon Jul  3 18:09:01 2017 Nathan Scutari
 //
 
 #ifndef __IA_HPP__
@@ -44,6 +44,7 @@ namespace zappy
     void	init(Player *);
     ICommand	*makeAChoice();
     Elevation	*getEleInstance();
+    Join	*getJoinInstance();
   };
 }
 

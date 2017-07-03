@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 27 18:50:41 2017 Nathan Scutari
-// Last update Sun Jul  2 23:36:19 2017 Nathan Scutari
+// Last update Mon Jul  3 18:08:42 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -54,6 +54,7 @@ zappy::ICommand	*zappy::IA::makeAChoice()
   ICommand	*choice;
 
   refreshTile();
+  mPlayer->refreshAskList();
   if (egg < 2)
     {
       ++egg;
@@ -68,4 +69,9 @@ zappy::ICommand	*zappy::IA::makeAChoice()
 zappy::Elevation	*zappy::IA::getEleInstance()
 {
   return (mElevation.getInstance());
+}
+
+zappy::Join		*zappy::IA::getJoinInstance()
+{
+  return (mJoin.getInstance());
 }

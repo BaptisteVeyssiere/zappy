@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 26 10:11:32 2017 Nathan Scutari
-// Last update Sun Jul  2 23:15:40 2017 Nathan Scutari
+// Last update Mon Jul  3 18:16:29 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -44,6 +44,7 @@ std::string     zappy::CommandManager::retNext(std::string str, std::string tofi
 
 void	zappy::CommandManager::elevation(std::string &msg, zappy::Player &player)
 {
+  zappy::AskId	ask;
   std::string	tmp;
   int		tlvl;
   int		idToJoin;
@@ -58,8 +59,12 @@ void	zappy::CommandManager::elevation(std::string &msg, zappy::Player &player)
   std::cout << "tmp:" << tmp << std::endl;
   if (!(isdigit(tmp[0])) || (tlvl = std::stoi(tmp)) == 0)
     return;
+  ask.id = idToJoin;
+  ask.lvl = tlvl;
+  ask.timeout = 0;
+  player.addAsk(ask);
   if (player.getLvl() == tlvl && player.getRegroup().isElevating() == false &&
-      player.getFood() >= 25)
+      player.getFood() >= 25 && player.getRegroup().getJoining() == -1)
     {
       tmpToBroadcast = "Free ";
       tmpToBroadcast += std::to_string(idToJoin);
@@ -129,7 +134,11 @@ void	zappy::CommandManager::cancel(std::string &msg, zappy::Player &player)
   if (!(isdigit(tmp[0])) || (elevatingID = std::stoi(tmp)) == 0)
     return;
   if (elevatingID == player.getRegroup().getJoining())
-    player.getRegroup().stopJoining();
+    {
+      player.getRegroup().stopJoining();
+      player.getRegroup().setJoining(-1);
+      player.getJoin()->setWaiting(false);
+    }
 }
 
 void	zappy::CommandManager::here(std::string &msg, zappy::Player &player)

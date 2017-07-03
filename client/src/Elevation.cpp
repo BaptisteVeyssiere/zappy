@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 30 23:55:55 2017 Nathan Scutari
-// Last update Sun Jul  2 23:37:12 2017 Nathan Scutari
+// Last update Mon Jul  3 16:27:43 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -136,6 +136,14 @@ zappy::ICommand	*zappy::Elevation::playersRegrouped(bool reset, bool &requiremen
       fill->addArg(arg);
       return (fill);
     }
+  if (!mPlayer->lowestId())
+    {
+      init = true;
+      free = false;
+      canceled = true;
+      requirements = false;
+      return (mPlayer->cancel());
+    }
   if (free == false)
     {
       free = true;
@@ -187,7 +195,7 @@ zappy::ICommand	*zappy::Elevation::check()
     }
   else if (turn == 1)
     return (new C_Look);
-  else if (turn == 2 && mPlayer->getLvl() < 8 && rand() % static_cast<int>(pow(mPlayer->getLvl(), 2)) == 0 && (tryUp()))
+  else if (turn == 2 && mPlayer->getLvl() < 8 && mPlayer->lowestId() && (tryUp()))
     return (elevate());
   return (NULL);
 }
