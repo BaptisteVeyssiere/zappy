@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Sun Jul  2 16:55:11 2017 Nathan Scutari
-// Last update Sun Jul  2 23:18:15 2017 Nathan Scutari
+// Last update Mon Jul  3 18:12:07 2017 Nathan Scutari
 //
 
 #include <unistd.h>
@@ -58,6 +58,7 @@ zappy::ICommand	*zappy::Join::getOrientation()
 
 zappy::ICommand	*zappy::Join::followBroadcast()
 {
+  static int	timeout = 30;
   static bool	split = false;
   std::string	fill = "void";
   std::string	arg = "waiting incantation";
@@ -85,11 +86,18 @@ zappy::ICommand	*zappy::Join::followBroadcast()
   if (mPlayer->getRegroup().getDirection() == 0 &&
       waiting == false)
     {
+      timeout = 30;
       waiting = true;
       return (mPlayer->here());
     }
   else if (waiting)
     {
+      --timeout;
+      if (timeout <= 0)
+	{
+	  waiting = false;
+	  mPlayer->getRegroup().setJoining(-1);
+	}
       choice = new C_broadcast;
       choice->addArg(arg);
       return (choice);
@@ -109,9 +117,21 @@ zappy::ICommand	*zappy::Join::join()
       choice = new C_broadcast;
       choice->addArg(mPlayer->getToBroadcast());
       mPlayer->getToBroadcast().clear();
+      mPlayer->getRegroup().setElevTimeout(30);
       return (choice);
     }
+  std::cout << mPlayer->getRegroup().getJoining() << std::endl;
   if (mPlayer->getRegroup().getJoining() == -1)
     return (NULL);
   return (followBroadcast());
+}
+
+void	zappy::Join::setWaiting(bool wait)
+{
+  waiting = wait;
+}
+
+zappy::Join	*zappy::Join::getInstance()
+{
+  return (this);
 }

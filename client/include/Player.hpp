@@ -5,12 +5,13 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 16:44:15 2017 vigner_g
-// Last update Sun Jul  2 22:39:43 2017 Nathan Scutari
+// Last update Mon Jul  3 18:14:13 2017 Nathan Scutari
 //
 
 #ifndef __PLAYER_HPP__
 # define __PLAYER_HPP__
 
+#include <list>
 #include <string>
 #include <vector>
 #include "World.h"
@@ -20,14 +21,23 @@
 #include "Elevation.hpp"
 #include "Regroup.hpp"
 #include "ICommand.hpp"
+#include "Join.hpp"
 
 namespace zappy
 {
   class ICommand;
+  class Join;
 }
 
 namespace	zappy
 {
+  struct	AskId
+  {
+    int		id = 0;
+    int		lvl = 0;
+    int		timeout = 0;
+  };
+
   class Player
   {
   private:
@@ -46,7 +56,9 @@ namespace	zappy
     Regroup				regroup;
     bool				leveling;
     Elevation				*mElevation;
+    Join				*mJoin;
     bool				start_elev;
+    std::list<AskId>			askList;
 
   private:
     Player(Player &other);
@@ -67,7 +79,7 @@ namespace	zappy
     int		facingToAngle();
 
   public:
-    void	init(Elevation *);
+    void	init(Elevation *, Join *);
     Inventory	&getOwnInventory();
     t_position	&getFacing();
     t_position	&getPosition();
@@ -84,6 +96,10 @@ namespace	zappy
     void	startElev();
     void	stopElev();
     bool	isElev();
+    void	addAsk(AskId &);
+    void	refreshAskList();
+    bool	lowestId();
+    Join	*getJoin();
 
   public:
     ICommand	*elevation();

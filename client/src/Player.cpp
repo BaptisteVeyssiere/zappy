@@ -5,7 +5,7 @@
 // Login   <vigner_g@epitech.net>
 //
 // Started on  Tue Jun 20 17:04:08 2017 vigner_g
-// Last update Sun Jul  2 22:39:53 2017 Nathan Scutari
+// Last update Mon Jul  3 18:17:47 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -20,7 +20,7 @@ zappy::Player::Player(World &world)
   : id(0), lvl(1), pos(), facing(0, 1), food(10), OwnInventory(),
     map(), teamNbPlayer(1), nbOfEgg(0), slot(0), onGoingAction(),
     toBroadcast(""), regroup(), leveling(false), mElevation(NULL),
-    start_elev(false)
+    mJoin(NULL), start_elev(false), askList()
 {
   OwnInventory.getInv()["food"] = 10;
   id = (std::rand() % 9999);
@@ -33,9 +33,10 @@ zappy::Player::~Player()
 
 }
 
-void	zappy::Player::init(Elevation *instance)
+void	zappy::Player::init(Elevation *instance, Join *join)
 {
   mElevation = instance;
+  mJoin = join;
 }
 
 void	zappy::Player::setFood(int nbr)
@@ -242,4 +243,36 @@ void	zappy::Player::stopElev()
 bool	zappy::Player::isElev()
 {
   return (start_elev);
+}
+
+void	zappy::Player::addAsk(AskId &ask)
+{
+  askList.push_back(ask);
+}
+
+void	zappy::Player::refreshAskList()
+{
+  for (auto it = askList.begin() ; it != askList.end() ; ++it)
+    {
+      if (++(*it).timeout >= 150)
+	{
+	  it = askList.erase(it);
+	  --it;
+	}
+    }
+}
+
+bool	zappy::Player::lowestId()
+{
+  for (auto it : askList)
+    {
+      if (it.id < id && it.lvl == lvl)
+	return (false);
+    }
+  return (true);
+}
+
+zappy::Join	*zappy::Player::getJoin()
+{
+  return (mJoin);
 }

@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Tue Jun 20 16:10:12 2017 Nathan Scutari
-// Last update Sun Jul  2 18:36:08 2017 Nathan Scutari
+// Last update Mon Jul  3 18:08:18 2017 Nathan Scutari
 //
 
 #include <unistd.h>
@@ -46,7 +46,7 @@ void	zappy::Client::launch()
   bool		response;
 
   ia.init(&(*player));
-  (*player).init(ia.getEleInstance());
+  (*player).init(ia.getEleInstance(), ia.getJoinInstance());
   std::cout << "Starting game loop" << std::endl;
   while (1)
     {
