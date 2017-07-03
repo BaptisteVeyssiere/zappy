@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 19 19:38:17 2017 Mathis Guilbon
-** Last update Sat Jul  1 15:02:10 2017 Baptiste Veyssiere
+** Last update Mon Jul  3 19:14:22 2017 Nathan Scutari
 */
 
 #include <sys/time.h>
@@ -17,13 +17,13 @@
 
 void		get_real_pos_from(t_data *data, t_position *pos)
 {
-  if (pos->y >= (int)data->height)
+  while (pos->y >= (int)data->height)
     pos->y -= data->height;
-  else if (pos->y < 0)
+  while (pos->y < 0)
     pos->y += data->height;
-  if (pos->x >= (int)data->width)
+  while (pos->x >= (int)data->width)
     pos->x -= data->width;
-  else if (pos->x < 0)
+  while (pos->x < 0)
     pos->x += data->width;
 }
 

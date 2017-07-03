@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Sun Jul  2 16:55:11 2017 Nathan Scutari
-// Last update Mon Jul  3 18:12:07 2017 Nathan Scutari
+// Last update Mon Jul  3 21:03:20 2017 Nathan Scutari
 //
 
 #include <unistd.h>
@@ -66,14 +66,14 @@ zappy::ICommand	*zappy::Join::followBroadcast()
 
   if (mPlayer->getRegroup().getDirection() == 9)
     {
-      if (mPlayer->getRegroup().getElevTimeout() <= 0)
-	mPlayer->getRegroup().setJoining(-1);
+      //      if (mPlayer->getRegroup().getElevTimeout() <= 0)
+      //	mPlayer->getRegroup().setJoining(-1);
       choice = new C_broadcast;
       choice->addArg(fill);
+      mPlayer->getRegroup().setElevTimeout(10);
       return (choice);
     }
-  mPlayer->getRegroup().setElevTimeout(30);
-  if (split)
+  if (split && mPlayer->getRegroup().getDirection() != 0)
     {
       mPlayer->getRegroup().setDirection(9);
       split = false;
@@ -82,29 +82,25 @@ zappy::ICommand	*zappy::Join::followBroadcast()
       return (choice);
     }
   split = true;
-  std::cout << "Direction: " << mPlayer->getRegroup().getDirection() << std::endl;
   if (mPlayer->getRegroup().getDirection() == 0 &&
       waiting == false)
     {
-      timeout = 30;
       waiting = true;
+      mPlayer->getRegroup().setElevTimeout(30);
       return (mPlayer->here());
     }
   else if (waiting)
     {
-      --timeout;
-      if (timeout <= 0)
-	{
-	  waiting = false;
-	  mPlayer->getRegroup().setJoining(-1);
-	}
       choice = new C_broadcast;
       choice->addArg(arg);
       return (choice);
     }
   waiting = false;
+  mPlayer->getRegroup().setElevTimeout(10);
   if ((choice = getOrientation()))
-    return (choice);
+    {
+      return (choice);
+    }
   return (new C_Forward);
 }
 
@@ -123,6 +119,9 @@ zappy::ICommand	*zappy::Join::join()
   std::cout << mPlayer->getRegroup().getJoining() << std::endl;
   if (mPlayer->getRegroup().getJoining() == -1)
     return (NULL);
+  mPlayer->getRegroup().decElevTimeout();
+  //  if (mPlayer->getRegroup().getElevTimeout() <= 0)
+  //mPlayer->getRegroup().setJoining(-1);
   return (followBroadcast());
 }
 

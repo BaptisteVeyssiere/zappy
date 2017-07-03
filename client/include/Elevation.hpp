@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 30 23:47:49 2017 Nathan Scutari
-// Last update Sun Jul  2 23:24:32 2017 Nathan Scutari
+// Last update Mon Jul  3 21:13:34 2017 Nathan Scutari
 //
 
 #ifndef __ELEVATION_HPP__
@@ -15,7 +15,7 @@
 #include "Player.hpp"
 
 #define ELEVATION_ASKING_TIMEOUT 10
-#define ELEVATION_COMING_TIMEOUT 40
+#define ELEVATION_COMING_TIMEOUT 70
 
 namespace zappy
 {

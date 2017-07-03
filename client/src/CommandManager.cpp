@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Mon Jun 26 10:11:32 2017 Nathan Scutari
-// Last update Mon Jul  3 18:16:29 2017 Nathan Scutari
+// Last update Mon Jul  3 20:37:48 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -63,7 +63,7 @@ void	zappy::CommandManager::elevation(std::string &msg, zappy::Player &player)
   ask.lvl = tlvl;
   ask.timeout = 0;
   player.addAsk(ask);
-  if (player.getLvl() == tlvl && player.getRegroup().isElevating() == false &&
+  if (player.getLvl() == tlvl &&
       player.getFood() >= 25 && player.getRegroup().getJoining() == -1)
     {
       tmpToBroadcast = "Free ";
@@ -116,6 +116,7 @@ void	zappy::CommandManager::come(std::string &msg, zappy::Player &player)
 	return;
       if (distantID == player.getID())
 	{
+	  player.getRegroup().setElevTimeout(10);
 	  player.getRegroup().setJoining(elevatingID);
 	  player.getRegroup().setDirection(direction);
 	}

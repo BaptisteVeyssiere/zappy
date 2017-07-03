@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Sun Jul  2 13:20:22 2017 Mathis Guilbon
-** Last update Sun Jul  2 20:12:59 2017 Mathis Guilbon
+** Last update Mon Jul  3 18:57:52 2017 Nathan Scutari
 */
 
 #include <string.h>
@@ -68,7 +68,7 @@ void		get_map_inter(t_data *data, t_position *v,
       res = (float)-c / v->x;
       if (res >= 0 && res <= (float)(data->height - 1))
 	r_inter[++i] = (t_point){0, res};
-      res = (float)(v->y * (data->width - 1) - c) / v->x;
+      res = ((float)v->y * (data->width - 1) - c) / v->x;
       if (res >= 0 && res <= (float)(data->height - 1))
 	r_inter[++i] = (t_point){data->width - 1, res};
     }
@@ -77,7 +77,7 @@ void		get_map_inter(t_data *data, t_position *v,
       res = (float)c / v->y;
       if (v->y && res >= 0 && res <= (float)(data->width - 1))
 	r_inter[++i] = (t_point){(float)c / v->y, 0};
-      res = (float)(-v->x * (data->height - 1) - c) / -v->y;
+      res = ((float)(-v->x) * (data->height - 1) - c) / -v->y;
       if (v->y && res >= 0 && res <= (float)(data->width - 1))
 	r_inter[++i] = (t_point){res, data->height - 1};
     }

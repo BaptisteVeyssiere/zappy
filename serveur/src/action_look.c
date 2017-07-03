@@ -5,7 +5,7 @@
 ** Login   <guilbo_m@epitech.net>
 **
 ** Started on  Mon Jun 26 17:05:23 2017 Mathis Guilbon
-** Last update Sun Jul  2 15:45:49 2017 Baptiste Veyssiere
+** Last update Mon Jul  3 19:01:26 2017 Nathan Scutari
 */
 
 #include <stdio.h>
@@ -44,6 +44,7 @@ static bool		look_one_case(t_items *item, int *written,
   while (++j < ITEMNBR && (i = -1) == -1)
     while (++i < (int)item->item[j])
       {
+	printf("i = %d, %d\n", i, item->item[j]);
 	*written += snprintf(buff + *written, MSG_LEN - *written,
 			     " %s", item_name[j]);
 	if (!check_overflow(written, buff, fd))
@@ -96,6 +97,7 @@ bool		action_look(t_data *data, t_player *player, UNUSED char *prm)
   while (up <= player->level && ++saw < line)
     {
       get_real_pos_from(data, &off);
+      fprintf(stderr, "look case [%d,%d]\n", off.x, off.y);
       if (!look_one_case(&data->map[off.y][off.x], &written, buff, player->fd))
 	return (false);
       written += snprintf(buff + written, MSG_LEN - written, ",");

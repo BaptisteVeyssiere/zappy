@@ -5,7 +5,7 @@
 // Login   <scutar_n@epitech.net>
 //
 // Started on  Fri Jun 30 23:55:55 2017 Nathan Scutari
-// Last update Mon Jul  3 16:27:43 2017 Nathan Scutari
+// Last update Mon Jul  3 21:18:35 2017 Nathan Scutari
 //
 
 #include <iostream>
@@ -100,6 +100,7 @@ zappy::ICommand	*zappy::Elevation::elevate()
 
 zappy::ICommand	*zappy::Elevation::playersRegrouped(bool reset, bool &requirements)
 {
+  static bool	come = false;
   static bool	herep = false;
   ICommand	*fill;
   std::string	arg = "waiting confirmation";
@@ -108,6 +109,7 @@ zappy::ICommand	*zappy::Elevation::playersRegrouped(bool reset, bool &requiremen
 
   if (reset)
     {
+      come = false;
       elevating = false;
       return (NULL);
     }
@@ -121,7 +123,7 @@ zappy::ICommand	*zappy::Elevation::playersRegrouped(bool reset, bool &requiremen
       return (mPlayer->elevation());
     }
   if (static_cast<int>(mPlayer->getRegroup().getIDS().size())
-      < required[mPlayer->getLvl()][7] - 1)
+      < required[mPlayer->getLvl()][7] - 1 && !free)
     {
       mPlayer->getRegroup().decElevTimeout();
       if (mPlayer->getRegroup().getElevTimeout() <= 0)
@@ -130,6 +132,7 @@ zappy::ICommand	*zappy::Elevation::playersRegrouped(bool reset, bool &requiremen
 	  free = false;
 	  canceled = true;
 	  requirements = false;
+	  come = false;
 	  return (mPlayer->cancel());
 	}
       fill = new C_broadcast;
@@ -142,6 +145,7 @@ zappy::ICommand	*zappy::Elevation::playersRegrouped(bool reset, bool &requiremen
       free = false;
       canceled = true;
       requirements = false;
+      come = false;
       return (mPlayer->cancel());
     }
   if (free == false)
@@ -159,6 +163,8 @@ zappy::ICommand	*zappy::Elevation::playersRegrouped(bool reset, bool &requiremen
 	{
 	  init = true;
 	  free = false;
+	  come = false;
+	  canceled = true;
 	  requirements = false;
 	  return (mPlayer->cancel());
 	}
@@ -167,6 +173,7 @@ zappy::ICommand	*zappy::Elevation::playersRegrouped(bool reset, bool &requiremen
   init = true;
   free = false;
   herep = true;
+  come = false;
   std::cout << "player here" << std::endl;
   return (NULL);
 }
