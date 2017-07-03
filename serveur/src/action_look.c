@@ -9,6 +9,7 @@
 */
 
 #include <stdio.h>
+#include <string.h>
 #include <math.h>
 #include "server.h"
 
@@ -17,6 +18,7 @@ static bool	check_overflow(int *written, char *buff, int fd)
   if (*written >= MSG_LEN - 32)
     {
       *written = 0;
+      bzero(buff, MSG_LEN);
       if (socket_write(fd, buff) == -1)
 	return (false);
     }

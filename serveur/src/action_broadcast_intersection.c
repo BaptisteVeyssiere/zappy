@@ -70,19 +70,23 @@ void		get_map_inter(t_data *data, t_position *v,
   if (v->x)
     {
       res = (float)-c / v->x;
+      fprintf(stderr, "x=0 (%f,%f)\n", 0.0, res);
       if (res >= 0 && res <= (float)(data->height - 1))
 	r_inter[++i] = (t_point){0, res};
-      res = (float)(v->y * (data->width - 1) - c) / v->x;
+      res = ((float)v->y * (data->width - 1) - c) / v->x;
+      fprintf(stderr, "x=9 (%f,%f)\n", (float)data->width - 1, res);
       if (res >= 0 && res <= (float)(data->height - 1))
 	r_inter[++i] = (t_point){data->width - 1, res};
     }
   if (v->y)
     {
       res = (float)c / v->y;
-      if (v->y && res >= 0 && res <= (float)(data->width - 1))
+      fprintf(stderr, "y=0 (%f,%f)\n", res, 0.0);
+      if (res >= 0 && res <= (float)(data->width - 1))
 	r_inter[++i] = (t_point){(float)c / v->y, 0};
-      res = (float)(-v->x * (data->height - 1) - c) / -v->y;
-      if (v->y && res >= 0 && res <= (float)(data->width - 1))
+      res = ((float)v->x * (data->height - 1) - c) / v->y;
+      fprintf(stderr, "y=9 (%f,%f)\n", res, (float)data->height - 1);
+      if (res >= 0 && res <= (float)(data->width - 1))
 	r_inter[++i] = (t_point){res, data->height - 1};
     }
   fprintf(stderr, "inter[1]:(%f,%f)\ninter[2]:(%f,%f)\n", r_inter[0].x, r_inter[0].y, r_inter[1].x, r_inter[1].y);
