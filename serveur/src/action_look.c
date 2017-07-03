@@ -89,19 +89,20 @@ bool		action_look(t_data *data, t_player *player, UNUSED char *prm)
   int		line;
 
   line = 1;
-  saw = -1;
+  saw = 0;
   written = 1;
   buff[0] = '[';
   up = 0;
   off.x = player->pos->x;
   off.y = player->pos->y;
-  while (up <= player->level && ++saw < line)
+  while (up <= player->level)
     {
       get_real_pos_from(data, &off);
       if (!look_one_case(&data->map[off.y][off.x], &written, buff, player->fd))
 	return (false);
       written += snprintf(buff + written, MSG_LEN - written, ",");
       up += change_offset(player->direction, &off, &line, saw);
+      ++saw;
     }
   snprintf(buff + written - 1, MSG_LEN - written, " ]\n");
   return (socket_write(player->fd, buff) != -1);
