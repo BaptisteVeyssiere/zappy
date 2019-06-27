@@ -1,2 +1,2 @@
 # zappy
-Network game in C
+Network game in C / C++
